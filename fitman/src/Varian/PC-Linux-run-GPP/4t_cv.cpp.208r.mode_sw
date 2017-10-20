@@ -1,0 +1,3308 @@
+
+;; Function int main(int, char**) (main, funcdef_no=2, decl_uid=5399, symbol_order=2)
+
+starting the processing of deferred insns
+ending the processing of deferred insns
+
+
+int main(int, char**)
+
+Dataflow summary:
+;;  invalidated by call 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 19 [fpcr] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 29 [mm0] 30 [mm1] 31 [mm2] 32 [mm3] 33 [mm4] 34 [mm5] 35 [mm6] 36 [mm7] 37 [r8] 38 [r9] 39 [r10] 40 [r11] 45 [xmm8] 46 [xmm9] 47 [xmm10] 48 [xmm11] 49 [xmm12] 50 [xmm13] 51 [xmm14] 52 [xmm15] 53 [] 54 [] 55 [] 56 [] 57 [] 58 [] 59 [] 60 [] 61 [] 62 [] 63 [] 64 [] 65 [] 66 [] 67 [] 68 [] 69 [] 70 [] 71 [] 72 [] 73 [] 74 [] 75 [] 76 []
+;;  hardware regs used 	
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 20 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 20 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 20 [frame] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 37 [r8] 38 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 20 [frame]
+;;  regs ever live 	 0[ax] 1[dx] 2[cx] 4[si] 5[di] 7[sp] 17[flags] 37[r8] 38[r9]
+;;  ref usage 	r0={52d,11u} r1={52d,4u} r2={52d,4u} r4={57d,10u} r5={92d,45u} r6={1d,50u} r7={11d,111u} r8={47d} r9={47d} r10={47d} r11={47d} r12={47d} r13={47d} r14={47d} r15={47d} r16={1d,49u} r17={214d,22u} r18={47d} r19={47d} r20={1d,221u,10e} r21={48d} r22={48d} r23={48d} r24={48d} r25={48d} r26={48d} r27={48d} r28={48d} r29={47d} r30={47d} r31={47d} r32={47d} r33={47d} r34={47d} r35={47d} r36={47d} r37={52d,4u} r38={51d,3u} r39={47d} r40={47d} r45={47d} r46={47d} r47={47d} r48={47d} r49={47d} r50={47d} r51={47d} r52={47d} r53={47d} r54={47d} r55={47d} r56={47d} r57={47d} r58={47d} r59={47d} r60={47d} r61={47d} r62={47d} r63={47d} r64={47d} r65={47d} r66={47d} r67={47d} r68={47d} r69={47d} r70={47d} r71={47d} r72={47d} r73={47d} r74={47d} r75={47d} r76={47d} r83={1d,1u} r84={1d,1u} r85={1d,1u} r86={1d,1u} r87={1d,1u} r88={1d,1u,1e} r89={1d,1u} r90={1d,1u} r91={1d,1u} r92={1d,1u} r93={1d,1u,1e} r94={1d,1u} r95={1d,1u} r96={1d,1u} r97={1d,3u} r98={1d,4u} r99={1d,1u} r100={1d,1u} r101={1d,1u} r102={1d,1u} r103={1d,1u} r104={1d,1u} r105={1d,1u,1e} r106={1d,1u} r107={1d,1u} r108={1d,1u} r109={1d,1u} r110={1d,1u,1e} r111={1d,1u} r112={1d,1u} r113={1d,1u} r114={1d,1u} r115={1d,1u} r116={1d,1u} r117={1d,1u} r118={1d,1u} r119={1d,1u} r120={1d,1u} r121={1d,1u} r122={1d,1u} r123={1d,1u} r124={1d,1u} r125={1d,1u,1e} r126={1d,1u} r127={1d,1u} r128={1d,1u} r129={1d,1u} r130={1d,1u,1e} r131={1d,1u} r132={1d,1u} r133={1d,1u} r134={1d,1u} r135={1d,1u,1e} r136={1d,1u} r137={1d,1u} r138={1d,1u} r139={1d,1u} r140={1d,1u,1e} r141={1d,1u} r142={1d,1u} r143={1d,1u} r144={1d,1u} r145={1d,1u} r146={1d,1u} r147={1d,1u} r148={1d,1u} r149={1d,1u} r150={1d,1u} r151={1d,1u} r152={1d,1u} r153={1d,1u} r154={1d,1u} r155={1d,1u} r156={1d,1u} r157={1d,1u} r158={1d,1u,1e} r159={1d,1u} r160={1d,1u} r161={1d,1u} r162={1d,1u,1e} r163={1d,1u} r164={1d,1u} r165={1d,1u} r166={1d,1u} r167={1d,1u} r168={1d,1u} r169={1d,1u} r170={1d,1u} r171={1d,1u} r172={1d,1u} r173={1d,1u} r174={1d,1u} r175={1d,1u} r176={1d,1u} r177={1d,1u} r178={1d,1u} r179={1d,1u} r180={1d,1u} r181={1d,1u} r182={1d,1u} r183={1d,1u} r184={1d,1u} r185={1d,1u} r186={1d,1u} r187={1d,1u} r188={1d,1u} r189={1d,1u} r190={1d,1u} r191={1d,1u} r192={1d,1u} r193={1d,1u} r194={1d,1u} r195={1d,1u} r196={1d,1u} r197={1d,1u} r198={1d,1u} r199={1d,1u} r200={1d,1u} r201={1d,1u} r202={1d,1u} r203={1d,1u} r204={1d,1u} r205={1d,1u} r206={1d,1u} r207={1d,1u} r208={1d,1u} r209={1d,1u} r210={1d,1u} r211={1d,1u} r212={1d,1u} r213={1d,1u} r214={1d,1u} r215={1d,1u} r216={1d,1u} r217={1d,1u} r218={1d,1u} r219={1d,1u} r220={1d,1u} r221={1d,1u} r222={1d,1u} r223={1d,1u} r224={1d,1u} r225={1d,1u} r226={1d,1u} r227={1d,1u} r228={1d,1u} r229={1d,1u} r230={1d,1u} r231={1d,1u} r232={1d,1u} r233={1d,1u} r234={1d,1u} r235={1d,1u} r236={1d,1u} r237={1d,1u} r238={1d,1u} r239={1d,1u} r240={1d,1u} r241={1d,1u} r242={1d,1u} r243={1d,1u} r244={1d,1u} r245={1d,1u} r246={1d,1u} r247={1d,1u} r248={1d,1u} r249={1d,1u} r250={1d,1u} r251={1d,1u} r252={1d,1u} r253={1d,1u} r254={1d,1u} r255={1d,1u} r256={1d,1u} r257={1d,1u} r258={1d,1u} r259={1d,1u} r260={1d,1u} r261={1d,1u} r262={1d,1u} r263={1d,1u} r264={1d,1u} r265={1d,1u} r266={1d,1u} r267={1d,1u} r268={1d,1u} r269={1d,1u} r270={1d,1u} r271={1d,1u} r272={1d,1u} r273={1d,1u} r274={1d,1u} r275={1d,1u} r276={1d,1u} r277={1d,1u} r278={1d,1u} r279={1d,1u} r280={1d,1u} r281={1d,1u} r282={1d,1u} r283={1d,1u} r284={1d,1u} r285={1d,1u} r286={1d,1u} r287={1d,1u} r288={1d,1u} r289={1d,1u} r290={1d,1u} r291={1d,1u} r292={1d,1u} r293={1d,1u} r294={1d,1u} r295={1d,1u} r296={1d,1u} r297={1d,1u} r298={1d,1u} r299={1d,1u} r300={1d,1u} r301={1d,1u} r302={1d,1u} r303={1d,1u} r304={1d,1u} r305={1d,1u} r306={1d,1u} r307={1d,1u} r308={1d,1u} r309={1d,1u} r310={1d,1u} r311={1d,1u} r312={1d,1u} r313={1d,1u} r314={1d,1u} r315={1d,1u} r316={1d,1u} r317={1d,1u} r318={1d,1u} r319={1d,1u} r320={1d,1u} r321={1d,1u} r322={1d,1u} r323={1d,1u} r324={1d,1u} r325={1d,1u} r326={1d,1u} r327={1d,1u} r328={1d,1u} r329={1d,1u} r330={1d,1u} r331={1d,1u} r332={1d,1u} r333={1d,1u} r334={1d,1u} r335={1d,1u} r336={1d,1u} r337={1d,1u} r338={1d,1u} r339={1d,1u} r340={1d,1u} r341={1d,1u} r342={1d,1u} r343={1d,1u} r344={1d,1u} r345={1d,1u} r346={1d,1u} r347={1d,1u} r348={1d,1u} r349={1d,1u} r350={1d,1u} r351={1d,1u} r352={1d,1u} r353={1d,1u} r354={1d,1u} r355={1d,1u} r356={1d,2u,2e} r357={1d,1u} r358={4d,4u} r359={1d,1u} r360={1d,1u} r361={1d,1u} r362={1d,1u} r363={1d,1u} r364={1d,1u} r365={1d,1u} r366={1d,1u} r367={1d,1u} r368={1d,1u} r369={1d,1u} r370={1d,1u} r371={1d,1u} r372={1d,1u} r373={1d,1u} r374={1d,1u} r375={1d,1u} r376={1d,1u} r377={1d,1u} r378={1d,1u} r379={1d,1u} r380={1d,1u} r381={1d,1u} r382={1d,1u} r383={1d,1u} r384={1d,1u} 
+;;    total ref usage 4636{3769d,845u,22e} in 543{496 regular + 47 call} insns.
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2836 [0xfffffffffffff4ec])) [0 argc+0 S4 A32])
+        (reg:SI 5 di [ argc ])) 4t_cv.cpp:36 90 {*movsi_internal}
+     (nil))
+(insn 3 2 4 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2848 [0xfffffffffffff4e0])) [0 argv+0 S8 A64])
+        (reg:DI 4 si [ argv ])) 4t_cv.cpp:36 89 {*movdi_internal}
+     (nil))
+(note 4 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 4 8 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                        (const_int -8 [0xfffffffffffffff8])) [0 D.5612+0 S8 A64])
+                (unspec:DI [
+                        (const_int 40 [0x28])
+                    ] UNSPEC_SP_TLS_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:36 964 {stack_tls_protect_set_di}
+     (nil))
+(insn 8 5 9 2 (set (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2808 [0xfffffffffffff508])) [0 maxval+0 S8 A64])
+        (const_int 16384 [0x4000])) 4t_cv.cpp:50 89 {*movdi_internal}
+     (nil))
+(insn 9 8 10 2 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2828 [0xfffffffffffff4f4])) [0 fid+0 S4 A32])
+        (const_int 0 [0])) 4t_cv.cpp:52 90 {*movsi_internal}
+     (nil))
+(insn 10 9 11 2 (set (mem/f/j/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2752 [0xfffffffffffff540])) [0 in_file+0 S8 A64])
+        (const_int 0 [0])) 4t_cv.cpp:61 89 {*movdi_internal}
+     (nil))
+(insn 11 10 12 2 (set (mem/f/j/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2744 [0xfffffffffffff548])) [0 in_file+8 S8 A64])
+        (const_int 0 [0])) 4t_cv.cpp:62 89 {*movdi_internal}
+     (nil))
+(insn 12 11 13 2 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2836 [0xfffffffffffff4ec])) [0 argc+0 S4 A32])
+            (const_int 2 [0x2]))) 4t_cv.cpp:65 7 {*cmpsi_1}
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 46)
+            (pc))) 4t_cv.cpp:65 596 {*jcc_1}
+     (nil)
+ -> 46)
+;;  succ:       3 (FALLTHRU)
+;;              4
+
+;; basic block 3, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 14 13 15 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 3 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x2b3c10213d10 *.LC0>)) 4t_cv.cpp:66 89 {*movdi_internal}
+     (nil))
+(insn 16 15 17 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x2b3c10213da8 *.LC1>)) 4t_cv.cpp:66 89 {*movdi_internal}
+     (nil))
+(insn 17 16 18 3 (set (reg:QI 0 ax)
+        (const_int 0 [0])) 4t_cv.cpp:66 93 {*movqi_internal}
+     (nil))
+(call_insn 18 17 19 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x2b3c0fee0e00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:66 649 {*call_value}
+     (nil)
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (nil)))))
+(insn 19 18 20 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b3c10213e40 *.LC2>)) 4t_cv.cpp:67 89 {*movdi_internal}
+     (nil))
+(call_insn 20 19 21 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:67 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 21 20 22 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x2b3c10213ed8 *.LC3>)) 4t_cv.cpp:68 89 {*movdi_internal}
+     (nil))
+(call_insn 22 21 23 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:68 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 23 22 24 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x2b3c1021a000 *.LC4>)) 4t_cv.cpp:69 89 {*movdi_internal}
+     (nil))
+(call_insn 24 23 25 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:69 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 25 24 26 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b3c1021a098 *.LC5>)) 4t_cv.cpp:70 89 {*movdi_internal}
+     (nil))
+(call_insn 26 25 27 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:70 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 27 26 28 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x2b3c1021a130 *.LC6>)) 4t_cv.cpp:71 89 {*movdi_internal}
+     (nil))
+(call_insn 28 27 29 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:71 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 29 28 30 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC7") [flags 0x2]  <var_decl 0x2b3c1021a1c8 *.LC7>)) 4t_cv.cpp:72 89 {*movdi_internal}
+     (nil))
+(call_insn 30 29 31 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:72 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 31 30 32 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC8") [flags 0x2]  <var_decl 0x2b3c1021a260 *.LC8>)) 4t_cv.cpp:73 89 {*movdi_internal}
+     (nil))
+(call_insn 32 31 33 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:73 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 33 32 34 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC9") [flags 0x2]  <var_decl 0x2b3c1021a2f8 *.LC9>)) 4t_cv.cpp:74 89 {*movdi_internal}
+     (nil))
+(call_insn 34 33 35 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:74 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 35 34 36 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC10") [flags 0x2]  <var_decl 0x2b3c1021a390 *.LC10>)) 4t_cv.cpp:75 89 {*movdi_internal}
+     (nil))
+(call_insn 36 35 37 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:75 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 37 36 38 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC11") [flags 0x2]  <var_decl 0x2b3c1021a428 *.LC11>)) 4t_cv.cpp:76 89 {*movdi_internal}
+     (nil))
+(call_insn 38 37 39 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:76 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 39 38 40 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC12") [flags 0x2]  <var_decl 0x2b3c1021a4c0 *.LC12>)) 4t_cv.cpp:77 89 {*movdi_internal}
+     (nil))
+(call_insn 40 39 41 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:77 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 41 40 42 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC13") [flags 0x2]  <var_decl 0x2b3c1021a558 *.LC13>)) 4t_cv.cpp:78 89 {*movdi_internal}
+     (nil))
+(call_insn 42 41 43 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:78 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 43 42 44 3 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) 4t_cv.cpp:79 90 {*movsi_internal}
+     (nil))
+(call_insn 44 43 45 3 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b3c0fefe900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) 4t_cv.cpp:79 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+;;  succ:      
+
+(barrier 45 44 46)
+;; basic block 4, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 46 45 47 4 2 "" [1 uses])
+(note 47 46 48 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(call_insn 48 47 49 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_Z11IsBigEndianv") [flags 0x3]  <function_decl 0x2b3c101d9500 IsBigEndian>) [0 IsBigEndian S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:83 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (nil))
+(insn 49 48 50 4 (set (reg:SI 83 [ D.5593 ])
+        (reg:SI 0 ax)) 4t_cv.cpp:83 90 {*movsi_internal}
+     (nil))
+(insn 50 49 51 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 83 [ D.5593 ])
+            (const_int 0 [0]))) 4t_cv.cpp:83 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 51 50 52 4 (set (reg:QI 84 [ D.5594 ])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) 4t_cv.cpp:83 592 {*setcc_qi}
+     (nil))
+(insn 52 51 53 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 84 [ D.5594 ])
+            (const_int 0 [0]))) 4t_cv.cpp:83 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 53 52 54 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 58)
+            (pc))) 4t_cv.cpp:83 596 {*jcc_1}
+     (nil)
+ -> 58)
+;;  succ:       5 (FALLTHRU)
+;;              6
+
+;; basic block 5, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 (FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 54 53 55 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 55 54 644 5 (set (mem/j/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2816 [0xfffffffffffff500])) [0 endianCheck.systemStruct+0 S4 A64])
+        (const_int 1 [0x1])) 4t_cv.cpp:84 90 {*movsi_internal}
+     (nil))
+(jump_insn 644 55 645 5 (set (pc)
+        (label_ref 61)) -1
+     (nil)
+ -> 61)
+;;  succ:       7 [100.0%] 
+
+(barrier 645 644 58)
+;; basic block 6, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 58 645 59 6 3 "" [1 uses])
+(note 59 58 60 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 60 59 61 6 (set (mem/j/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2816 [0xfffffffffffff500])) [0 endianCheck.systemStruct+0 S4 A64])
+        (const_int 0 [0])) 4t_cv.cpp:87 90 {*movsi_internal}
+     (nil))
+;;  succ:       7 (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       6 (FALLTHRU)
+;;              5 [100.0%] 
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 61 60 62 7 4 "" [1 uses])
+(note 62 61 63 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 63 62 64 7 (set (reg:DI 85 [ D.5595 ])
+        (const_int 16 [0x10])) 4t_cv.cpp:91 89 {*movdi_internal}
+     (nil))
+(insn 64 63 65 7 (set (reg:DI 5 di)
+        (reg:DI 85 [ D.5595 ])) 4t_cv.cpp:91 89 {*movdi_internal}
+     (nil))
+(call_insn 65 64 66 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2b3c0ff0c200 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:91 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 66 65 67 7 (set (reg/f:DI 183)
+        (reg:DI 0 ax)) 4t_cv.cpp:91 89 {*movdi_internal}
+     (expr_list:REG_NOALIAS (reg/f:DI 183)
+        (nil)))
+(insn 67 66 68 7 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])
+        (reg/f:DI 183)) 4t_cv.cpp:91 89 {*movdi_internal}
+     (nil))
+(insn 68 67 69 7 (set (reg:DI 86 [ D.5595 ])
+        (const_int 16 [0x10])) 4t_cv.cpp:92 89 {*movdi_internal}
+     (nil))
+(insn 69 68 70 7 (set (reg:DI 5 di)
+        (reg:DI 86 [ D.5595 ])) 4t_cv.cpp:92 89 {*movdi_internal}
+     (nil))
+(call_insn 70 69 71 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2b3c0ff0c200 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:92 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 71 70 72 7 (set (reg/f:DI 184)
+        (reg:DI 0 ax)) 4t_cv.cpp:92 89 {*movdi_internal}
+     (expr_list:REG_NOALIAS (reg/f:DI 184)
+        (nil)))
+(insn 72 71 73 7 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2792 [0xfffffffffffff518])) [0 block_header+0 S8 A64])
+        (reg/f:DI 184)) 4t_cv.cpp:92 89 {*movdi_internal}
+     (nil))
+(insn 73 72 646 7 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+        (const_int 0 [0])) 4t_cv.cpp:94 90 {*movsi_internal}
+     (nil))
+(jump_insn 646 73 647 7 (set (pc)
+        (label_ref 100)) 4t_cv.cpp:94 -1
+     (nil)
+ -> 100)
+;;  succ:       9 [100.0%] 
+
+(barrier 647 646 102)
+;; basic block 8, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       9
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 102 647 76 8 6 "" [1 uses])
+(note 76 102 77 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 77 76 78 8 (set (reg:SI 185)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:95 90 {*movsi_internal}
+     (nil))
+(insn 78 77 79 8 (set (reg:DI 87 [ D.5595 ])
+        (sign_extend:DI (reg:SI 185))) 4t_cv.cpp:95 142 {*extendsidi2_rex64}
+     (nil))
+(insn 79 78 80 8 (parallel [
+            (set (reg:DI 88 [ D.5595 ])
+                (ashift:DI (reg:DI 87 [ D.5595 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:95 497 {*ashldi3_1}
+     (nil))
+(insn 80 79 81 8 (set (reg/f:DI 186)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])) 4t_cv.cpp:95 89 {*movdi_internal}
+     (nil))
+(insn 81 80 82 8 (parallel [
+            (set (reg/f:DI 89 [ D.5596 ])
+                (plus:DI (reg:DI 88 [ D.5595 ])
+                    (reg/f:DI 186)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:95 221 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])
+            (reg:DI 88 [ D.5595 ]))
+        (nil)))
+(insn 82 81 83 8 (set (reg:DI 90 [ D.5595 ])
+        (const_int 64 [0x40])) 4t_cv.cpp:95 89 {*movdi_internal}
+     (nil))
+(insn 83 82 84 8 (set (reg:DI 5 di)
+        (reg:DI 90 [ D.5595 ])) 4t_cv.cpp:95 89 {*movdi_internal}
+     (nil))
+(call_insn 84 83 85 8 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2b3c0ff0c200 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:95 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 85 84 86 8 (set (reg/f:DI 187)
+        (reg:DI 0 ax)) 4t_cv.cpp:95 89 {*movdi_internal}
+     (expr_list:REG_NOALIAS (reg/f:DI 187)
+        (nil)))
+(insn 86 85 87 8 (set (reg/f:DI 91 [ D.5597 ])
+        (reg/f:DI 187)) 4t_cv.cpp:95 89 {*movdi_internal}
+     (nil))
+(insn 87 86 88 8 (set (mem/f:DI (reg/f:DI 89 [ D.5596 ]) [0 *_20+0 S8 A64])
+        (reg/f:DI 91 [ D.5597 ])) 4t_cv.cpp:95 89 {*movdi_internal}
+     (nil))
+(insn 88 87 89 8 (set (reg:SI 188)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:96 90 {*movsi_internal}
+     (nil))
+(insn 89 88 90 8 (set (reg:DI 92 [ D.5595 ])
+        (sign_extend:DI (reg:SI 188))) 4t_cv.cpp:96 142 {*extendsidi2_rex64}
+     (nil))
+(insn 90 89 91 8 (parallel [
+            (set (reg:DI 93 [ D.5595 ])
+                (ashift:DI (reg:DI 92 [ D.5595 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:96 497 {*ashldi3_1}
+     (nil))
+(insn 91 90 92 8 (set (reg/f:DI 189)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2792 [0xfffffffffffff518])) [0 block_header+0 S8 A64])) 4t_cv.cpp:96 89 {*movdi_internal}
+     (nil))
+(insn 92 91 93 8 (parallel [
+            (set (reg/f:DI 94 [ D.5598 ])
+                (plus:DI (reg:DI 93 [ D.5595 ])
+                    (reg/f:DI 189)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:96 221 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2792 [0xfffffffffffff518])) [0 block_header+0 S8 A64])
+            (reg:DI 93 [ D.5595 ]))
+        (nil)))
+(insn 93 92 94 8 (set (reg:DI 95 [ D.5595 ])
+        (const_int 56 [0x38])) 4t_cv.cpp:96 89 {*movdi_internal}
+     (nil))
+(insn 94 93 95 8 (set (reg:DI 5 di)
+        (reg:DI 95 [ D.5595 ])) 4t_cv.cpp:96 89 {*movdi_internal}
+     (nil))
+(call_insn 95 94 96 8 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x2b3c0ff0c200 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:96 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 96 95 97 8 (set (reg/f:DI 190)
+        (reg:DI 0 ax)) 4t_cv.cpp:96 89 {*movdi_internal}
+     (expr_list:REG_NOALIAS (reg/f:DI 190)
+        (nil)))
+(insn 97 96 98 8 (set (reg/f:DI 96 [ D.5597 ])
+        (reg/f:DI 190)) 4t_cv.cpp:96 89 {*movdi_internal}
+     (nil))
+(insn 98 97 99 8 (set (mem/f:DI (reg/f:DI 94 [ D.5598 ]) [0 *_25+0 S8 A64])
+        (reg/f:DI 96 [ D.5597 ])) 4t_cv.cpp:96 89 {*movdi_internal}
+     (nil))
+(insn 99 98 100 8 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                        (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                            (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:94 220 {*addsi_1}
+     (nil))
+;;  succ:       9 (FALLTHRU,DFS_BACK)
+
+;; basic block 9, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       8 (FALLTHRU,DFS_BACK)
+;;              7 [100.0%] 
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 100 99 101 9 5 "" [1 uses])
+(note 101 100 103 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 103 101 104 9 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+            (const_int 1 [0x1]))) 4t_cv.cpp:94 7 {*cmpsi_1}
+     (nil))
+(jump_insn 104 103 105 9 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 102)
+            (pc))) 4t_cv.cpp:94 596 {*jcc_1}
+     (nil)
+ -> 102)
+;;  succ:       8
+;;              10 (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       9 (FALLTHRU)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 105 104 106 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 106 105 648 10 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+        (const_int 0 [0])) 4t_cv.cpp:101 90 {*movsi_internal}
+     (nil))
+(jump_insn 648 106 649 10 (set (pc)
+        (label_ref 228)) 4t_cv.cpp:101 -1
+     (nil)
+ -> 228)
+;;  succ:       12 [100.0%] 
+
+(barrier 649 648 230)
+;; basic block 11, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       12
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 230 649 109 11 8 "" [1 uses])
+(note 109 230 110 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 110 109 111 11 (set (reg:SI 192)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:102 90 {*movsi_internal}
+     (nil))
+(insn 111 110 112 11 (set (reg:DI 191)
+        (sign_extend:DI (reg:SI 192))) 4t_cv.cpp:102 142 {*extendsidi2_rex64}
+     (nil))
+(insn 112 111 113 11 (parallel [
+            (set (reg:DI 193)
+                (mult:DI (reg:DI 191)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:102 307 {*muldi3_1}
+     (nil))
+(insn 113 112 114 11 (parallel [
+            (set (reg:DI 194)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 193)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:102 221 {*adddi_1}
+     (nil))
+(insn 114 113 115 11 (parallel [
+            (set (reg/f:DI 195)
+                (plus:DI (reg:DI 194)
+                    (const_int -2560 [0xfffffffffffff600])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:102 221 {*adddi_1}
+     (nil))
+(insn 115 114 116 11 (set (reg:SF 196)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [0  S4 A32])) 4t_cv.cpp:102 129 {*movsf_internal}
+     (nil))
+(insn 116 115 117 11 (set (mem/j:SF (reg/f:DI 195) [0 procpar_info[i_2].acquision_time+0 S4 A64])
+        (reg:SF 196)) 4t_cv.cpp:102 129 {*movsf_internal}
+     (nil))
+(insn 117 116 118 11 (set (reg:SI 198)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:103 90 {*movsi_internal}
+     (nil))
+(insn 118 117 119 11 (set (reg:DI 197)
+        (sign_extend:DI (reg:SI 198))) 4t_cv.cpp:103 142 {*extendsidi2_rex64}
+     (nil))
+(insn 119 118 120 11 (parallel [
+            (set (reg:DI 199)
+                (mult:DI (reg:DI 197)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:103 307 {*muldi3_1}
+     (nil))
+(insn 120 119 121 11 (parallel [
+            (set (reg:DI 200)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 199)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:103 221 {*adddi_1}
+     (nil))
+(insn 121 120 122 11 (parallel [
+            (set (reg/f:DI 201)
+                (plus:DI (reg:DI 200)
+                    (const_int -2272 [0xfffffffffffff720])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:103 221 {*adddi_1}
+     (nil))
+(insn 122 121 123 11 (set (reg:SF 202)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [0  S4 A32])) 4t_cv.cpp:103 129 {*movsf_internal}
+     (nil))
+(insn 123 122 124 11 (set (mem/j:SF (plus:DI (reg/f:DI 201)
+                (const_int 4 [0x4])) [0 procpar_info[i_2].filter+0 S4 A32])
+        (reg:SF 202)) 4t_cv.cpp:103 129 {*movsf_internal}
+     (nil))
+(insn 124 123 125 11 (set (reg:SI 204)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:104 90 {*movsi_internal}
+     (nil))
+(insn 125 124 126 11 (set (reg:DI 203)
+        (sign_extend:DI (reg:SI 204))) 4t_cv.cpp:104 142 {*extendsidi2_rex64}
+     (nil))
+(insn 126 125 127 11 (parallel [
+            (set (reg:DI 205)
+                (mult:DI (reg:DI 203)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:104 307 {*muldi3_1}
+     (nil))
+(insn 127 126 128 11 (parallel [
+            (set (reg:DI 206)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 205)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:104 221 {*adddi_1}
+     (nil))
+(insn 128 127 129 11 (parallel [
+            (set (reg/f:DI 207)
+                (plus:DI (reg:DI 206)
+                    (const_int -2272 [0xfffffffffffff720])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:104 221 {*adddi_1}
+     (nil))
+(insn 129 128 130 11 (set (mem/j:SI (plus:DI (reg/f:DI 207)
+                (const_int 8 [0x8])) [0 procpar_info[i_2].num_transients+0 S4 A64])
+        (const_int 1 [0x1])) 4t_cv.cpp:104 90 {*movsi_internal}
+     (nil))
+(insn 130 129 131 11 (set (reg:SI 209)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:105 90 {*movsi_internal}
+     (nil))
+(insn 131 130 132 11 (set (reg:DI 208)
+        (sign_extend:DI (reg:SI 209))) 4t_cv.cpp:105 142 {*extendsidi2_rex64}
+     (nil))
+(insn 132 131 133 11 (parallel [
+            (set (reg:DI 210)
+                (mult:DI (reg:DI 208)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:105 307 {*muldi3_1}
+     (nil))
+(insn 133 132 134 11 (parallel [
+            (set (reg:DI 211)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 210)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:105 221 {*adddi_1}
+     (nil))
+(insn 134 133 135 11 (parallel [
+            (set (reg/f:DI 212)
+                (plus:DI (reg:DI 211)
+                    (const_int -2272 [0xfffffffffffff720])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:105 221 {*adddi_1}
+     (nil))
+(insn 135 134 136 11 (set (mem/j:SI (plus:DI (reg/f:DI 212)
+                (const_int 12 [0xc])) [0 procpar_info[i_2].num_points+0 S4 A32])
+        (const_int 1024 [0x400])) 4t_cv.cpp:105 90 {*movsi_internal}
+     (nil))
+(insn 136 135 137 11 (set (reg:SI 214)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:106 90 {*movsi_internal}
+     (nil))
+(insn 137 136 138 11 (set (reg:DI 213)
+        (sign_extend:DI (reg:SI 214))) 4t_cv.cpp:106 142 {*extendsidi2_rex64}
+     (nil))
+(insn 138 137 139 11 (parallel [
+            (set (reg:DI 215)
+                (mult:DI (reg:DI 213)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:106 307 {*muldi3_1}
+     (nil))
+(insn 139 138 140 11 (parallel [
+            (set (reg:DI 216)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 215)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:106 221 {*adddi_1}
+     (nil))
+(insn 140 139 141 11 (parallel [
+            (set (reg/f:DI 217)
+                (plus:DI (reg:DI 216)
+                    (const_int -2256 [0xfffffffffffff730])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:106 221 {*adddi_1}
+     (nil))
+(insn 141 140 142 11 (set (reg:DF 218)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC15") [flags 0x2]) [0  S8 A64])) 4t_cv.cpp:106 128 {*movdf_internal}
+     (nil))
+(insn 142 141 143 11 (set (mem/j:DF (reg/f:DI 217) [0 procpar_info[i_2].main_frequency+0 S8 A64])
+        (reg:DF 218)) 4t_cv.cpp:106 128 {*movdf_internal}
+     (nil))
+(insn 143 142 144 11 (set (reg:SI 220)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:107 90 {*movsi_internal}
+     (nil))
+(insn 144 143 145 11 (set (reg:DI 219)
+        (sign_extend:DI (reg:SI 220))) 4t_cv.cpp:107 142 {*extendsidi2_rex64}
+     (nil))
+(insn 145 144 146 11 (parallel [
+            (set (reg:DI 221)
+                (mult:DI (reg:DI 219)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:107 307 {*muldi3_1}
+     (nil))
+(insn 146 145 147 11 (parallel [
+            (set (reg:DI 222)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 221)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:107 221 {*adddi_1}
+     (nil))
+(insn 147 146 148 11 (parallel [
+            (set (reg/f:DI 223)
+                (plus:DI (reg:DI 222)
+                    (const_int -2256 [0xfffffffffffff730])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:107 221 {*adddi_1}
+     (nil))
+(insn 148 147 149 11 (set (reg:DF 224)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC15") [flags 0x2]) [0  S8 A64])) 4t_cv.cpp:107 128 {*movdf_internal}
+     (nil))
+(insn 149 148 150 11 (set (mem/j:DF (plus:DI (reg/f:DI 223)
+                (const_int 8 [0x8])) [0 procpar_info[i_2].offset_frequency+0 S8 A64])
+        (reg:DF 224)) 4t_cv.cpp:107 128 {*movdf_internal}
+     (nil))
+(insn 150 149 151 11 (set (reg:SI 226)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:108 90 {*movsi_internal}
+     (nil))
+(insn 151 150 152 11 (set (reg:DI 225)
+        (sign_extend:DI (reg:SI 226))) 4t_cv.cpp:108 142 {*extendsidi2_rex64}
+     (nil))
+(insn 152 151 153 11 (parallel [
+            (set (reg:DI 227)
+                (mult:DI (reg:DI 225)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:108 307 {*muldi3_1}
+     (nil))
+(insn 153 152 154 11 (parallel [
+            (set (reg:DI 228)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 227)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:108 221 {*adddi_1}
+     (nil))
+(insn 154 153 155 11 (parallel [
+            (set (reg/f:DI 229)
+                (plus:DI (reg:DI 228)
+                    (const_int -2240 [0xfffffffffffff740])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:108 221 {*adddi_1}
+     (nil))
+(insn 155 154 156 11 (set (reg:SF 230)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [0  S4 A32])) 4t_cv.cpp:108 129 {*movsf_internal}
+     (nil))
+(insn 156 155 157 11 (set (mem/j:SF (reg/f:DI 229) [0 procpar_info[i_2].te+0 S4 A64])
+        (reg:SF 230)) 4t_cv.cpp:108 129 {*movsf_internal}
+     (nil))
+(insn 157 156 158 11 (set (reg:SI 232)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:109 90 {*movsi_internal}
+     (nil))
+(insn 158 157 159 11 (set (reg:DI 231)
+        (sign_extend:DI (reg:SI 232))) 4t_cv.cpp:109 142 {*extendsidi2_rex64}
+     (nil))
+(insn 159 158 160 11 (parallel [
+            (set (reg:DI 233)
+                (mult:DI (reg:DI 231)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:109 307 {*muldi3_1}
+     (nil))
+(insn 160 159 161 11 (parallel [
+            (set (reg:DI 234)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 233)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:109 221 {*adddi_1}
+     (nil))
+(insn 161 160 162 11 (parallel [
+            (set (reg/f:DI 235)
+                (plus:DI (reg:DI 234)
+                    (const_int -2240 [0xfffffffffffff740])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:109 221 {*adddi_1}
+     (nil))
+(insn 162 161 163 11 (set (reg:SF 236)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [0  S4 A32])) 4t_cv.cpp:109 129 {*movsf_internal}
+     (nil))
+(insn 163 162 164 11 (set (mem/j:SF (plus:DI (reg/f:DI 235)
+                (const_int 4 [0x4])) [0 procpar_info[i_2].tm+0 S4 A32])
+        (reg:SF 236)) 4t_cv.cpp:109 129 {*movsf_internal}
+     (nil))
+(insn 164 163 165 11 (set (reg:SI 238)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:110 90 {*movsi_internal}
+     (nil))
+(insn 165 164 166 11 (set (reg:DI 237)
+        (sign_extend:DI (reg:SI 238))) 4t_cv.cpp:110 142 {*extendsidi2_rex64}
+     (nil))
+(insn 166 165 167 11 (parallel [
+            (set (reg:DI 239)
+                (mult:DI (reg:DI 237)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:110 307 {*muldi3_1}
+     (nil))
+(insn 167 166 168 11 (parallel [
+            (set (reg:DI 240)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 239)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:110 221 {*adddi_1}
+     (nil))
+(insn 168 167 169 11 (parallel [
+            (set (reg/f:DI 241)
+                (plus:DI (reg:DI 240)
+                    (const_int -2240 [0xfffffffffffff740])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:110 221 {*adddi_1}
+     (nil))
+(insn 169 168 170 11 (set (reg:SF 242)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [0  S4 A32])) 4t_cv.cpp:110 129 {*movsf_internal}
+     (nil))
+(insn 170 169 171 11 (set (mem/j:SF (plus:DI (reg/f:DI 241)
+                (const_int 8 [0x8])) [0 procpar_info[i_2].gain+0 S4 A64])
+        (reg:SF 242)) 4t_cv.cpp:110 129 {*movsf_internal}
+     (nil))
+(insn 171 170 172 11 (set (reg:SI 244)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:111 90 {*movsi_internal}
+     (nil))
+(insn 172 171 173 11 (set (reg:DI 243)
+        (sign_extend:DI (reg:SI 244))) 4t_cv.cpp:111 142 {*extendsidi2_rex64}
+     (nil))
+(insn 173 172 174 11 (parallel [
+            (set (reg:DI 245)
+                (mult:DI (reg:DI 243)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:111 307 {*muldi3_1}
+     (nil))
+(insn 174 173 175 11 (parallel [
+            (set (reg:DI 246)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 245)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:111 221 {*adddi_1}
+     (nil))
+(insn 175 174 176 11 (parallel [
+            (set (reg/f:DI 247)
+                (plus:DI (reg:DI 246)
+                    (const_int -2240 [0xfffffffffffff740])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:111 221 {*adddi_1}
+     (nil))
+(insn 176 175 177 11 (set (reg:SF 248)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [0  S4 A32])) 4t_cv.cpp:111 129 {*movsf_internal}
+     (nil))
+(insn 177 176 178 11 (set (mem/j:SF (plus:DI (reg/f:DI 247)
+                (const_int 12 [0xc])) [0 procpar_info[i_2].pos1+0 S4 A32])
+        (reg:SF 248)) 4t_cv.cpp:111 129 {*movsf_internal}
+     (nil))
+(insn 178 177 179 11 (set (reg:SI 250)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:112 90 {*movsi_internal}
+     (nil))
+(insn 179 178 180 11 (set (reg:DI 249)
+        (sign_extend:DI (reg:SI 250))) 4t_cv.cpp:112 142 {*extendsidi2_rex64}
+     (nil))
+(insn 180 179 181 11 (parallel [
+            (set (reg:DI 251)
+                (mult:DI (reg:DI 249)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:112 307 {*muldi3_1}
+     (nil))
+(insn 181 180 182 11 (parallel [
+            (set (reg:DI 252)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 251)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:112 221 {*adddi_1}
+     (nil))
+(insn 182 181 183 11 (parallel [
+            (set (reg/f:DI 253)
+                (plus:DI (reg:DI 252)
+                    (const_int -2224 [0xfffffffffffff750])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:112 221 {*adddi_1}
+     (nil))
+(insn 183 182 184 11 (set (reg:SF 254)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [0  S4 A32])) 4t_cv.cpp:112 129 {*movsf_internal}
+     (nil))
+(insn 184 183 185 11 (set (mem/j:SF (reg/f:DI 253) [0 procpar_info[i_2].pos2+0 S4 A64])
+        (reg:SF 254)) 4t_cv.cpp:112 129 {*movsf_internal}
+     (nil))
+(insn 185 184 186 11 (set (reg:SI 256)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:113 90 {*movsi_internal}
+     (nil))
+(insn 186 185 187 11 (set (reg:DI 255)
+        (sign_extend:DI (reg:SI 256))) 4t_cv.cpp:113 142 {*extendsidi2_rex64}
+     (nil))
+(insn 187 186 188 11 (parallel [
+            (set (reg:DI 257)
+                (mult:DI (reg:DI 255)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:113 307 {*muldi3_1}
+     (nil))
+(insn 188 187 189 11 (parallel [
+            (set (reg:DI 258)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 257)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:113 221 {*adddi_1}
+     (nil))
+(insn 189 188 190 11 (parallel [
+            (set (reg/f:DI 259)
+                (plus:DI (reg:DI 258)
+                    (const_int -2224 [0xfffffffffffff750])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:113 221 {*adddi_1}
+     (nil))
+(insn 190 189 191 11 (set (reg:SF 260)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [0  S4 A32])) 4t_cv.cpp:113 129 {*movsf_internal}
+     (nil))
+(insn 191 190 192 11 (set (mem/j:SF (plus:DI (reg/f:DI 259)
+                (const_int 4 [0x4])) [0 procpar_info[i_2].pos3+0 S4 A32])
+        (reg:SF 260)) 4t_cv.cpp:113 129 {*movsf_internal}
+     (nil))
+(insn 192 191 193 11 (set (reg:SI 262)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:114 90 {*movsi_internal}
+     (nil))
+(insn 193 192 194 11 (set (reg:DI 261)
+        (sign_extend:DI (reg:SI 262))) 4t_cv.cpp:114 142 {*extendsidi2_rex64}
+     (nil))
+(insn 194 193 195 11 (parallel [
+            (set (reg:DI 263)
+                (mult:DI (reg:DI 261)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:114 307 {*muldi3_1}
+     (nil))
+(insn 195 194 196 11 (parallel [
+            (set (reg:DI 264)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 263)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:114 221 {*adddi_1}
+     (nil))
+(insn 196 195 197 11 (parallel [
+            (set (reg/f:DI 265)
+                (plus:DI (reg:DI 264)
+                    (const_int -2224 [0xfffffffffffff750])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:114 221 {*adddi_1}
+     (nil))
+(insn 197 196 198 11 (set (reg:SF 266)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [0  S4 A32])) 4t_cv.cpp:114 129 {*movsf_internal}
+     (nil))
+(insn 198 197 199 11 (set (mem/j:SF (plus:DI (reg/f:DI 265)
+                (const_int 8 [0x8])) [0 procpar_info[i_2].vox1+0 S4 A64])
+        (reg:SF 266)) 4t_cv.cpp:114 129 {*movsf_internal}
+     (nil))
+(insn 199 198 200 11 (set (reg:SI 268)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:115 90 {*movsi_internal}
+     (nil))
+(insn 200 199 201 11 (set (reg:DI 267)
+        (sign_extend:DI (reg:SI 268))) 4t_cv.cpp:115 142 {*extendsidi2_rex64}
+     (nil))
+(insn 201 200 202 11 (parallel [
+            (set (reg:DI 269)
+                (mult:DI (reg:DI 267)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:115 307 {*muldi3_1}
+     (nil))
+(insn 202 201 203 11 (parallel [
+            (set (reg:DI 270)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 269)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:115 221 {*adddi_1}
+     (nil))
+(insn 203 202 204 11 (parallel [
+            (set (reg/f:DI 271)
+                (plus:DI (reg:DI 270)
+                    (const_int -2224 [0xfffffffffffff750])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:115 221 {*adddi_1}
+     (nil))
+(insn 204 203 205 11 (set (reg:SF 272)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [0  S4 A32])) 4t_cv.cpp:115 129 {*movsf_internal}
+     (nil))
+(insn 205 204 206 11 (set (mem/j:SF (plus:DI (reg/f:DI 271)
+                (const_int 12 [0xc])) [0 procpar_info[i_2].vox2+0 S4 A32])
+        (reg:SF 272)) 4t_cv.cpp:115 129 {*movsf_internal}
+     (nil))
+(insn 206 205 207 11 (set (reg:SI 274)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:116 90 {*movsi_internal}
+     (nil))
+(insn 207 206 208 11 (set (reg:DI 273)
+        (sign_extend:DI (reg:SI 274))) 4t_cv.cpp:116 142 {*extendsidi2_rex64}
+     (nil))
+(insn 208 207 209 11 (parallel [
+            (set (reg:DI 275)
+                (mult:DI (reg:DI 273)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:116 307 {*muldi3_1}
+     (nil))
+(insn 209 208 210 11 (parallel [
+            (set (reg:DI 276)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 275)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:116 221 {*adddi_1}
+     (nil))
+(insn 210 209 211 11 (parallel [
+            (set (reg/f:DI 277)
+                (plus:DI (reg:DI 276)
+                    (const_int -2208 [0xfffffffffffff760])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:116 221 {*adddi_1}
+     (nil))
+(insn 211 210 212 11 (set (reg:SF 278)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [0  S4 A32])) 4t_cv.cpp:116 129 {*movsf_internal}
+     (nil))
+(insn 212 211 213 11 (set (mem/j:SF (reg/f:DI 277) [0 procpar_info[i_2].vox3+0 S4 A64])
+        (reg:SF 278)) 4t_cv.cpp:116 129 {*movsf_internal}
+     (nil))
+(insn 213 212 214 11 (set (reg:SI 280)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:117 90 {*movsi_internal}
+     (nil))
+(insn 214 213 215 11 (set (reg:DI 279)
+        (sign_extend:DI (reg:SI 280))) 4t_cv.cpp:117 142 {*extendsidi2_rex64}
+     (nil))
+(insn 215 214 216 11 (parallel [
+            (set (reg:DI 281)
+                (mult:DI (reg:DI 279)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:117 307 {*muldi3_1}
+     (nil))
+(insn 216 215 217 11 (parallel [
+            (set (reg:DI 282)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 281)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:117 221 {*adddi_1}
+     (nil))
+(insn 217 216 218 11 (parallel [
+            (set (reg/f:DI 283)
+                (plus:DI (reg:DI 282)
+                    (const_int -2208 [0xfffffffffffff760])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:117 221 {*adddi_1}
+     (nil))
+(insn 218 217 219 11 (set (reg:DF 284)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC15") [flags 0x2]) [0  S8 A64])) 4t_cv.cpp:117 128 {*movdf_internal}
+     (nil))
+(insn 219 218 220 11 (set (mem/j:DF (plus:DI (reg/f:DI 283)
+                (const_int 8 [0x8])) [0 procpar_info[i_2].span+0 S8 A64])
+        (reg:DF 284)) 4t_cv.cpp:117 128 {*movdf_internal}
+     (nil))
+(insn 220 219 221 11 (set (reg:SI 286)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:118 90 {*movsi_internal}
+     (nil))
+(insn 221 220 222 11 (set (reg:DI 285)
+        (sign_extend:DI (reg:SI 286))) 4t_cv.cpp:118 142 {*extendsidi2_rex64}
+     (nil))
+(insn 222 221 223 11 (parallel [
+            (set (reg:DI 287)
+                (mult:DI (reg:DI 285)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:118 307 {*muldi3_1}
+     (nil))
+(insn 223 222 224 11 (parallel [
+            (set (reg:DI 288)
+                (plus:DI (reg/f:DI 20 frame)
+                    (reg:DI 287)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:118 221 {*adddi_1}
+     (nil))
+(insn 224 223 225 11 (parallel [
+            (set (reg/f:DI 289)
+                (plus:DI (reg:DI 288)
+                    (const_int -2192 [0xfffffffffffff770])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:118 221 {*adddi_1}
+     (nil))
+(insn 225 224 226 11 (set (reg:SF 290)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC14") [flags 0x2]) [0  S4 A32])) 4t_cv.cpp:118 129 {*movsf_internal}
+     (nil))
+(insn 226 225 227 11 (set (mem/j:SF (reg/f:DI 289) [0 procpar_info[i_2].vtheta+0 S4 A64])
+        (reg:SF 290)) 4t_cv.cpp:118 129 {*movsf_internal}
+     (nil))
+(insn 227 226 228 11 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                        (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                            (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:101 220 {*addsi_1}
+     (nil))
+;;  succ:       12 (FALLTHRU,DFS_BACK)
+
+;; basic block 12, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       11 (FALLTHRU,DFS_BACK)
+;;              10 [100.0%] 
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 228 227 229 12 7 "" [1 uses])
+(note 229 228 231 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 231 229 232 12 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+            (const_int 1 [0x1]))) 4t_cv.cpp:101 7 {*cmpsi_1}
+     (nil))
+(jump_insn 232 231 233 12 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 230)
+            (pc))) 4t_cv.cpp:101 596 {*jcc_1}
+     (nil)
+ -> 230)
+;;  succ:       11
+;;              13 (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       12 (FALLTHRU)
+;; bb 13 artificial_defs: { }
+;; bb 13 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 233 232 234 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 234 233 650 13 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+        (const_int 0 [0])) 4t_cv.cpp:121 90 {*movsi_internal}
+     (nil))
+(jump_insn 650 234 651 13 (set (pc)
+        (label_ref 259)) 4t_cv.cpp:121 -1
+     (nil)
+ -> 259)
+;;  succ:       15 [100.0%] 
+
+(barrier 651 650 261)
+;; basic block 14, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       15
+;; bb 14 artificial_defs: { }
+;; bb 14 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 261 651 237 14 10 "" [1 uses])
+(note 237 261 238 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 238 237 239 14 (parallel [
+            (set (reg:DI 291)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2560 [0xfffffffffffff600])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:122 221 {*adddi_1}
+     (nil))
+(insn 239 238 240 14 (set (reg:SI 293)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:122 90 {*movsi_internal}
+     (nil))
+(insn 240 239 241 14 (set (reg:DI 292)
+        (sign_extend:DI (reg:SI 293))) 4t_cv.cpp:122 142 {*extendsidi2_rex64}
+     (nil))
+(insn 241 240 242 14 (parallel [
+            (set (reg:DI 294)
+                (mult:DI (reg:DI 292)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:122 307 {*muldi3_1}
+     (nil))
+(insn 242 241 243 14 (parallel [
+            (set (reg:DI 295)
+                (plus:DI (reg:DI 291)
+                    (reg:DI 294)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:122 221 {*adddi_1}
+     (nil))
+(insn 243 242 244 14 (parallel [
+            (set (reg/f:DI 97 [ D.5599 ])
+                (plus:DI (reg:DI 295)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:122 221 {*adddi_1}
+     (nil))
+(insn 244 243 245 14 (set (mem:DI (reg/f:DI 97 [ D.5599 ]) [0 MEM[(void *)_32]+0 S8 A8])
+        (const_int 2334399942965096270 [0x2065746144206f4e])) 4t_cv.cpp:122 89 {*movdi_internal}
+     (nil))
+(insn 245 244 246 14 (set (mem:DI (plus:DI (reg/f:DI 97 [ D.5599 ])
+                (const_int 8 [0x8])) [0 MEM[(void *)_32]+8 S8 A8])
+        (const_int 7809911822066218561 [0x6c62616c69617641])) 4t_cv.cpp:122 89 {*movdi_internal}
+     (nil))
+(insn 246 245 247 14 (set (mem:HI (plus:DI (reg/f:DI 97 [ D.5599 ])
+                (const_int 16 [0x10])) [0 MEM[(void *)_32]+16 S2 A8])
+        (const_int 101 [0x65])) 4t_cv.cpp:122 92 {*movhi_internal}
+     (nil))
+(insn 247 246 248 14 (parallel [
+            (set (reg:DI 296)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2560 [0xfffffffffffff600])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:123 221 {*adddi_1}
+     (nil))
+(insn 248 247 249 14 (set (reg:SI 298)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:123 90 {*movsi_internal}
+     (nil))
+(insn 249 248 250 14 (set (reg:DI 297)
+        (sign_extend:DI (reg:SI 298))) 4t_cv.cpp:123 142 {*extendsidi2_rex64}
+     (nil))
+(insn 250 249 251 14 (parallel [
+            (set (reg:DI 299)
+                (mult:DI (reg:DI 297)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:123 307 {*muldi3_1}
+     (nil))
+(insn 251 250 252 14 (parallel [
+            (set (reg:DI 300)
+                (plus:DI (reg:DI 299)
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:123 221 {*adddi_1}
+     (nil))
+(insn 252 251 253 14 (parallel [
+            (set (reg:DI 301)
+                (plus:DI (reg:DI 296)
+                    (reg:DI 300)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:123 221 {*adddi_1}
+     (nil))
+(insn 253 252 254 14 (parallel [
+            (set (reg/f:DI 98 [ D.5600 ])
+                (plus:DI (reg:DI 301)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:123 221 {*adddi_1}
+     (nil))
+(insn 254 253 255 14 (set (mem:DI (reg/f:DI 98 [ D.5600 ]) [0 MEM[(void *)_33]+0 S8 A8])
+        (const_int 7954883516223745870 [0x6e656c6946206f4e])) 4t_cv.cpp:123 89 {*movdi_internal}
+     (nil))
+(insn 255 254 256 14 (set (mem:DI (plus:DI (reg/f:DI 98 [ D.5600 ])
+                (const_int 8 [0x8])) [0 MEM[(void *)_33]+8 S8 A8])
+        (const_int 7593480468811836769 [0x6961764120656d61])) 4t_cv.cpp:123 89 {*movdi_internal}
+     (nil))
+(insn 256 255 257 14 (set (mem:SI (plus:DI (reg/f:DI 98 [ D.5600 ])
+                (const_int 16 [0x10])) [0 MEM[(void *)_33]+16 S4 A8])
+        (const_int 1818386796 [0x6c62616c])) 4t_cv.cpp:123 90 {*movsi_internal}
+     (nil))
+(insn 257 256 258 14 (set (mem:HI (plus:DI (reg/f:DI 98 [ D.5600 ])
+                (const_int 20 [0x14])) [0 MEM[(void *)_33]+20 S2 A8])
+        (const_int 101 [0x65])) 4t_cv.cpp:123 92 {*movhi_internal}
+     (nil))
+(insn 258 257 259 14 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                        (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                            (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:121 220 {*addsi_1}
+     (nil))
+;;  succ:       15 (FALLTHRU,DFS_BACK)
+
+;; basic block 15, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       14 (FALLTHRU,DFS_BACK)
+;;              13 [100.0%] 
+;; bb 15 artificial_defs: { }
+;; bb 15 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 259 258 260 15 9 "" [1 uses])
+(note 260 259 262 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 262 260 263 15 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+            (const_int 1 [0x1]))) 4t_cv.cpp:121 7 {*cmpsi_1}
+     (nil))
+(jump_insn 263 262 264 15 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 261)
+            (pc))) 4t_cv.cpp:121 596 {*jcc_1}
+     (nil)
+ -> 261)
+;;  succ:       14
+;;              16 (FALLTHRU)
+
+;; basic block 16, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       15 (FALLTHRU)
+;; bb 16 artificial_defs: { }
+;; bb 16 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 264 263 265 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 265 264 266 16 (parallel [
+            (set (reg:DI 302)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2828 [0xfffffffffffff4f4])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:253 221 {*adddi_1}
+     (nil))
+(insn 266 265 267 16 (set (reg:DI 303)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2848 [0xfffffffffffff4e0])) [0 argv+0 S8 A64])) 4t_cv.cpp:253 89 {*movdi_internal}
+     (nil))
+(insn 267 266 268 16 (set (reg:SI 304)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2836 [0xfffffffffffff4ec])) [0 argc+0 S4 A32])) 4t_cv.cpp:253 90 {*movsi_internal}
+     (nil))
+(insn 268 267 269 16 (parallel [
+            (set (reg:DI 305)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2560 [0xfffffffffffff600])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:253 221 {*adddi_1}
+     (nil))
+(insn 269 268 270 16 (parallel [
+            (set (reg:DI 306)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -1808 [0xfffffffffffff8f0])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:253 221 {*adddi_1}
+     (nil))
+(insn 270 269 271 16 (parallel [
+            (set (reg:DI 307)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2704 [0xfffffffffffff570])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:253 221 {*adddi_1}
+     (nil))
+(insn 271 270 272 16 (set (reg:DI 38 r9)
+        (reg:DI 302)) 4t_cv.cpp:253 89 {*movdi_internal}
+     (nil))
+(insn 272 271 273 16 (set (reg:DI 37 r8)
+        (reg:DI 303)) 4t_cv.cpp:253 89 {*movdi_internal}
+     (nil))
+(insn 273 272 274 16 (set (reg:SI 2 cx)
+        (reg:SI 304)) 4t_cv.cpp:253 90 {*movsi_internal}
+     (nil))
+(insn 274 273 275 16 (set (reg:DI 1 dx)
+        (reg:DI 305)) 4t_cv.cpp:253 89 {*movdi_internal}
+     (nil))
+(insn 275 274 276 16 (set (reg:DI 4 si)
+        (reg:DI 306)) 4t_cv.cpp:253 89 {*movdi_internal}
+     (nil))
+(insn 276 275 277 16 (set (reg:DI 5 di)
+        (reg:DI 307)) 4t_cv.cpp:253 89 {*movdi_internal}
+     (nil))
+(call_insn 277 276 278 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_Z12command_lineP10PreprocessP7IOFilesP12Procpar_infoiPPcPi") [flags 0x41]  <function_decl 0x2b3c101b4100 command_line>) [0 command_line S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:253 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:DI (use (reg:DI 37 r8))
+                        (expr_list:DI (use (reg:DI 38 r9))
+                            (nil))))))))
+(insn 278 277 279 16 (parallel [
+            (set (reg:DI 308)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -1808 [0xfffffffffffff8f0])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:263 221 {*adddi_1}
+     (nil))
+(insn 279 278 280 16 (parallel [
+            (set (reg:DI 309)
+                (plus:DI (reg:DI 308)
+                    (const_int 1024 [0x400])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:263 221 {*adddi_1}
+     (nil))
+(insn 280 279 281 16 (parallel [
+            (set (reg:DI 310)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2560 [0xfffffffffffff600])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:263 221 {*adddi_1}
+     (nil))
+(insn 281 280 282 16 (set (reg:DI 4 si)
+        (reg:DI 309)) 4t_cv.cpp:263 89 {*movdi_internal}
+     (nil))
+(insn 282 281 283 16 (set (reg:DI 5 di)
+        (reg:DI 310)) 4t_cv.cpp:263 89 {*movdi_internal}
+     (nil))
+(call_insn 283 282 284 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_Z12read_procparP12Procpar_infoPc") [flags 0x41]  <function_decl 0x2b3c101b4200 read_procpar>) [0 read_procpar S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:263 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 284 283 285 16 (set (reg:SI 99 [ D.5593 ])
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2828 [0xfffffffffffff4f4])) [0 fid+0 S4 A32])) 4t_cv.cpp:270 90 {*movsi_internal}
+     (nil))
+(insn 285 284 286 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 99 [ D.5593 ])
+            (const_int 1 [0x1]))) 4t_cv.cpp:270 7 {*cmpsi_1}
+     (nil))
+(jump_insn 286 285 287 16 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 295)
+            (pc))) 4t_cv.cpp:270 596 {*jcc_1}
+     (nil)
+ -> 295)
+;;  succ:       17 (FALLTHRU)
+;;              18
+
+;; basic block 17, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       16 (FALLTHRU)
+;; bb 17 artificial_defs: { }
+;; bb 17 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 287 286 288 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 288 287 289 17 (parallel [
+            (set (reg:DI 311)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -1808 [0xfffffffffffff8f0])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:271 221 {*adddi_1}
+     (nil))
+(insn 289 288 290 17 (parallel [
+            (set (reg:DI 312)
+                (plus:DI (reg:DI 311)
+                    (const_int 1280 [0x500])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:271 221 {*adddi_1}
+     (nil))
+(insn 290 289 291 17 (parallel [
+            (set (reg:DI 313)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2560 [0xfffffffffffff600])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:271 221 {*adddi_1}
+     (nil))
+(insn 291 290 292 17 (parallel [
+            (set (reg:DI 314)
+                (plus:DI (reg:DI 313)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:271 221 {*adddi_1}
+     (nil))
+(insn 292 291 293 17 (set (reg:DI 4 si)
+        (reg:DI 312)) 4t_cv.cpp:271 89 {*movdi_internal}
+     (nil))
+(insn 293 292 294 17 (set (reg:DI 5 di)
+        (reg:DI 314)) 4t_cv.cpp:271 89 {*movdi_internal}
+     (nil))
+(call_insn 294 293 295 17 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_Z12read_procparP12Procpar_infoPc") [flags 0x41]  <function_decl 0x2b3c101b4200 read_procpar>) [0 read_procpar S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:271 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+;;  succ:       18 (FALLTHRU)
+
+;; basic block 18, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       16
+;;              17 (FALLTHRU)
+;; bb 18 artificial_defs: { }
+;; bb 18 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 295 294 296 18 11 "" [1 uses])
+(note 296 295 297 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 297 296 298 18 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC16") [flags 0x2]  <var_decl 0x2b3c1021a5f0 *.LC16>)) 4t_cv.cpp:275 89 {*movdi_internal}
+     (nil))
+(call_insn 298 297 299 18 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:275 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(call_insn 299 298 300 18 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_Z11IsBigEndianv") [flags 0x3]  <function_decl 0x2b3c101d9500 IsBigEndian>) [0 IsBigEndian S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:277 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (nil))
+(insn 300 299 301 18 (set (reg:SI 100 [ D.5593 ])
+        (reg:SI 0 ax)) 4t_cv.cpp:277 90 {*movsi_internal}
+     (nil))
+(insn 301 300 302 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 100 [ D.5593 ])
+            (const_int 0 [0]))) 4t_cv.cpp:277 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 302 301 303 18 (set (reg:QI 101 [ D.5594 ])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) 4t_cv.cpp:277 592 {*setcc_qi}
+     (nil))
+(insn 303 302 304 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 101 [ D.5594 ])
+            (const_int 0 [0]))) 4t_cv.cpp:277 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 304 303 305 18 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 310)
+            (pc))) 4t_cv.cpp:277 596 {*jcc_1}
+     (nil)
+ -> 310)
+;;  succ:       19 (FALLTHRU)
+;;              20
+
+;; basic block 19, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       18 (FALLTHRU)
+;; bb 19 artificial_defs: { }
+;; bb 19 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 305 304 306 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 306 305 307 19 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC17") [flags 0x2]  <var_decl 0x2b3c1021a688 *.LC17>)) 4t_cv.cpp:278 89 {*movdi_internal}
+     (nil))
+(call_insn 307 306 652 19 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:278 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(jump_insn 652 307 653 19 (set (pc)
+        (label_ref 314)) -1
+     (nil)
+ -> 314)
+;;  succ:       21 [100.0%] 
+
+(barrier 653 652 310)
+;; basic block 20, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 19, next block 21, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       18
+;; bb 20 artificial_defs: { }
+;; bb 20 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 310 653 311 20 12 "" [1 uses])
+(note 311 310 312 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 312 311 313 20 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC18") [flags 0x2]  <var_decl 0x2b3c1021a720 *.LC18>)) 4t_cv.cpp:281 89 {*movdi_internal}
+     (nil))
+(call_insn 313 312 314 20 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:281 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       21 (FALLTHRU)
+
+;; basic block 21, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 20, next block 22, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       20 (FALLTHRU)
+;;              19 [100.0%] 
+;; bb 21 artificial_defs: { }
+;; bb 21 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 314 313 315 21 13 "" [1 uses])
+(note 315 314 316 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 316 315 317 21 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:284 221 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 8 [0x8])
+        (nil)))
+(insn 317 316 318 21 (parallel [
+            (set (reg:DI 315)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2768 [0xfffffffffffff530])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:284 221 {*adddi_1}
+     (nil))
+(insn 318 317 319 21 (set (reg:DI 316)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2792 [0xfffffffffffff518])) [0 block_header+0 S8 A64])) 4t_cv.cpp:284 89 {*movdi_internal}
+     (nil))
+(insn 319 318 320 21 (set (reg:DI 317)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])) 4t_cv.cpp:284 89 {*movdi_internal}
+     (nil))
+(insn 320 319 321 21 (parallel [
+            (set (reg:DI 318)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -1808 [0xfffffffffffff8f0])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:284 221 {*adddi_1}
+     (nil))
+(insn 321 320 322 21 (parallel [
+            (set (reg:DI 319)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2704 [0xfffffffffffff570])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:284 221 {*adddi_1}
+     (nil))
+(insn 322 321 323 21 (parallel [
+            (set (reg:DI 320)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2828 [0xfffffffffffff4f4])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:284 221 {*adddi_1}
+     (nil))
+(insn 323 322 324 21 (parallel [
+            (set (reg:DI 321)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2816 [0xfffffffffffff500])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:284 221 {*adddi_1}
+     (nil))
+(insn 324 323 325 21 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 321)) 4t_cv.cpp:284 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(insn 325 324 326 21 (parallel [
+            (set (reg:DI 322)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2720 [0xfffffffffffff560])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:284 221 {*adddi_1}
+     (nil))
+(insn 326 325 327 21 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 322)) 4t_cv.cpp:284 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 24 [0x18])
+        (nil)))
+(insn 327 326 328 21 (parallel [
+            (set (reg:DI 323)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2736 [0xfffffffffffff550])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:284 221 {*adddi_1}
+     (nil))
+(insn 328 327 329 21 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 323)) 4t_cv.cpp:284 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 32 [0x20])
+        (nil)))
+(insn 329 328 330 21 (parallel [
+            (set (reg:DI 324)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2784 [0xfffffffffffff520])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:284 221 {*adddi_1}
+     (nil))
+(insn 330 329 331 21 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 324)) 4t_cv.cpp:284 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 40 [0x28])
+        (nil)))
+(insn 331 330 332 21 (parallel [
+            (set (reg:DI 325)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2752 [0xfffffffffffff540])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:284 221 {*adddi_1}
+     (nil))
+(insn 332 331 333 21 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 325)) 4t_cv.cpp:284 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 48 [0x30])
+        (nil)))
+(insn 333 332 334 21 (set (reg:DI 38 r9)
+        (reg:DI 315)) 4t_cv.cpp:284 89 {*movdi_internal}
+     (nil))
+(insn 334 333 335 21 (set (reg:DI 37 r8)
+        (reg:DI 316)) 4t_cv.cpp:284 89 {*movdi_internal}
+     (nil))
+(insn 335 334 336 21 (set (reg:DI 2 cx)
+        (reg:DI 317)) 4t_cv.cpp:284 89 {*movdi_internal}
+     (nil))
+(insn 336 335 337 21 (set (reg:DI 1 dx)
+        (reg:DI 318)) 4t_cv.cpp:284 89 {*movdi_internal}
+     (nil))
+(insn 337 336 338 21 (set (reg:DI 4 si)
+        (reg:DI 319)) 4t_cv.cpp:284 89 {*movdi_internal}
+     (nil))
+(insn 338 337 339 21 (set (reg:DI 5 di)
+        (reg:DI 320)) 4t_cv.cpp:284 89 {*movdi_internal}
+     (nil))
+(call_insn 339 338 340 21 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_Z9read_dataPiP10PreprocessP7IOFilesPP16Data_file_headerPP17Data_block_headerP10Precision2PP8_IO_FILEP10Precision1PPfSI_P12Endian_Check") [flags 0x41]  <function_decl 0x2b3c101b4300 read_data>) [0 read_data S1 A8])
+            (const_int 48 [0x30]))) 4t_cv.cpp:284 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:DI (use (reg:DI 37 r8))
+                        (expr_list:DI (use (reg:DI 38 r9))
+                            (nil))))))))
+(insn 340 339 341 21 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 48 [0x30])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:284 221 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 341 340 654 21 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+        (const_int 0 [0])) 4t_cv.cpp:289 90 {*movsi_internal}
+     (nil))
+(jump_insn 654 341 655 21 (set (pc)
+        (label_ref 461)) 4t_cv.cpp:289 -1
+     (nil)
+ -> 461)
+;;  succ:       34 [100.0%] 
+
+(barrier 655 654 465)
+;; basic block 22, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 21, next block 23, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       34
+;; bb 22 artificial_defs: { }
+;; bb 22 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 465 655 344 22 22 "" [1 uses])
+(note 344 465 345 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 345 344 346 22 (set (reg:SI 326)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:295 90 {*movsi_internal}
+     (nil))
+(insn 346 345 347 22 (set (reg:DI 104 [ D.5595 ])
+        (sign_extend:DI (reg:SI 326))) 4t_cv.cpp:295 142 {*extendsidi2_rex64}
+     (nil))
+(insn 347 346 348 22 (parallel [
+            (set (reg:DI 105 [ D.5595 ])
+                (ashift:DI (reg:DI 104 [ D.5595 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:295 497 {*ashldi3_1}
+     (nil))
+(insn 348 347 349 22 (set (reg/f:DI 327)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])) 4t_cv.cpp:295 89 {*movdi_internal}
+     (nil))
+(insn 349 348 350 22 (parallel [
+            (set (reg/f:DI 106 [ D.5596 ])
+                (plus:DI (reg:DI 105 [ D.5595 ])
+                    (reg/f:DI 327)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:295 221 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])
+            (reg:DI 105 [ D.5595 ]))
+        (nil)))
+(insn 350 349 351 22 (set (reg/f:DI 107 [ D.5601 ])
+        (mem/f:DI (reg/f:DI 106 [ D.5596 ]) [0 *_44+0 S8 A64])) 4t_cv.cpp:295 89 {*movdi_internal}
+     (nil))
+(insn 351 350 352 22 (set (reg:HI 108 [ D.5602 ])
+        (mem/j:HI (plus:DI (reg/f:DI 107 [ D.5601 ])
+                (const_int 26 [0x1a])) [0 _45->status.number+0 S2 A16])) 4t_cv.cpp:295 92 {*movhi_internal}
+     (nil))
+(insn 352 351 353 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 108 [ D.5602 ])
+            (const_int 69 [0x45]))) 4t_cv.cpp:295 6 {*cmphi_1}
+     (nil))
+(jump_insn 353 352 354 22 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 392)
+            (pc))) 4t_cv.cpp:295 596 {*jcc_1}
+     (nil)
+ -> 392)
+;;  succ:       23 (FALLTHRU)
+;;              27
+
+;; basic block 23, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 22, next block 24, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       22 (FALLTHRU)
+;; bb 23 artificial_defs: { }
+;; bb 23 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 354 353 355 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 355 354 656 23 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2820 [0xfffffffffffff4fc])) [0 j+0 S4 A32])
+        (const_int 0 [0])) 4t_cv.cpp:296 90 {*movsi_internal}
+     (nil))
+(jump_insn 656 355 657 23 (set (pc)
+        (label_ref 377)) 4t_cv.cpp:296 -1
+     (nil)
+ -> 377)
+;;  succ:       25 [100.0%] 
+
+(barrier 657 656 386)
+;; basic block 24, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 23, next block 25, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       25
+;; bb 24 artificial_defs: { }
+;; bb 24 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 386 657 358 24 17 "" [1 uses])
+(note 358 386 359 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 359 358 360 24 (set (reg:SI 329)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:298 90 {*movsi_internal}
+     (nil))
+(insn 360 359 361 24 (set (reg:DI 328)
+        (sign_extend:DI (reg:SI 329))) 4t_cv.cpp:298 142 {*extendsidi2_rex64}
+     (nil))
+(insn 361 360 362 24 (set (reg/f:DI 114 [ D.5603 ])
+        (mem/f/j:DI (plus:DI (plus:DI (mult:DI (reg:DI 328)
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 20 frame))
+                (const_int -2736 [0xfffffffffffff550])) [0 out_data S8 A64])) 4t_cv.cpp:298 89 {*movdi_internal}
+     (nil))
+(insn 362 361 363 24 (set (reg:SI 330)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2820 [0xfffffffffffff4fc])) [0 j+0 S4 A32])) 4t_cv.cpp:298 90 {*movsi_internal}
+     (nil))
+(insn 363 362 364 24 (set (reg:DI 115 [ D.5595 ])
+        (sign_extend:DI (reg:SI 330))) 4t_cv.cpp:298 142 {*extendsidi2_rex64}
+     (nil))
+(insn 364 363 365 24 (parallel [
+            (set (reg:DI 116 [ D.5595 ])
+                (ashift:DI (reg:DI 115 [ D.5595 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:298 497 {*ashldi3_1}
+     (nil))
+(insn 365 364 366 24 (parallel [
+            (set (reg/f:DI 117 [ D.5603 ])
+                (plus:DI (reg/f:DI 114 [ D.5603 ])
+                    (reg:DI 116 [ D.5595 ])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:298 221 {*adddi_1}
+     (nil))
+(insn 366 365 367 24 (set (reg:SI 332)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:298 90 {*movsi_internal}
+     (nil))
+(insn 367 366 368 24 (set (reg:DI 331)
+        (sign_extend:DI (reg:SI 332))) 4t_cv.cpp:298 142 {*extendsidi2_rex64}
+     (nil))
+(insn 368 367 369 24 (set (reg/f:DI 118 [ D.5604 ])
+        (mem/f/j:DI (plus:DI (plus:DI (mult:DI (reg:DI 331)
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 20 frame))
+                (const_int -2768 [0xfffffffffffff530])) [0 switch_data[i_4].lo+0 S8 A64])) 4t_cv.cpp:298 89 {*movdi_internal}
+     (nil))
+(insn 369 368 370 24 (set (reg:SI 333)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2820 [0xfffffffffffff4fc])) [0 j+0 S4 A32])) 4t_cv.cpp:298 90 {*movsi_internal}
+     (nil))
+(insn 370 369 371 24 (set (reg:DI 119 [ D.5595 ])
+        (sign_extend:DI (reg:SI 333))) 4t_cv.cpp:298 142 {*extendsidi2_rex64}
+     (nil))
+(insn 371 370 372 24 (parallel [
+            (set (reg:DI 120 [ D.5595 ])
+                (ashift:DI (reg:DI 119 [ D.5595 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:298 497 {*ashldi3_1}
+     (nil))
+(insn 372 371 373 24 (parallel [
+            (set (reg/f:DI 121 [ D.5604 ])
+                (plus:DI (reg/f:DI 118 [ D.5604 ])
+                    (reg:DI 120 [ D.5595 ])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:298 221 {*adddi_1}
+     (nil))
+(insn 373 372 374 24 (set (reg:DI 122 [ D.5605 ])
+        (mem:DI (reg/f:DI 121 [ D.5604 ]) [0 *_60+0 S8 A64])) 4t_cv.cpp:298 89 {*movdi_internal}
+     (nil))
+(insn 374 373 375 24 (set (reg:SF 123 [ D.5606 ])
+        (float:SF (reg:DI 122 [ D.5605 ]))) 4t_cv.cpp:298 200 {*floatdisf2_sse}
+     (nil))
+(insn 375 374 376 24 (set (mem:SF (reg/f:DI 117 [ D.5603 ]) [0 *_56+0 S4 A32])
+        (reg:SF 123 [ D.5606 ])) 4t_cv.cpp:298 129 {*movsf_internal}
+     (nil))
+(insn 376 375 377 24 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                        (const_int -2820 [0xfffffffffffff4fc])) [0 j+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                            (const_int -2820 [0xfffffffffffff4fc])) [0 j+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:296 220 {*addsi_1}
+     (nil))
+;;  succ:       25 (FALLTHRU,DFS_BACK)
+
+;; basic block 25, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 24, next block 26, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       24 (FALLTHRU,DFS_BACK)
+;;              23 [100.0%] 
+;; bb 25 artificial_defs: { }
+;; bb 25 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 377 376 378 25 16 "" [1 uses])
+(note 378 377 379 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 379 378 380 25 (set (reg:SI 334)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:296 90 {*movsi_internal}
+     (nil))
+(insn 380 379 381 25 (set (reg:DI 109 [ D.5595 ])
+        (sign_extend:DI (reg:SI 334))) 4t_cv.cpp:296 142 {*extendsidi2_rex64}
+     (nil))
+(insn 381 380 382 25 (parallel [
+            (set (reg:DI 110 [ D.5595 ])
+                (ashift:DI (reg:DI 109 [ D.5595 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:296 497 {*ashldi3_1}
+     (nil))
+(insn 382 381 383 25 (set (reg/f:DI 335)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])) 4t_cv.cpp:296 89 {*movdi_internal}
+     (nil))
+(insn 383 382 384 25 (parallel [
+            (set (reg/f:DI 111 [ D.5596 ])
+                (plus:DI (reg:DI 110 [ D.5595 ])
+                    (reg/f:DI 335)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:296 221 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])
+            (reg:DI 110 [ D.5595 ]))
+        (nil)))
+(insn 384 383 385 25 (set (reg/f:DI 112 [ D.5601 ])
+        (mem/f:DI (reg/f:DI 111 [ D.5596 ]) [0 *_50+0 S8 A64])) 4t_cv.cpp:296 89 {*movdi_internal}
+     (nil))
+(insn 385 384 387 25 (set (reg:SI 113 [ D.5593 ])
+        (mem/j:SI (plus:DI (reg/f:DI 112 [ D.5601 ])
+                (const_int 8 [0x8])) [0 _51->np.number+0 S4 A32])) 4t_cv.cpp:296 90 {*movsi_internal}
+     (nil))
+(insn 387 385 388 25 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 113 [ D.5593 ])
+            (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2820 [0xfffffffffffff4fc])) [0 j+0 S4 A32]))) 4t_cv.cpp:296 7 {*cmpsi_1}
+     (nil))
+(jump_insn 388 387 658 25 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 386)
+            (pc))) 4t_cv.cpp:296 596 {*jcc_1}
+     (nil)
+ -> 386)
+;;  succ:       24
+;;              26 (FALLTHRU)
+
+;; basic block 26, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 25, next block 27, flags: (NEW, RTL, MODIFIED)
+;;  pred:       25 (FALLTHRU)
+;; bb 26 artificial_defs: { }
+;; bb 26 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 658 388 659 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 659 658 660 26 (set (pc)
+        (label_ref 458)) -1
+     (nil)
+ -> 458)
+;;  succ:       33 [100.0%] 
+
+(barrier 660 659 392)
+;; basic block 27, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 26, next block 28, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       22
+;; bb 27 artificial_defs: { }
+;; bb 27 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 392 660 393 27 15 "" [1 uses])
+(note 393 392 394 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 394 393 395 27 (set (reg:SI 336)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:305 90 {*movsi_internal}
+     (nil))
+(insn 395 394 396 27 (set (reg:DI 124 [ D.5595 ])
+        (sign_extend:DI (reg:SI 336))) 4t_cv.cpp:305 142 {*extendsidi2_rex64}
+     (nil))
+(insn 396 395 397 27 (parallel [
+            (set (reg:DI 125 [ D.5595 ])
+                (ashift:DI (reg:DI 124 [ D.5595 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:305 497 {*ashldi3_1}
+     (nil))
+(insn 397 396 398 27 (set (reg/f:DI 337)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])) 4t_cv.cpp:305 89 {*movdi_internal}
+     (nil))
+(insn 398 397 399 27 (parallel [
+            (set (reg/f:DI 126 [ D.5596 ])
+                (plus:DI (reg:DI 125 [ D.5595 ])
+                    (reg/f:DI 337)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:305 221 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])
+            (reg:DI 125 [ D.5595 ]))
+        (nil)))
+(insn 399 398 400 27 (set (reg/f:DI 127 [ D.5601 ])
+        (mem/f:DI (reg/f:DI 126 [ D.5596 ]) [0 *_66+0 S8 A64])) 4t_cv.cpp:305 89 {*movdi_internal}
+     (nil))
+(insn 400 399 401 27 (set (reg:HI 128 [ D.5602 ])
+        (mem/j:HI (plus:DI (reg/f:DI 127 [ D.5601 ])
+                (const_int 26 [0x1a])) [0 _67->status.number+0 S2 A16])) 4t_cv.cpp:305 92 {*movhi_internal}
+     (nil))
+(insn 401 400 402 27 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 128 [ D.5602 ])
+            (const_int 73 [0x49]))) 4t_cv.cpp:305 6 {*cmphi_1}
+     (nil))
+(jump_insn 402 401 403 27 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 423)
+            (pc))) 4t_cv.cpp:305 596 {*jcc_1}
+     (nil)
+ -> 423)
+;;  succ:       30
+;;              28 (FALLTHRU)
+
+;; basic block 28, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 27, next block 29, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       27 (FALLTHRU)
+;; bb 28 artificial_defs: { }
+;; bb 28 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 403 402 404 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 404 403 405 28 (set (reg:SI 338)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:305 90 {*movsi_internal}
+     (nil))
+(insn 405 404 406 28 (set (reg:DI 129 [ D.5595 ])
+        (sign_extend:DI (reg:SI 338))) 4t_cv.cpp:305 142 {*extendsidi2_rex64}
+     (nil))
+(insn 406 405 407 28 (parallel [
+            (set (reg:DI 130 [ D.5595 ])
+                (ashift:DI (reg:DI 129 [ D.5595 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:305 497 {*ashldi3_1}
+     (nil))
+(insn 407 406 408 28 (set (reg/f:DI 339)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])) 4t_cv.cpp:305 89 {*movdi_internal}
+     (nil))
+(insn 408 407 409 28 (parallel [
+            (set (reg/f:DI 131 [ D.5596 ])
+                (plus:DI (reg:DI 130 [ D.5595 ])
+                    (reg/f:DI 339)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:305 221 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])
+            (reg:DI 130 [ D.5595 ]))
+        (nil)))
+(insn 409 408 410 28 (set (reg/f:DI 132 [ D.5601 ])
+        (mem/f:DI (reg/f:DI 131 [ D.5596 ]) [0 *_71+0 S8 A64])) 4t_cv.cpp:305 89 {*movdi_internal}
+     (nil))
+(insn 410 409 411 28 (set (reg:HI 133 [ D.5602 ])
+        (mem/j:HI (plus:DI (reg/f:DI 132 [ D.5601 ])
+                (const_int 26 [0x1a])) [0 _72->status.number+0 S2 A16])) 4t_cv.cpp:305 92 {*movhi_internal}
+     (nil))
+(insn 411 410 412 28 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 133 [ D.5602 ])
+            (const_int 2073 [0x819]))) 4t_cv.cpp:305 6 {*cmphi_1}
+     (nil))
+(jump_insn 412 411 413 28 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 423)
+            (pc))) 4t_cv.cpp:305 596 {*jcc_1}
+     (nil)
+ -> 423)
+;;  succ:       30
+;;              29 (FALLTHRU)
+
+;; basic block 29, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 28, next block 30, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       28 (FALLTHRU)
+;; bb 29 artificial_defs: { }
+;; bb 29 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 413 412 414 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 414 413 415 29 (set (reg:SI 340)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:306 90 {*movsi_internal}
+     (nil))
+(insn 415 414 416 29 (set (reg:DI 134 [ D.5595 ])
+        (sign_extend:DI (reg:SI 340))) 4t_cv.cpp:306 142 {*extendsidi2_rex64}
+     (nil))
+(insn 416 415 417 29 (parallel [
+            (set (reg:DI 135 [ D.5595 ])
+                (ashift:DI (reg:DI 134 [ D.5595 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:306 497 {*ashldi3_1}
+     (nil))
+(insn 417 416 418 29 (set (reg/f:DI 341)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])) 4t_cv.cpp:306 89 {*movdi_internal}
+     (nil))
+(insn 418 417 419 29 (parallel [
+            (set (reg/f:DI 136 [ D.5596 ])
+                (plus:DI (reg:DI 135 [ D.5595 ])
+                    (reg/f:DI 341)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:306 221 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])
+            (reg:DI 135 [ D.5595 ]))
+        (nil)))
+(insn 419 418 420 29 (set (reg/f:DI 137 [ D.5601 ])
+        (mem/f:DI (reg/f:DI 136 [ D.5596 ]) [0 *_76+0 S8 A64])) 4t_cv.cpp:306 89 {*movdi_internal}
+     (nil))
+(insn 420 419 421 29 (set (reg:HI 138 [ D.5602 ])
+        (mem/j:HI (plus:DI (reg/f:DI 137 [ D.5601 ])
+                (const_int 26 [0x1a])) [0 _77->status.number+0 S2 A16])) 4t_cv.cpp:306 92 {*movhi_internal}
+     (nil))
+(insn 421 420 422 29 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 138 [ D.5602 ])
+            (const_int 201 [0xc9]))) 4t_cv.cpp:306 6 {*cmphi_1}
+     (nil))
+(jump_insn 422 421 423 29 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 458)
+            (pc))) 4t_cv.cpp:306 596 {*jcc_1}
+     (nil)
+ -> 458)
+;;  succ:       30 (FALLTHRU)
+;;              33
+
+;; basic block 30, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 29, next block 31, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       27
+;;              28
+;;              29 (FALLTHRU)
+;; bb 30 artificial_defs: { }
+;; bb 30 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 423 422 424 30 19 "" [2 uses])
+(note 424 423 425 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 425 424 661 30 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2820 [0xfffffffffffff4fc])) [0 j+0 S4 A32])
+        (const_int 0 [0])) 4t_cv.cpp:307 90 {*movsi_internal}
+     (nil))
+(jump_insn 661 425 662 30 (set (pc)
+        (label_ref 446)) 4t_cv.cpp:307 -1
+     (nil)
+ -> 446)
+;;  succ:       32 [100.0%] 
+
+(barrier 662 661 455)
+;; basic block 31, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 30, next block 32, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       32
+;; bb 31 artificial_defs: { }
+;; bb 31 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 455 662 428 31 21 "" [1 uses])
+(note 428 455 429 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 429 428 430 31 (set (reg:SI 343)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:309 90 {*movsi_internal}
+     (nil))
+(insn 430 429 431 31 (set (reg:DI 342)
+        (sign_extend:DI (reg:SI 343))) 4t_cv.cpp:309 142 {*extendsidi2_rex64}
+     (nil))
+(insn 431 430 432 31 (set (reg/f:DI 144 [ D.5603 ])
+        (mem/f/j:DI (plus:DI (plus:DI (mult:DI (reg:DI 342)
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 20 frame))
+                (const_int -2736 [0xfffffffffffff550])) [0 out_data S8 A64])) 4t_cv.cpp:309 89 {*movdi_internal}
+     (nil))
+(insn 432 431 433 31 (set (reg:SI 344)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2820 [0xfffffffffffff4fc])) [0 j+0 S4 A32])) 4t_cv.cpp:309 90 {*movsi_internal}
+     (nil))
+(insn 433 432 434 31 (set (reg:DI 145 [ D.5595 ])
+        (sign_extend:DI (reg:SI 344))) 4t_cv.cpp:309 142 {*extendsidi2_rex64}
+     (nil))
+(insn 434 433 435 31 (parallel [
+            (set (reg:DI 146 [ D.5595 ])
+                (ashift:DI (reg:DI 145 [ D.5595 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:309 497 {*ashldi3_1}
+     (nil))
+(insn 435 434 436 31 (parallel [
+            (set (reg/f:DI 147 [ D.5603 ])
+                (plus:DI (reg/f:DI 144 [ D.5603 ])
+                    (reg:DI 146 [ D.5595 ])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:309 221 {*adddi_1}
+     (nil))
+(insn 436 435 437 31 (set (reg:SI 346)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:309 90 {*movsi_internal}
+     (nil))
+(insn 437 436 438 31 (set (reg:DI 345)
+        (sign_extend:DI (reg:SI 346))) 4t_cv.cpp:309 142 {*extendsidi2_rex64}
+     (nil))
+(insn 438 437 439 31 (set (reg/f:DI 148 [ D.5603 ])
+        (mem/f/j:DI (plus:DI (plus:DI (mult:DI (reg:DI 345)
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 20 frame))
+                (const_int -2768 [0xfffffffffffff530])) [0 switch_data[i_4].fl+0 S8 A64])) 4t_cv.cpp:309 89 {*movdi_internal}
+     (nil))
+(insn 439 438 440 31 (set (reg:SI 347)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2820 [0xfffffffffffff4fc])) [0 j+0 S4 A32])) 4t_cv.cpp:309 90 {*movsi_internal}
+     (nil))
+(insn 440 439 441 31 (set (reg:DI 149 [ D.5595 ])
+        (sign_extend:DI (reg:SI 347))) 4t_cv.cpp:309 142 {*extendsidi2_rex64}
+     (nil))
+(insn 441 440 442 31 (parallel [
+            (set (reg:DI 150 [ D.5595 ])
+                (ashift:DI (reg:DI 149 [ D.5595 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:309 497 {*ashldi3_1}
+     (nil))
+(insn 442 441 443 31 (parallel [
+            (set (reg/f:DI 151 [ D.5603 ])
+                (plus:DI (reg/f:DI 148 [ D.5603 ])
+                    (reg:DI 150 [ D.5595 ])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:309 221 {*adddi_1}
+     (nil))
+(insn 443 442 444 31 (set (reg:SF 152 [ D.5606 ])
+        (mem:SF (reg/f:DI 151 [ D.5603 ]) [0 *_92+0 S4 A32])) 4t_cv.cpp:309 129 {*movsf_internal}
+     (nil))
+(insn 444 443 445 31 (set (mem:SF (reg/f:DI 147 [ D.5603 ]) [0 *_88+0 S4 A32])
+        (reg:SF 152 [ D.5606 ])) 4t_cv.cpp:309 129 {*movsf_internal}
+     (nil))
+(insn 445 444 446 31 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                        (const_int -2820 [0xfffffffffffff4fc])) [0 j+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                            (const_int -2820 [0xfffffffffffff4fc])) [0 j+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:307 220 {*addsi_1}
+     (nil))
+;;  succ:       32 (FALLTHRU,DFS_BACK)
+
+;; basic block 32, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 31, next block 33, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       31 (FALLTHRU,DFS_BACK)
+;;              30 [100.0%] 
+;; bb 32 artificial_defs: { }
+;; bb 32 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 446 445 447 32 20 "" [1 uses])
+(note 447 446 448 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(insn 448 447 449 32 (set (reg:SI 348)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:307 90 {*movsi_internal}
+     (nil))
+(insn 449 448 450 32 (set (reg:DI 139 [ D.5595 ])
+        (sign_extend:DI (reg:SI 348))) 4t_cv.cpp:307 142 {*extendsidi2_rex64}
+     (nil))
+(insn 450 449 451 32 (parallel [
+            (set (reg:DI 140 [ D.5595 ])
+                (ashift:DI (reg:DI 139 [ D.5595 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:307 497 {*ashldi3_1}
+     (nil))
+(insn 451 450 452 32 (set (reg/f:DI 349)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])) 4t_cv.cpp:307 89 {*movdi_internal}
+     (nil))
+(insn 452 451 453 32 (parallel [
+            (set (reg/f:DI 141 [ D.5596 ])
+                (plus:DI (reg:DI 140 [ D.5595 ])
+                    (reg/f:DI 349)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:307 221 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])
+            (reg:DI 140 [ D.5595 ]))
+        (nil)))
+(insn 453 452 454 32 (set (reg/f:DI 142 [ D.5601 ])
+        (mem/f:DI (reg/f:DI 141 [ D.5596 ]) [0 *_82+0 S8 A64])) 4t_cv.cpp:307 89 {*movdi_internal}
+     (nil))
+(insn 454 453 456 32 (set (reg:SI 143 [ D.5593 ])
+        (mem/j:SI (plus:DI (reg/f:DI 142 [ D.5601 ])
+                (const_int 8 [0x8])) [0 _83->np.number+0 S4 A32])) 4t_cv.cpp:307 90 {*movsi_internal}
+     (nil))
+(insn 456 454 457 32 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 143 [ D.5593 ])
+            (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2820 [0xfffffffffffff4fc])) [0 j+0 S4 A32]))) 4t_cv.cpp:307 7 {*cmpsi_1}
+     (nil))
+(jump_insn 457 456 458 32 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 455)
+            (pc))) 4t_cv.cpp:307 596 {*jcc_1}
+     (nil)
+ -> 455)
+;;  succ:       31
+;;              33 (FALLTHRU)
+
+;; basic block 33, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 32, next block 34, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       32 (FALLTHRU)
+;;              29
+;;              26 [100.0%] 
+;; bb 33 artificial_defs: { }
+;; bb 33 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 458 457 459 33 18 "" [2 uses])
+(note 459 458 460 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+(insn 460 459 461 33 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                        (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                            (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:289 220 {*addsi_1}
+     (nil))
+;;  succ:       34 (FALLTHRU,DFS_BACK)
+
+;; basic block 34, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 33, next block 35, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       33 (FALLTHRU,DFS_BACK)
+;;              21 [100.0%] 
+;; bb 34 artificial_defs: { }
+;; bb 34 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 461 460 462 34 14 "" [1 uses])
+(note 462 461 463 34 [bb 34] NOTE_INSN_BASIC_BLOCK)
+(insn 463 462 464 34 (set (reg:SI 102 [ D.5593 ])
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2828 [0xfffffffffffff4f4])) [0 fid+0 S4 A32])) 4t_cv.cpp:289 90 {*movsi_internal}
+     (nil))
+(insn 464 463 466 34 (parallel [
+            (set (reg:SI 103 [ D.5593 ])
+                (plus:SI (reg:SI 102 [ D.5593 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:289 220 {*addsi_1}
+     (nil))
+(insn 466 464 467 34 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 103 [ D.5593 ])
+            (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32]))) 4t_cv.cpp:289 7 {*cmpsi_1}
+     (nil))
+(jump_insn 467 466 468 34 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 465)
+            (pc))) 4t_cv.cpp:289 596 {*jcc_1}
+     (nil)
+ -> 465)
+;;  succ:       22
+;;              35 (FALLTHRU)
+
+;; basic block 35, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 34, next block 36, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       34 (FALLTHRU)
+;; bb 35 artificial_defs: { }
+;; bb 35 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 468 467 469 35 [bb 35] NOTE_INSN_BASIC_BLOCK)
+(insn 469 468 470 35 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC19") [flags 0x2]  <var_decl 0x2b3c1021a850 *.LC19>)) 4t_cv.cpp:320 89 {*movdi_internal}
+     (nil))
+(call_insn 470 469 471 35 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:320 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 471 470 472 35 (parallel [
+            (set (reg:DI 350)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2720 [0xfffffffffffff560])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:321 221 {*adddi_1}
+     (nil))
+(insn 472 471 473 35 (parallel [
+            (set (reg:DI 351)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2736 [0xfffffffffffff550])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:321 221 {*adddi_1}
+     (nil))
+(insn 473 472 474 35 (parallel [
+            (set (reg:DI 352)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2560 [0xfffffffffffff600])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:321 221 {*adddi_1}
+     (nil))
+(insn 474 473 475 35 (parallel [
+            (set (reg:DI 353)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2704 [0xfffffffffffff570])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:321 221 {*adddi_1}
+     (nil))
+(insn 475 474 476 35 (parallel [
+            (set (reg:DI 354)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2828 [0xfffffffffffff4f4])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:321 221 {*adddi_1}
+     (nil))
+(insn 476 475 477 35 (set (reg:DI 37 r8)
+        (reg:DI 350)) 4t_cv.cpp:321 89 {*movdi_internal}
+     (nil))
+(insn 477 476 478 35 (set (reg:DI 2 cx)
+        (reg:DI 351)) 4t_cv.cpp:321 89 {*movdi_internal}
+     (nil))
+(insn 478 477 479 35 (set (reg:DI 1 dx)
+        (reg:DI 352)) 4t_cv.cpp:321 89 {*movdi_internal}
+     (nil))
+(insn 479 478 480 35 (set (reg:DI 4 si)
+        (reg:DI 353)) 4t_cv.cpp:321 89 {*movdi_internal}
+     (nil))
+(insn 480 479 481 35 (set (reg:DI 5 di)
+        (reg:DI 354)) 4t_cv.cpp:321 89 {*movdi_internal}
+     (nil))
+(call_insn 481 480 482 35 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_Z11pre_processPiP10PreprocessP12Procpar_infoPPfS5_") [flags 0x41]  <function_decl 0x2b3c101b4a00 pre_process>) [0 pre_process S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:321 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:DI (use (reg:DI 37 r8))
+                        (nil)))))))
+(insn 482 481 483 35 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x2b3c1021a8e8 *.LC20>)) 4t_cv.cpp:324 89 {*movdi_internal}
+     (nil))
+(call_insn 483 482 484 35 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:324 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 484 483 663 35 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+        (const_int 0 [0])) 4t_cv.cpp:325 90 {*movsi_internal}
+     (nil))
+(jump_insn 663 484 664 35 (set (pc)
+        (label_ref 535)) 4t_cv.cpp:325 -1
+     (nil)
+ -> 535)
+;;  succ:       38 [100.0%] 
+
+(barrier 664 663 539)
+;; basic block 36, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 35, next block 37, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       38
+;; bb 36 artificial_defs: { }
+;; bb 36 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 539 664 487 36 24 "" [1 uses])
+(note 487 539 488 36 [bb 36] NOTE_INSN_BASIC_BLOCK)
+(insn 488 487 489 36 (parallel [
+            (set (reg:DI 355)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2704 [0xfffffffffffff570])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 221 {*adddi_1}
+     (nil))
+(insn 489 488 490 36 (set (reg:SI 357)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:327 90 {*movsi_internal}
+     (nil))
+(insn 490 489 491 36 (set (reg:DI 356)
+        (sign_extend:DI (reg:SI 357))) 4t_cv.cpp:327 142 {*extendsidi2_rex64}
+     (nil))
+(insn 491 490 492 36 (set (reg:DI 358)
+        (reg:DI 356)) 4t_cv.cpp:327 89 {*movdi_internal}
+     (nil))
+(insn 492 491 493 36 (parallel [
+            (set (reg:DI 358)
+                (ashift:DI (reg:DI 358)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 497 {*ashldi3_1}
+     (nil))
+(insn 493 492 494 36 (parallel [
+            (set (reg:DI 358)
+                (plus:DI (reg:DI 358)
+                    (reg:DI 356)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 221 {*adddi_1}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 356)
+            (const_int 9 [0x9]))
+        (nil)))
+(insn 494 493 495 36 (parallel [
+            (set (reg:DI 359)
+                (ashift:DI (reg:DI 358)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 497 {*ashldi3_1}
+     (nil))
+(insn 495 494 496 36 (set (reg:DI 358)
+        (reg:DI 359)) 4t_cv.cpp:327 89 {*movdi_internal}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 356)
+            (const_int 72 [0x48]))
+        (nil)))
+(insn 496 495 497 36 (parallel [
+            (set (reg/f:DI 155 [ D.5607 ])
+                (plus:DI (reg:DI 355)
+                    (reg:DI 358)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 221 {*adddi_1}
+     (nil))
+(insn 497 496 498 36 (parallel [
+            (set (reg:DI 360)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2560 [0xfffffffffffff600])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 221 {*adddi_1}
+     (nil))
+(insn 498 497 499 36 (set (reg:SI 362)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:327 90 {*movsi_internal}
+     (nil))
+(insn 499 498 500 36 (set (reg:DI 361)
+        (sign_extend:DI (reg:SI 362))) 4t_cv.cpp:327 142 {*extendsidi2_rex64}
+     (nil))
+(insn 500 499 501 36 (parallel [
+            (set (reg:DI 363)
+                (mult:DI (reg:DI 361)
+                    (const_int 376 [0x178])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 307 {*muldi3_1}
+     (nil))
+(insn 501 500 502 36 (parallel [
+            (set (reg/f:DI 156 [ D.5608 ])
+                (plus:DI (reg:DI 360)
+                    (reg:DI 363)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 221 {*adddi_1}
+     (nil))
+(insn 502 501 503 36 (set (reg:SI 364)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:326 90 {*movsi_internal}
+     (nil))
+(insn 503 502 504 36 (set (reg:DI 157 [ D.5595 ])
+        (sign_extend:DI (reg:SI 364))) 4t_cv.cpp:326 142 {*extendsidi2_rex64}
+     (nil))
+(insn 504 503 505 36 (parallel [
+            (set (reg:DI 158 [ D.5595 ])
+                (ashift:DI (reg:DI 157 [ D.5595 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:326 497 {*ashldi3_1}
+     (nil))
+(insn 505 504 506 36 (set (reg/f:DI 365)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2792 [0xfffffffffffff518])) [0 block_header+0 S8 A64])) 4t_cv.cpp:326 89 {*movdi_internal}
+     (nil))
+(insn 506 505 507 36 (parallel [
+            (set (reg/f:DI 159 [ D.5598 ])
+                (plus:DI (reg:DI 158 [ D.5595 ])
+                    (reg/f:DI 365)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:326 221 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2792 [0xfffffffffffff518])) [0 block_header+0 S8 A64])
+            (reg:DI 158 [ D.5595 ]))
+        (nil)))
+(insn 507 506 508 36 (set (reg/f:DI 160 [ D.5609 ])
+        (mem/f:DI (reg/f:DI 159 [ D.5598 ]) [0 *_103+0 S8 A64])) 4t_cv.cpp:327 89 {*movdi_internal}
+     (nil))
+(insn 508 507 509 36 (set (reg:SI 366)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:326 90 {*movsi_internal}
+     (nil))
+(insn 509 508 510 36 (set (reg:DI 161 [ D.5595 ])
+        (sign_extend:DI (reg:SI 366))) 4t_cv.cpp:326 142 {*extendsidi2_rex64}
+     (nil))
+(insn 510 509 511 36 (parallel [
+            (set (reg:DI 162 [ D.5595 ])
+                (ashift:DI (reg:DI 161 [ D.5595 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:326 497 {*ashldi3_1}
+     (nil))
+(insn 511 510 512 36 (set (reg/f:DI 367)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])) 4t_cv.cpp:326 89 {*movdi_internal}
+     (nil))
+(insn 512 511 513 36 (parallel [
+            (set (reg/f:DI 163 [ D.5596 ])
+                (plus:DI (reg:DI 162 [ D.5595 ])
+                    (reg/f:DI 367)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:326 221 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])
+            (reg:DI 162 [ D.5595 ]))
+        (nil)))
+(insn 513 512 514 36 (set (reg/f:DI 164 [ D.5601 ])
+        (mem/f:DI (reg/f:DI 163 [ D.5596 ]) [0 *_107+0 S8 A64])) 4t_cv.cpp:327 89 {*movdi_internal}
+     (nil))
+(insn 514 513 515 36 (set (reg:SI 369)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:327 90 {*movsi_internal}
+     (nil))
+(insn 515 514 516 36 (set (reg:DI 368)
+        (sign_extend:DI (reg:SI 369))) 4t_cv.cpp:327 142 {*extendsidi2_rex64}
+     (nil))
+(insn 516 515 517 36 (set (reg/f:DI 165 [ D.5603 ])
+        (mem/f/j:DI (plus:DI (plus:DI (mult:DI (reg:DI 368)
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 20 frame))
+                (const_int -2736 [0xfffffffffffff550])) [0 out_data S8 A64])) 4t_cv.cpp:327 89 {*movdi_internal}
+     (nil))
+(insn 517 516 518 36 (parallel [
+            (set (reg:DI 370)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -1808 [0xfffffffffffff8f0])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 221 {*adddi_1}
+     (nil))
+(insn 518 517 519 36 (set (reg:SI 372)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:327 90 {*movsi_internal}
+     (nil))
+(insn 519 518 520 36 (set (reg:DI 371)
+        (sign_extend:DI (reg:SI 372))) 4t_cv.cpp:327 142 {*extendsidi2_rex64}
+     (nil))
+(insn 520 519 521 36 (parallel [
+            (set (reg:DI 373)
+                (plus:DI (reg:DI 371)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 221 {*adddi_1}
+     (nil))
+(insn 521 520 522 36 (parallel [
+            (set (reg:DI 374)
+                (ashift:DI (reg:DI 373)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 497 {*ashldi3_1}
+     (nil))
+(insn 522 521 523 36 (parallel [
+            (set (reg/f:DI 166 [ D.5600 ])
+                (plus:DI (reg:DI 370)
+                    (reg:DI 374)))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 221 {*adddi_1}
+     (nil))
+(insn 523 522 524 36 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 221 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 8 [0x8])
+        (nil)))
+(insn 524 523 525 36 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg/f:DI 155 [ D.5607 ])) 4t_cv.cpp:327 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(insn 525 524 526 36 (set (reg:DI 38 r9)
+        (reg/f:DI 156 [ D.5608 ])) 4t_cv.cpp:327 89 {*movdi_internal}
+     (nil))
+(insn 526 525 527 36 (set (reg:SI 37 r8)
+        (const_int 1 [0x1])) 4t_cv.cpp:327 90 {*movsi_internal}
+     (nil))
+(insn 527 526 528 36 (set (reg:DI 2 cx)
+        (reg/f:DI 160 [ D.5609 ])) 4t_cv.cpp:327 89 {*movdi_internal}
+     (nil))
+(insn 528 527 529 36 (set (reg:DI 1 dx)
+        (reg/f:DI 164 [ D.5601 ])) 4t_cv.cpp:327 89 {*movdi_internal}
+     (nil))
+(insn 529 528 530 36 (set (reg:DI 4 si)
+        (reg/f:DI 165 [ D.5603 ])) 4t_cv.cpp:327 89 {*movdi_internal}
+     (nil))
+(insn 530 529 531 36 (set (reg:DI 5 di)
+        (reg/f:DI 166 [ D.5600 ])) 4t_cv.cpp:327 89 {*movdi_internal}
+     (nil))
+(call_insn 531 530 532 36 (call (mem:QI (symbol_ref:DI ("_Z10fwrite_ascPcPfP16Data_file_headerP17Data_block_headeriP12Procpar_infoP10Preprocess") [flags 0x41]  <function_decl 0x2b3c101b4800 fwrite_asc>) [0 fwrite_asc S1 A8])
+        (const_int 16 [0x10])) 4t_cv.cpp:327 642 {*call}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:SI (use (reg:SI 37 r8))
+                        (expr_list:DI (use (reg:DI 38 r9))
+                            (nil))))))))
+(insn 532 531 533 36 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:327 221 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+;;  succ:       37 (FALLTHRU)
+
+;; basic block 37, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 36, next block 38, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       36 (FALLTHRU)
+;; bb 37 artificial_defs: { }
+;; bb 37 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 533 532 534 37 [bb 37] NOTE_INSN_BASIC_BLOCK)
+(insn 534 533 535 37 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                        (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                            (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:325 220 {*addsi_1}
+     (nil))
+;;  succ:       38 (FALLTHRU,DFS_BACK)
+
+;; basic block 38, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 37, next block 39, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       37 (FALLTHRU,DFS_BACK)
+;;              35 [100.0%] 
+;; bb 38 artificial_defs: { }
+;; bb 38 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 535 534 536 38 23 "" [1 uses])
+(note 536 535 537 38 [bb 38] NOTE_INSN_BASIC_BLOCK)
+(insn 537 536 538 38 (set (reg:SI 153 [ D.5593 ])
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2828 [0xfffffffffffff4f4])) [0 fid+0 S4 A32])) 4t_cv.cpp:325 90 {*movsi_internal}
+     (nil))
+(insn 538 537 540 38 (parallel [
+            (set (reg:SI 154 [ D.5593 ])
+                (plus:SI (reg:SI 153 [ D.5593 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:325 220 {*addsi_1}
+     (nil))
+(insn 540 538 541 38 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 154 [ D.5593 ])
+            (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32]))) 4t_cv.cpp:325 7 {*cmpsi_1}
+     (nil))
+(jump_insn 541 540 542 38 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 539)
+            (pc))) 4t_cv.cpp:325 596 {*jcc_1}
+     (nil)
+ -> 539)
+;;  succ:       36
+;;              39 (FALLTHRU)
+
+;; basic block 39, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 38, next block 40, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       38 (FALLTHRU)
+;; bb 39 artificial_defs: { }
+;; bb 39 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 542 541 543 39 [bb 39] NOTE_INSN_BASIC_BLOCK)
+(insn 543 542 544 39 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC21") [flags 0x2]  <var_decl 0x2b3c1021a980 *.LC21>)) 4t_cv.cpp:331 89 {*movdi_internal}
+     (nil))
+(call_insn 544 543 545 39 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:331 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 545 544 546 39 (parallel [
+            (set (reg:DI 375)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -1808 [0xfffffffffffff8f0])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:332 221 {*adddi_1}
+     (nil))
+(insn 546 545 547 39 (parallel [
+            (set (reg:DI 376)
+                (plus:DI (reg:DI 375)
+                    (const_int 512 [0x200])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:332 221 {*adddi_1}
+     (nil))
+(insn 547 546 548 39 (set (reg:DI 4 si)
+        (reg:DI 376)) 4t_cv.cpp:332 89 {*movdi_internal}
+     (nil))
+(insn 548 547 549 39 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC22") [flags 0x2]  <var_decl 0x2b3c1021aa18 *.LC22>)) 4t_cv.cpp:332 89 {*movdi_internal}
+     (nil))
+(insn 549 548 550 39 (set (reg:QI 0 ax)
+        (const_int 0 [0])) 4t_cv.cpp:332 93 {*movqi_internal}
+     (nil))
+(call_insn 550 549 551 39 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x2b3c0fee0e00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:332 649 {*call_value}
+     (nil)
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (nil)))))
+(insn 551 550 552 39 (parallel [
+            (set (reg:DI 377)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -1808 [0xfffffffffffff8f0])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:333 221 {*adddi_1}
+     (nil))
+(insn 552 551 553 39 (parallel [
+            (set (reg:DI 378)
+                (plus:DI (reg:DI 377)
+                    (const_int 768 [0x300])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:333 221 {*adddi_1}
+     (nil))
+(insn 553 552 554 39 (set (reg:DI 4 si)
+        (reg:DI 378)) 4t_cv.cpp:333 89 {*movdi_internal}
+     (nil))
+(insn 554 553 555 39 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC23") [flags 0x2]  <var_decl 0x2b3c1021aab0 *.LC23>)) 4t_cv.cpp:333 89 {*movdi_internal}
+     (nil))
+(insn 555 554 556 39 (set (reg:QI 0 ax)
+        (const_int 0 [0])) 4t_cv.cpp:333 93 {*movqi_internal}
+     (nil))
+(call_insn 556 555 557 39 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x2b3c0fee0e00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:333 649 {*call_value}
+     (nil)
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (nil)))))
+(insn 557 556 558 39 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC24") [flags 0x2]  <var_decl 0x2b3c1021ab48 *.LC24>)) 4t_cv.cpp:334 89 {*movdi_internal}
+     (nil))
+(call_insn 558 557 559 39 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b3c0fee3900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:334 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 559 558 665 39 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+        (const_int 0 [0])) 4t_cv.cpp:336 90 {*movsi_internal}
+     (nil))
+(jump_insn 665 559 666 39 (set (pc)
+        (label_ref 577)) 4t_cv.cpp:336 -1
+     (nil)
+ -> 577)
+;;  succ:       43 [100.0%] 
+
+(barrier 666 665 581)
+;; basic block 40, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 39, next block 41, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       43
+;; bb 40 artificial_defs: { }
+;; bb 40 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 581 666 562 40 27 "" [1 uses])
+(note 562 581 563 40 [bb 40] NOTE_INSN_BASIC_BLOCK)
+(insn 563 562 564 40 (set (reg:SI 380)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:337 90 {*movsi_internal}
+     (nil))
+(insn 564 563 565 40 (set (reg:DI 379)
+        (sign_extend:DI (reg:SI 380))) 4t_cv.cpp:337 142 {*extendsidi2_rex64}
+     (nil))
+(insn 565 564 566 40 (set (reg/f:DI 169 [ D.5610 ])
+        (mem/f/j:DI (plus:DI (plus:DI (mult:DI (reg:DI 379)
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 20 frame))
+                (const_int -2752 [0xfffffffffffff540])) [0 in_file S8 A64])) 4t_cv.cpp:337 89 {*movdi_internal}
+     (nil))
+(insn 566 565 567 40 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 169 [ D.5610 ])
+            (const_int 0 [0]))) 4t_cv.cpp:337 4 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 567 566 568 40 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 574)
+            (pc))) 4t_cv.cpp:337 596 {*jcc_1}
+     (nil)
+ -> 574)
+;;  succ:       41 (FALLTHRU)
+;;              42
+
+;; basic block 41, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 40, next block 42, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       40 (FALLTHRU)
+;; bb 41 artificial_defs: { }
+;; bb 41 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 568 567 569 41 [bb 41] NOTE_INSN_BASIC_BLOCK)
+(insn 569 568 570 41 (set (reg:SI 382)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])) 4t_cv.cpp:338 90 {*movsi_internal}
+     (nil))
+(insn 570 569 571 41 (set (reg:DI 381)
+        (sign_extend:DI (reg:SI 382))) 4t_cv.cpp:338 142 {*extendsidi2_rex64}
+     (nil))
+(insn 571 570 572 41 (set (reg/f:DI 170 [ D.5610 ])
+        (mem/f/j:DI (plus:DI (plus:DI (mult:DI (reg:DI 381)
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 20 frame))
+                (const_int -2752 [0xfffffffffffff540])) [0 in_file S8 A64])) 4t_cv.cpp:338 89 {*movdi_internal}
+     (nil))
+(insn 572 571 573 41 (set (reg:DI 5 di)
+        (reg/f:DI 170 [ D.5610 ])) 4t_cv.cpp:338 89 {*movdi_internal}
+     (nil))
+(call_insn 573 572 574 41 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fclose") [flags 0x41]  <function_decl 0x2b3c10093900 fclose>) [0 fclose S1 A8])
+            (const_int 0 [0]))) 4t_cv.cpp:338 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       42 (FALLTHRU)
+
+;; basic block 42, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 41, next block 43, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       40
+;;              41 (FALLTHRU)
+;; bb 42 artificial_defs: { }
+;; bb 42 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 574 573 575 42 26 "" [1 uses])
+(note 575 574 576 42 [bb 42] NOTE_INSN_BASIC_BLOCK)
+(insn 576 575 577 42 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                        (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                            (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:336 220 {*addsi_1}
+     (nil))
+;;  succ:       43 (FALLTHRU,DFS_BACK)
+
+;; basic block 43, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 42, next block 44, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       42 (FALLTHRU,DFS_BACK)
+;;              39 [100.0%] 
+;; bb 43 artificial_defs: { }
+;; bb 43 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 577 576 578 43 25 "" [1 uses])
+(note 578 577 579 43 [bb 43] NOTE_INSN_BASIC_BLOCK)
+(insn 579 578 580 43 (set (reg:SI 167 [ D.5593 ])
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2828 [0xfffffffffffff4f4])) [0 fid+0 S4 A32])) 4t_cv.cpp:336 90 {*movsi_internal}
+     (nil))
+(insn 580 579 582 43 (parallel [
+            (set (reg:SI 168 [ D.5593 ])
+                (plus:SI (reg:SI 167 [ D.5593 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:336 220 {*addsi_1}
+     (nil))
+(insn 582 580 583 43 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 168 [ D.5593 ])
+            (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2824 [0xfffffffffffff4f8])) [0 i+0 S4 A32]))) 4t_cv.cpp:336 7 {*cmpsi_1}
+     (nil))
+(jump_insn 583 582 584 43 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 581)
+            (pc))) 4t_cv.cpp:336 596 {*jcc_1}
+     (nil)
+ -> 581)
+;;  succ:       40
+;;              44 (FALLTHRU)
+
+;; basic block 44, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 43, next block 45, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       43 (FALLTHRU)
+;; bb 44 artificial_defs: { }
+;; bb 44 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 584 583 585 44 [bb 44] NOTE_INSN_BASIC_BLOCK)
+(insn 585 584 586 44 (set (reg/f:DI 171 [ D.5604 ])
+        (mem/f/j/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2784 [0xfffffffffffff520])) [0 in_data[0].lo+0 S8 A64])) 4t_cv.cpp:342 89 {*movdi_internal}
+     (nil))
+(insn 586 585 587 44 (set (reg:DI 5 di)
+        (reg/f:DI 171 [ D.5604 ])) 4t_cv.cpp:342 89 {*movdi_internal}
+     (nil))
+(call_insn 587 586 588 44 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b3c0ff00000 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) 4t_cv.cpp:342 642 {*call}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 588 587 589 44 (set (reg/f:DI 172 [ D.5604 ])
+        (mem/f/j/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2768 [0xfffffffffffff530])) [0 switch_data[0].lo+0 S8 A64])) 4t_cv.cpp:343 89 {*movdi_internal}
+     (nil))
+(insn 589 588 590 44 (set (reg:DI 5 di)
+        (reg/f:DI 172 [ D.5604 ])) 4t_cv.cpp:343 89 {*movdi_internal}
+     (nil))
+(call_insn 590 589 591 44 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b3c0ff00000 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) 4t_cv.cpp:343 642 {*call}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 591 590 592 44 (set (reg:SI 173 [ D.5593 ])
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2828 [0xfffffffffffff4f4])) [0 fid+0 S4 A32])) 4t_cv.cpp:345 90 {*movsi_internal}
+     (nil))
+(insn 592 591 593 44 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 173 [ D.5593 ])
+            (const_int 1 [0x1]))) 4t_cv.cpp:345 7 {*cmpsi_1}
+     (nil))
+(jump_insn 593 592 594 44 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 601)
+            (pc))) 4t_cv.cpp:345 596 {*jcc_1}
+     (nil)
+ -> 601)
+;;  succ:       45 (FALLTHRU)
+;;              46
+
+;; basic block 45, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 44, next block 46, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       44 (FALLTHRU)
+;; bb 45 artificial_defs: { }
+;; bb 45 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 594 593 595 45 [bb 45] NOTE_INSN_BASIC_BLOCK)
+(insn 595 594 596 45 (set (reg/f:DI 174 [ D.5604 ])
+        (mem/f/j/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2776 [0xfffffffffffff528])) [0 in_data[1].lo+0 S8 A64])) 4t_cv.cpp:346 89 {*movdi_internal}
+     (nil))
+(insn 596 595 597 45 (set (reg:DI 5 di)
+        (reg/f:DI 174 [ D.5604 ])) 4t_cv.cpp:346 89 {*movdi_internal}
+     (nil))
+(call_insn 597 596 598 45 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b3c0ff00000 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) 4t_cv.cpp:346 642 {*call}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 598 597 599 45 (set (reg/f:DI 175 [ D.5604 ])
+        (mem/f/j/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2760 [0xfffffffffffff538])) [0 switch_data[1].lo+0 S8 A64])) 4t_cv.cpp:347 89 {*movdi_internal}
+     (nil))
+(insn 599 598 600 45 (set (reg:DI 5 di)
+        (reg/f:DI 175 [ D.5604 ])) 4t_cv.cpp:347 89 {*movdi_internal}
+     (nil))
+(call_insn 600 599 601 45 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b3c0ff00000 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) 4t_cv.cpp:347 642 {*call}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       46 (FALLTHRU)
+
+;; basic block 46, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 45, next block 47, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       44
+;;              45 (FALLTHRU)
+;; bb 46 artificial_defs: { }
+;; bb 46 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 601 600 602 46 28 "" [1 uses])
+(note 602 601 603 46 [bb 46] NOTE_INSN_BASIC_BLOCK)
+(insn 603 602 604 46 (set (reg/f:DI 176 [ D.5603 ])
+        (mem/f/j/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2736 [0xfffffffffffff550])) [0 out_data+0 S8 A64])) 4t_cv.cpp:352 89 {*movdi_internal}
+     (nil))
+(insn 604 603 605 46 (set (reg:DI 5 di)
+        (reg/f:DI 176 [ D.5603 ])) 4t_cv.cpp:352 89 {*movdi_internal}
+     (nil))
+(call_insn 605 604 606 46 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b3c0ff00000 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) 4t_cv.cpp:352 642 {*call}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 606 605 607 46 (set (reg/f:DI 177 [ D.5603 ])
+        (mem/f/j/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2720 [0xfffffffffffff560])) [0 scratch_data+0 S8 A64])) 4t_cv.cpp:353 89 {*movdi_internal}
+     (nil))
+(insn 607 606 608 46 (set (reg:DI 5 di)
+        (reg/f:DI 177 [ D.5603 ])) 4t_cv.cpp:353 89 {*movdi_internal}
+     (nil))
+(call_insn 608 607 609 46 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b3c0ff00000 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) 4t_cv.cpp:353 642 {*call}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 609 608 610 46 (set (reg:SI 178 [ D.5593 ])
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2828 [0xfffffffffffff4f4])) [0 fid+0 S4 A32])) 4t_cv.cpp:355 90 {*movsi_internal}
+     (nil))
+(insn 610 609 611 46 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 178 [ D.5593 ])
+            (const_int 1 [0x1]))) 4t_cv.cpp:355 7 {*cmpsi_1}
+     (nil))
+(jump_insn 611 610 612 46 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 619)
+            (pc))) 4t_cv.cpp:355 596 {*jcc_1}
+     (nil)
+ -> 619)
+;;  succ:       47 (FALLTHRU)
+;;              48
+
+;; basic block 47, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 46, next block 48, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       46 (FALLTHRU)
+;; bb 47 artificial_defs: { }
+;; bb 47 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 612 611 613 47 [bb 47] NOTE_INSN_BASIC_BLOCK)
+(insn 613 612 614 47 (set (reg/f:DI 179 [ D.5603 ])
+        (mem/f/j/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2728 [0xfffffffffffff558])) [0 out_data+8 S8 A64])) 4t_cv.cpp:358 89 {*movdi_internal}
+     (nil))
+(insn 614 613 615 47 (set (reg:DI 5 di)
+        (reg/f:DI 179 [ D.5603 ])) 4t_cv.cpp:358 89 {*movdi_internal}
+     (nil))
+(call_insn 615 614 616 47 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b3c0ff00000 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) 4t_cv.cpp:358 642 {*call}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 616 615 617 47 (set (reg/f:DI 180 [ D.5603 ])
+        (mem/f/j/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2712 [0xfffffffffffff568])) [0 scratch_data+8 S8 A64])) 4t_cv.cpp:359 89 {*movdi_internal}
+     (nil))
+(insn 617 616 618 47 (set (reg:DI 5 di)
+        (reg/f:DI 180 [ D.5603 ])) 4t_cv.cpp:359 89 {*movdi_internal}
+     (nil))
+(call_insn 618 617 619 47 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b3c0ff00000 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) 4t_cv.cpp:359 642 {*call}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       48 (FALLTHRU)
+
+;; basic block 48, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 47, next block 49, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       46
+;;              47 (FALLTHRU)
+;; bb 48 artificial_defs: { }
+;; bb 48 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 619 618 620 48 29 "" [1 uses])
+(note 620 619 621 48 [bb 48] NOTE_INSN_BASIC_BLOCK)
+(insn 621 620 622 48 (set (reg:DI 383)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2800 [0xfffffffffffff510])) [0 main_header+0 S8 A64])) 4t_cv.cpp:362 89 {*movdi_internal}
+     (nil))
+(insn 622 621 623 48 (set (reg:DI 5 di)
+        (reg:DI 383)) 4t_cv.cpp:362 89 {*movdi_internal}
+     (nil))
+(call_insn 623 622 624 48 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b3c0ff00000 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) 4t_cv.cpp:362 642 {*call}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 624 623 625 48 (set (reg:DI 384)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2792 [0xfffffffffffff518])) [0 block_header+0 S8 A64])) 4t_cv.cpp:363 89 {*movdi_internal}
+     (nil))
+(insn 625 624 626 48 (set (reg:DI 5 di)
+        (reg:DI 384)) 4t_cv.cpp:363 89 {*movdi_internal}
+     (nil))
+(call_insn 626 625 627 48 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x2b3c0ff00000 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) 4t_cv.cpp:363 642 {*call}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 627 626 630 48 (set (reg:SI 181 [ D.5593 ])
+        (const_int 1 [0x1])) 4t_cv.cpp:365 90 {*movsi_internal}
+     (nil))
+(insn 630 627 634 48 (set (reg:SI 182 [ <retval> ])
+        (reg:SI 181 [ D.5593 ])) 90 {*movsi_internal}
+     (nil))
+(insn 634 630 635 48 (set (reg/i:SI 0 ax)
+        (reg:SI 182 [ <retval> ])) 4t_cv.cpp:367 90 {*movsi_internal}
+     (nil))
+(insn 635 634 636 48 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                                (const_int -8 [0xfffffffffffffff8])) [0 D.5612+0 S8 A64])
+                        (const_int 40 [0x28])
+                    ] UNSPEC_SP_TLS_TEST))
+            (clobber (scratch:DI))
+        ]) 4t_cv.cpp:367 968 {stack_tls_protect_test_di}
+     (nil))
+(jump_insn 636 635 642 48 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 639)
+            (pc))) 4t_cv.cpp:367 596 {*jcc_1}
+     (nil)
+ -> 639)
+;;  succ:       50
+;;              49 (FALLTHRU)
+
+;; basic block 49, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 48, next block 50, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       48 (FALLTHRU)
+;; bb 49 artificial_defs: { }
+;; bb 49 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 642 636 637 49 [bb 49] NOTE_INSN_BASIC_BLOCK)
+(call_insn 637 642 638 49 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x2b3c10210900 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) 4t_cv.cpp:367 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (nil))
+;;  succ:      
+
+(barrier 638 637 639)
+;; basic block 50, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 49, next block 1, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       48
+;; bb 50 artificial_defs: { }
+;; bb 50 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 639 638 643 50 31 "" [1 uses])
+(note 643 639 640 50 [bb 50] NOTE_INSN_BASIC_BLOCK)
+(insn 640 643 0 50 (use (reg/i:SI 0 ax)) 4t_cv.cpp:367 -1
+     (nil))
+;;  succ:       EXIT [100.0%]  (FALLTHRU)
+
+
+;; Function int IsBigEndian() (_Z11IsBigEndianv, funcdef_no=3, decl_uid=5396, symbol_order=3)
+
+starting the processing of deferred insns
+ending the processing of deferred insns
+
+
+int IsBigEndian()
+
+Dataflow summary:
+;;  invalidated by call 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 19 [fpcr] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 29 [mm0] 30 [mm1] 31 [mm2] 32 [mm3] 33 [mm4] 34 [mm5] 35 [mm6] 36 [mm7] 37 [r8] 38 [r9] 39 [r10] 40 [r11] 45 [xmm8] 46 [xmm9] 47 [xmm10] 48 [xmm11] 49 [xmm12] 50 [xmm13] 51 [xmm14] 52 [xmm15] 53 [] 54 [] 55 [] 56 [] 57 [] 58 [] 59 [] 60 [] 61 [] 62 [] 63 [] 64 [] 65 [] 66 [] 67 [] 68 [] 69 [] 70 [] 71 [] 72 [] 73 [] 74 [] 75 [] 76 []
+;;  hardware regs used 	
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 20 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 20 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 20 [frame] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 37 [r8] 38 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 20 [frame]
+;;  regs ever live 	 0[ax] 17[flags]
+;;  ref usage 	r0={2d,2u} r1={1d} r2={1d} r4={1d} r5={1d} r6={1d,5u} r7={1d,5u} r16={1d,4u} r17={2d,1u} r20={1d,7u} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r28={1d} r37={1d} r38={1d} r83={2d,1u} r84={1d,1u} r85={1d,1u} r86={1d,1u} 
+;;    total ref usage 55{27d,28u,0e} in 11{11 regular + 0 call} insns.
+(note 1 0 3 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (mem/c:HI (plus:DI (reg/f:DI 20 frame)
+                (const_int -2 [0xfffffffffffffffe])) [0 word+0 S2 A16])
+        (const_int 17185 [0x4321])) 4t_cv.cpp:373 92 {*movhi_internal}
+     (nil))
+(insn 6 5 7 2 (parallel [
+            (set (reg/f:DI 84 [ D.5639 ])
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -2 [0xfffffffffffffffe])))
+            (clobber (reg:CC 17 flags))
+        ]) 4t_cv.cpp:374 221 {*adddi_1}
+     (nil))
+(insn 7 6 8 2 (set (reg:QI 85 [ D.5640 ])
+        (mem:QI (reg/f:DI 84 [ D.5639 ]) [0 MEM[(char *)_2]+0 S1 A8])) 4t_cv.cpp:374 93 {*movqi_internal}
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 85 [ D.5640 ])
+            (const_int 33 [0x21]))) 4t_cv.cpp:374 5 {*cmpqi_1}
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 14)
+            (pc))) 4t_cv.cpp:374 596 {*jcc_1}
+     (nil)
+ -> 14)
+;;  succ:       3 (FALLTHRU)
+;;              4
+
+;; basic block 3, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(note 10 9 11 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 28 3 (set (reg:SI 83 [ D.5638 ])
+        (const_int 1 [0x1])) 4t_cv.cpp:375 90 {*movsi_internal}
+     (nil))
+(jump_insn 28 11 29 3 (set (pc)
+        (label_ref 19)) 4t_cv.cpp:375 -1
+     (nil)
+ -> 19)
+;;  succ:       5 [100.0%] 
+
+(barrier 29 28 14)
+;; basic block 4, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 14 29 15 4 33 "" [1 uses])
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 19 4 (set (reg:SI 83 [ D.5638 ])
+        (const_int 0 [0])) 4t_cv.cpp:377 90 {*movsi_internal}
+     (nil))
+;;  succ:       5 (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 4, next block 1, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 (FALLTHRU)
+;;              3 [100.0%] 
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(20){ }}
+(code_label 19 16 20 5 35 "" [1 uses])
+(note 20 19 21 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 21 20 25 5 (set (reg:SI 86 [ <retval> ])
+        (reg:SI 83 [ D.5638 ])) 90 {*movsi_internal}
+     (nil))
+(insn 25 21 26 5 (set (reg/i:SI 0 ax)
+        (reg:SI 86 [ <retval> ])) 4t_cv.cpp:379 90 {*movsi_internal}
+     (nil))
+(insn 26 25 0 5 (use (reg/i:SI 0 ax)) 4t_cv.cpp:379 -1
+     (nil))
+;;  succ:       EXIT [100.0%]  (FALLTHRU)
+

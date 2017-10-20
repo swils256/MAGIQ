@@ -1,0 +1,3874 @@
+
+;; Function int read_procpar(Procpar_info*, char*, FILE*, bool*, InFile_struct*, Data_file_header*) (_Z12read_procparP12Procpar_infoPcP8_IO_FILEPbP13InFile_structP16Data_file_header, funcdef_no=2, decl_uid=5410, cgraph_uid=2, symbol_order=2)
+
+(note 1 0 10 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL)
+;;  pred:       ENTRY (FALLTHRU)
+(note 10 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 10 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+        (reg:DI 5 di [ procpar_info ])) sim2fitman_read_procpar.cpp:26 89 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -704 [0xfffffffffffffd40])) [0 procpar_string+0 S8 A64])
+        (reg:DI 4 si [ procpar_string ])) sim2fitman_read_procpar.cpp:26 89 {*movdi_internal}
+     (nil))
+(insn 4 3 5 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -712 [0xfffffffffffffd38])) [0 in_file+0 S8 A64])
+        (reg:DI 1 dx [ in_file ])) sim2fitman_read_procpar.cpp:26 89 {*movdi_internal}
+     (nil))
+(insn 5 4 6 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -720 [0xfffffffffffffd30])) [0 swap_bytes+0 S8 A64])
+        (reg:DI 2 cx [ swap_bytes ])) sim2fitman_read_procpar.cpp:26 89 {*movdi_internal}
+     (nil))
+(insn 6 5 7 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -728 [0xfffffffffffffd28])) [0 infile_struct+0 S8 A64])
+        (reg:DI 37 r8 [ infile_struct ])) sim2fitman_read_procpar.cpp:26 89 {*movdi_internal}
+     (nil))
+(insn 7 6 8 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])
+        (reg:DI 38 r9 [ main_header ])) sim2fitman_read_procpar.cpp:26 89 {*movdi_internal}
+     (nil))
+(note 8 7 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 8 12 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                        (const_int -8 [0xfffffffffffffff8])) [0 D.5860+0 S8 A64])
+                (unspec:DI [
+                        (const_int 40 [0x28])
+                    ] UNSPEC_SP_TLS_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:26 986 {stack_tls_protect_set_di}
+     (nil))
+(insn 12 9 13 2 (set (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -664 [0xfffffffffffffd68])) [0 date_stamp+0 S8 A64])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:28 89 {*movdi_internal}
+     (nil))
+(insn 13 12 14 2 (set (reg:SF 191)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [0  S4 A32])) sim2fitman_read_procpar.cpp:29 129 {*movsf_internal}
+     (nil))
+(insn 14 13 15 2 (set (mem/c:SF (plus:DI (reg/f:DI 20 frame)
+                (const_int -676 [0xfffffffffffffd5c])) [0 dwell+0 S4 A32])
+        (reg:SF 191)) sim2fitman_read_procpar.cpp:29 129 {*movsf_internal}
+     (nil))
+(insn 15 14 16 2 (set (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -656 [0xfffffffffffffd70])) [0 calc_filesize+0 S8 A64])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:30 89 {*movdi_internal}
+     (nil))
+(insn 16 15 17 2 (set (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -648 [0xfffffffffffffd78])) [0 te_offset+0 S8 A64])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:31 89 {*movdi_internal}
+     (nil))
+(insn 17 16 18 2 (set (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -640 [0xfffffffffffffd80])) [0 tr_offset+0 S8 A64])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:32 89 {*movdi_internal}
+     (nil))
+(insn 18 17 19 2 (set (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -632 [0xfffffffffffffd88])) [0 pulse_name_offset+0 S8 A64])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:33 89 {*movdi_internal}
+     (nil))
+(insn 19 18 20 2 (set (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -624 [0xfffffffffffffd90])) [0 header_size+0 S8 A64])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:35 89 {*movdi_internal}
+     (nil))
+(insn 20 19 21 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:48 89 {*movdi_internal}
+     (nil))
+(insn 21 20 22 2 (set (mem/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -677 [0xfffffffffffffd5b])) [0 done_hdr+0 S1 A8])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:49 93 {*movqi_internal}
+     (nil))
+(insn 22 21 23 2 (set (reg:DI 192)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -712 [0xfffffffffffffd38])) [0 in_file+0 S8 A64])) sim2fitman_read_procpar.cpp:66 89 {*movdi_internal}
+     (nil))
+(insn 23 22 24 2 (parallel [
+            (set (reg:DI 193)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -272 [0xfffffffffffffef0])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:66 218 {*adddi_1}
+     (nil))
+(insn 24 23 25 2 (set (reg:DI 1 dx)
+        (reg:DI 192)) sim2fitman_read_procpar.cpp:66 89 {*movdi_internal}
+     (nil))
+(insn 25 24 26 2 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) sim2fitman_read_procpar.cpp:66 90 {*movsi_internal}
+     (nil))
+(insn 26 25 27 2 (set (reg:DI 5 di)
+        (reg:DI 193)) sim2fitman_read_procpar.cpp:66 89 {*movdi_internal}
+     (nil))
+(call_insn 27 26 28 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x7f224d872af8 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:66 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 28 27 29 2 (set (reg:DI 194)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -712 [0xfffffffffffffd38])) [0 in_file+0 S8 A64])) sim2fitman_read_procpar.cpp:67 89 {*movdi_internal}
+     (nil))
+(insn 29 28 30 2 (set (reg:DI 5 di)
+        (reg:DI 194)) sim2fitman_read_procpar.cpp:67 89 {*movdi_internal}
+     (nil))
+(call_insn 30 29 31 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x7f224d87e6c0 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:67 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 31 30 32 2 (set (reg:SI 90 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:67 90 {*movsi_internal}
+     (nil))
+(insn 32 31 33 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 90 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:67 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 33 32 34 2 (set (reg:QI 91 [ D.5849 ])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:67 607 {*setcc_qi}
+     (nil))
+(insn 34 33 35 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 91 [ D.5849 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:67 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 35 34 36 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 40)
+            (pc))) sim2fitman_read_procpar.cpp:67 612 {*jcc_1}
+     (nil)
+ -> 40)
+;;  succ:       4 (FALLTHRU)
+;;              5
+
+;; basic block 4, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 (FALLTHRU)
+(note 36 35 37 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 38 4 (set (reg:SI 87 [ D.5848 ])
+        (const_int -1 [0xffffffffffffffff])) sim2fitman_read_procpar.cpp:68 90 {*movsi_internal}
+     (nil))
+(jump_insn 38 37 39 4 (set (pc)
+        (label_ref:DI 834)) sim2fitman_read_procpar.cpp:68 654 {jump}
+     (nil)
+ -> 834)
+;;  succ:       78 [100.0%] 
+
+(barrier 39 38 40)
+;; basic block 5, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL)
+;;  pred:       2
+;;              49 (DFS_BACK)
+(code_label 40 39 41 5 2 "" [2 uses])
+(note 41 40 42 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 42 41 43 5 (set (reg:DI 195)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -712 [0xfffffffffffffd38])) [0 in_file+0 S8 A64])) sim2fitman_read_procpar.cpp:76 89 {*movdi_internal}
+     (nil))
+(insn 43 42 44 5 (set (reg:DI 5 di)
+        (reg:DI 195)) sim2fitman_read_procpar.cpp:76 89 {*movdi_internal}
+     (nil))
+(call_insn 44 43 45 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("feof") [flags 0x41]  <function_decl 0x7f224d87e510 feof>) [0 feof S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:76 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 45 44 46 5 (set (reg:SI 92 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:76 90 {*movsi_internal}
+     (nil))
+(insn 46 45 47 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 92 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:76 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 47 46 48 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 57)
+            (pc))) sim2fitman_read_procpar.cpp:76 612 {*jcc_1}
+     (nil)
+ -> 57)
+;;  succ:       6 (FALLTHRU)
+;;              8
+
+;; basic block 6, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL)
+;;  pred:       5 (FALLTHRU)
+(note 48 47 49 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 50 6 (set (reg:QI 196)
+        (mem/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -677 [0xfffffffffffffd5b])) [0 done_hdr+0 S1 A8])) sim2fitman_read_procpar.cpp:76 93 {*movqi_internal}
+     (nil))
+(insn 50 49 51 6 (parallel [
+            (set (reg:QI 93 [ D.5849 ])
+                (xor:QI (reg:QI 196)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:76 406 {*xorqi_1}
+     (expr_list:REG_EQUAL (xor:QI (mem/c:QI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -677 [0xfffffffffffffd5b])) [0 done_hdr+0 S1 A8])
+            (const_int 1 [0x1]))
+        (nil)))
+(insn 51 50 52 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 93 [ D.5849 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:76 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 52 51 53 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 57)
+            (pc))) sim2fitman_read_procpar.cpp:76 612 {*jcc_1}
+     (nil)
+ -> 57)
+;;  succ:       7 (FALLTHRU)
+;;              8
+
+;; basic block 7, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL)
+;;  pred:       6 (FALLTHRU)
+(note 53 52 54 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 55 7 (set (reg:QI 88 [ D.5849 ])
+        (const_int 1 [0x1])) sim2fitman_read_procpar.cpp:76 93 {*movqi_internal}
+     (nil))
+(jump_insn 55 54 56 7 (set (pc)
+        (label_ref 60)) sim2fitman_read_procpar.cpp:76 654 {jump}
+     (nil)
+ -> 60)
+;;  succ:       9
+
+(barrier 56 55 57)
+;; basic block 8, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL)
+;;  pred:       5
+;;              6
+(code_label 57 56 58 8 4 "" [2 uses])
+(note 58 57 59 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 8 (set (reg:QI 88 [ D.5849 ])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:76 93 {*movqi_internal}
+     (nil))
+;;  succ:       9 (FALLTHRU)
+
+;; basic block 9, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL)
+;;  pred:       7
+;;              8 (FALLTHRU)
+(code_label 60 59 61 9 5 "" [1 uses])
+(note 61 60 62 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 62 61 63 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 88 [ D.5849 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:76 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 63 62 64 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 561)
+            (pc))) sim2fitman_read_procpar.cpp:76 612 {*jcc_1}
+     (nil)
+ -> 561)
+;;  succ:       10 (FALLTHRU)
+;;              50
+
+;; basic block 10, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL)
+;;  pred:       9 (FALLTHRU)
+(note 64 63 65 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 65 64 66 10 (parallel [
+            (set (reg:DI 197)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -272 [0xfffffffffffffef0])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:79 218 {*adddi_1}
+     (nil))
+(insn 66 65 67 10 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f224d6057e0 *.LC1>)) sim2fitman_read_procpar.cpp:79 89 {*movdi_internal}
+     (nil))
+(insn 67 66 68 10 (set (reg:DI 5 di)
+        (reg:DI 197)) sim2fitman_read_procpar.cpp:79 89 {*movdi_internal}
+     (nil))
+(call_insn 68 67 69 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:79 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 69 68 70 10 (set (reg:DI 198)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:79 89 {*movdi_internal}
+     (nil))
+(insn 70 69 71 10 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 198)) sim2fitman_read_procpar.cpp:79 89 {*movdi_internal}
+     (nil))
+(insn 71 70 72 10 (set (reg:DI 199)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:82 89 {*movdi_internal}
+     (nil))
+(insn 72 71 73 10 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f224d605870 *.LC2>)) sim2fitman_read_procpar.cpp:82 89 {*movdi_internal}
+     (nil))
+(insn 73 72 74 10 (set (reg:DI 5 di)
+        (reg:DI 199)) sim2fitman_read_procpar.cpp:82 89 {*movdi_internal}
+     (nil))
+(call_insn/i 74 73 75 10 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:82 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 75 74 76 10 (set (reg:SI 94 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:82 90 {*movsi_internal}
+     (nil))
+(insn 76 75 77 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 94 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:82 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 77 76 78 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 101)
+            (pc))) sim2fitman_read_procpar.cpp:82 612 {*jcc_1}
+     (nil)
+ -> 101)
+;;  succ:       11 (FALLTHRU)
+;;              13
+
+;; basic block 11, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL)
+;;  pred:       10 (FALLTHRU)
+(note 78 77 79 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 79 78 80 11 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f224d605900 *.LC3>)) sim2fitman_read_procpar.cpp:83 89 {*movdi_internal}
+     (nil))
+(insn 80 79 81 11 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:83 89 {*movdi_internal}
+     (nil))
+(call_insn 81 80 82 11 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:83 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 82 81 83 11 (set (reg:DI 200)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:83 89 {*movdi_internal}
+     (nil))
+(insn 83 82 84 11 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 200)) sim2fitman_read_procpar.cpp:83 89 {*movdi_internal}
+     (nil))
+(insn 84 83 85 11 (set (reg:DI 201)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:84 89 {*movdi_internal}
+     (nil))
+(insn 85 84 86 11 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x7f224d605990 *.LC4>)) sim2fitman_read_procpar.cpp:84 89 {*movdi_internal}
+     (nil))
+(insn 86 85 87 11 (set (reg:DI 5 di)
+        (reg:DI 201)) sim2fitman_read_procpar.cpp:84 89 {*movdi_internal}
+     (nil))
+(call_insn/i 87 86 88 11 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:84 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 88 87 89 11 (set (reg:SI 95 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:84 90 {*movsi_internal}
+     (nil))
+(insn 89 88 90 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 95 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:84 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 90 89 91 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 537)
+            (pc))) sim2fitman_read_procpar.cpp:84 612 {*jcc_1}
+     (nil)
+ -> 537)
+;;  succ:       12 (FALLTHRU)
+;;              47
+
+;; basic block 12, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL)
+;;  pred:       11 (FALLTHRU)
+(note 91 90 92 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 92 91 93 12 (set (mem/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -677 [0xfffffffffffffd5b])) [0 done_hdr+0 S1 A8])
+        (const_int 1 [0x1])) sim2fitman_read_procpar.cpp:85 93 {*movqi_internal}
+     (nil))
+(insn 93 92 94 12 (set (reg:DI 202)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -712 [0xfffffffffffffd38])) [0 in_file+0 S8 A64])) sim2fitman_read_procpar.cpp:86 89 {*movdi_internal}
+     (nil))
+(insn 94 93 95 12 (set (reg:DI 5 di)
+        (reg:DI 202)) sim2fitman_read_procpar.cpp:86 89 {*movdi_internal}
+     (nil))
+(call_insn 95 94 96 12 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ftell") [flags 0x41]  <function_decl 0x7f224d87e870 ftell>) [0 ftell S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:86 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 96 95 97 12 (set (reg:DI 96 [ D.5850 ])
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:86 89 {*movdi_internal}
+     (nil))
+(insn 97 96 98 12 (set (reg/f:DI 203)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -728 [0xfffffffffffffd28])) [0 infile_struct+0 S8 A64])) sim2fitman_read_procpar.cpp:86 89 {*movdi_internal}
+     (nil))
+(insn 98 97 99 12 (set (mem/j:DI (plus:DI (reg/f:DI 203)
+                (const_int 24 [0x18])) [0 infile_struct_50(D)->hdr_offset+0 S8 A64])
+        (reg:DI 96 [ D.5850 ])) sim2fitman_read_procpar.cpp:86 89 {*movdi_internal}
+     (nil))
+(jump_insn 99 98 100 12 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 100 99 101)
+;; basic block 13, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL)
+;;  pred:       10
+(code_label 101 100 102 13 7 "" [1 uses])
+(note 102 101 103 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 103 102 104 13 (set (reg:DI 204)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:92 89 {*movdi_internal}
+     (nil))
+(insn 104 103 105 13 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x7f224d605a20 *.LC5>)) sim2fitman_read_procpar.cpp:92 89 {*movdi_internal}
+     (nil))
+(insn 105 104 106 13 (set (reg:DI 5 di)
+        (reg:DI 204)) sim2fitman_read_procpar.cpp:92 89 {*movdi_internal}
+     (nil))
+(call_insn/i 106 105 107 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:92 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 107 106 108 13 (set (reg:SI 97 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:92 90 {*movsi_internal}
+     (nil))
+(insn 108 107 109 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 97 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:92 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 109 108 110 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 131)
+            (pc))) sim2fitman_read_procpar.cpp:92 612 {*jcc_1}
+     (nil)
+ -> 131)
+;;  succ:       14 (FALLTHRU)
+;;              15
+
+;; basic block 14, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL)
+;;  pred:       13 (FALLTHRU)
+(note 110 109 111 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 111 110 112 14 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f224d605ab0 *.LC6>)) sim2fitman_read_procpar.cpp:94 89 {*movdi_internal}
+     (nil))
+(insn 112 111 113 14 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:94 89 {*movdi_internal}
+     (nil))
+(call_insn 113 112 114 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:94 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 114 113 115 14 (set (reg:DI 205)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:94 89 {*movdi_internal}
+     (nil))
+(insn 115 114 116 14 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 205)) sim2fitman_read_procpar.cpp:94 89 {*movdi_internal}
+     (nil))
+(insn 116 115 117 14 (set (reg:DI 206)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:95 89 {*movdi_internal}
+     (nil))
+(insn 117 116 118 14 (set (reg:SI 1 dx)
+        (const_int 10 [0xa])) sim2fitman_read_procpar.cpp:95 90 {*movsi_internal}
+     (nil))
+(insn 118 117 119 14 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:95 89 {*movdi_internal}
+     (nil))
+(insn 119 118 120 14 (set (reg:DI 5 di)
+        (reg:DI 206)) sim2fitman_read_procpar.cpp:95 89 {*movdi_internal}
+     (nil))
+(call_insn 120 119 121 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtol") [flags 0x41]  <function_decl 0x7f224d9391b0 strtol>) [0 strtol S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:95 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 121 120 122 14 (set (reg:DI 98 [ D.5850 ])
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:95 89 {*movdi_internal}
+     (nil))
+(insn 122 121 123 14 (set (reg/f:DI 207)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])) sim2fitman_read_procpar.cpp:95 89 {*movdi_internal}
+     (nil))
+(insn 123 122 124 14 (set (mem/j:DI (plus:DI (reg/f:DI 207)
+                (const_int 16 [0x10])) [0 main_header_57(D)->np.number+0 S8 A64])
+        (reg:DI 98 [ D.5850 ])) sim2fitman_read_procpar.cpp:95 89 {*movdi_internal}
+     (nil))
+(insn 124 123 125 14 (set (reg/f:DI 208)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])) sim2fitman_read_procpar.cpp:96 89 {*movdi_internal}
+     (nil))
+(insn 125 124 126 14 (set (reg:DI 99 [ D.5850 ])
+        (mem/j:DI (plus:DI (reg/f:DI 208)
+                (const_int 16 [0x10])) [0 main_header_57(D)->np.number+0 S8 A64])) sim2fitman_read_procpar.cpp:96 89 {*movdi_internal}
+     (nil))
+(insn 126 125 127 14 (set (reg:SI 100 [ D.5848 ])
+        (subreg:SI (reg:DI 99 [ D.5850 ]) 0)) sim2fitman_read_procpar.cpp:96 90 {*movsi_internal}
+     (nil))
+(insn 127 126 128 14 (set (reg/f:DI 209)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:96 89 {*movdi_internal}
+     (nil))
+(insn 128 127 129 14 (set (mem/j:SI (plus:DI (reg/f:DI 209)
+                (const_int 328 [0x148])) [0 procpar_info_61(D)->num_points+0 S4 A64])
+        (reg:SI 100 [ D.5848 ])) sim2fitman_read_procpar.cpp:96 90 {*movsi_internal}
+     (nil))
+(jump_insn 129 128 130 14 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 130 129 131)
+;; basic block 15, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL)
+;;  pred:       13
+(code_label 131 130 132 15 9 "" [1 uses])
+(note 132 131 133 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 133 132 134 15 (set (reg:DI 210)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:100 89 {*movdi_internal}
+     (nil))
+(insn 134 133 135 15 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC7") [flags 0x2]  <var_decl 0x7f224d605b40 *.LC7>)) sim2fitman_read_procpar.cpp:100 89 {*movdi_internal}
+     (nil))
+(insn 135 134 136 15 (set (reg:DI 5 di)
+        (reg:DI 210)) sim2fitman_read_procpar.cpp:100 89 {*movdi_internal}
+     (nil))
+(call_insn/i 136 135 137 15 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:100 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 137 136 138 15 (set (reg:SI 101 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:100 90 {*movsi_internal}
+     (nil))
+(insn 138 137 139 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 101 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:100 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 139 138 140 15 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 157)
+            (pc))) sim2fitman_read_procpar.cpp:100 612 {*jcc_1}
+     (nil)
+ -> 157)
+;;  succ:       16 (FALLTHRU)
+;;              17
+
+;; basic block 16, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL)
+;;  pred:       15 (FALLTHRU)
+(note 140 139 141 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 141 140 142 16 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f224d605ab0 *.LC6>)) sim2fitman_read_procpar.cpp:102 89 {*movdi_internal}
+     (nil))
+(insn 142 141 143 16 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:102 89 {*movdi_internal}
+     (nil))
+(call_insn 143 142 144 16 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:102 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 144 143 145 16 (set (reg:DI 211)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:102 89 {*movdi_internal}
+     (nil))
+(insn 145 144 146 16 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 211)) sim2fitman_read_procpar.cpp:102 89 {*movdi_internal}
+     (nil))
+(insn 146 145 147 16 (set (reg:DI 212)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:106 89 {*movdi_internal}
+     (nil))
+(insn 147 146 148 16 (set (reg:SI 1 dx)
+        (const_int 10 [0xa])) sim2fitman_read_procpar.cpp:106 90 {*movsi_internal}
+     (nil))
+(insn 148 147 149 16 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:106 89 {*movdi_internal}
+     (nil))
+(insn 149 148 150 16 (set (reg:DI 5 di)
+        (reg:DI 212)) sim2fitman_read_procpar.cpp:106 89 {*movdi_internal}
+     (nil))
+(call_insn 150 149 151 16 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtol") [flags 0x41]  <function_decl 0x7f224d9391b0 strtol>) [0 strtol S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:106 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 151 150 152 16 (set (reg:DI 102 [ D.5850 ])
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:106 89 {*movdi_internal}
+     (nil))
+(insn 152 151 153 16 (set (reg:SI 103 [ D.5848 ])
+        (subreg:SI (reg:DI 102 [ D.5850 ]) 0)) sim2fitman_read_procpar.cpp:106 90 {*movsi_internal}
+     (nil))
+(insn 153 152 154 16 (set (reg/f:DI 213)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:106 89 {*movdi_internal}
+     (nil))
+(insn 154 153 155 16 (set (mem/j:SI (plus:DI (reg/f:DI 213)
+                (const_int 508 [0x1fc])) [0 procpar_info_61(D)->nex+0 S4 A32])
+        (reg:SI 103 [ D.5848 ])) sim2fitman_read_procpar.cpp:106 90 {*movsi_internal}
+     (nil))
+(jump_insn 155 154 156 16 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 156 155 157)
+;; basic block 17, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL)
+;;  pred:       15
+(code_label 157 156 158 17 10 "" [1 uses])
+(note 158 157 159 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 159 158 160 17 (set (reg:DI 214)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:111 89 {*movdi_internal}
+     (nil))
+(insn 160 159 161 17 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC8") [flags 0x2]  <var_decl 0x7f224d605bd0 *.LC8>)) sim2fitman_read_procpar.cpp:111 89 {*movdi_internal}
+     (nil))
+(insn 161 160 162 17 (set (reg:DI 5 di)
+        (reg:DI 214)) sim2fitman_read_procpar.cpp:111 89 {*movdi_internal}
+     (nil))
+(call_insn/i 162 161 163 17 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:111 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 163 162 164 17 (set (reg:SI 104 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:111 90 {*movsi_internal}
+     (nil))
+(insn 164 163 165 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 104 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:111 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 165 164 166 17 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 190)
+            (pc))) sim2fitman_read_procpar.cpp:111 612 {*jcc_1}
+     (nil)
+ -> 190)
+;;  succ:       18 (FALLTHRU)
+;;              19
+
+;; basic block 18, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL)
+;;  pred:       17 (FALLTHRU)
+(note 166 165 167 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 167 166 168 18 (set (reg:SF 215)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [0  S4 A32])) sim2fitman_read_procpar.cpp:112 129 {*movsf_internal}
+     (nil))
+(insn 168 167 169 18 (set (mem/c:SF (plus:DI (reg/f:DI 20 frame)
+                (const_int -676 [0xfffffffffffffd5c])) [0 dwell+0 S4 A32])
+        (reg:SF 215)) sim2fitman_read_procpar.cpp:112 129 {*movsf_internal}
+     (nil))
+(insn 169 168 170 18 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f224d605ab0 *.LC6>)) sim2fitman_read_procpar.cpp:114 89 {*movdi_internal}
+     (nil))
+(insn 170 169 171 18 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:114 89 {*movdi_internal}
+     (nil))
+(call_insn 171 170 172 18 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:114 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 172 171 173 18 (set (reg:DI 216)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:114 89 {*movdi_internal}
+     (nil))
+(insn 173 172 174 18 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 216)) sim2fitman_read_procpar.cpp:114 89 {*movdi_internal}
+     (nil))
+(insn 174 173 175 18 (set (reg:DI 217)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:115 89 {*movdi_internal}
+     (nil))
+(insn 175 174 176 18 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:115 89 {*movdi_internal}
+     (nil))
+(insn 176 175 177 18 (set (reg:DI 5 di)
+        (reg:DI 217)) sim2fitman_read_procpar.cpp:115 89 {*movdi_internal}
+     (nil))
+(call_insn 177 176 178 18 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x7f224d92ce58 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:115 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 178 177 179 18 (set (reg:DF 105 [ D.5851 ])
+        (reg:DF 21 xmm0)) sim2fitman_read_procpar.cpp:115 128 {*movdf_internal}
+     (nil))
+(insn 179 178 180 18 (set (mem/c:SF (plus:DI (reg/f:DI 20 frame)
+                (const_int -676 [0xfffffffffffffd5c])) [0 dwell+0 S4 A32])
+        (float_truncate:SF (reg:DF 105 [ D.5851 ]))) sim2fitman_read_procpar.cpp:115 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 180 179 181 18 (set (reg:SF 218)
+        (mem/c:SF (plus:DI (reg/f:DI 20 frame)
+                (const_int -676 [0xfffffffffffffd5c])) [0 dwell+0 S4 A32])) sim2fitman_read_procpar.cpp:118 129 {*movsf_internal}
+     (nil))
+(insn 181 180 182 18 (set (reg:SF 219)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC9") [flags 0x2]) [0  S4 A32])) sim2fitman_read_procpar.cpp:118 129 {*movsf_internal}
+     (expr_list:REG_EQUAL (const_double:SF 1.0e+6 [0x0.f424p+20])
+        (nil)))
+(insn 182 181 183 18 (set (reg:SF 106 [ D.5852 ])
+        (div:SF (reg:SF 218)
+            (reg:SF 219))) sim2fitman_read_procpar.cpp:118 804 {*fop_sf_1_sse}
+     (nil))
+(insn 183 182 184 18 (set (reg/f:DI 220)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:118 89 {*movdi_internal}
+     (nil))
+(insn 184 183 185 18 (set (mem/j:SF (plus:DI (reg/f:DI 220)
+                (const_int 4 [0x4])) [0 procpar_info_61(D)->dwell_time+0 S4 A32])
+        (reg:SF 106 [ D.5852 ])) sim2fitman_read_procpar.cpp:118 129 {*movsf_internal}
+     (nil))
+(insn 185 184 186 18 (set (reg:SF 222)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC10") [flags 0x2]) [0  S4 A32])) sim2fitman_read_procpar.cpp:120 129 {*movsf_internal}
+     (expr_list:REG_EQUAL (const_double:SF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 186 185 187 18 (set (reg:SF 221)
+        (div:SF (reg:SF 222)
+            (mem/c:SF (plus:DI (reg/f:DI 20 frame)
+                    (const_int -676 [0xfffffffffffffd5c])) [0 dwell+0 S4 A32]))) sim2fitman_read_procpar.cpp:120 804 {*fop_sf_1_sse}
+     (nil))
+(insn 187 186 188 18 (set (mem/c:SF (plus:DI (reg/f:DI 20 frame)
+                (const_int -676 [0xfffffffffffffd5c])) [0 dwell+0 S4 A32])
+        (reg:SF 221)) sim2fitman_read_procpar.cpp:120 129 {*movsf_internal}
+     (nil))
+(jump_insn 188 187 189 18 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 189 188 190)
+;; basic block 19, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL)
+;;  pred:       17
+(code_label 190 189 191 19 11 "" [1 uses])
+(note 191 190 192 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 192 191 193 19 (set (reg:DI 223)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:129 89 {*movdi_internal}
+     (nil))
+(insn 193 192 194 19 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC11") [flags 0x2]  <var_decl 0x7f224d605c60 *.LC11>)) sim2fitman_read_procpar.cpp:129 89 {*movdi_internal}
+     (nil))
+(insn 194 193 195 19 (set (reg:DI 5 di)
+        (reg:DI 223)) sim2fitman_read_procpar.cpp:129 89 {*movdi_internal}
+     (nil))
+(call_insn/i 195 194 196 19 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:129 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 196 195 197 19 (set (reg:SI 107 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:129 90 {*movsi_internal}
+     (nil))
+(insn 197 196 198 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 107 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:129 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 198 197 199 19 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 214)
+            (pc))) sim2fitman_read_procpar.cpp:129 612 {*jcc_1}
+     (nil)
+ -> 214)
+;;  succ:       20 (FALLTHRU)
+;;              21
+
+;; basic block 20, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 19, next block 21, flags: (NEW, REACHABLE, RTL)
+;;  pred:       19 (FALLTHRU)
+(note 199 198 200 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 200 199 201 20 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f224d605ab0 *.LC6>)) sim2fitman_read_procpar.cpp:131 89 {*movdi_internal}
+     (nil))
+(insn 201 200 202 20 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:131 89 {*movdi_internal}
+     (nil))
+(call_insn 202 201 203 20 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:131 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 203 202 204 20 (set (reg:DI 224)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:131 89 {*movdi_internal}
+     (nil))
+(insn 204 203 205 20 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 224)) sim2fitman_read_procpar.cpp:131 89 {*movdi_internal}
+     (nil))
+(insn 205 204 206 20 (set (reg:DI 225)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:132 89 {*movdi_internal}
+     (nil))
+(insn 206 205 207 20 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:132 89 {*movdi_internal}
+     (nil))
+(insn 207 206 208 20 (set (reg:DI 5 di)
+        (reg:DI 225)) sim2fitman_read_procpar.cpp:132 89 {*movdi_internal}
+     (nil))
+(call_insn 208 207 209 20 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x7f224d92ce58 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:132 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 209 208 210 20 (set (reg:DF 108 [ D.5851 ])
+        (reg:DF 21 xmm0)) sim2fitman_read_procpar.cpp:132 128 {*movdf_internal}
+     (nil))
+(insn 210 209 211 20 (set (reg/f:DI 226)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:132 89 {*movdi_internal}
+     (nil))
+(insn 211 210 212 20 (set (mem/j:DF (plus:DI (reg/f:DI 226)
+                (const_int 336 [0x150])) [0 procpar_info_61(D)->main_frequency+0 S8 A64])
+        (reg:DF 108 [ D.5851 ])) sim2fitman_read_procpar.cpp:132 128 {*movdf_internal}
+     (nil))
+(jump_insn 212 211 213 20 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 213 212 214)
+;; basic block 21, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 20, next block 22, flags: (NEW, REACHABLE, RTL)
+;;  pred:       19
+(code_label 214 213 215 21 12 "" [1 uses])
+(note 215 214 216 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 216 215 217 21 (set (reg:DI 227)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:136 89 {*movdi_internal}
+     (nil))
+(insn 217 216 218 21 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC12") [flags 0x2]  <var_decl 0x7f224d605cf0 *.LC12>)) sim2fitman_read_procpar.cpp:136 89 {*movdi_internal}
+     (nil))
+(insn 218 217 219 21 (set (reg:DI 5 di)
+        (reg:DI 227)) sim2fitman_read_procpar.cpp:136 89 {*movdi_internal}
+     (nil))
+(call_insn/i 219 218 220 21 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:136 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 220 219 221 21 (set (reg:SI 109 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:136 90 {*movsi_internal}
+     (nil))
+(insn 221 220 222 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 109 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:136 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 222 221 223 21 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 237)
+            (pc))) sim2fitman_read_procpar.cpp:136 612 {*jcc_1}
+     (nil)
+ -> 237)
+;;  succ:       22 (FALLTHRU)
+;;              23
+
+;; basic block 22, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 21, next block 23, flags: (NEW, REACHABLE, RTL)
+;;  pred:       21 (FALLTHRU)
+(note 223 222 224 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 224 223 225 22 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC13") [flags 0x2]  <var_decl 0x7f224d605d80 *.LC13>)) sim2fitman_read_procpar.cpp:138 89 {*movdi_internal}
+     (nil))
+(insn 225 224 226 22 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:138 89 {*movdi_internal}
+     (nil))
+(call_insn 226 225 227 22 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:138 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 227 226 228 22 (set (reg:DI 228)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:138 89 {*movdi_internal}
+     (nil))
+(insn 228 227 229 22 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 228)) sim2fitman_read_procpar.cpp:138 89 {*movdi_internal}
+     (nil))
+(insn 229 228 230 22 (set (reg/f:DI 229)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:139 89 {*movdi_internal}
+     (nil))
+(insn 230 229 231 22 (parallel [
+            (set (reg/f:DI 110 [ D.5853 ])
+                (plus:DI (reg/f:DI 229)
+                    (const_int 404 [0x194])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:139 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 404 [0x194]))
+        (nil)))
+(insn 231 230 232 22 (set (reg:DI 230)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:139 89 {*movdi_internal}
+     (nil))
+(insn 232 231 233 22 (set (reg:DI 4 si)
+        (reg:DI 230)) sim2fitman_read_procpar.cpp:139 89 {*movdi_internal}
+     (nil))
+(insn 233 232 234 22 (set (reg:DI 5 di)
+        (reg/f:DI 110 [ D.5853 ])) sim2fitman_read_procpar.cpp:139 89 {*movdi_internal}
+     (nil))
+(call_insn 234 233 235 22 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcpy") [flags 0x41]  <function_decl 0x7f224daa15e8 strcpy>) [0 __builtin_strcpy S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:139 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (nil)))))
+(jump_insn 235 234 236 22 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 236 235 237)
+;; basic block 23, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 22, next block 24, flags: (NEW, REACHABLE, RTL)
+;;  pred:       21
+(code_label 237 236 238 23 13 "" [1 uses])
+(note 238 237 239 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 239 238 240 23 (set (reg:DI 231)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:143 89 {*movdi_internal}
+     (nil))
+(insn 240 239 241 23 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC14") [flags 0x2]  <var_decl 0x7f224d605e10 *.LC14>)) sim2fitman_read_procpar.cpp:143 89 {*movdi_internal}
+     (nil))
+(insn 241 240 242 23 (set (reg:DI 5 di)
+        (reg:DI 231)) sim2fitman_read_procpar.cpp:143 89 {*movdi_internal}
+     (nil))
+(call_insn/i 242 241 243 23 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:143 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 243 242 244 23 (set (reg:SI 111 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:143 90 {*movsi_internal}
+     (nil))
+(insn 244 243 245 23 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 111 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:143 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 245 244 246 23 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 260)
+            (pc))) sim2fitman_read_procpar.cpp:143 612 {*jcc_1}
+     (nil)
+ -> 260)
+;;  succ:       24 (FALLTHRU)
+;;              25
+
+;; basic block 24, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 23, next block 25, flags: (NEW, REACHABLE, RTL)
+;;  pred:       23 (FALLTHRU)
+(note 246 245 247 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 247 246 248 24 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC13") [flags 0x2]  <var_decl 0x7f224d605d80 *.LC13>)) sim2fitman_read_procpar.cpp:145 89 {*movdi_internal}
+     (nil))
+(insn 248 247 249 24 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:145 89 {*movdi_internal}
+     (nil))
+(call_insn 249 248 250 24 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:145 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 250 249 251 24 (set (reg:DI 232)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:145 89 {*movdi_internal}
+     (nil))
+(insn 251 250 252 24 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 232)) sim2fitman_read_procpar.cpp:145 89 {*movdi_internal}
+     (nil))
+(insn 252 251 253 24 (set (reg/f:DI 233)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:146 89 {*movdi_internal}
+     (nil))
+(insn 253 252 254 24 (parallel [
+            (set (reg/f:DI 112 [ D.5854 ])
+                (plus:DI (reg/f:DI 233)
+                    (const_int 440 [0x1b8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:146 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 440 [0x1b8]))
+        (nil)))
+(insn 254 253 255 24 (set (reg:DI 234)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:146 89 {*movdi_internal}
+     (nil))
+(insn 255 254 256 24 (set (reg:DI 4 si)
+        (reg:DI 234)) sim2fitman_read_procpar.cpp:146 89 {*movdi_internal}
+     (nil))
+(insn 256 255 257 24 (set (reg:DI 5 di)
+        (reg/f:DI 112 [ D.5854 ])) sim2fitman_read_procpar.cpp:146 89 {*movdi_internal}
+     (nil))
+(call_insn 257 256 258 24 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcpy") [flags 0x41]  <function_decl 0x7f224daa15e8 strcpy>) [0 __builtin_strcpy S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:146 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (nil)))))
+(jump_insn 258 257 259 24 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 259 258 260)
+;; basic block 25, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 24, next block 26, flags: (NEW, REACHABLE, RTL)
+;;  pred:       23
+(code_label 260 259 261 25 14 "" [1 uses])
+(note 261 260 262 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 262 261 263 25 (set (reg:DI 235)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:150 89 {*movdi_internal}
+     (nil))
+(insn 263 262 264 25 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC15") [flags 0x2]  <var_decl 0x7f224d605ea0 *.LC15>)) sim2fitman_read_procpar.cpp:150 89 {*movdi_internal}
+     (nil))
+(insn 264 263 265 25 (set (reg:DI 5 di)
+        (reg:DI 235)) sim2fitman_read_procpar.cpp:150 89 {*movdi_internal}
+     (nil))
+(call_insn/i 265 264 266 25 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:150 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 266 265 267 25 (set (reg:SI 113 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:150 90 {*movsi_internal}
+     (nil))
+(insn 267 266 268 25 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 113 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:150 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 268 267 269 25 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 283)
+            (pc))) sim2fitman_read_procpar.cpp:150 612 {*jcc_1}
+     (nil)
+ -> 283)
+;;  succ:       26 (FALLTHRU)
+;;              27
+
+;; basic block 26, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 25, next block 27, flags: (NEW, REACHABLE, RTL)
+;;  pred:       25 (FALLTHRU)
+(note 269 268 270 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 270 269 271 26 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC13") [flags 0x2]  <var_decl 0x7f224d605d80 *.LC13>)) sim2fitman_read_procpar.cpp:152 89 {*movdi_internal}
+     (nil))
+(insn 271 270 272 26 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:152 89 {*movdi_internal}
+     (nil))
+(call_insn 272 271 273 26 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:152 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 273 272 274 26 (set (reg:DI 236)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:152 89 {*movdi_internal}
+     (nil))
+(insn 274 273 275 26 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 236)) sim2fitman_read_procpar.cpp:152 89 {*movdi_internal}
+     (nil))
+(insn 275 274 276 26 (set (reg/f:DI 237)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:153 89 {*movdi_internal}
+     (nil))
+(insn 276 275 277 26 (parallel [
+            (set (reg/f:DI 114 [ D.5855 ])
+                (plus:DI (reg/f:DI 237)
+                    (const_int 468 [0x1d4])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:153 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 468 [0x1d4]))
+        (nil)))
+(insn 277 276 278 26 (set (reg:DI 238)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:153 89 {*movdi_internal}
+     (nil))
+(insn 278 277 279 26 (set (reg:DI 4 si)
+        (reg:DI 238)) sim2fitman_read_procpar.cpp:153 89 {*movdi_internal}
+     (nil))
+(insn 279 278 280 26 (set (reg:DI 5 di)
+        (reg/f:DI 114 [ D.5855 ])) sim2fitman_read_procpar.cpp:153 89 {*movdi_internal}
+     (nil))
+(call_insn 280 279 281 26 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcpy") [flags 0x41]  <function_decl 0x7f224daa15e8 strcpy>) [0 __builtin_strcpy S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:153 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (nil)))))
+(jump_insn 281 280 282 26 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 282 281 283)
+;; basic block 27, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 26, next block 28, flags: (NEW, REACHABLE, RTL)
+;;  pred:       25
+(code_label 283 282 284 27 15 "" [1 uses])
+(note 284 283 285 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 285 284 286 27 (set (reg:DI 239)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:158 89 {*movdi_internal}
+     (nil))
+(insn 286 285 287 27 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC16") [flags 0x2]  <var_decl 0x7f224d605f30 *.LC16>)) sim2fitman_read_procpar.cpp:158 89 {*movdi_internal}
+     (nil))
+(insn 287 286 288 27 (set (reg:DI 5 di)
+        (reg:DI 239)) sim2fitman_read_procpar.cpp:158 89 {*movdi_internal}
+     (nil))
+(call_insn/i 288 287 289 27 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:158 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 289 288 290 27 (set (reg:SI 115 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:158 90 {*movsi_internal}
+     (nil))
+(insn 290 289 291 27 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 115 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:158 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 291 290 292 27 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 305)
+            (pc))) sim2fitman_read_procpar.cpp:158 612 {*jcc_1}
+     (nil)
+ -> 305)
+;;  succ:       28 (FALLTHRU)
+;;              29
+
+;; basic block 28, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 27, next block 29, flags: (NEW, REACHABLE, RTL)
+;;  pred:       27 (FALLTHRU)
+(note 292 291 293 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 293 292 294 28 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC13") [flags 0x2]  <var_decl 0x7f224d605d80 *.LC13>)) sim2fitman_read_procpar.cpp:160 89 {*movdi_internal}
+     (nil))
+(insn 294 293 295 28 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:160 89 {*movdi_internal}
+     (nil))
+(call_insn 295 294 296 28 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:160 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 296 295 297 28 (set (reg:DI 240)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:160 89 {*movdi_internal}
+     (nil))
+(insn 297 296 298 28 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 240)) sim2fitman_read_procpar.cpp:160 89 {*movdi_internal}
+     (nil))
+(insn 298 297 299 28 (set (reg:DI 241)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:161 89 {*movdi_internal}
+     (nil))
+(insn 299 298 300 28 (parallel [
+            (set (reg:DI 242)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -592 [0xfffffffffffffdb0])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:161 218 {*adddi_1}
+     (nil))
+(insn 300 299 301 28 (set (reg:DI 4 si)
+        (reg:DI 241)) sim2fitman_read_procpar.cpp:161 89 {*movdi_internal}
+     (nil))
+(insn 301 300 302 28 (set (reg:DI 5 di)
+        (reg:DI 242)) sim2fitman_read_procpar.cpp:161 89 {*movdi_internal}
+     (nil))
+(call_insn 302 301 303 28 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcpy") [flags 0x41]  <function_decl 0x7f224daa15e8 strcpy>) [0 __builtin_strcpy S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:161 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (nil)))))
+(jump_insn 303 302 304 28 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 304 303 305)
+;; basic block 29, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 28, next block 30, flags: (NEW, REACHABLE, RTL)
+;;  pred:       27
+(code_label 305 304 306 29 16 "" [1 uses])
+(note 306 305 307 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 307 306 308 29 (set (reg:DI 243)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:165 89 {*movdi_internal}
+     (nil))
+(insn 308 307 309 29 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC17") [flags 0x2]  <var_decl 0x7f224d615000 *.LC17>)) sim2fitman_read_procpar.cpp:165 89 {*movdi_internal}
+     (nil))
+(insn 309 308 310 29 (set (reg:DI 5 di)
+        (reg:DI 243)) sim2fitman_read_procpar.cpp:165 89 {*movdi_internal}
+     (nil))
+(call_insn/i 310 309 311 29 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:165 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 311 310 312 29 (set (reg:SI 116 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:165 90 {*movsi_internal}
+     (nil))
+(insn 312 311 313 29 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 116 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:165 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 313 312 314 29 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 327)
+            (pc))) sim2fitman_read_procpar.cpp:165 612 {*jcc_1}
+     (nil)
+ -> 327)
+;;  succ:       30 (FALLTHRU)
+;;              31
+
+;; basic block 30, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 29, next block 31, flags: (NEW, REACHABLE, RTL)
+;;  pred:       29 (FALLTHRU)
+(note 314 313 315 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 315 314 316 30 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC13") [flags 0x2]  <var_decl 0x7f224d605d80 *.LC13>)) sim2fitman_read_procpar.cpp:167 89 {*movdi_internal}
+     (nil))
+(insn 316 315 317 30 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:167 89 {*movdi_internal}
+     (nil))
+(call_insn 317 316 318 30 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:167 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 318 317 319 30 (set (reg:DI 244)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:167 89 {*movdi_internal}
+     (nil))
+(insn 319 318 320 30 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 244)) sim2fitman_read_procpar.cpp:167 89 {*movdi_internal}
+     (nil))
+(insn 320 319 321 30 (set (reg:DI 245)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:168 89 {*movdi_internal}
+     (nil))
+(insn 321 320 322 30 (parallel [
+            (set (reg:DI 246)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -560 [0xfffffffffffffdd0])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:168 218 {*adddi_1}
+     (nil))
+(insn 322 321 323 30 (set (reg:DI 4 si)
+        (reg:DI 245)) sim2fitman_read_procpar.cpp:168 89 {*movdi_internal}
+     (nil))
+(insn 323 322 324 30 (set (reg:DI 5 di)
+        (reg:DI 246)) sim2fitman_read_procpar.cpp:168 89 {*movdi_internal}
+     (nil))
+(call_insn 324 323 325 30 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcpy") [flags 0x41]  <function_decl 0x7f224daa15e8 strcpy>) [0 __builtin_strcpy S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:168 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (nil)))))
+(jump_insn 325 324 326 30 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 326 325 327)
+;; basic block 31, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 30, next block 32, flags: (NEW, REACHABLE, RTL)
+;;  pred:       29
+(code_label 327 326 328 31 17 "" [1 uses])
+(note 328 327 329 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 329 328 330 31 (set (reg:DI 247)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:172 89 {*movdi_internal}
+     (nil))
+(insn 330 329 331 31 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC18") [flags 0x2]  <var_decl 0x7f224d615090 *.LC18>)) sim2fitman_read_procpar.cpp:172 89 {*movdi_internal}
+     (nil))
+(insn 331 330 332 31 (set (reg:DI 5 di)
+        (reg:DI 247)) sim2fitman_read_procpar.cpp:172 89 {*movdi_internal}
+     (nil))
+(call_insn/i 332 331 333 31 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:172 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 333 332 334 31 (set (reg:SI 117 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:172 90 {*movsi_internal}
+     (nil))
+(insn 334 333 335 31 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 117 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:172 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 335 334 336 31 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 358)
+            (pc))) sim2fitman_read_procpar.cpp:172 612 {*jcc_1}
+     (nil)
+ -> 358)
+;;  succ:       32 (FALLTHRU)
+;;              33
+
+;; basic block 32, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 31, next block 33, flags: (NEW, REACHABLE, RTL)
+;;  pred:       31 (FALLTHRU)
+(note 336 335 337 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(insn 337 336 338 32 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f224d605ab0 *.LC6>)) sim2fitman_read_procpar.cpp:174 89 {*movdi_internal}
+     (nil))
+(insn 338 337 339 32 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:174 89 {*movdi_internal}
+     (nil))
+(call_insn 339 338 340 32 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:174 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 340 339 341 32 (set (reg:DI 248)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:174 89 {*movdi_internal}
+     (nil))
+(insn 341 340 342 32 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 248)) sim2fitman_read_procpar.cpp:174 89 {*movdi_internal}
+     (nil))
+(insn 342 341 343 32 (set (reg:DI 249)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:175 89 {*movdi_internal}
+     (nil))
+(insn 343 342 344 32 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:175 89 {*movdi_internal}
+     (nil))
+(insn 344 343 345 32 (set (reg:DI 5 di)
+        (reg:DI 249)) sim2fitman_read_procpar.cpp:175 89 {*movdi_internal}
+     (nil))
+(call_insn 345 344 346 32 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x7f224d92ce58 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:175 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 346 345 347 32 (set (reg:DF 118 [ D.5851 ])
+        (reg:DF 21 xmm0)) sim2fitman_read_procpar.cpp:175 128 {*movdf_internal}
+     (nil))
+(insn 347 346 348 32 (set (reg:SF 119 [ D.5852 ])
+        (float_truncate:SF (reg:DF 118 [ D.5851 ]))) sim2fitman_read_procpar.cpp:175 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 348 347 349 32 (set (reg/f:DI 250)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:175 89 {*movdi_internal}
+     (nil))
+(insn 349 348 350 32 (set (mem/j:SF (plus:DI (reg/f:DI 250)
+                (const_int 352 [0x160])) [0 procpar_info_61(D)->te+0 S4 A64])
+        (reg:SF 119 [ D.5852 ])) sim2fitman_read_procpar.cpp:175 129 {*movsf_internal}
+     (nil))
+(insn 350 349 351 32 (set (reg/f:DI 251)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:177 89 {*movdi_internal}
+     (nil))
+(insn 351 350 352 32 (set (reg:SF 120 [ D.5852 ])
+        (mem/j:SF (plus:DI (reg/f:DI 251)
+                (const_int 352 [0x160])) [0 procpar_info_61(D)->te+0 S4 A64])) sim2fitman_read_procpar.cpp:177 129 {*movsf_internal}
+     (nil))
+(insn 352 351 353 32 (set (reg:SF 252)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC19") [flags 0x2]) [0  S4 A32])) sim2fitman_read_procpar.cpp:177 129 {*movsf_internal}
+     (expr_list:REG_EQUAL (const_double:SF 1.0e+3 [0x0.fap+10])
+        (nil)))
+(insn 353 352 354 32 (set (reg:SF 121 [ D.5852 ])
+        (div:SF (reg:SF 120 [ D.5852 ])
+            (reg:SF 252))) sim2fitman_read_procpar.cpp:177 804 {*fop_sf_1_sse}
+     (nil))
+(insn 354 353 355 32 (set (reg/f:DI 253)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:177 89 {*movdi_internal}
+     (nil))
+(insn 355 354 356 32 (set (mem/j:SF (plus:DI (reg/f:DI 253)
+                (const_int 352 [0x160])) [0 procpar_info_61(D)->te+0 S4 A64])
+        (reg:SF 121 [ D.5852 ])) sim2fitman_read_procpar.cpp:177 129 {*movsf_internal}
+     (nil))
+(jump_insn 356 355 357 32 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 357 356 358)
+;; basic block 33, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 32, next block 34, flags: (NEW, REACHABLE, RTL)
+;;  pred:       31
+(code_label 358 357 359 33 18 "" [1 uses])
+(note 359 358 360 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+(insn 360 359 361 33 (set (reg:DI 254)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:181 89 {*movdi_internal}
+     (nil))
+(insn 361 360 362 33 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f224d615120 *.LC20>)) sim2fitman_read_procpar.cpp:181 89 {*movdi_internal}
+     (nil))
+(insn 362 361 363 33 (set (reg:DI 5 di)
+        (reg:DI 254)) sim2fitman_read_procpar.cpp:181 89 {*movdi_internal}
+     (nil))
+(call_insn/i 363 362 364 33 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:181 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 364 363 365 33 (set (reg:SI 122 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:181 90 {*movsi_internal}
+     (nil))
+(insn 365 364 366 33 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 122 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:181 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 366 365 367 33 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 389)
+            (pc))) sim2fitman_read_procpar.cpp:181 612 {*jcc_1}
+     (nil)
+ -> 389)
+;;  succ:       34 (FALLTHRU)
+;;              35
+
+;; basic block 34, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 33, next block 35, flags: (NEW, REACHABLE, RTL)
+;;  pred:       33 (FALLTHRU)
+(note 367 366 368 34 [bb 34] NOTE_INSN_BASIC_BLOCK)
+(insn 368 367 369 34 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f224d605ab0 *.LC6>)) sim2fitman_read_procpar.cpp:183 89 {*movdi_internal}
+     (nil))
+(insn 369 368 370 34 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:183 89 {*movdi_internal}
+     (nil))
+(call_insn 370 369 371 34 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:183 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 371 370 372 34 (set (reg:DI 255)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:183 89 {*movdi_internal}
+     (nil))
+(insn 372 371 373 34 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 255)) sim2fitman_read_procpar.cpp:183 89 {*movdi_internal}
+     (nil))
+(insn 373 372 374 34 (set (reg:DI 256)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:184 89 {*movdi_internal}
+     (nil))
+(insn 374 373 375 34 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:184 89 {*movdi_internal}
+     (nil))
+(insn 375 374 376 34 (set (reg:DI 5 di)
+        (reg:DI 256)) sim2fitman_read_procpar.cpp:184 89 {*movdi_internal}
+     (nil))
+(call_insn 376 375 377 34 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x7f224d92ce58 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:184 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 377 376 378 34 (set (reg:DF 123 [ D.5851 ])
+        (reg:DF 21 xmm0)) sim2fitman_read_procpar.cpp:184 128 {*movdf_internal}
+     (nil))
+(insn 378 377 379 34 (set (reg:SF 124 [ D.5852 ])
+        (float_truncate:SF (reg:DF 123 [ D.5851 ]))) sim2fitman_read_procpar.cpp:184 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 379 378 380 34 (set (reg/f:DI 257)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:184 89 {*movdi_internal}
+     (nil))
+(insn 380 379 381 34 (set (mem/j:SF (plus:DI (reg/f:DI 257)
+                (const_int 356 [0x164])) [0 procpar_info_61(D)->tr+0 S4 A32])
+        (reg:SF 124 [ D.5852 ])) sim2fitman_read_procpar.cpp:184 129 {*movsf_internal}
+     (nil))
+(insn 381 380 382 34 (set (reg/f:DI 258)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:186 89 {*movdi_internal}
+     (nil))
+(insn 382 381 383 34 (set (reg:SF 125 [ D.5852 ])
+        (mem/j:SF (plus:DI (reg/f:DI 258)
+                (const_int 356 [0x164])) [0 procpar_info_61(D)->tr+0 S4 A32])) sim2fitman_read_procpar.cpp:186 129 {*movsf_internal}
+     (nil))
+(insn 383 382 384 34 (set (reg:SF 259)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC19") [flags 0x2]) [0  S4 A32])) sim2fitman_read_procpar.cpp:186 129 {*movsf_internal}
+     (expr_list:REG_EQUAL (const_double:SF 1.0e+3 [0x0.fap+10])
+        (nil)))
+(insn 384 383 385 34 (set (reg:SF 126 [ D.5852 ])
+        (div:SF (reg:SF 125 [ D.5852 ])
+            (reg:SF 259))) sim2fitman_read_procpar.cpp:186 804 {*fop_sf_1_sse}
+     (nil))
+(insn 385 384 386 34 (set (reg/f:DI 260)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:186 89 {*movdi_internal}
+     (nil))
+(insn 386 385 387 34 (set (mem/j:SF (plus:DI (reg/f:DI 260)
+                (const_int 356 [0x164])) [0 procpar_info_61(D)->tr+0 S4 A32])
+        (reg:SF 126 [ D.5852 ])) sim2fitman_read_procpar.cpp:186 129 {*movsf_internal}
+     (nil))
+(jump_insn 387 386 388 34 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 388 387 389)
+;; basic block 35, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 34, next block 36, flags: (NEW, REACHABLE, RTL)
+;;  pred:       33
+(code_label 389 388 390 35 19 "" [1 uses])
+(note 390 389 391 35 [bb 35] NOTE_INSN_BASIC_BLOCK)
+(insn 391 390 392 35 (set (reg:DI 261)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:191 89 {*movdi_internal}
+     (nil))
+(insn 392 391 393 35 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC21") [flags 0x2]  <var_decl 0x7f224d6151b0 *.LC21>)) sim2fitman_read_procpar.cpp:191 89 {*movdi_internal}
+     (nil))
+(insn 393 392 394 35 (set (reg:DI 5 di)
+        (reg:DI 261)) sim2fitman_read_procpar.cpp:191 89 {*movdi_internal}
+     (nil))
+(call_insn/i 394 393 395 35 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:191 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 395 394 396 35 (set (reg:SI 127 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:191 90 {*movsi_internal}
+     (nil))
+(insn 396 395 397 35 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 127 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:191 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 397 396 398 35 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 414)
+            (pc))) sim2fitman_read_procpar.cpp:191 612 {*jcc_1}
+     (nil)
+ -> 414)
+;;  succ:       36 (FALLTHRU)
+;;              37
+
+;; basic block 36, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 35, next block 37, flags: (NEW, REACHABLE, RTL)
+;;  pred:       35 (FALLTHRU)
+(note 398 397 399 36 [bb 36] NOTE_INSN_BASIC_BLOCK)
+(insn 399 398 400 36 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f224d605ab0 *.LC6>)) sim2fitman_read_procpar.cpp:193 89 {*movdi_internal}
+     (nil))
+(insn 400 399 401 36 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:193 89 {*movdi_internal}
+     (nil))
+(call_insn 401 400 402 36 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:193 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 402 401 403 36 (set (reg:DI 262)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:193 89 {*movdi_internal}
+     (nil))
+(insn 403 402 404 36 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 262)) sim2fitman_read_procpar.cpp:193 89 {*movdi_internal}
+     (nil))
+(insn 404 403 405 36 (set (reg:DI 263)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:194 89 {*movdi_internal}
+     (nil))
+(insn 405 404 406 36 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:194 89 {*movdi_internal}
+     (nil))
+(insn 406 405 407 36 (set (reg:DI 5 di)
+        (reg:DI 263)) sim2fitman_read_procpar.cpp:194 89 {*movdi_internal}
+     (nil))
+(call_insn 407 406 408 36 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x7f224d92ce58 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:194 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 408 407 409 36 (set (reg:DF 128 [ D.5851 ])
+        (reg:DF 21 xmm0)) sim2fitman_read_procpar.cpp:194 128 {*movdf_internal}
+     (nil))
+(insn 409 408 410 36 (set (reg:SF 129 [ D.5852 ])
+        (float_truncate:SF (reg:DF 128 [ D.5851 ]))) sim2fitman_read_procpar.cpp:194 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 410 409 411 36 (set (reg/f:DI 264)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:194 89 {*movdi_internal}
+     (nil))
+(insn 411 410 412 36 (set (mem/j:SF (plus:DI (reg/f:DI 264)
+                (const_int 364 [0x16c])) [0 procpar_info_61(D)->pos1+0 S4 A32])
+        (reg:SF 129 [ D.5852 ])) sim2fitman_read_procpar.cpp:194 129 {*movsf_internal}
+     (nil))
+(jump_insn 412 411 413 36 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 413 412 414)
+;; basic block 37, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 36, next block 38, flags: (NEW, REACHABLE, RTL)
+;;  pred:       35
+(code_label 414 413 415 37 20 "" [1 uses])
+(note 415 414 416 37 [bb 37] NOTE_INSN_BASIC_BLOCK)
+(insn 416 415 417 37 (set (reg:DI 265)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:196 89 {*movdi_internal}
+     (nil))
+(insn 417 416 418 37 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC22") [flags 0x2]  <var_decl 0x7f224d615240 *.LC22>)) sim2fitman_read_procpar.cpp:196 89 {*movdi_internal}
+     (nil))
+(insn 418 417 419 37 (set (reg:DI 5 di)
+        (reg:DI 265)) sim2fitman_read_procpar.cpp:196 89 {*movdi_internal}
+     (nil))
+(call_insn/i 419 418 420 37 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:196 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 420 419 421 37 (set (reg:SI 130 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:196 90 {*movsi_internal}
+     (nil))
+(insn 421 420 422 37 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 130 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:196 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 422 421 423 37 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 439)
+            (pc))) sim2fitman_read_procpar.cpp:196 612 {*jcc_1}
+     (nil)
+ -> 439)
+;;  succ:       38 (FALLTHRU)
+;;              39
+
+;; basic block 38, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 37, next block 39, flags: (NEW, REACHABLE, RTL)
+;;  pred:       37 (FALLTHRU)
+(note 423 422 424 38 [bb 38] NOTE_INSN_BASIC_BLOCK)
+(insn 424 423 425 38 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f224d605ab0 *.LC6>)) sim2fitman_read_procpar.cpp:198 89 {*movdi_internal}
+     (nil))
+(insn 425 424 426 38 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:198 89 {*movdi_internal}
+     (nil))
+(call_insn 426 425 427 38 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:198 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 427 426 428 38 (set (reg:DI 266)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:198 89 {*movdi_internal}
+     (nil))
+(insn 428 427 429 38 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 266)) sim2fitman_read_procpar.cpp:198 89 {*movdi_internal}
+     (nil))
+(insn 429 428 430 38 (set (reg:DI 267)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:199 89 {*movdi_internal}
+     (nil))
+(insn 430 429 431 38 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:199 89 {*movdi_internal}
+     (nil))
+(insn 431 430 432 38 (set (reg:DI 5 di)
+        (reg:DI 267)) sim2fitman_read_procpar.cpp:199 89 {*movdi_internal}
+     (nil))
+(call_insn 432 431 433 38 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x7f224d92ce58 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:199 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 433 432 434 38 (set (reg:DF 131 [ D.5851 ])
+        (reg:DF 21 xmm0)) sim2fitman_read_procpar.cpp:199 128 {*movdf_internal}
+     (nil))
+(insn 434 433 435 38 (set (reg:SF 132 [ D.5852 ])
+        (float_truncate:SF (reg:DF 131 [ D.5851 ]))) sim2fitman_read_procpar.cpp:199 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 435 434 436 38 (set (reg/f:DI 268)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:199 89 {*movdi_internal}
+     (nil))
+(insn 436 435 437 38 (set (mem/j:SF (plus:DI (reg/f:DI 268)
+                (const_int 368 [0x170])) [0 procpar_info_61(D)->pos2+0 S4 A64])
+        (reg:SF 132 [ D.5852 ])) sim2fitman_read_procpar.cpp:199 129 {*movsf_internal}
+     (nil))
+(jump_insn 437 436 438 38 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 438 437 439)
+;; basic block 39, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 38, next block 40, flags: (NEW, REACHABLE, RTL)
+;;  pred:       37
+(code_label 439 438 440 39 21 "" [1 uses])
+(note 440 439 441 39 [bb 39] NOTE_INSN_BASIC_BLOCK)
+(insn 441 440 442 39 (set (reg:DI 269)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:201 89 {*movdi_internal}
+     (nil))
+(insn 442 441 443 39 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC23") [flags 0x2]  <var_decl 0x7f224d6152d0 *.LC23>)) sim2fitman_read_procpar.cpp:201 89 {*movdi_internal}
+     (nil))
+(insn 443 442 444 39 (set (reg:DI 5 di)
+        (reg:DI 269)) sim2fitman_read_procpar.cpp:201 89 {*movdi_internal}
+     (nil))
+(call_insn/i 444 443 445 39 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:201 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 445 444 446 39 (set (reg:SI 133 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:201 90 {*movsi_internal}
+     (nil))
+(insn 446 445 447 39 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 133 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:201 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 447 446 448 39 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 464)
+            (pc))) sim2fitman_read_procpar.cpp:201 612 {*jcc_1}
+     (nil)
+ -> 464)
+;;  succ:       40 (FALLTHRU)
+;;              41
+
+;; basic block 40, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 39, next block 41, flags: (NEW, REACHABLE, RTL)
+;;  pred:       39 (FALLTHRU)
+(note 448 447 449 40 [bb 40] NOTE_INSN_BASIC_BLOCK)
+(insn 449 448 450 40 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f224d605ab0 *.LC6>)) sim2fitman_read_procpar.cpp:203 89 {*movdi_internal}
+     (nil))
+(insn 450 449 451 40 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:203 89 {*movdi_internal}
+     (nil))
+(call_insn 451 450 452 40 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:203 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 452 451 453 40 (set (reg:DI 270)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:203 89 {*movdi_internal}
+     (nil))
+(insn 453 452 454 40 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 270)) sim2fitman_read_procpar.cpp:203 89 {*movdi_internal}
+     (nil))
+(insn 454 453 455 40 (set (reg:DI 271)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:204 89 {*movdi_internal}
+     (nil))
+(insn 455 454 456 40 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:204 89 {*movdi_internal}
+     (nil))
+(insn 456 455 457 40 (set (reg:DI 5 di)
+        (reg:DI 271)) sim2fitman_read_procpar.cpp:204 89 {*movdi_internal}
+     (nil))
+(call_insn 457 456 458 40 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x7f224d92ce58 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:204 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 458 457 459 40 (set (reg:DF 134 [ D.5851 ])
+        (reg:DF 21 xmm0)) sim2fitman_read_procpar.cpp:204 128 {*movdf_internal}
+     (nil))
+(insn 459 458 460 40 (set (reg:SF 135 [ D.5852 ])
+        (float_truncate:SF (reg:DF 134 [ D.5851 ]))) sim2fitman_read_procpar.cpp:204 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 460 459 461 40 (set (reg/f:DI 272)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:204 89 {*movdi_internal}
+     (nil))
+(insn 461 460 462 40 (set (mem/j:SF (plus:DI (reg/f:DI 272)
+                (const_int 372 [0x174])) [0 procpar_info_61(D)->pos3+0 S4 A32])
+        (reg:SF 135 [ D.5852 ])) sim2fitman_read_procpar.cpp:204 129 {*movsf_internal}
+     (nil))
+(jump_insn 462 461 463 40 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 463 462 464)
+;; basic block 41, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 40, next block 42, flags: (NEW, REACHABLE, RTL)
+;;  pred:       39
+(code_label 464 463 465 41 22 "" [1 uses])
+(note 465 464 466 41 [bb 41] NOTE_INSN_BASIC_BLOCK)
+(insn 466 465 467 41 (set (reg:DI 273)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:206 89 {*movdi_internal}
+     (nil))
+(insn 467 466 468 41 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC24") [flags 0x2]  <var_decl 0x7f224d615360 *.LC24>)) sim2fitman_read_procpar.cpp:206 89 {*movdi_internal}
+     (nil))
+(insn 468 467 469 41 (set (reg:DI 5 di)
+        (reg:DI 273)) sim2fitman_read_procpar.cpp:206 89 {*movdi_internal}
+     (nil))
+(call_insn/i 469 468 470 41 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:206 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 470 469 471 41 (set (reg:SI 136 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:206 90 {*movsi_internal}
+     (nil))
+(insn 471 470 472 41 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 136 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:206 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 472 471 473 41 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 489)
+            (pc))) sim2fitman_read_procpar.cpp:206 612 {*jcc_1}
+     (nil)
+ -> 489)
+;;  succ:       42 (FALLTHRU)
+;;              43
+
+;; basic block 42, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 41, next block 43, flags: (NEW, REACHABLE, RTL)
+;;  pred:       41 (FALLTHRU)
+(note 473 472 474 42 [bb 42] NOTE_INSN_BASIC_BLOCK)
+(insn 474 473 475 42 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f224d605ab0 *.LC6>)) sim2fitman_read_procpar.cpp:208 89 {*movdi_internal}
+     (nil))
+(insn 475 474 476 42 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:208 89 {*movdi_internal}
+     (nil))
+(call_insn 476 475 477 42 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:208 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 477 476 478 42 (set (reg:DI 274)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:208 89 {*movdi_internal}
+     (nil))
+(insn 478 477 479 42 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 274)) sim2fitman_read_procpar.cpp:208 89 {*movdi_internal}
+     (nil))
+(insn 479 478 480 42 (set (reg:DI 275)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:209 89 {*movdi_internal}
+     (nil))
+(insn 480 479 481 42 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:209 89 {*movdi_internal}
+     (nil))
+(insn 481 480 482 42 (set (reg:DI 5 di)
+        (reg:DI 275)) sim2fitman_read_procpar.cpp:209 89 {*movdi_internal}
+     (nil))
+(call_insn 482 481 483 42 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x7f224d92ce58 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:209 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 483 482 484 42 (set (reg:DF 137 [ D.5851 ])
+        (reg:DF 21 xmm0)) sim2fitman_read_procpar.cpp:209 128 {*movdf_internal}
+     (nil))
+(insn 484 483 485 42 (set (reg:SF 138 [ D.5852 ])
+        (float_truncate:SF (reg:DF 137 [ D.5851 ]))) sim2fitman_read_procpar.cpp:209 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 485 484 486 42 (set (reg/f:DI 276)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:209 89 {*movdi_internal}
+     (nil))
+(insn 486 485 487 42 (set (mem/j:SF (plus:DI (reg/f:DI 276)
+                (const_int 376 [0x178])) [0 procpar_info_61(D)->vox1+0 S4 A64])
+        (reg:SF 138 [ D.5852 ])) sim2fitman_read_procpar.cpp:209 129 {*movsf_internal}
+     (nil))
+(jump_insn 487 486 488 42 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 488 487 489)
+;; basic block 43, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 42, next block 44, flags: (NEW, REACHABLE, RTL)
+;;  pred:       41
+(code_label 489 488 490 43 23 "" [1 uses])
+(note 490 489 491 43 [bb 43] NOTE_INSN_BASIC_BLOCK)
+(insn 491 490 492 43 (set (reg:DI 277)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:213 89 {*movdi_internal}
+     (nil))
+(insn 492 491 493 43 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC25") [flags 0x2]  <var_decl 0x7f224d6153f0 *.LC25>)) sim2fitman_read_procpar.cpp:213 89 {*movdi_internal}
+     (nil))
+(insn 493 492 494 43 (set (reg:DI 5 di)
+        (reg:DI 277)) sim2fitman_read_procpar.cpp:213 89 {*movdi_internal}
+     (nil))
+(call_insn/i 494 493 495 43 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:213 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 495 494 496 43 (set (reg:SI 139 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:213 90 {*movsi_internal}
+     (nil))
+(insn 496 495 497 43 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 139 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:213 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 497 496 498 43 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 514)
+            (pc))) sim2fitman_read_procpar.cpp:213 612 {*jcc_1}
+     (nil)
+ -> 514)
+;;  succ:       44 (FALLTHRU)
+;;              45
+
+;; basic block 44, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 43, next block 45, flags: (NEW, REACHABLE, RTL)
+;;  pred:       43 (FALLTHRU)
+(note 498 497 499 44 [bb 44] NOTE_INSN_BASIC_BLOCK)
+(insn 499 498 500 44 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f224d605ab0 *.LC6>)) sim2fitman_read_procpar.cpp:215 89 {*movdi_internal}
+     (nil))
+(insn 500 499 501 44 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:215 89 {*movdi_internal}
+     (nil))
+(call_insn 501 500 502 44 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:215 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 502 501 503 44 (set (reg:DI 278)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:215 89 {*movdi_internal}
+     (nil))
+(insn 503 502 504 44 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 278)) sim2fitman_read_procpar.cpp:215 89 {*movdi_internal}
+     (nil))
+(insn 504 503 505 44 (set (reg:DI 279)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:216 89 {*movdi_internal}
+     (nil))
+(insn 505 504 506 44 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:216 89 {*movdi_internal}
+     (nil))
+(insn 506 505 507 44 (set (reg:DI 5 di)
+        (reg:DI 279)) sim2fitman_read_procpar.cpp:216 89 {*movdi_internal}
+     (nil))
+(call_insn 507 506 508 44 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x7f224d92ce58 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:216 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 508 507 509 44 (set (reg:DF 140 [ D.5851 ])
+        (reg:DF 21 xmm0)) sim2fitman_read_procpar.cpp:216 128 {*movdf_internal}
+     (nil))
+(insn 509 508 510 44 (set (reg:SF 141 [ D.5852 ])
+        (float_truncate:SF (reg:DF 140 [ D.5851 ]))) sim2fitman_read_procpar.cpp:216 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 510 509 511 44 (set (reg/f:DI 280)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:216 89 {*movdi_internal}
+     (nil))
+(insn 511 510 512 44 (set (mem/j:SF (plus:DI (reg/f:DI 280)
+                (const_int 380 [0x17c])) [0 procpar_info_61(D)->vox2+0 S4 A32])
+        (reg:SF 141 [ D.5852 ])) sim2fitman_read_procpar.cpp:216 129 {*movsf_internal}
+     (nil))
+(jump_insn 512 511 513 44 (set (pc)
+        (label_ref 537)) 654 {jump}
+     (nil)
+ -> 537)
+;;  succ:       47
+
+(barrier 513 512 514)
+;; basic block 45, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 44, next block 46, flags: (NEW, REACHABLE, RTL)
+;;  pred:       43
+(code_label 514 513 515 45 24 "" [1 uses])
+(note 515 514 516 45 [bb 45] NOTE_INSN_BASIC_BLOCK)
+(insn 516 515 517 45 (set (reg:DI 281)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:221 89 {*movdi_internal}
+     (nil))
+(insn 517 516 518 45 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC26") [flags 0x2]  <var_decl 0x7f224d615480 *.LC26>)) sim2fitman_read_procpar.cpp:221 89 {*movdi_internal}
+     (nil))
+(insn 518 517 519 45 (set (reg:DI 5 di)
+        (reg:DI 281)) sim2fitman_read_procpar.cpp:221 89 {*movdi_internal}
+     (nil))
+(call_insn/i 519 518 520 45 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f224daa1360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:221 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 520 519 521 45 (set (reg:SI 142 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:221 90 {*movsi_internal}
+     (nil))
+(insn 521 520 522 45 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 142 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:221 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 522 521 523 45 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 537)
+            (pc))) sim2fitman_read_procpar.cpp:221 612 {*jcc_1}
+     (nil)
+ -> 537)
+;;  succ:       46 (FALLTHRU)
+;;              47
+
+;; basic block 46, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 45, next block 47, flags: (NEW, REACHABLE, RTL)
+;;  pred:       45 (FALLTHRU)
+(note 523 522 524 46 [bb 46] NOTE_INSN_BASIC_BLOCK)
+(insn 524 523 525 46 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f224d605ab0 *.LC6>)) sim2fitman_read_procpar.cpp:223 89 {*movdi_internal}
+     (nil))
+(insn 525 524 526 46 (set (reg:DI 5 di)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:223 89 {*movdi_internal}
+     (nil))
+(call_insn 526 525 527 46 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x7f224d8e0510 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:223 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 527 526 528 46 (set (reg:DI 282)
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:223 89 {*movdi_internal}
+     (nil))
+(insn 528 527 529 46 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])
+        (reg:DI 282)) sim2fitman_read_procpar.cpp:223 89 {*movdi_internal}
+     (nil))
+(insn 529 528 530 46 (set (reg:DI 283)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -616 [0xfffffffffffffd98])) [0 token+0 S8 A64])) sim2fitman_read_procpar.cpp:224 89 {*movdi_internal}
+     (nil))
+(insn 530 529 531 46 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:224 89 {*movdi_internal}
+     (nil))
+(insn 531 530 532 46 (set (reg:DI 5 di)
+        (reg:DI 283)) sim2fitman_read_procpar.cpp:224 89 {*movdi_internal}
+     (nil))
+(call_insn 532 531 533 46 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x7f224d92ce58 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:224 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 533 532 534 46 (set (reg:DF 143 [ D.5851 ])
+        (reg:DF 21 xmm0)) sim2fitman_read_procpar.cpp:224 128 {*movdf_internal}
+     (nil))
+(insn 534 533 535 46 (set (reg:SF 144 [ D.5852 ])
+        (float_truncate:SF (reg:DF 143 [ D.5851 ]))) sim2fitman_read_procpar.cpp:224 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 535 534 536 46 (set (reg/f:DI 284)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:224 89 {*movdi_internal}
+     (nil))
+(insn 536 535 537 46 (set (mem/j:SF (plus:DI (reg/f:DI 284)
+                (const_int 384 [0x180])) [0 procpar_info_61(D)->vox3+0 S4 A64])
+        (reg:SF 144 [ D.5852 ])) sim2fitman_read_procpar.cpp:224 129 {*movsf_internal}
+     (nil))
+;;  succ:       47 (FALLTHRU)
+
+;; basic block 47, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 46, next block 48, flags: (NEW, REACHABLE, RTL)
+;;  pred:       12
+;;              14
+;;              16
+;;              18
+;;              20
+;;              22
+;;              24
+;;              26
+;;              28
+;;              30
+;;              32
+;;              34
+;;              36
+;;              38
+;;              40
+;;              42
+;;              44
+;;              45
+;;              46 (FALLTHRU)
+;;              11
+(code_label 537 536 538 47 8 "" [19 uses])
+(note 538 537 539 47 [bb 47] NOTE_INSN_BASIC_BLOCK)
+(insn 539 538 540 47 (set (reg:DI 285)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -712 [0xfffffffffffffd38])) [0 in_file+0 S8 A64])) sim2fitman_read_procpar.cpp:250 89 {*movdi_internal}
+     (nil))
+(insn 540 539 541 47 (parallel [
+            (set (reg:DI 286)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -272 [0xfffffffffffffef0])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:250 218 {*adddi_1}
+     (nil))
+(insn 541 540 542 47 (set (reg:DI 1 dx)
+        (reg:DI 285)) sim2fitman_read_procpar.cpp:250 89 {*movdi_internal}
+     (nil))
+(insn 542 541 543 47 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) sim2fitman_read_procpar.cpp:250 90 {*movsi_internal}
+     (nil))
+(insn 543 542 544 47 (set (reg:DI 5 di)
+        (reg:DI 286)) sim2fitman_read_procpar.cpp:250 89 {*movdi_internal}
+     (nil))
+(call_insn 544 543 545 47 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x7f224d872af8 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:250 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 545 544 546 47 (set (reg:DI 287)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -712 [0xfffffffffffffd38])) [0 in_file+0 S8 A64])) sim2fitman_read_procpar.cpp:251 89 {*movdi_internal}
+     (nil))
+(insn 546 545 547 47 (set (reg:DI 5 di)
+        (reg:DI 287)) sim2fitman_read_procpar.cpp:251 89 {*movdi_internal}
+     (nil))
+(call_insn 547 546 548 47 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x7f224d87e6c0 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:251 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 548 547 549 47 (set (reg:SI 145 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:251 90 {*movsi_internal}
+     (nil))
+(insn 549 548 550 47 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 145 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:251 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 550 549 551 47 (set (reg:QI 146 [ D.5849 ])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:251 607 {*setcc_qi}
+     (nil))
+(insn 551 550 552 47 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 146 [ D.5849 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:251 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 552 551 553 47 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 557)
+            (pc))) sim2fitman_read_procpar.cpp:251 612 {*jcc_1}
+     (nil)
+ -> 557)
+;;  succ:       48 (FALLTHRU)
+;;              49
+
+;; basic block 48, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 47, next block 49, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       47 (FALLTHRU)
+(note 553 552 554 48 [bb 48] NOTE_INSN_BASIC_BLOCK)
+(insn 554 553 555 48 (set (reg:SI 87 [ D.5848 ])
+        (const_int -1 [0xffffffffffffffff])) sim2fitman_read_procpar.cpp:252 90 {*movsi_internal}
+     (nil))
+(jump_insn 555 554 556 48 (set (pc)
+        (label_ref:DI 834)) sim2fitman_read_procpar.cpp:252 654 {jump}
+     (nil)
+ -> 834)
+;;  succ:       78 [100.0%] 
+
+(barrier 556 555 557)
+;; basic block 49, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 48, next block 50, flags: (NEW, REACHABLE, RTL)
+;;  pred:       47
+(code_label 557 556 558 49 25 "" [1 uses])
+(note 558 557 559 49 [bb 49] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 559 558 560 49 (set (pc)
+        (label_ref 40)) sim2fitman_read_procpar.cpp:76 654 {jump}
+     (nil)
+ -> 40)
+;;  succ:       5 (DFS_BACK)
+
+(barrier 560 559 561)
+;; basic block 50, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 49, next block 51, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       9
+(code_label 561 560 562 50 6 "" [1 uses])
+(note 562 561 563 50 [bb 50] NOTE_INSN_BASIC_BLOCK)
+(insn 563 562 564 50 (set (reg:QI 147 [ D.5856 ])
+        (mem/j/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -588 [0xfffffffffffffdb4])) [0 date_temp+4 S1 A32])) sim2fitman_read_procpar.cpp:261 93 {*movqi_internal}
+     (nil))
+(insn 564 563 565 50 (set (mem/j/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -608 [0xfffffffffffffda0])) [0 month_temp+0 S1 A64])
+        (reg:QI 147 [ D.5856 ])) sim2fitman_read_procpar.cpp:261 93 {*movqi_internal}
+     (nil))
+(insn 565 564 566 50 (set (reg:QI 148 [ D.5856 ])
+        (mem/j/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -587 [0xfffffffffffffdb5])) [0 date_temp+5 S1 A8])) sim2fitman_read_procpar.cpp:262 93 {*movqi_internal}
+     (nil))
+(insn 566 565 567 50 (set (mem/j/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -607 [0xfffffffffffffda1])) [0 month_temp+1 S1 A8])
+        (reg:QI 148 [ D.5856 ])) sim2fitman_read_procpar.cpp:262 93 {*movqi_internal}
+     (nil))
+(insn 567 566 568 50 (set (mem/j/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -606 [0xfffffffffffffda2])) [0 month_temp+2 S1 A16])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:263 93 {*movqi_internal}
+     (nil))
+(insn 568 567 569 50 (parallel [
+            (set (reg:DI 288)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -608 [0xfffffffffffffda0])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:264 218 {*adddi_1}
+     (nil))
+(insn 569 568 570 50 (set (reg:SI 1 dx)
+        (const_int 10 [0xa])) sim2fitman_read_procpar.cpp:264 90 {*movsi_internal}
+     (nil))
+(insn 570 569 571 50 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:264 89 {*movdi_internal}
+     (nil))
+(insn 571 570 572 50 (set (reg:DI 5 di)
+        (reg:DI 288)) sim2fitman_read_procpar.cpp:264 89 {*movdi_internal}
+     (nil))
+(call_insn 572 571 573 50 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtol") [flags 0x41]  <function_decl 0x7f224d9391b0 strtol>) [0 strtol S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:264 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 573 572 574 50 (set (reg:DI 149 [ D.5850 ])
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:264 89 {*movdi_internal}
+     (nil))
+(insn 574 573 575 50 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -668 [0xfffffffffffffd64])) [0 month_temp_int+0 S4 A32])
+        (subreg:SI (reg:DI 149 [ D.5850 ]) 0)) sim2fitman_read_procpar.cpp:264 90 {*movsi_internal}
+     (nil))
+(insn 575 574 576 50 (set (reg:CC 17 flags)
+        (compare:CC (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -668 [0xfffffffffffffd64])) [0 month_temp_int+0 S4 A32])
+            (const_int 12 [0xc]))) sim2fitman_read_procpar.cpp:265 7 {*cmpsi_1}
+     (nil))
+(jump_insn 576 575 848 50 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 668)
+            (pc))) sim2fitman_read_procpar.cpp:265 612 {*jcc_1}
+     (nil)
+ -> 668)
+;;  succ:       64
+;;              51 (FALLTHRU)
+
+;; basic block 51, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 50, next block 52, flags: (NEW, REACHABLE, RTL)
+;;  pred:       50 (FALLTHRU)
+(note 848 576 577 51 [bb 51] NOTE_INSN_BASIC_BLOCK)
+(insn 577 848 578 51 (set (reg:DI 289)
+        (zero_extend:DI (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -668 [0xfffffffffffffd64])) [0 month_temp_int+0 S4 A32]))) sim2fitman_read_procpar.cpp:265 133 {*zero_extendsidi2}
+     (nil))
+(insn 578 577 579 51 (set (reg:DI 290)
+        (mem/u/c:DI (plus:DI (ashift:DI (reg:DI 289)
+                    (const_int 3 [0x3]))
+                (label_ref:DI 581)) [0  S8 A8])) sim2fitman_read_procpar.cpp:265 89 {*movdi_internal}
+     (insn_list:REG_LABEL_OPERAND 581 (nil)))
+(jump_insn 579 578 580 51 (parallel [
+            (set (pc)
+                (reg:DI 290))
+            (use (label_ref 581))
+        ]) sim2fitman_read_procpar.cpp:265 658 {*tablejump_1}
+     (nil)
+ -> 581)
+;;  succ:       64
+;;              52
+;;              53
+;;              54
+;;              55
+;;              56
+;;              57
+;;              58
+;;              59
+;;              60
+;;              61
+;;              62
+;;              63
+
+(barrier 580 579 581)
+;; Insn is not within a basic block
+(code_label 581 580 582 28 "" [2 uses])
+;; Insn is not within a basic block
+(jump_table_data 582 581 583 (addr_vec:DI [
+            (label_ref:DI 668)
+            (label_ref:DI 584)
+            (label_ref:DI 591)
+            (label_ref:DI 598)
+            (label_ref:DI 605)
+            (label_ref:DI 612)
+            (label_ref:DI 619)
+            (label_ref:DI 626)
+            (label_ref:DI 633)
+            (label_ref:DI 640)
+            (label_ref:DI 647)
+            (label_ref:DI 654)
+            (label_ref:DI 661)
+        ]))
+(barrier 583 582 584)
+;; basic block 52, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 51, next block 53, flags: (NEW, REACHABLE, RTL)
+;;  pred:       51
+(code_label 584 583 585 52 27 "" [1 uses])
+(note 585 584 586 52 [bb 52] NOTE_INSN_BASIC_BLOCK)
+(insn 586 585 587 52 (set (reg/f:DI 291)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:266 89 {*movdi_internal}
+     (nil))
+(insn 587 586 588 52 (parallel [
+            (set (reg/f:DI 150 [ D.5857 ])
+                (plus:DI (reg/f:DI 291)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:266 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 588 587 589 52 (set (mem:SI (reg/f:DI 150 [ D.5857 ]) [0 MEM[(void *)_184]+0 S4 A8])
+        (const_int 7233866 [0x6e614a])) sim2fitman_read_procpar.cpp:266 90 {*movsi_internal}
+     (nil))
+(jump_insn 589 588 590 52 (set (pc)
+        (label_ref 673)) sim2fitman_read_procpar.cpp:266 654 {jump}
+     (nil)
+ -> 673)
+;;  succ:       65
+
+(barrier 590 589 591)
+;; basic block 53, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 52, next block 54, flags: (NEW, REACHABLE, RTL)
+;;  pred:       51
+(code_label 591 590 592 53 29 "" [1 uses])
+(note 592 591 593 53 [bb 53] NOTE_INSN_BASIC_BLOCK)
+(insn 593 592 594 53 (set (reg/f:DI 292)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:267 89 {*movdi_internal}
+     (nil))
+(insn 594 593 595 53 (parallel [
+            (set (reg/f:DI 151 [ D.5857 ])
+                (plus:DI (reg/f:DI 292)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:267 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 595 594 596 53 (set (mem:SI (reg/f:DI 151 [ D.5857 ]) [0 MEM[(void *)_186]+0 S4 A8])
+        (const_int 6448454 [0x626546])) sim2fitman_read_procpar.cpp:267 90 {*movsi_internal}
+     (nil))
+(jump_insn 596 595 597 53 (set (pc)
+        (label_ref 673)) sim2fitman_read_procpar.cpp:267 654 {jump}
+     (nil)
+ -> 673)
+;;  succ:       65
+
+(barrier 597 596 598)
+;; basic block 54, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 53, next block 55, flags: (NEW, REACHABLE, RTL)
+;;  pred:       51
+(code_label 598 597 599 54 30 "" [1 uses])
+(note 599 598 600 54 [bb 54] NOTE_INSN_BASIC_BLOCK)
+(insn 600 599 601 54 (set (reg/f:DI 293)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:268 89 {*movdi_internal}
+     (nil))
+(insn 601 600 602 54 (parallel [
+            (set (reg/f:DI 152 [ D.5857 ])
+                (plus:DI (reg/f:DI 293)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:268 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 602 601 603 54 (set (mem:SI (reg/f:DI 152 [ D.5857 ]) [0 MEM[(void *)_188]+0 S4 A8])
+        (const_int 7496013 [0x72614d])) sim2fitman_read_procpar.cpp:268 90 {*movsi_internal}
+     (nil))
+(jump_insn 603 602 604 54 (set (pc)
+        (label_ref 673)) sim2fitman_read_procpar.cpp:268 654 {jump}
+     (nil)
+ -> 673)
+;;  succ:       65
+
+(barrier 604 603 605)
+;; basic block 55, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 54, next block 56, flags: (NEW, REACHABLE, RTL)
+;;  pred:       51
+(code_label 605 604 606 55 31 "" [1 uses])
+(note 606 605 607 55 [bb 55] NOTE_INSN_BASIC_BLOCK)
+(insn 607 606 608 55 (set (reg/f:DI 294)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:269 89 {*movdi_internal}
+     (nil))
+(insn 608 607 609 55 (parallel [
+            (set (reg/f:DI 153 [ D.5857 ])
+                (plus:DI (reg/f:DI 294)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:269 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 609 608 610 55 (set (mem:SI (reg/f:DI 153 [ D.5857 ]) [0 MEM[(void *)_190]+0 S4 A8])
+        (const_int 7499841 [0x727041])) sim2fitman_read_procpar.cpp:269 90 {*movsi_internal}
+     (nil))
+(jump_insn 610 609 611 55 (set (pc)
+        (label_ref 673)) sim2fitman_read_procpar.cpp:269 654 {jump}
+     (nil)
+ -> 673)
+;;  succ:       65
+
+(barrier 611 610 612)
+;; basic block 56, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 55, next block 57, flags: (NEW, REACHABLE, RTL)
+;;  pred:       51
+(code_label 612 611 613 56 32 "" [1 uses])
+(note 613 612 614 56 [bb 56] NOTE_INSN_BASIC_BLOCK)
+(insn 614 613 615 56 (set (reg/f:DI 295)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:270 89 {*movdi_internal}
+     (nil))
+(insn 615 614 616 56 (parallel [
+            (set (reg/f:DI 154 [ D.5857 ])
+                (plus:DI (reg/f:DI 295)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:270 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 616 615 617 56 (set (mem:SI (reg/f:DI 154 [ D.5857 ]) [0 MEM[(void *)_192]+0 S4 A8])
+        (const_int 7954765 [0x79614d])) sim2fitman_read_procpar.cpp:270 90 {*movsi_internal}
+     (nil))
+(jump_insn 617 616 618 56 (set (pc)
+        (label_ref 673)) sim2fitman_read_procpar.cpp:270 654 {jump}
+     (nil)
+ -> 673)
+;;  succ:       65
+
+(barrier 618 617 619)
+;; basic block 57, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 56, next block 58, flags: (NEW, REACHABLE, RTL)
+;;  pred:       51
+(code_label 619 618 620 57 33 "" [1 uses])
+(note 620 619 621 57 [bb 57] NOTE_INSN_BASIC_BLOCK)
+(insn 621 620 622 57 (set (reg/f:DI 296)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:271 89 {*movdi_internal}
+     (nil))
+(insn 622 621 623 57 (parallel [
+            (set (reg/f:DI 155 [ D.5857 ])
+                (plus:DI (reg/f:DI 296)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:271 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 623 622 624 57 (set (mem:SI (reg/f:DI 155 [ D.5857 ]) [0 MEM[(void *)_194]+0 S4 A8])
+        (const_int 7238986 [0x6e754a])) sim2fitman_read_procpar.cpp:271 90 {*movsi_internal}
+     (nil))
+(jump_insn 624 623 625 57 (set (pc)
+        (label_ref 673)) sim2fitman_read_procpar.cpp:271 654 {jump}
+     (nil)
+ -> 673)
+;;  succ:       65
+
+(barrier 625 624 626)
+;; basic block 58, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 57, next block 59, flags: (NEW, REACHABLE, RTL)
+;;  pred:       51
+(code_label 626 625 627 58 34 "" [1 uses])
+(note 627 626 628 58 [bb 58] NOTE_INSN_BASIC_BLOCK)
+(insn 628 627 629 58 (set (reg/f:DI 297)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:272 89 {*movdi_internal}
+     (nil))
+(insn 629 628 630 58 (parallel [
+            (set (reg/f:DI 156 [ D.5857 ])
+                (plus:DI (reg/f:DI 297)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:272 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 630 629 631 58 (set (mem:SI (reg/f:DI 156 [ D.5857 ]) [0 MEM[(void *)_196]+0 S4 A8])
+        (const_int 7107914 [0x6c754a])) sim2fitman_read_procpar.cpp:272 90 {*movsi_internal}
+     (nil))
+(jump_insn 631 630 632 58 (set (pc)
+        (label_ref 673)) sim2fitman_read_procpar.cpp:272 654 {jump}
+     (nil)
+ -> 673)
+;;  succ:       65
+
+(barrier 632 631 633)
+;; basic block 59, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 58, next block 60, flags: (NEW, REACHABLE, RTL)
+;;  pred:       51
+(code_label 633 632 634 59 35 "" [1 uses])
+(note 634 633 635 59 [bb 59] NOTE_INSN_BASIC_BLOCK)
+(insn 635 634 636 59 (set (reg/f:DI 298)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:273 89 {*movdi_internal}
+     (nil))
+(insn 636 635 637 59 (parallel [
+            (set (reg/f:DI 157 [ D.5857 ])
+                (plus:DI (reg/f:DI 298)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:273 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 637 636 638 59 (set (mem:SI (reg/f:DI 157 [ D.5857 ]) [0 MEM[(void *)_198]+0 S4 A8])
+        (const_int 6780225 [0x677541])) sim2fitman_read_procpar.cpp:273 90 {*movsi_internal}
+     (nil))
+(jump_insn 638 637 639 59 (set (pc)
+        (label_ref 673)) sim2fitman_read_procpar.cpp:273 654 {jump}
+     (nil)
+ -> 673)
+;;  succ:       65
+
+(barrier 639 638 640)
+;; basic block 60, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 59, next block 61, flags: (NEW, REACHABLE, RTL)
+;;  pred:       51
+(code_label 640 639 641 60 36 "" [1 uses])
+(note 641 640 642 60 [bb 60] NOTE_INSN_BASIC_BLOCK)
+(insn 642 641 643 60 (set (reg/f:DI 299)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:274 89 {*movdi_internal}
+     (nil))
+(insn 643 642 644 60 (parallel [
+            (set (reg/f:DI 158 [ D.5857 ])
+                (plus:DI (reg/f:DI 299)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:274 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 644 643 645 60 (set (mem:SI (reg/f:DI 158 [ D.5857 ]) [0 MEM[(void *)_200]+0 S4 A8])
+        (const_int 7365971 [0x706553])) sim2fitman_read_procpar.cpp:274 90 {*movsi_internal}
+     (nil))
+(jump_insn 645 644 646 60 (set (pc)
+        (label_ref 673)) sim2fitman_read_procpar.cpp:274 654 {jump}
+     (nil)
+ -> 673)
+;;  succ:       65
+
+(barrier 646 645 647)
+;; basic block 61, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 60, next block 62, flags: (NEW, REACHABLE, RTL)
+;;  pred:       51
+(code_label 647 646 648 61 37 "" [1 uses])
+(note 648 647 649 61 [bb 61] NOTE_INSN_BASIC_BLOCK)
+(insn 649 648 650 61 (set (reg/f:DI 300)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:275 89 {*movdi_internal}
+     (nil))
+(insn 650 649 651 61 (parallel [
+            (set (reg/f:DI 159 [ D.5857 ])
+                (plus:DI (reg/f:DI 300)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:275 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 651 650 652 61 (set (mem:SI (reg/f:DI 159 [ D.5857 ]) [0 MEM[(void *)_202]+0 S4 A8])
+        (const_int 7627599 [0x74634f])) sim2fitman_read_procpar.cpp:275 90 {*movsi_internal}
+     (nil))
+(jump_insn 652 651 653 61 (set (pc)
+        (label_ref 673)) sim2fitman_read_procpar.cpp:275 654 {jump}
+     (nil)
+ -> 673)
+;;  succ:       65
+
+(barrier 653 652 654)
+;; basic block 62, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 61, next block 63, flags: (NEW, REACHABLE, RTL)
+;;  pred:       51
+(code_label 654 653 655 62 38 "" [1 uses])
+(note 655 654 656 62 [bb 62] NOTE_INSN_BASIC_BLOCK)
+(insn 656 655 657 62 (set (reg/f:DI 301)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:276 89 {*movdi_internal}
+     (nil))
+(insn 657 656 658 62 (parallel [
+            (set (reg/f:DI 160 [ D.5857 ])
+                (plus:DI (reg/f:DI 301)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:276 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 658 657 659 62 (set (mem:SI (reg/f:DI 160 [ D.5857 ]) [0 MEM[(void *)_204]+0 S4 A8])
+        (const_int 7761742 [0x766f4e])) sim2fitman_read_procpar.cpp:276 90 {*movsi_internal}
+     (nil))
+(jump_insn 659 658 660 62 (set (pc)
+        (label_ref 673)) sim2fitman_read_procpar.cpp:276 654 {jump}
+     (nil)
+ -> 673)
+;;  succ:       65
+
+(barrier 660 659 661)
+;; basic block 63, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 62, next block 64, flags: (NEW, REACHABLE, RTL)
+;;  pred:       51
+(code_label 661 660 662 63 39 "" [1 uses])
+(note 662 661 663 63 [bb 63] NOTE_INSN_BASIC_BLOCK)
+(insn 663 662 664 63 (set (reg/f:DI 302)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:277 89 {*movdi_internal}
+     (nil))
+(insn 664 663 665 63 (parallel [
+            (set (reg/f:DI 161 [ D.5857 ])
+                (plus:DI (reg/f:DI 302)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:277 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 665 664 666 63 (set (mem:SI (reg/f:DI 161 [ D.5857 ]) [0 MEM[(void *)_206]+0 S4 A8])
+        (const_int 6513988 [0x636544])) sim2fitman_read_procpar.cpp:277 90 {*movsi_internal}
+     (nil))
+(jump_insn 666 665 667 63 (set (pc)
+        (label_ref 673)) sim2fitman_read_procpar.cpp:277 654 {jump}
+     (nil)
+ -> 673)
+;;  succ:       65
+
+(barrier 667 666 668)
+;; basic block 64, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 63, next block 65, flags: (NEW, REACHABLE, RTL)
+;;  pred:       51
+;;              50
+(code_label 668 667 669 64 26 "" [2 uses])
+(note 669 668 670 64 [bb 64] NOTE_INSN_BASIC_BLOCK)
+(insn 670 669 671 64 (set (reg/f:DI 303)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:278 89 {*movdi_internal}
+     (nil))
+(insn 671 670 672 64 (parallel [
+            (set (reg/f:DI 162 [ D.5857 ])
+                (plus:DI (reg/f:DI 303)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:278 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 672 671 673 64 (set (mem:SI (reg/f:DI 162 [ D.5857 ]) [0 MEM[(void *)_208]+0 S4 A8])
+        (const_int 2105376 [0x202020])) sim2fitman_read_procpar.cpp:278 90 {*movsi_internal}
+     (nil))
+;;  succ:       65 (FALLTHRU)
+
+;; basic block 65, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 64, next block 66, flags: (NEW, REACHABLE, RTL)
+;;  pred:       52
+;;              53
+;;              54
+;;              55
+;;              56
+;;              57
+;;              58
+;;              59
+;;              60
+;;              61
+;;              62
+;;              63
+;;              64 (FALLTHRU)
+(code_label 673 672 674 65 40 "" [12 uses])
+(note 674 673 675 65 [bb 65] NOTE_INSN_BASIC_BLOCK)
+(insn 675 674 676 65 (set (reg/f:DI 304)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:280 89 {*movdi_internal}
+     (nil))
+(insn 676 675 677 65 (set (mem/j:QI (plus:DI (reg/f:DI 304)
+                (const_int 11 [0xb])) [0 procpar_info_61(D)->ex_datetime+3 S1 A8])
+        (const_int 32 [0x20])) sim2fitman_read_procpar.cpp:280 93 {*movqi_internal}
+     (nil))
+(insn 677 676 678 65 (set (reg:QI 163 [ D.5856 ])
+        (mem/j/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -586 [0xfffffffffffffdb6])) [0 date_temp+6 S1 A16])) sim2fitman_read_procpar.cpp:281 93 {*movqi_internal}
+     (nil))
+(insn 678 677 679 65 (set (reg/f:DI 305)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:281 89 {*movdi_internal}
+     (nil))
+(insn 679 678 680 65 (set (mem/j:QI (plus:DI (reg/f:DI 305)
+                (const_int 12 [0xc])) [0 procpar_info_61(D)->ex_datetime+4 S1 A32])
+        (reg:QI 163 [ D.5856 ])) sim2fitman_read_procpar.cpp:281 93 {*movqi_internal}
+     (nil))
+(insn 680 679 681 65 (set (reg:QI 164 [ D.5856 ])
+        (mem/j/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -585 [0xfffffffffffffdb7])) [0 date_temp+7 S1 A8])) sim2fitman_read_procpar.cpp:282 93 {*movqi_internal}
+     (nil))
+(insn 681 680 682 65 (set (reg/f:DI 306)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:282 89 {*movdi_internal}
+     (nil))
+(insn 682 681 683 65 (set (mem/j:QI (plus:DI (reg/f:DI 306)
+                (const_int 13 [0xd])) [0 procpar_info_61(D)->ex_datetime+5 S1 A8])
+        (reg:QI 164 [ D.5856 ])) sim2fitman_read_procpar.cpp:282 93 {*movqi_internal}
+     (nil))
+(insn 683 682 684 65 (set (reg/f:DI 307)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:283 89 {*movdi_internal}
+     (nil))
+(insn 684 683 685 65 (set (mem/j:QI (plus:DI (reg/f:DI 307)
+                (const_int 14 [0xe])) [0 procpar_info_61(D)->ex_datetime+6 S1 A16])
+        (const_int 32 [0x20])) sim2fitman_read_procpar.cpp:283 93 {*movqi_internal}
+     (nil))
+(insn 685 684 686 65 (set (reg:QI 165 [ D.5856 ])
+        (mem/j/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -592 [0xfffffffffffffdb0])) [0 date_temp+0 S1 A64])) sim2fitman_read_procpar.cpp:306 93 {*movqi_internal}
+     (nil))
+(insn 686 685 687 65 (set (reg/f:DI 308)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:306 89 {*movdi_internal}
+     (nil))
+(insn 687 686 688 65 (set (mem/j:QI (plus:DI (reg/f:DI 308)
+                (const_int 15 [0xf])) [0 procpar_info_61(D)->ex_datetime+7 S1 A8])
+        (reg:QI 165 [ D.5856 ])) sim2fitman_read_procpar.cpp:306 93 {*movqi_internal}
+     (nil))
+(insn 688 687 689 65 (set (reg:QI 166 [ D.5856 ])
+        (mem/j/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -591 [0xfffffffffffffdb1])) [0 date_temp+1 S1 A8])) sim2fitman_read_procpar.cpp:307 93 {*movqi_internal}
+     (nil))
+(insn 689 688 690 65 (set (reg/f:DI 309)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:307 89 {*movdi_internal}
+     (nil))
+(insn 690 689 691 65 (set (mem/j:QI (plus:DI (reg/f:DI 309)
+                (const_int 16 [0x10])) [0 procpar_info_61(D)->ex_datetime+8 S1 A64])
+        (reg:QI 166 [ D.5856 ])) sim2fitman_read_procpar.cpp:307 93 {*movqi_internal}
+     (nil))
+(insn 691 690 692 65 (set (reg:QI 167 [ D.5856 ])
+        (mem/j/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -590 [0xfffffffffffffdb2])) [0 date_temp+2 S1 A16])) sim2fitman_read_procpar.cpp:308 93 {*movqi_internal}
+     (nil))
+(insn 692 691 693 65 (set (reg/f:DI 310)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:308 89 {*movdi_internal}
+     (nil))
+(insn 693 692 694 65 (set (mem/j:QI (plus:DI (reg/f:DI 310)
+                (const_int 17 [0x11])) [0 procpar_info_61(D)->ex_datetime+9 S1 A8])
+        (reg:QI 167 [ D.5856 ])) sim2fitman_read_procpar.cpp:308 93 {*movqi_internal}
+     (nil))
+(insn 694 693 695 65 (set (reg:QI 168 [ D.5856 ])
+        (mem/j/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -589 [0xfffffffffffffdb3])) [0 date_temp+3 S1 A8])) sim2fitman_read_procpar.cpp:309 93 {*movqi_internal}
+     (nil))
+(insn 695 694 696 65 (set (reg/f:DI 311)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:309 89 {*movdi_internal}
+     (nil))
+(insn 696 695 697 65 (set (mem/j:QI (plus:DI (reg/f:DI 311)
+                (const_int 18 [0x12])) [0 procpar_info_61(D)->ex_datetime+10 S1 A16])
+        (reg:QI 168 [ D.5856 ])) sim2fitman_read_procpar.cpp:309 93 {*movqi_internal}
+     (nil))
+(insn 697 696 698 65 (set (reg/f:DI 312)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:312 89 {*movdi_internal}
+     (nil))
+(insn 698 697 699 65 (set (mem/j:QI (plus:DI (reg/f:DI 312)
+                (const_int 19 [0x13])) [0 procpar_info_61(D)->ex_datetime+11 S1 A8])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:312 93 {*movqi_internal}
+     (nil))
+(insn 699 698 700 65 (set (reg/f:DI 313)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:315 89 {*movdi_internal}
+     (nil))
+(insn 700 699 701 65 (set (reg:DF 314)
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC27") [flags 0x2]) [0  S8 A64])) sim2fitman_read_procpar.cpp:315 128 {*movdf_internal}
+     (nil))
+(insn 701 700 702 65 (set (mem/j:DF (plus:DI (reg/f:DI 313)
+                (const_int 344 [0x158])) [0 procpar_info_61(D)->offset_frequency+0 S8 A64])
+        (reg:DF 314)) sim2fitman_read_procpar.cpp:315 128 {*movdf_internal}
+     (nil))
+(insn 702 701 703 65 (set (reg/f:DI 315)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:317 89 {*movdi_internal}
+     (nil))
+(insn 703 702 704 65 (set (mem/j:SI (plus:DI (reg/f:DI 315)
+                (const_int 324 [0x144])) [0 procpar_info_61(D)->num_transients+0 S4 A32])
+        (const_int 1 [0x1])) sim2fitman_read_procpar.cpp:317 90 {*movsi_internal}
+     (nil))
+(insn 704 703 705 65 (set (reg/f:DI 316)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:319 89 {*movdi_internal}
+     (nil))
+(insn 705 704 706 65 (set (reg:SF 317)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [0  S4 A32])) sim2fitman_read_procpar.cpp:319 129 {*movsf_internal}
+     (nil))
+(insn 706 705 707 65 (set (mem/j:SF (plus:DI (reg/f:DI 316)
+                (const_int 400 [0x190])) [0 procpar_info_61(D)->vtheta+0 S4 A64])
+        (reg:SF 317)) sim2fitman_read_procpar.cpp:319 129 {*movsf_internal}
+     (nil))
+(insn 707 706 708 65 (set (reg/f:DI 318)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:321 89 {*movdi_internal}
+     (nil))
+(insn 708 707 709 65 (set (reg:SI 169 [ D.5848 ])
+        (mem/j:SI (plus:DI (reg/f:DI 318)
+                (const_int 328 [0x148])) [0 procpar_info_61(D)->num_points+0 S4 A64])) sim2fitman_read_procpar.cpp:321 90 {*movsi_internal}
+     (nil))
+(insn 709 708 710 65 (set (reg:SF 170 [ D.5852 ])
+        (float:SF (reg:SI 169 [ D.5848 ]))) sim2fitman_read_procpar.cpp:321 199 {*floatsisf2_sse}
+     (nil))
+(insn 710 709 711 65 (set (reg:SF 171 [ D.5852 ])
+        (mult:SF (reg:SF 170 [ D.5852 ])
+            (mem/c:SF (plus:DI (reg/f:DI 20 frame)
+                    (const_int -676 [0xfffffffffffffd5c])) [0 dwell+0 S4 A32]))) sim2fitman_read_procpar.cpp:321 797 {*fop_sf_comm_sse}
+     (nil))
+(insn 711 710 712 65 (set (reg/f:DI 319)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:321 89 {*movdi_internal}
+     (nil))
+(insn 712 711 713 65 (set (mem/j:SF (reg/f:DI 319) [0 procpar_info_61(D)->acquision_time+0 S4 A64])
+        (reg:SF 171 [ D.5852 ])) sim2fitman_read_procpar.cpp:321 129 {*movsf_internal}
+     (nil))
+(insn 713 712 714 65 (set (reg/f:DI 320)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:377 89 {*movdi_internal}
+     (nil))
+(insn 714 713 715 65 (set (reg:SF 321)
+        (mem/u/c:SF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [0  S4 A32])) sim2fitman_read_procpar.cpp:377 129 {*movsf_internal}
+     (nil))
+(insn 715 714 716 65 (set (mem/j:SF (plus:DI (reg/f:DI 320)
+                (const_int 360 [0x168])) [0 procpar_info_61(D)->gain+0 S4 A64])
+        (reg:SF 321)) sim2fitman_read_procpar.cpp:377 129 {*movsf_internal}
+     (nil))
+(insn 716 715 717 65 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC28") [flags 0x2]  <var_decl 0x7f224d615510 *.LC28>)) sim2fitman_read_procpar.cpp:378 89 {*movdi_internal}
+     (nil))
+(call_insn 717 716 718 65 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f224daad000 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:378 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 718 717 719 65 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC29") [flags 0x2]  <var_decl 0x7f224d6155a0 *.LC29>)) sim2fitman_read_procpar.cpp:379 89 {*movdi_internal}
+     (nil))
+(insn 719 718 720 65 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:379 93 {*movqi_internal}
+     (nil))
+(call_insn 720 719 721 65 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f224daac5e8 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:379 669 {*call_value}
+     (nil)
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (nil))))
+(insn 721 720 722 65 (parallel [
+            (set (reg:DI 322)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -528 [0xfffffffffffffdf0])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:380 218 {*adddi_1}
+     (nil))
+(insn 722 721 723 65 (set (reg:DI 5 di)
+        (reg:DI 322)) sim2fitman_read_procpar.cpp:380 89 {*movdi_internal}
+     (nil))
+(call_insn 723 722 724 65 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("gets") [flags 0x41]  <function_decl 0x7f224d872bd0 gets>) [0 gets S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:380 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 724 723 725 65 (parallel [
+            (set (reg/f:DI 172 [ D.5858 ])
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -528 [0xfffffffffffffdf0])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:381 218 {*adddi_1}
+     (nil))
+(insn 725 724 726 65 (set (reg:QI 173 [ D.5859 ])
+        (mem:QI (reg/f:DI 172 [ D.5858 ]) [0 MEM[(const unsigned char * {ref-all})_236]+0 S1 A8])) sim2fitman_read_procpar.cpp:381 93 {*movqi_internal}
+     (nil))
+(insn 726 725 727 65 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 173 [ D.5859 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:381 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 727 726 728 65 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 783)
+            (pc))) sim2fitman_read_procpar.cpp:381 612 {*jcc_1}
+     (nil)
+ -> 783)
+;;  succ:       66 (FALLTHRU)
+;;              74
+
+;; basic block 66, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 65, next block 67, flags: (NEW, REACHABLE, RTL)
+;;  pred:       65 (FALLTHRU)
+(note 728 727 729 66 [bb 66] NOTE_INSN_BASIC_BLOCK)
+(insn 729 728 730 66 (parallel [
+            (set (reg:DI 323)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -528 [0xfffffffffffffdf0])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:382 218 {*adddi_1}
+     (nil))
+(insn 730 729 731 66 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:382 89 {*movdi_internal}
+     (nil))
+(insn 731 730 732 66 (set (reg:DI 5 di)
+        (reg:DI 323)) sim2fitman_read_procpar.cpp:382 89 {*movdi_internal}
+     (nil))
+(call_insn 732 731 733 66 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x7f224d92ce58 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:382 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 733 732 734 66 (set (reg:DF 174 [ D.5851 ])
+        (reg:DF 21 xmm0)) sim2fitman_read_procpar.cpp:382 128 {*movdf_internal}
+     (nil))
+(insn 734 733 775 66 (set (mem/c:SF (plus:DI (reg/f:DI 20 frame)
+                (const_int -672 [0xfffffffffffffd60])) [0 temp_float+0 S4 A32])
+        (float_truncate:SF (reg:DF 174 [ D.5851 ]))) sim2fitman_read_procpar.cpp:382 157 {*truncdfsf_fast_sse}
+     (nil))
+;;  succ:       67 (FALLTHRU)
+
+;; basic block 67, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 66, next block 68, flags: (NEW, REACHABLE, RTL)
+;;  pred:       66 (FALLTHRU)
+;;              72 (DFS_BACK)
+(code_label 775 734 735 67 46 "" [1 uses])
+(note 735 775 736 67 [bb 67] NOTE_INSN_BASIC_BLOCK)
+(insn 736 735 737 67 (parallel [
+            (set (reg:DI 324)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -528 [0xfffffffffffffdf0])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:383 218 {*adddi_1}
+     (nil))
+(insn 737 736 738 67 (set (reg:DI 5 di)
+        (reg:DI 324)) sim2fitman_read_procpar.cpp:383 89 {*movdi_internal}
+     (nil))
+(call_insn 738 737 739 67 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_Z8isNumberPc") [flags 0x41]  <function_decl 0x7f224d9a9a20 isNumber>) [0 isNumber S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:383 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 739 738 740 67 (set (reg:QI 175 [ D.5849 ])
+        (reg:QI 0 ax)) sim2fitman_read_procpar.cpp:383 93 {*movqi_internal}
+     (nil))
+(insn 740 739 741 67 (parallel [
+            (set (reg:QI 176 [ D.5849 ])
+                (xor:QI (reg:QI 175 [ D.5849 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:383 406 {*xorqi_1}
+     (nil))
+(insn 741 740 742 67 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 176 [ D.5849 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:383 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 742 741 743 67 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 750)
+            (pc))) sim2fitman_read_procpar.cpp:383 612 {*jcc_1}
+     (nil)
+ -> 750)
+;;  succ:       69
+;;              68 (FALLTHRU)
+
+;; basic block 68, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 67, next block 69, flags: (NEW, REACHABLE, RTL)
+;;  pred:       67 (FALLTHRU)
+(note 743 742 744 68 [bb 68] NOTE_INSN_BASIC_BLOCK)
+(insn 744 743 745 68 (set (reg:SF 325)
+        (mem/c:SF (plus:DI (reg/f:DI 20 frame)
+                (const_int -672 [0xfffffffffffffd60])) [0 temp_float+0 S4 A32])) sim2fitman_read_procpar.cpp:383 129 {*movsf_internal}
+     (nil))
+(insn 745 744 746 68 (set (reg:SF 21 xmm0)
+        (reg:SF 325)) sim2fitman_read_procpar.cpp:383 129 {*movsf_internal}
+     (nil))
+(call_insn 746 745 747 68 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_Z5isNANf") [flags 0x41]  <function_decl 0x7f224d9b00d8 isNAN>) [0 isNAN S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:383 669 {*call_value}
+     (nil)
+    (expr_list:SF (use (reg:SF 21 xmm0))
+        (nil)))
+(insn 747 746 748 68 (set (reg:SI 177 [ D.5848 ])
+        (reg:SI 0 ax)) sim2fitman_read_procpar.cpp:383 90 {*movsi_internal}
+     (nil))
+(insn 748 747 749 68 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 177 [ D.5848 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:383 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 749 748 750 68 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 755)
+            (pc))) sim2fitman_read_procpar.cpp:383 612 {*jcc_1}
+     (nil)
+ -> 755)
+;;  succ:       69 (FALLTHRU)
+;;              70
+
+;; basic block 69, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 68, next block 70, flags: (NEW, REACHABLE, RTL)
+;;  pred:       67
+;;              68 (FALLTHRU)
+(code_label 750 749 751 69 42 "" [1 uses])
+(note 751 750 752 69 [bb 69] NOTE_INSN_BASIC_BLOCK)
+(insn 752 751 753 69 (set (reg:QI 89 [ D.5849 ])
+        (const_int 1 [0x1])) sim2fitman_read_procpar.cpp:383 93 {*movqi_internal}
+     (nil))
+(jump_insn 753 752 754 69 (set (pc)
+        (label_ref 758)) sim2fitman_read_procpar.cpp:383 654 {jump}
+     (nil)
+ -> 758)
+;;  succ:       71
+
+(barrier 754 753 755)
+;; basic block 70, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 69, next block 71, flags: (NEW, REACHABLE, RTL)
+;;  pred:       68
+(code_label 755 754 756 70 43 "" [1 uses])
+(note 756 755 757 70 [bb 70] NOTE_INSN_BASIC_BLOCK)
+(insn 757 756 758 70 (set (reg:QI 89 [ D.5849 ])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:383 93 {*movqi_internal}
+     (nil))
+;;  succ:       71 (FALLTHRU)
+
+;; basic block 71, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 70, next block 72, flags: (NEW, REACHABLE, RTL)
+;;  pred:       69
+;;              70 (FALLTHRU)
+(code_label 758 757 759 71 44 "" [1 uses])
+(note 759 758 760 71 [bb 71] NOTE_INSN_BASIC_BLOCK)
+(insn 760 759 761 71 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 89 [ D.5849 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:383 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 761 760 762 71 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 778)
+            (pc))) sim2fitman_read_procpar.cpp:383 612 {*jcc_1}
+     (nil)
+ -> 778)
+;;  succ:       72 (FALLTHRU)
+;;              73
+
+;; basic block 72, loop depth 1, count 0, freq 0, maybe hot
+;;  prev block 71, next block 73, flags: (NEW, REACHABLE, RTL)
+;;  pred:       71 (FALLTHRU)
+(note 762 761 763 72 [bb 72] NOTE_INSN_BASIC_BLOCK)
+(insn 763 762 764 72 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC30") [flags 0x2]  <var_decl 0x7f224d615630 *.LC30>)) sim2fitman_read_procpar.cpp:384 89 {*movdi_internal}
+     (nil))
+(insn 764 763 765 72 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:384 93 {*movqi_internal}
+     (nil))
+(call_insn 765 764 766 72 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f224daac5e8 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:384 669 {*call_value}
+     (nil)
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (nil))))
+(insn 766 765 767 72 (parallel [
+            (set (reg:DI 326)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -528 [0xfffffffffffffdf0])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:385 218 {*adddi_1}
+     (nil))
+(insn 767 766 768 72 (set (reg:DI 5 di)
+        (reg:DI 326)) sim2fitman_read_procpar.cpp:385 89 {*movdi_internal}
+     (nil))
+(call_insn 768 767 769 72 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("gets") [flags 0x41]  <function_decl 0x7f224d872bd0 gets>) [0 gets S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:385 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 769 768 770 72 (parallel [
+            (set (reg:DI 327)
+                (plus:DI (reg/f:DI 20 frame)
+                    (const_int -528 [0xfffffffffffffdf0])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:386 218 {*adddi_1}
+     (nil))
+(insn 770 769 771 72 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:386 89 {*movdi_internal}
+     (nil))
+(insn 771 770 772 72 (set (reg:DI 5 di)
+        (reg:DI 327)) sim2fitman_read_procpar.cpp:386 89 {*movdi_internal}
+     (nil))
+(call_insn 772 771 773 72 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x7f224d92ce58 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:386 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 773 772 774 72 (set (reg:DF 178 [ D.5851 ])
+        (reg:DF 21 xmm0)) sim2fitman_read_procpar.cpp:386 128 {*movdf_internal}
+     (nil))
+(insn 774 773 776 72 (set (mem/c:SF (plus:DI (reg/f:DI 20 frame)
+                (const_int -672 [0xfffffffffffffd60])) [0 temp_float+0 S4 A32])
+        (float_truncate:SF (reg:DF 178 [ D.5851 ]))) sim2fitman_read_procpar.cpp:386 157 {*truncdfsf_fast_sse}
+     (nil))
+(jump_insn 776 774 777 72 (set (pc)
+        (label_ref 775)) sim2fitman_read_procpar.cpp:383 654 {jump}
+     (nil)
+ -> 775)
+;;  succ:       67 (DFS_BACK)
+
+(barrier 777 776 778)
+;; basic block 73, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 72, next block 74, flags: (NEW, REACHABLE, RTL)
+;;  pred:       71
+(code_label 778 777 779 73 45 "" [1 uses])
+(note 779 778 780 73 [bb 73] NOTE_INSN_BASIC_BLOCK)
+(insn 780 779 781 73 (set (reg/f:DI 328)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:388 89 {*movdi_internal}
+     (nil))
+(insn 781 780 782 73 (set (reg:SF 329)
+        (mem/c:SF (plus:DI (reg/f:DI 20 frame)
+                (const_int -672 [0xfffffffffffffd60])) [0 temp_float+0 S4 A32])) sim2fitman_read_procpar.cpp:388 129 {*movsf_internal}
+     (nil))
+(insn 782 781 783 73 (set (mem/j:SF (plus:DI (reg/f:DI 328)
+                (const_int 360 [0x168])) [0 procpar_info_61(D)->gain+0 S4 A64])
+        (reg:SF 329)) sim2fitman_read_procpar.cpp:388 129 {*movsf_internal}
+     (nil))
+;;  succ:       74 (FALLTHRU)
+
+;; basic block 74, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 73, next block 75, flags: (NEW, REACHABLE, RTL)
+;;  pred:       65
+;;              73 (FALLTHRU)
+(code_label 783 782 784 74 41 "" [1 uses])
+(note 784 783 785 74 [bb 74] NOTE_INSN_BASIC_BLOCK)
+(insn 785 784 786 74 (set (reg/f:DI 330)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -728 [0xfffffffffffffd28])) [0 infile_struct+0 S8 A64])) sim2fitman_read_procpar.cpp:395 89 {*movdi_internal}
+     (nil))
+(insn 786 785 787 74 (set (mem/j:SI (reg/f:DI 330) [0 infile_struct_50(D)->num_datasets+0 S4 A64])
+        (const_int 1 [0x1])) sim2fitman_read_procpar.cpp:395 90 {*movsi_internal}
+     (nil))
+(insn 787 786 788 74 (set (reg/f:DI 331)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])) sim2fitman_read_procpar.cpp:397 89 {*movdi_internal}
+     (nil))
+(insn 788 787 789 74 (set (mem/j:DI (plus:DI (reg/f:DI 331)
+                (const_int 24 [0x18])) [0 main_header_57(D)->ebytes.number+0 S8 A64])
+        (const_int 16 [0x10])) sim2fitman_read_procpar.cpp:397 89 {*movdi_internal}
+     (nil))
+(insn 789 788 790 74 (set (reg:DI 332)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -712 [0xfffffffffffffd38])) [0 in_file+0 S8 A64])) sim2fitman_read_procpar.cpp:402 89 {*movdi_internal}
+     (nil))
+(insn 790 789 791 74 (set (reg:SI 1 dx)
+        (const_int 2 [0x2])) sim2fitman_read_procpar.cpp:402 90 {*movsi_internal}
+     (nil))
+(insn 791 790 792 74 (set (reg:DI 4 si)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:402 89 {*movdi_internal}
+     (nil))
+(insn 792 791 793 74 (set (reg:DI 5 di)
+        (reg:DI 332)) sim2fitman_read_procpar.cpp:402 89 {*movdi_internal}
+     (nil))
+(call_insn 793 792 794 74 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fseek") [flags 0x41]  <function_decl 0x7f224d87e798 fseek>) [0 fseek S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:402 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 794 793 795 74 (set (reg/f:DI 333)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -728 [0xfffffffffffffd28])) [0 infile_struct+0 S8 A64])) sim2fitman_read_procpar.cpp:403 89 {*movdi_internal}
+     (nil))
+(insn 795 794 796 74 (set (reg:DI 334)
+        (mem/j:DI (plus:DI (reg/f:DI 333)
+                (const_int 24 [0x18])) [0 infile_struct_50(D)->hdr_offset+0 S8 A64])) sim2fitman_read_procpar.cpp:403 89 {*movdi_internal}
+     (nil))
+(insn 796 795 797 74 (set (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -624 [0xfffffffffffffd90])) [0 header_size+0 S8 A64])
+        (reg:DI 334)) sim2fitman_read_procpar.cpp:403 89 {*movdi_internal}
+     (nil))
+(insn 797 796 798 74 (set (reg:DI 335)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -712 [0xfffffffffffffd38])) [0 in_file+0 S8 A64])) sim2fitman_read_procpar.cpp:404 89 {*movdi_internal}
+     (nil))
+(insn 798 797 799 74 (set (reg:DI 5 di)
+        (reg:DI 335)) sim2fitman_read_procpar.cpp:404 89 {*movdi_internal}
+     (nil))
+(call_insn 799 798 800 74 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ftell") [flags 0x41]  <function_decl 0x7f224d87e870 ftell>) [0 ftell S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:404 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 800 799 801 74 (set (reg:DI 179 [ D.5850 ])
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:404 89 {*movdi_internal}
+     (nil))
+(insn 801 800 802 74 (set (reg:SI 180 [ D.5848 ])
+        (subreg:SI (reg:DI 179 [ D.5850 ]) 0)) sim2fitman_read_procpar.cpp:404 90 {*movsi_internal}
+     (nil))
+(insn 802 801 803 74 (set (reg/f:DI 336)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -728 [0xfffffffffffffd28])) [0 infile_struct+0 S8 A64])) sim2fitman_read_procpar.cpp:404 89 {*movdi_internal}
+     (nil))
+(insn 803 802 804 74 (set (mem/j:SI (plus:DI (reg/f:DI 336)
+                (const_int 8 [0x8])) [0 infile_struct_50(D)->file_size+0 S4 A64])
+        (reg:SI 180 [ D.5848 ])) sim2fitman_read_procpar.cpp:404 90 {*movsi_internal}
+     (nil))
+(insn 804 803 805 74 (set (reg/f:DI 337)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])) sim2fitman_read_procpar.cpp:405 89 {*movdi_internal}
+     (nil))
+(insn 805 804 806 74 (set (reg:DI 181 [ D.5850 ])
+        (mem/j:DI (plus:DI (reg/f:DI 337)
+                (const_int 24 [0x18])) [0 main_header_57(D)->ebytes.number+0 S8 A64])) sim2fitman_read_procpar.cpp:405 89 {*movdi_internal}
+     (nil))
+(insn 806 805 807 74 (set (reg/f:DI 338)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -696 [0xfffffffffffffd48])) [0 procpar_info+0 S8 A64])) sim2fitman_read_procpar.cpp:405 89 {*movdi_internal}
+     (nil))
+(insn 807 806 808 74 (set (reg:SI 182 [ D.5848 ])
+        (mem/j:SI (plus:DI (reg/f:DI 338)
+                (const_int 328 [0x148])) [0 procpar_info_61(D)->num_points+0 S4 A64])) sim2fitman_read_procpar.cpp:405 90 {*movsi_internal}
+     (nil))
+(insn 808 807 809 74 (set (reg:DI 183 [ D.5850 ])
+        (sign_extend:DI (reg:SI 182 [ D.5848 ]))) sim2fitman_read_procpar.cpp:405 142 {*extendsidi2_rex64}
+     (nil))
+(insn 809 808 810 74 (parallel [
+            (set (reg:DI 184 [ D.5850 ])
+                (mult:DI (reg:DI 181 [ D.5850 ])
+                    (reg:DI 183 [ D.5850 ])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:405 306 {*muldi3_1}
+     (nil))
+(insn 810 809 811 74 (set (reg/f:DI 339)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -728 [0xfffffffffffffd28])) [0 infile_struct+0 S8 A64])) sim2fitman_read_procpar.cpp:406 89 {*movdi_internal}
+     (nil))
+(insn 811 810 812 74 (set (reg:SI 185 [ D.5848 ])
+        (mem/j:SI (reg/f:DI 339) [0 infile_struct_50(D)->num_datasets+0 S4 A64])) sim2fitman_read_procpar.cpp:406 90 {*movsi_internal}
+     (nil))
+(insn 812 811 813 74 (set (reg:DI 186 [ D.5850 ])
+        (sign_extend:DI (reg:SI 185 [ D.5848 ]))) sim2fitman_read_procpar.cpp:406 142 {*extendsidi2_rex64}
+     (nil))
+(insn 813 812 817 74 (parallel [
+            (set (reg:DI 187 [ D.5850 ])
+                (mult:DI (reg:DI 184 [ D.5850 ])
+                    (reg:DI 186 [ D.5850 ])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:406 306 {*muldi3_1}
+     (nil))
+(insn 817 813 818 74 (set (reg:DI 343)
+        (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -624 [0xfffffffffffffd90])) [0 header_size+0 S8 A64])) sim2fitman_read_procpar.cpp:406 89 {*movdi_internal}
+     (nil))
+(insn 818 817 819 74 (parallel [
+            (set (reg:DI 342)
+                (plus:DI (reg:DI 187 [ D.5850 ])
+                    (reg:DI 343)))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_read_procpar.cpp:406 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (reg:DI 187 [ D.5850 ])
+            (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -624 [0xfffffffffffffd90])) [0 header_size+0 S8 A64]))
+        (nil)))
+(insn 819 818 820 74 (set (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -656 [0xfffffffffffffd70])) [0 calc_filesize+0 S8 A64])
+        (reg:DI 342)) sim2fitman_read_procpar.cpp:406 89 {*movdi_internal}
+     (nil))
+(insn 820 819 821 74 (set (reg/f:DI 344)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -728 [0xfffffffffffffd28])) [0 infile_struct+0 S8 A64])) sim2fitman_read_procpar.cpp:407 89 {*movdi_internal}
+     (nil))
+(insn 821 820 822 74 (set (reg:SI 188 [ D.5848 ])
+        (mem/j:SI (plus:DI (reg/f:DI 344)
+                (const_int 8 [0x8])) [0 infile_struct_50(D)->file_size+0 S4 A64])) sim2fitman_read_procpar.cpp:407 90 {*movsi_internal}
+     (nil))
+(insn 822 821 823 74 (set (reg:DI 189 [ D.5850 ])
+        (sign_extend:DI (reg:SI 188 [ D.5848 ]))) sim2fitman_read_procpar.cpp:407 142 {*extendsidi2_rex64}
+     (nil))
+(insn 823 822 824 74 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 189 [ D.5850 ])
+            (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -656 [0xfffffffffffffd70])) [0 calc_filesize+0 S8 A64]))) sim2fitman_read_procpar.cpp:407 8 {*cmpdi_1}
+     (nil))
+(jump_insn 824 823 825 74 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 829)
+            (pc))) sim2fitman_read_procpar.cpp:407 612 {*jcc_1}
+     (nil)
+ -> 829)
+;;  succ:       75 (FALLTHRU)
+;;              76
+
+;; basic block 75, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 74, next block 76, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       74 (FALLTHRU)
+(note 825 824 826 75 [bb 75] NOTE_INSN_BASIC_BLOCK)
+(insn 826 825 827 75 (set (reg:SI 87 [ D.5848 ])
+        (const_int -3 [0xfffffffffffffffd])) sim2fitman_read_procpar.cpp:408 90 {*movsi_internal}
+     (nil))
+(jump_insn 827 826 828 75 (set (pc)
+        (label_ref:DI 834)) sim2fitman_read_procpar.cpp:408 654 {jump}
+     (nil)
+ -> 834)
+;;  succ:       78 [100.0%] 
+
+(barrier 828 827 829)
+;; basic block 76, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 75, next block 78, flags: (NEW, REACHABLE, RTL)
+;;  pred:       74
+(code_label 829 828 830 76 47 "" [1 uses])
+(note 830 829 831 76 [bb 76] NOTE_INSN_BASIC_BLOCK)
+(insn 831 830 834 76 (set (reg:SI 87 [ D.5848 ])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:413 90 {*movsi_internal}
+     (nil))
+;;  succ:       78 (FALLTHRU)
+
+;; basic block 78, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 76, next block 80, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       76 (FALLTHRU)
+;;              4 [100.0%] 
+;;              48 [100.0%] 
+;;              75 [100.0%] 
+(code_label 834 831 835 78 48 "" [3 uses])
+(note 835 834 836 78 [bb 78] NOTE_INSN_BASIC_BLOCK)
+(insn 836 835 840 78 (set (reg:SI 190 [ <retval> ])
+        (reg:SI 87 [ D.5848 ])) 90 {*movsi_internal}
+     (nil))
+(insn 840 836 841 78 (set (reg/i:SI 0 ax)
+        (reg:SI 190 [ <retval> ])) sim2fitman_read_procpar.cpp:415 90 {*movsi_internal}
+     (nil))
+(insn 841 840 842 78 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                                (const_int -8 [0xfffffffffffffff8])) [0 D.5860+0 S8 A64])
+                        (const_int 40 [0x28])
+                    ] UNSPEC_SP_TLS_TEST))
+            (clobber (scratch:DI))
+        ]) sim2fitman_read_procpar.cpp:415 990 {stack_tls_protect_test_di}
+     (nil))
+(jump_insn 842 841 849 78 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 845)
+            (pc))) sim2fitman_read_procpar.cpp:415 612 {*jcc_1}
+     (nil)
+ -> 845)
+;;  succ:       81
+;;              80 (FALLTHRU)
+
+;; basic block 80, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 78, next block 81, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       78 (FALLTHRU)
+(note 849 842 843 80 [bb 80] NOTE_INSN_BASIC_BLOCK)
+(call_insn 843 849 844 80 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f224d9b81b0 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:415 660 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (nil))
+;;  succ:      
+
+(barrier 844 843 845)
+;; basic block 81, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 80, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       78
+(code_label 845 844 850 81 49 "" [1 uses])
+(note 850 845 846 81 [bb 81] NOTE_INSN_BASIC_BLOCK)
+(insn 846 850 0 81 (use (reg/i:SI 0 ax)) sim2fitman_read_procpar.cpp:415 -1
+     (nil))
+;;  succ:       EXIT [100.0%]  (FALLTHRU)
+
+
+;; Function int read_field(FILE*, char*, int, long int, int, bool) (_Z10read_fieldP8_IO_FILEPcilib, funcdef_no=3, decl_uid=5417, cgraph_uid=3, symbol_order=3)
+
+(note 1 0 10 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL)
+;;  pred:       ENTRY (FALLTHRU)
+(note 10 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 10 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_read_procpar.cpp:420 89 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -16 [0xfffffffffffffff0])) [0 var_pointer+0 S8 A64])
+        (reg:DI 4 si [ var_pointer ])) sim2fitman_read_procpar.cpp:420 89 {*movdi_internal}
+     (nil))
+(insn 4 3 5 2 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -20 [0xffffffffffffffec])) [0 var_size+0 S4 A32])
+        (reg:SI 1 dx [ var_size ])) sim2fitman_read_procpar.cpp:420 90 {*movsi_internal}
+     (nil))
+(insn 5 4 6 2 (set (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -32 [0xffffffffffffffe0])) [0 hdr_field_offset+0 S8 A64])
+        (reg:DI 2 cx [ hdr_field_offset ])) sim2fitman_read_procpar.cpp:420 89 {*movdi_internal}
+     (nil))
+(insn 6 5 7 2 (set (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -24 [0xffffffffffffffe8])) [0 hdr_field_size+0 S4 A32])
+        (reg:SI 37 r8 [ hdr_field_size ])) sim2fitman_read_procpar.cpp:420 90 {*movsi_internal}
+     (nil))
+(insn 7 6 8 2 (set (reg:SI 93)
+        (reg:SI 38 r9 [ swap_bytes ])) sim2fitman_read_procpar.cpp:420 90 {*movsi_internal}
+     (nil))
+(insn 8 7 9 2 (set (mem/c:QI (plus:DI (reg/f:DI 20 frame)
+                (const_int -36 [0xffffffffffffffdc])) [0 swap_bytes+0 S1 A32])
+        (subreg:QI (reg:SI 93) 0)) sim2fitman_read_procpar.cpp:420 93 {*movqi_internal}
+     (nil))
+(note 9 8 12 2 NOTE_INSN_FUNCTION_BEG)
+(insn 12 9 13 2 (set (reg:DI 94)
+        (mem/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -32 [0xffffffffffffffe0])) [0 hdr_field_offset+0 S8 A64])) sim2fitman_read_procpar.cpp:422 89 {*movdi_internal}
+     (nil))
+(insn 13 12 14 2 (set (reg:DI 95)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_read_procpar.cpp:422 89 {*movdi_internal}
+     (nil))
+(insn 14 13 15 2 (set (reg:SI 1 dx)
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:422 90 {*movsi_internal}
+     (nil))
+(insn 15 14 16 2 (set (reg:DI 4 si)
+        (reg:DI 94)) sim2fitman_read_procpar.cpp:422 89 {*movdi_internal}
+     (nil))
+(insn 16 15 17 2 (set (reg:DI 5 di)
+        (reg:DI 95)) sim2fitman_read_procpar.cpp:422 89 {*movdi_internal}
+     (nil))
+(call_insn 17 16 18 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fseek") [flags 0x41]  <function_decl 0x7f224d87e798 fseek>) [0 fseek S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:422 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 18 17 19 2 (set (reg:SI 96)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -24 [0xffffffffffffffe8])) [0 hdr_field_size+0 S4 A32])) sim2fitman_read_procpar.cpp:423 90 {*movsi_internal}
+     (nil))
+(insn 19 18 20 2 (set (reg:DI 88 [ D.5891 ])
+        (sign_extend:DI (reg:SI 96))) sim2fitman_read_procpar.cpp:423 142 {*extendsidi2_rex64}
+     (nil))
+(insn 20 19 21 2 (set (reg:DI 97)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_read_procpar.cpp:423 89 {*movdi_internal}
+     (nil))
+(insn 21 20 22 2 (set (reg:DI 98)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -16 [0xfffffffffffffff0])) [0 var_pointer+0 S8 A64])) sim2fitman_read_procpar.cpp:423 89 {*movdi_internal}
+     (nil))
+(insn 22 21 23 2 (set (reg:DI 2 cx)
+        (reg:DI 97)) sim2fitman_read_procpar.cpp:423 89 {*movdi_internal}
+     (nil))
+(insn 23 22 24 2 (set (reg:DI 1 dx)
+        (reg:DI 88 [ D.5891 ])) sim2fitman_read_procpar.cpp:423 89 {*movdi_internal}
+     (nil))
+(insn 24 23 25 2 (set (reg:DI 4 si)
+        (const_int 1 [0x1])) sim2fitman_read_procpar.cpp:423 89 {*movdi_internal}
+     (nil))
+(insn 25 24 26 2 (set (reg:DI 5 di)
+        (reg:DI 98)) sim2fitman_read_procpar.cpp:423 89 {*movdi_internal}
+     (nil))
+(call_insn 26 25 27 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fread") [flags 0x41]  <function_decl 0x7f224d87e360 fread>) [0 fread S1 A8])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:423 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(insn 27 26 28 2 (set (reg:DI 89 [ D.5891 ])
+        (reg:DI 0 ax)) sim2fitman_read_procpar.cpp:423 89 {*movdi_internal}
+     (nil))
+(insn 28 27 29 2 (set (reg:SI 99)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -24 [0xffffffffffffffe8])) [0 hdr_field_size+0 S4 A32])) sim2fitman_read_procpar.cpp:423 90 {*movsi_internal}
+     (nil))
+(insn 29 28 30 2 (set (reg:DI 90 [ D.5891 ])
+        (sign_extend:DI (reg:SI 99))) sim2fitman_read_procpar.cpp:423 142 {*extendsidi2_rex64}
+     (nil))
+(insn 30 29 31 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 89 [ D.5891 ])
+            (reg:DI 90 [ D.5891 ]))) sim2fitman_read_procpar.cpp:423 8 {*cmpdi_1}
+     (nil))
+(insn 31 30 32 2 (set (reg:QI 91 [ D.5892 ])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:423 607 {*setcc_qi}
+     (nil))
+(insn 32 31 33 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 91 [ D.5892 ])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:423 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 33 32 34 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 38)
+            (pc))) sim2fitman_read_procpar.cpp:423 612 {*jcc_1}
+     (nil)
+ -> 38)
+;;  succ:       4 (FALLTHRU)
+;;              5
+
+;; basic block 4, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL)
+;;  pred:       2 (FALLTHRU)
+(note 34 33 35 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 4 (set (reg:SI 87 [ D.5890 ])
+        (const_int -1 [0xffffffffffffffff])) sim2fitman_read_procpar.cpp:424 90 {*movsi_internal}
+     (nil))
+(jump_insn 36 35 37 4 (set (pc)
+        (label_ref 51)) sim2fitman_read_procpar.cpp:424 654 {jump}
+     (nil)
+ -> 51)
+;;  succ:       8
+
+(barrier 37 36 38)
+;; basic block 5, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL)
+;;  pred:       2
+(code_label 38 37 39 5 51 "" [1 uses])
+(note 39 38 40 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 40 39 41 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:QI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -36 [0xffffffffffffffdc])) [0 swap_bytes+0 S1 A32])
+            (const_int 0 [0]))) sim2fitman_read_procpar.cpp:430 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 41 40 42 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 48)
+            (pc))) sim2fitman_read_procpar.cpp:430 612 {*jcc_1}
+     (nil)
+ -> 48)
+;;  succ:       6 (FALLTHRU)
+;;              7
+
+;; basic block 6, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL)
+;;  pred:       5 (FALLTHRU)
+(note 42 41 43 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 6 (set (reg:SI 100)
+        (mem/c:SI (plus:DI (reg/f:DI 20 frame)
+                (const_int -20 [0xffffffffffffffec])) [0 var_size+0 S4 A32])) sim2fitman_read_procpar.cpp:431 90 {*movsi_internal}
+     (nil))
+(insn 44 43 45 6 (set (reg:DI 101)
+        (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                (const_int -16 [0xfffffffffffffff0])) [0 var_pointer+0 S8 A64])) sim2fitman_read_procpar.cpp:431 89 {*movdi_internal}
+     (nil))
+(insn 45 44 46 6 (set (reg:SI 4 si)
+        (reg:SI 100)) sim2fitman_read_procpar.cpp:431 90 {*movsi_internal}
+     (nil))
+(insn 46 45 47 6 (set (reg:DI 5 di)
+        (reg:DI 101)) sim2fitman_read_procpar.cpp:431 89 {*movdi_internal}
+     (nil))
+(call_insn 47 46 48 6 (call (mem:QI (symbol_ref:DI ("_Z9swapBytesPci") [flags 0x41]  <function_decl 0x7f224d9a9d80 swapBytes>) [0 swapBytes S1 A8])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:431 660 {*call}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+;;  succ:       7 (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL)
+;;  pred:       5
+;;              6 (FALLTHRU)
+(code_label 48 47 49 7 53 "" [1 uses])
+(note 49 48 50 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 50 49 51 7 (set (reg:SI 87 [ D.5890 ])
+        (const_int 0 [0])) sim2fitman_read_procpar.cpp:438 90 {*movsi_internal}
+     (nil))
+;;  succ:       8 (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 0, freq 0, maybe hot
+;;  prev block 7, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       4
+;;              7 (FALLTHRU)
+(code_label 51 50 52 8 52 "" [1 uses])
+(note 52 51 53 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 57 8 (set (reg:SI 92 [ <retval> ])
+        (reg:SI 87 [ D.5890 ])) 90 {*movsi_internal}
+     (nil))
+(insn 57 53 58 8 (set (reg/i:SI 0 ax)
+        (reg:SI 92 [ <retval> ])) sim2fitman_read_procpar.cpp:440 90 {*movsi_internal}
+     (nil))
+(insn 58 57 0 8 (use (reg/i:SI 0 ax)) sim2fitman_read_procpar.cpp:440 -1
+     (nil))
+;;  succ:       EXIT [100.0%]  (FALLTHRU)
+

@@ -1,0 +1,17 @@
+****_Guess_File_Begins_****  <--- Do not remove this line
+
+[Parameters]
+number_peaks     1
+shift_units      ppm
+
+[Variables]
+  
+[Peaks]
+
+
+
+;Peak#	Shift	WL	Amp	0+d	  Phase	 dt	 WG
+;Water
+  1      0       6.7      8.2 	0          0     0	
+
+****_Guess_File_Ends_****  <--- Do not remove this line

@@ -1,0 +1,8 @@
+To create the fitman release .sav file there is an idl script set up called
+Create_Release_SAV_file
+
+type idl Create_Release_SAV_file
+
+to generate the .sav file
+
+This file can now be run with idl -vm-fitMAN_Suite

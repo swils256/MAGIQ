@@ -1,0 +1,18 @@
+MM, lm1,lm2,lm3,lm4,lm5,lm6,lm7,lm8,lm9,lm10,lm11,lm12,lm13,lm14;
+NAA, naa_acetyl, naa_aspartate;
+NAAG, naag_acetyl, naag_aspartyl, naag_glutamate;
+Lac, lactate;
+Asp, aspartate;
+Cr, creatine_N(CH3), creatine_X;
+Cho, choline_N(CH3)3_a, choline_N(CH3)3_b, choline_1-CH2_2-CH2;
+Myo, myoinositol;
+Ala, alanine;
+Glc, d-glucose-alpha;
+Gly, glycine;
+PEth, peth;
+Scyllo, scyllo-inositol;
+Tau, taurine;
+Glu, glutamate;
+Gln, glutamine;
+GSH, glutathione_cysteine, glutathione_glutamate, glutathione_glycine;
+GABA, gaba;

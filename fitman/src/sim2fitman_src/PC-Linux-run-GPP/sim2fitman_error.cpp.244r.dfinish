@@ -1,0 +1,2754 @@
+
+;; Function void exit_01(FILE**) (_Z7exit_01PP8_IO_FILE, funcdef_no=2, decl_uid=5403, cgraph_uid=2)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 16 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 16 4 17 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:21 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 17 16 18 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:21 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 18 17 19 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:21 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 19 18 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 19 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:21 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:22 87 {*movdi_internal_rex64}
+     (nil))
+(insn 7 6 8 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:22 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 8 7 9 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:22 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 9 8 10 2 (set (reg:SI 5 di)
+        (const_int 0 [0])) sim2fitman_error.cpp:23 89 {*movsi_internal}
+     (nil))
+(call_insn 10 9 11 2 (call (mem:QI (symbol_ref:DI ("_Z9disp_helpi") [flags 0x41]  <function_decl 0x7f78f8489300 disp_help>) [0 disp_help S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:23 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (nil))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(insn 11 10 12 2 (set (reg:SI 5 di)
+        (const_int -1 [0xffffffffffffffff])) sim2fitman_error.cpp:24 89 {*movsi_internal}
+     (nil))
+(call_insn 12 11 13 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:24 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 13 12 0)
+
+;; Function void exit_02(FILE**, char*) (_Z7exit_02PP8_IO_FILEPc, funcdef_no=3, decl_uid=5406, cgraph_uid=3)
+
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 22 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 22 5 23 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:31 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 23 22 24 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:31 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 24 23 25 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:31 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 25 24 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 25 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:31 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(insn 3 2 4 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [0 filename+0 S8 A64])
+        (reg:DI 4 si [ filename ])) sim2fitman_error.cpp:31 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 4 si [ filename ])
+        (nil)))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [0 filename+0 S8 A64])) sim2fitman_error.cpp:32 87 {*movdi_internal_rex64}
+     (nil))
+(insn 8 7 9 2 (set (reg:DI 4 si)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:32 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(insn 9 8 10 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f78f80ef1c8 *.LC0>)) sim2fitman_error.cpp:32 87 {*movdi_internal_rex64}
+     (nil))
+(insn 10 9 11 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:32 91 {*movqi_internal}
+     (nil))
+(call_insn 11 10 12 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:32 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_UNUSED (reg:SI 0 ax)
+                (nil))))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 4 si))
+                (nil)))))
+(insn 12 11 13 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f78f80ef260 *.LC1>)) sim2fitman_error.cpp:33 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 13 12 14 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:33 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 14 13 15 2 (set (reg:DI 0 ax [60])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:34 87 {*movdi_internal_rex64}
+     (nil))
+(insn 15 14 16 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [60])) sim2fitman_error.cpp:34 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [60])
+        (nil)))
+(call_insn 16 15 17 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:34 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 17 16 18 2 (set (reg:SI 5 di)
+        (const_int -2 [0xfffffffffffffffe])) sim2fitman_error.cpp:35 89 {*movsi_internal}
+     (nil))
+(call_insn 18 17 19 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:35 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 19 18 0)
+
+;; Function void cond_exit_03(char*, int) (_Z12cond_exit_03Pci, funcdef_no=4, decl_uid=5409, cgraph_uid=4)
+
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 92 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 92 5 93 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:41 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 93 92 94 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:41 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 94 93 95 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:41 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 95 94 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 95 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 filename+0 S8 A64])
+        (reg:DI 5 di [ filename ])) sim2fitman_error.cpp:41 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ filename ])
+        (nil)))
+(insn 3 2 4 2 (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -12 [0xfffffffffffffff4])) [0 s_u_out+0 S4 A32])
+        (reg:SI 4 si [ s_u_out ])) sim2fitman_error.cpp:41 89 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 4 si [ s_u_out ])
+        (nil)))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -12 [0xfffffffffffffff4])) [0 s_u_out+0 S4 A32])
+            (const_int 0 [0]))) sim2fitman_error.cpp:44 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 12)
+            (pc))) sim2fitman_error.cpp:44 612 {*jcc_1}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil))
+ -> 12)
+(note 9 8 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -12 [0xfffffffffffffff4])) [0 s_u_out+0 S4 A32])
+            (const_int 1 [0x1]))) sim2fitman_error.cpp:44 7 {*cmpsi_1}
+     (nil))
+(jump_insn 11 10 12 3 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 18)
+            (pc))) sim2fitman_error.cpp:44 612 {*jcc_1}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil))
+ -> 18)
+(code_label 12 11 13 4 4 "" [1 uses])
+(note 13 12 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 4 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f78f80ef558 *.LC2>)) sim2fitman_error.cpp:45 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 15 14 86 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:45 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(jump_insn 86 15 87 4 (set (pc)
+        (label_ref 22)) sim2fitman_error.cpp:45 650 {jump}
+     (nil)
+ -> 22)
+(barrier 87 86 18)
+(code_label 18 87 19 5 5 "" [1 uses])
+(note 19 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 5 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f78f80ef5f0 *.LC3>)) sim2fitman_error.cpp:47 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 21 20 22 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:47 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(code_label 22 21 23 6 6 "" [1 uses])
+(note 23 22 24 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 6 (set (reg:DI 0 ax [63])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 filename+0 S8 A64])) sim2fitman_error.cpp:49 87 {*movdi_internal_rex64}
+     (nil))
+(insn 25 24 26 6 (set (reg:DI 4 si)
+        (reg:DI 0 ax [63])) sim2fitman_error.cpp:49 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [63])
+        (nil)))
+(insn 26 25 27 6 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x7f78f80ef688 *.LC4>)) sim2fitman_error.cpp:49 87 {*movdi_internal_rex64}
+     (nil))
+(insn 27 26 28 6 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:49 91 {*movqi_internal}
+     (nil))
+(call_insn 28 27 29 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:49 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_UNUSED (reg:SI 0 ax)
+                (nil))))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 4 si))
+                (nil)))))
+(insn 29 28 30 6 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x7f78f80ef720 *.LC5>)) sim2fitman_error.cpp:50 87 {*movdi_internal_rex64}
+     (nil))
+(insn 30 29 31 6 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:50 91 {*movqi_internal}
+     (nil))
+(call_insn 31 30 32 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:50 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (nil))))
+(call_insn 32 31 35 6 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_Z8promptYNv") [flags 0x41]  <function_decl 0x7f78f8489000 promptYN>) [0 promptYN S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:51 663 {*call_value}
+     (nil)
+    (nil))
+(insn 35 32 36 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:60 retval.0 ] [60])
+            (const_int 0 [0]))) sim2fitman_error.cpp:51 1 {*cmpqi_ccno_1}
+     (expr_list:REG_DEAD (reg:QI 0 ax [orig:60 retval.0 ] [60])
+        (nil)))
+(jump_insn 36 35 37 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 75)
+            (pc))) sim2fitman_error.cpp:51 612 {*jcc_1}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil))
+ -> 75)
+(note 37 36 38 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -12 [0xfffffffffffffff4])) [0 s_u_out+0 S4 A32])
+            (const_int 0 [0]))) sim2fitman_error.cpp:52 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 39 38 40 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 67)
+            (pc))) sim2fitman_error.cpp:52 612 {*jcc_1}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil))
+ -> 67)
+(note 40 39 41 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 41 40 42 8 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f78f80ef7b8 *.LC6>)) sim2fitman_error.cpp:53 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 42 41 43 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:53 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 43 42 44 8 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC7") [flags 0x2]  <var_decl 0x7f78f80ef850 *.LC7>)) sim2fitman_error.cpp:54 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 44 43 45 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:54 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 45 44 46 8 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC8") [flags 0x2]  <var_decl 0x7f78f80ef8e8 *.LC8>)) sim2fitman_error.cpp:55 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 46 45 47 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:55 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 47 46 48 8 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC9") [flags 0x2]  <var_decl 0x7f78f80ef980 *.LC9>)) sim2fitman_error.cpp:56 87 {*movdi_internal_rex64}
+     (nil))
+(insn 48 47 49 8 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:56 91 {*movqi_internal}
+     (nil))
+(call_insn 49 48 50 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:56 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (nil))))
+(call_insn 50 49 53 8 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_Z8promptYNv") [flags 0x41]  <function_decl 0x7f78f8489000 promptYN>) [0 promptYN S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:57 663 {*call_value}
+     (nil)
+    (nil))
+(insn 53 50 54 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:62 retval.1 ] [62])
+            (const_int 0 [0]))) sim2fitman_error.cpp:57 1 {*cmpqi_ccno_1}
+     (expr_list:REG_DEAD (reg:QI 0 ax [orig:62 retval.1 ] [62])
+        (nil)))
+(jump_insn 54 53 55 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 60)
+            (pc))) sim2fitman_error.cpp:57 612 {*jcc_1}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil))
+ -> 60)
+(note 55 54 56 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 56 55 57 9 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC10") [flags 0x2]  <var_decl 0x7f78f80efa18 *.LC10>)) sim2fitman_error.cpp:58 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 57 56 88 9 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:58 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(jump_insn 88 57 89 9 (set (pc)
+        (label_ref 84)) 650 {jump}
+     (nil)
+ -> 84)
+(barrier 89 88 60)
+(code_label 60 89 61 10 9 "" [1 uses])
+(note 61 60 62 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 62 61 63 10 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC11") [flags 0x2]  <var_decl 0x7f78f80efab0 *.LC11>)) sim2fitman_error.cpp:60 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 63 62 64 10 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:60 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 64 63 65 10 (set (reg:SI 5 di)
+        (const_int -3 [0xfffffffffffffffd])) sim2fitman_error.cpp:61 89 {*movsi_internal}
+     (nil))
+(call_insn 65 64 66 10 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:61 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 66 65 67)
+(code_label 67 66 68 11 8 "" [1 uses])
+(note 68 67 69 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 69 68 70 11 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC12") [flags 0x2]  <var_decl 0x7f78f80efb48 *.LC12>)) sim2fitman_error.cpp:64 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 70 69 90 11 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:64 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(jump_insn 90 70 91 11 (set (pc)
+        (label_ref 84)) 650 {jump}
+     (nil)
+ -> 84)
+(barrier 91 90 75)
+(code_label 75 91 76 12 7 "" [1 uses])
+(note 76 75 77 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 77 76 78 12 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC11") [flags 0x2]  <var_decl 0x7f78f80efab0 *.LC11>)) sim2fitman_error.cpp:68 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 78 77 79 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:68 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 79 78 80 12 (set (reg:SI 5 di)
+        (const_int -3 [0xfffffffffffffffd])) sim2fitman_error.cpp:69 89 {*movsi_internal}
+     (nil))
+(call_insn 80 79 81 12 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:69 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 81 80 84)
+(code_label 84 81 85 13 3 "" [2 uses])
+(note 85 84 96 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(note 96 85 97 13 NOTE_INSN_EPILOGUE_BEG)
+(insn/f 97 96 98 13 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 6 bp)
+                    (const_int 8 [0x8])))
+            (set (reg/f:DI 6 bp)
+                (mem:DI (reg/f:DI 6 bp) [0  S8 A8]))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:71 686 {leave_rex64}
+     (expr_list:REG_CFA_DEF_CFA (plus:DI (reg/f:DI 7 sp)
+            (const_int 8 [0x8]))
+        (nil)))
+(jump_insn 98 97 99 13 (simple_return) sim2fitman_error.cpp:71 672 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 99 98 0)
+
+;; Function void exit_04(FILE**, char*) (_Z7exit_04PP8_IO_FILEPc, funcdef_no=5, decl_uid=5412, cgraph_uid=5)
+
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 24 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 24 5 25 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:76 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 25 24 26 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:76 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 26 25 27 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:76 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 27 26 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 27 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:76 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(insn 3 2 4 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [0 argument+0 S8 A64])
+        (reg:DI 4 si [ argument ])) sim2fitman_error.cpp:76 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 4 si [ argument ])
+        (nil)))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [0 argument+0 S8 A64])) sim2fitman_error.cpp:77 87 {*movdi_internal_rex64}
+     (nil))
+(insn 8 7 9 2 (set (reg:DI 4 si)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:77 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(insn 9 8 10 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC13") [flags 0x2]  <var_decl 0x7f78f80f97b8 *.LC13>)) sim2fitman_error.cpp:77 87 {*movdi_internal_rex64}
+     (nil))
+(insn 10 9 11 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:77 91 {*movqi_internal}
+     (nil))
+(call_insn 11 10 12 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:77 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_UNUSED (reg:SI 0 ax)
+                (nil))))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 4 si))
+                (nil)))))
+(insn 12 11 13 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC14") [flags 0x2]  <var_decl 0x7f78f80f9850 *.LC14>)) sim2fitman_error.cpp:78 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 13 12 14 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:78 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 14 13 15 2 (set (reg:DI 0 ax [60])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:79 87 {*movdi_internal_rex64}
+     (nil))
+(insn 15 14 16 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [60])) sim2fitman_error.cpp:79 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [60])
+        (nil)))
+(call_insn 16 15 17 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:79 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 17 16 18 2 (set (reg:SI 5 di)
+        (const_int 0 [0])) sim2fitman_error.cpp:80 89 {*movsi_internal}
+     (nil))
+(call_insn 18 17 19 2 (call (mem:QI (symbol_ref:DI ("_Z9disp_helpi") [flags 0x41]  <function_decl 0x7f78f8489300 disp_help>) [0 disp_help S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:80 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (nil))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(insn 19 18 20 2 (set (reg:SI 5 di)
+        (const_int -4 [0xfffffffffffffffc])) sim2fitman_error.cpp:81 89 {*movsi_internal}
+     (nil))
+(call_insn 20 19 21 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:81 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 21 20 0)
+
+;; Function void exit_05(FILE**) (_Z7exit_05PP8_IO_FILE, funcdef_no=6, decl_uid=5414, cgraph_uid=6)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 16 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 16 4 17 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:87 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 17 16 18 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:87 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 18 17 19 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:87 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 19 18 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 19 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:87 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC15") [flags 0x2]  <var_decl 0x7f78f80f9ab0 *.LC15>)) sim2fitman_error.cpp:88 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:88 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:89 87 {*movdi_internal_rex64}
+     (nil))
+(insn 9 8 10 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:89 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 10 9 11 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:89 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 11 10 12 2 (set (reg:SI 5 di)
+        (const_int -5 [0xfffffffffffffffb])) sim2fitman_error.cpp:90 89 {*movsi_internal}
+     (nil))
+(call_insn 12 11 13 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:90 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 13 12 0)
+
+;; Function void exit_06(FILE**, char*) (_Z7exit_06PP8_IO_FILEPc, funcdef_no=7, decl_uid=5417, cgraph_uid=7)
+
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 24 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 24 5 25 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:96 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 25 24 26 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:96 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 26 25 27 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:96 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 27 26 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 27 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:96 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(insn 3 2 4 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [0 filename+0 S8 A64])
+        (reg:DI 4 si [ filename ])) sim2fitman_error.cpp:96 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 4 si [ filename ])
+        (nil)))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC16") [flags 0x2]  <var_decl 0x7f78f80f9d10 *.LC16>)) sim2fitman_error.cpp:97 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 8 7 9 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:97 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 9 8 10 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [0 filename+0 S8 A64])) sim2fitman_error.cpp:98 87 {*movdi_internal_rex64}
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 4 si)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:98 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC17") [flags 0x2]  <var_decl 0x7f78f80f9da8 *.LC17>)) sim2fitman_error.cpp:98 87 {*movdi_internal_rex64}
+     (nil))
+(insn 12 11 13 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:98 91 {*movqi_internal}
+     (nil))
+(call_insn 13 12 14 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:98 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_UNUSED (reg:SI 0 ax)
+                (nil))))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 4 si))
+                (nil)))))
+(insn 14 13 15 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC11") [flags 0x2]  <var_decl 0x7f78f80efab0 *.LC11>)) sim2fitman_error.cpp:99 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 15 14 16 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:99 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 16 15 17 2 (set (reg:DI 0 ax [60])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:100 87 {*movdi_internal_rex64}
+     (nil))
+(insn 17 16 18 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [60])) sim2fitman_error.cpp:100 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [60])
+        (nil)))
+(call_insn 18 17 19 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:100 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 19 18 20 2 (set (reg:SI 5 di)
+        (const_int -6 [0xfffffffffffffffa])) sim2fitman_error.cpp:101 89 {*movsi_internal}
+     (nil))
+(call_insn 20 19 21 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:101 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 21 20 0)
+
+;; Function void exit_07(FILE**, char*) (_Z7exit_07PP8_IO_FILEPc, funcdef_no=8, decl_uid=5420, cgraph_uid=8)
+
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 24 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 24 5 25 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:107 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 25 24 26 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:107 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 26 25 27 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:107 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 27 26 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 27 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:107 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(insn 3 2 4 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [0 filename+0 S8 A64])
+        (reg:DI 4 si [ filename ])) sim2fitman_error.cpp:107 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 4 si [ filename ])
+        (nil)))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC18") [flags 0x2]  <var_decl 0x7f78f8103098 *.LC18>)) sim2fitman_error.cpp:108 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 8 7 9 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:108 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 9 8 10 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [0 filename+0 S8 A64])) sim2fitman_error.cpp:109 87 {*movdi_internal_rex64}
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 4 si)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:109 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC19") [flags 0x2]  <var_decl 0x7f78f8103130 *.LC19>)) sim2fitman_error.cpp:109 87 {*movdi_internal_rex64}
+     (nil))
+(insn 12 11 13 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:109 91 {*movqi_internal}
+     (nil))
+(call_insn 13 12 14 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:109 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_UNUSED (reg:SI 0 ax)
+                (nil))))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 4 si))
+                (nil)))))
+(insn 14 13 15 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:110 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 15 14 16 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:110 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 16 15 17 2 (set (reg:DI 0 ax [60])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:111 87 {*movdi_internal_rex64}
+     (nil))
+(insn 17 16 18 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [60])) sim2fitman_error.cpp:111 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [60])
+        (nil)))
+(call_insn 18 17 19 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:111 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 19 18 20 2 (set (reg:SI 5 di)
+        (const_int -7 [0xfffffffffffffff9])) sim2fitman_error.cpp:112 89 {*movsi_internal}
+     (nil))
+(call_insn 20 19 21 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:112 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 21 20 0)
+
+;; Function void exit_08(char*) (_Z7exit_08Pc, funcdef_no=9, decl_uid=5422, cgraph_uid=9)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 18 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 18 4 19 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:118 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 19 18 20 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:118 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 20 19 21 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:118 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 21 20 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 21 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 filename+0 S8 A64])
+        (reg:DI 5 di [ filename ])) sim2fitman_error.cpp:118 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ filename ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 filename+0 S8 A64])) sim2fitman_error.cpp:119 87 {*movdi_internal_rex64}
+     (nil))
+(insn 7 6 8 2 (set (reg:DI 4 si)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:119 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC21") [flags 0x2]  <var_decl 0x7f78f8103428 *.LC21>)) sim2fitman_error.cpp:119 87 {*movdi_internal_rex64}
+     (nil))
+(insn 9 8 10 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:119 91 {*movqi_internal}
+     (nil))
+(call_insn 10 9 11 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:119 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_UNUSED (reg:SI 0 ax)
+                (nil))))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 4 si))
+                (nil)))))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f78f80ef260 *.LC1>)) sim2fitman_error.cpp:120 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 12 11 13 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:120 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 2 (set (reg:SI 5 di)
+        (const_int -8 [0xfffffffffffffff8])) sim2fitman_error.cpp:121 89 {*movsi_internal}
+     (nil))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:121 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 15 14 0)
+
+;; Function void exit_09(FILE**, char*, InFile_struct*) (_Z7exit_09PP8_IO_FILEPcP13InFile_struct, funcdef_no=10, decl_uid=5426, cgraph_uid=10)
+
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 29 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 29 6 30 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:127 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 30 29 31 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:127 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 31 30 32 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:127 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 32 31 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 32 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:127 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(insn 3 2 4 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [0 filename+0 S8 A64])
+        (reg:DI 4 si [ filename ])) sim2fitman_error.cpp:127 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 4 si [ filename ])
+        (nil)))
+(insn 4 3 5 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -24 [0xffffffffffffffe8])) [0 infile_struct+0 S8 A64])
+        (reg:DI 1 dx [ infile_struct ])) sim2fitman_error.cpp:127 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 1 dx [ infile_struct ])
+        (nil)))
+(note 5 4 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 5 9 2 (set (reg/f:DI 0 ax [60])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -24 [0xffffffffffffffe8])) [0 infile_struct+0 S8 A64])) sim2fitman_error.cpp:129 87 {*movdi_internal_rex64}
+     (nil))
+(insn 9 8 10 2 (parallel [
+            (set (reg/f:DI 0 ax [orig:59 D.5643 ] [59])
+                (plus:DI (reg/f:DI 0 ax [60])
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_error.cpp:129 274 {*adddi_1}
+     (expr_list:REG_DEAD (reg/f:DI 0 ax [60])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                            (const_int -24 [0xffffffffffffffe8])) [0 infile_struct+0 S8 A64])
+                    (const_int 16 [0x10]))
+                (nil)))))
+(insn 10 9 11 2 (set (reg:DI 4 si)
+        (reg/f:DI 0 ax [orig:59 D.5643 ] [59])) sim2fitman_error.cpp:129 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg/f:DI 0 ax [orig:59 D.5643 ] [59])
+        (nil)))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC22") [flags 0x2]  <var_decl 0x7f78f8103720 *.LC22>)) sim2fitman_error.cpp:129 87 {*movdi_internal_rex64}
+     (nil))
+(insn 12 11 13 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:129 91 {*movqi_internal}
+     (nil))
+(call_insn 13 12 14 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:129 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_UNUSED (reg:SI 0 ax)
+                (nil))))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 4 si))
+                (nil)))))
+(insn 14 13 15 2 (set (reg:DI 0 ax [61])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [0 filename+0 S8 A64])) sim2fitman_error.cpp:130 87 {*movdi_internal_rex64}
+     (nil))
+(insn 15 14 16 2 (set (reg:DI 4 si)
+        (reg:DI 0 ax [61])) sim2fitman_error.cpp:130 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [61])
+        (nil)))
+(insn 16 15 17 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC19") [flags 0x2]  <var_decl 0x7f78f8103130 *.LC19>)) sim2fitman_error.cpp:130 87 {*movdi_internal_rex64}
+     (nil))
+(insn 17 16 18 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:130 91 {*movqi_internal}
+     (nil))
+(call_insn 18 17 19 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:130 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_UNUSED (reg:SI 0 ax)
+                (nil))))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 4 si))
+                (nil)))))
+(insn 19 18 20 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:131 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 20 19 21 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:131 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 21 20 22 2 (set (reg:DI 0 ax [62])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:132 87 {*movdi_internal_rex64}
+     (nil))
+(insn 22 21 23 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [62])) sim2fitman_error.cpp:132 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [62])
+        (nil)))
+(call_insn 23 22 24 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:132 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 24 23 25 2 (set (reg:SI 5 di)
+        (const_int -9 [0xfffffffffffffff7])) sim2fitman_error.cpp:133 89 {*movsi_internal}
+     (nil))
+(call_insn 25 24 26 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:133 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 26 25 0)
+
+;; Function void exit_10(FILE**, char*, InFile_struct*) (_Z7exit_10PP8_IO_FILEPcP13InFile_struct, funcdef_no=11, decl_uid=5430, cgraph_uid=11)
+
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 25 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 25 6 26 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:139 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 26 25 27 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:139 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 27 26 28 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:139 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 28 27 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 28 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:139 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(insn 3 2 4 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [0 filename+0 S8 A64])
+        (reg:DI 4 si [ filename ])) sim2fitman_error.cpp:139 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 4 si [ filename ])
+        (nil)))
+(insn 4 3 5 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -24 [0xffffffffffffffe8])) [0 infile_struct+0 S8 A64])
+        (reg:DI 1 dx [ infile_struct ])) sim2fitman_error.cpp:139 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 1 dx [ infile_struct ])
+        (nil)))
+(note 5 4 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 5 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC23") [flags 0x2]  <var_decl 0x7f78f8103980 *.LC23>)) sim2fitman_error.cpp:140 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:140 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -16 [0xfffffffffffffff0])) [0 filename+0 S8 A64])) sim2fitman_error.cpp:141 87 {*movdi_internal_rex64}
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 4 si)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:141 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(insn 12 11 13 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC19") [flags 0x2]  <var_decl 0x7f78f8103130 *.LC19>)) sim2fitman_error.cpp:141 87 {*movdi_internal_rex64}
+     (nil))
+(insn 13 12 14 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:141 91 {*movqi_internal}
+     (nil))
+(call_insn 14 13 15 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:141 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_UNUSED (reg:SI 0 ax)
+                (nil))))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 4 si))
+                (nil)))))
+(insn 15 14 16 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:142 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 16 15 17 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:142 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 17 16 18 2 (set (reg:DI 0 ax [60])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:143 87 {*movdi_internal_rex64}
+     (nil))
+(insn 18 17 19 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [60])) sim2fitman_error.cpp:143 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [60])
+        (nil)))
+(call_insn 19 18 20 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:143 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 20 19 21 2 (set (reg:SI 5 di)
+        (const_int -10 [0xfffffffffffffff6])) sim2fitman_error.cpp:144 89 {*movsi_internal}
+     (nil))
+(call_insn 21 20 22 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:144 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 22 21 0)
+
+;; Function void exit_11(FILE**) (_Z7exit_11PP8_IO_FILE, funcdef_no=12, decl_uid=5432, cgraph_uid=12)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 20 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 20 4 21 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:150 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 21 20 22 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:150 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 22 21 23 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:150 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 23 22 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 23 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:150 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC24") [flags 0x2]  <var_decl 0x7f78f8103be0 *.LC24>)) sim2fitman_error.cpp:151 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:151 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC25") [flags 0x2]  <var_decl 0x7f78f8103c78 *.LC25>)) sim2fitman_error.cpp:152 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:152 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:153 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 11 10 12 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:153 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 12 11 13 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:154 87 {*movdi_internal_rex64}
+     (nil))
+(insn 13 12 14 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:154 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:154 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 15 14 16 2 (set (reg:SI 5 di)
+        (const_int -11 [0xfffffffffffffff5])) sim2fitman_error.cpp:155 89 {*movsi_internal}
+     (nil))
+(call_insn 16 15 17 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:155 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 17 16 0)
+
+;; Function void exit_12(FILE**) (_Z7exit_12PP8_IO_FILE, funcdef_no=13, decl_uid=5434, cgraph_uid=13)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 20 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 20 4 21 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:161 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 21 20 22 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:161 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 22 21 23 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:161 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 23 22 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 23 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:161 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC24") [flags 0x2]  <var_decl 0x7f78f8103be0 *.LC24>)) sim2fitman_error.cpp:162 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:162 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC26") [flags 0x2]  <var_decl 0x7f78f8103ed8 *.LC26>)) sim2fitman_error.cpp:163 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:163 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:164 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 11 10 12 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:164 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 12 11 13 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:165 87 {*movdi_internal_rex64}
+     (nil))
+(insn 13 12 14 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:165 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:165 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 15 14 16 2 (set (reg:SI 5 di)
+        (const_int -12 [0xfffffffffffffff4])) sim2fitman_error.cpp:166 89 {*movsi_internal}
+     (nil))
+(call_insn 16 15 17 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:166 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 17 16 0)
+
+;; Function void exit_13(FILE**) (_Z7exit_13PP8_IO_FILE, funcdef_no=14, decl_uid=5436, cgraph_uid=14)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 18 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 18 4 19 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:172 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 19 18 20 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:172 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 20 19 21 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:172 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 21 20 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 21 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:172 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC27") [flags 0x2]  <var_decl 0x7f78f81131c8 *.LC27>)) sim2fitman_error.cpp:173 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:173 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:174 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:174 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:175 87 {*movdi_internal_rex64}
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:175 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 12 11 13 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:175 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 2 (set (reg:SI 5 di)
+        (const_int -13 [0xfffffffffffffff3])) sim2fitman_error.cpp:176 89 {*movsi_internal}
+     (nil))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:176 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 15 14 0)
+
+;; Function void exit_14(FILE**) (_Z7exit_14PP8_IO_FILE, funcdef_no=15, decl_uid=5438, cgraph_uid=15)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 18 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 18 4 19 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:182 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 19 18 20 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:182 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 20 19 21 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:182 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 21 20 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 21 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:182 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC28") [flags 0x2]  <var_decl 0x7f78f8113428 *.LC28>)) sim2fitman_error.cpp:183 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:183 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:185 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:185 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:186 87 {*movdi_internal_rex64}
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:186 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 12 11 13 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:186 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 2 (set (reg:SI 5 di)
+        (const_int -14 [0xfffffffffffffff2])) sim2fitman_error.cpp:187 89 {*movsi_internal}
+     (nil))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:187 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 15 14 0)
+
+;; Function void exit_15(FILE**) (_Z7exit_15PP8_IO_FILE, funcdef_no=16, decl_uid=5440, cgraph_uid=16)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 18 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 18 4 19 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:193 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 19 18 20 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:193 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 20 19 21 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:193 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 21 20 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 21 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:193 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC29") [flags 0x2]  <var_decl 0x7f78f8113688 *.LC29>)) sim2fitman_error.cpp:194 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:194 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:195 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:195 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:196 87 {*movdi_internal_rex64}
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:196 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 12 11 13 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:196 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 2 (set (reg:SI 5 di)
+        (const_int -15 [0xfffffffffffffff1])) sim2fitman_error.cpp:197 89 {*movsi_internal}
+     (nil))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:197 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 15 14 0)
+
+;; Function void exit_16(FILE**) (_Z7exit_16PP8_IO_FILE, funcdef_no=17, decl_uid=5442, cgraph_uid=17)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 18 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 18 4 19 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:203 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 19 18 20 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:203 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 20 19 21 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:203 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 21 20 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 21 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:203 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC30") [flags 0x2]  <var_decl 0x7f78f81138e8 *.LC30>)) sim2fitman_error.cpp:204 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:204 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:205 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:205 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:206 87 {*movdi_internal_rex64}
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:206 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 12 11 13 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:206 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 2 (set (reg:SI 5 di)
+        (const_int -16 [0xfffffffffffffff0])) sim2fitman_error.cpp:207 89 {*movsi_internal}
+     (nil))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:207 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 15 14 0)
+
+;; Function void exit_17(FILE**) (_Z7exit_17PP8_IO_FILE, funcdef_no=18, decl_uid=5444, cgraph_uid=18)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 18 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 18 4 19 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:213 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 19 18 20 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:213 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 20 19 21 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:213 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 21 20 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 21 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:213 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC31") [flags 0x2]  <var_decl 0x7f78f8113b48 *.LC31>)) sim2fitman_error.cpp:214 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:214 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:215 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:215 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:216 87 {*movdi_internal_rex64}
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:216 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 12 11 13 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:216 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 2 (set (reg:SI 5 di)
+        (const_int -17 [0xffffffffffffffef])) sim2fitman_error.cpp:217 89 {*movsi_internal}
+     (nil))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:217 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 15 14 0)
+
+;; Function void exit_18(FILE**) (_Z7exit_18PP8_IO_FILE, funcdef_no=19, decl_uid=5446, cgraph_uid=19)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 18 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 18 4 19 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:223 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 19 18 20 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:223 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 20 19 21 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:223 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 21 20 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 21 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:223 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC32") [flags 0x2]  <var_decl 0x7f78f8113da8 *.LC32>)) sim2fitman_error.cpp:224 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:224 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:225 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:225 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:226 87 {*movdi_internal_rex64}
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:226 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 12 11 13 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:226 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 2 (set (reg:SI 5 di)
+        (const_int -18 [0xffffffffffffffee])) sim2fitman_error.cpp:227 89 {*movsi_internal}
+     (nil))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:227 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 15 14 0)
+
+;; Function void exit_19(FILE**) (_Z7exit_19PP8_IO_FILE, funcdef_no=20, decl_uid=5448, cgraph_uid=20)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 18 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 18 4 19 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:233 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 19 18 20 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:233 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 20 19 21 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:233 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 21 20 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 21 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:233 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC33") [flags 0x2]  <var_decl 0x7f78f8124098 *.LC33>)) sim2fitman_error.cpp:234 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:234 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:235 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:235 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:236 87 {*movdi_internal_rex64}
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:236 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 12 11 13 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:236 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 2 (set (reg:SI 5 di)
+        (const_int -19 [0xffffffffffffffed])) sim2fitman_error.cpp:237 89 {*movsi_internal}
+     (nil))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:237 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 15 14 0)
+
+;; Function void exit_20(FILE**) (_Z7exit_20PP8_IO_FILE, funcdef_no=21, decl_uid=5450, cgraph_uid=21)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 20 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 20 4 21 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:243 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 21 20 22 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:243 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 22 21 23 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:243 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 23 22 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 23 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:243 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC34") [flags 0x2]  <var_decl 0x7f78f81242f8 *.LC34>)) sim2fitman_error.cpp:244 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:244 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC35") [flags 0x2]  <var_decl 0x7f78f8124390 *.LC35>)) sim2fitman_error.cpp:245 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:245 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:246 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 11 10 12 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:246 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 12 11 13 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:247 87 {*movdi_internal_rex64}
+     (nil))
+(insn 13 12 14 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:247 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:247 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 15 14 16 2 (set (reg:SI 5 di)
+        (const_int -20 [0xffffffffffffffec])) sim2fitman_error.cpp:248 89 {*movsi_internal}
+     (nil))
+(call_insn 16 15 17 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:248 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 17 16 0)
+
+;; Function void cond_exit_21() (_Z12cond_exit_21v, funcdef_no=22, decl_uid=5451, cgraph_uid=22)
+
+(note 1 0 3 NOTE_INSN_DELETED)
+(note 3 1 32 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 32 3 33 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:254 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 33 32 34 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:254 87 {*movdi_internal_rex64}
+     (nil))
+(note 34 33 2 2 NOTE_INSN_PROLOGUE_END)
+(note 2 34 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f78f80ef7b8 *.LC6>)) sim2fitman_error.cpp:257 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 6 5 7 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:257 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 7 6 8 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC36") [flags 0x2]  <var_decl 0x7f78f8124688 *.LC36>)) sim2fitman_error.cpp:258 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 8 7 9 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:258 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 9 8 10 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC37") [flags 0x2]  <var_decl 0x7f78f8124720 *.LC37>)) sim2fitman_error.cpp:259 87 {*movdi_internal_rex64}
+     (nil))
+(insn 10 9 11 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:259 91 {*movqi_internal}
+     (nil))
+(call_insn 11 10 12 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:259 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (nil))))
+(call_insn 12 11 31 2 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_Z8promptYNv") [flags 0x41]  <function_decl 0x7f78f8489000 promptYN>) [0 promptYN S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:260 663 {*call_value}
+     (nil)
+    (nil))
+(insn 31 12 15 2 (parallel [
+            (set (reg:SI 0 ax [orig:60 retval.2 ] [60])
+                (xor:SI (reg:SI 0 ax [orig:59 D.5658 ] [59])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) sim2fitman_error.cpp:260 413 {*xorsi_1}
+     (nil))
+(insn 15 31 16 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:60 retval.2 ] [60])
+            (const_int 0 [0]))) sim2fitman_error.cpp:260 1 {*cmpqi_ccno_1}
+     (expr_list:REG_DEAD (reg:QI 0 ax [orig:60 retval.2 ] [60])
+        (nil)))
+(jump_insn 16 15 17 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 29)
+            (pc))) sim2fitman_error.cpp:260 612 {*jcc_1}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil))
+ -> 29)
+(note 17 16 18 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC38") [flags 0x2]  <var_decl 0x7f78f81247b8 *.LC38>)) sim2fitman_error.cpp:261 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 19 18 20 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:261 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 20 19 21 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC39") [flags 0x2]  <var_decl 0x7f78f8124850 *.LC39>)) sim2fitman_error.cpp:262 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 21 20 22 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:262 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 22 21 23 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC11") [flags 0x2]  <var_decl 0x7f78f80efab0 *.LC11>)) sim2fitman_error.cpp:263 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 23 22 24 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:263 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 24 23 25 3 (set (reg:SI 5 di)
+        (const_int -21 [0xffffffffffffffeb])) sim2fitman_error.cpp:264 89 {*movsi_internal}
+     (nil))
+(call_insn 25 24 26 3 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:264 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 26 25 29)
+(code_label 29 26 30 4 29 "" [1 uses])
+(note 30 29 35 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 35 30 36 4 NOTE_INSN_EPILOGUE_BEG)
+(insn/f 36 35 37 4 (set (reg/f:DI 6 bp)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) sim2fitman_error.cpp:266 77 {*popdi1}
+     (expr_list:REG_CFA_DEF_CFA (plus:DI (reg/f:DI 7 sp)
+            (const_int 8 [0x8]))
+        (nil)))
+(jump_insn 37 36 38 4 (simple_return) sim2fitman_error.cpp:266 672 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 38 37 0)
+
+;; Function void exit_22(FILE**) (_Z7exit_22PP8_IO_FILE, funcdef_no=23, decl_uid=5453, cgraph_uid=23)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 20 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 20 4 21 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:271 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 21 20 22 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:271 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 22 21 23 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:271 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 23 22 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 23 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:271 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC24") [flags 0x2]  <var_decl 0x7f78f8103be0 *.LC24>)) sim2fitman_error.cpp:272 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:272 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC40") [flags 0x2]  <var_decl 0x7f78f8124d10 *.LC40>)) sim2fitman_error.cpp:273 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:273 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:274 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 11 10 12 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:274 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 12 11 13 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:275 87 {*movdi_internal_rex64}
+     (nil))
+(insn 13 12 14 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:275 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:275 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 15 14 16 2 (set (reg:SI 5 di)
+        (const_int -22 [0xffffffffffffffea])) sim2fitman_error.cpp:276 89 {*movsi_internal}
+     (nil))
+(call_insn 16 15 17 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:276 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 17 16 0)
+
+;; Function int cond_exit_23() (_Z12cond_exit_23v, funcdef_no=24, decl_uid=5454, cgraph_uid=24)
+
+(note 1 0 3 NOTE_INSN_DELETED)
+(note 3 1 58 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 58 3 59 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:282 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 59 58 60 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:282 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 60 59 61 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:282 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 61 60 2 2 NOTE_INSN_PROLOGUE_END)
+(note 2 61 70 2 NOTE_INSN_FUNCTION_BEG)
+(note 70 2 5 2 0x7f78f84a8280 NOTE_INSN_BLOCK_BEG)
+(insn 5 70 6 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC41") [flags 0x2]  <var_decl 0x7f78f812f098 *.LC41>)) sim2fitman_error.cpp:286 87 {*movdi_internal_rex64}
+     (nil))
+(insn 6 5 7 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:286 91 {*movqi_internal}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:286 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (nil))))
+(call_insn 8 7 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_Z10promptSUBNv") [flags 0x41]  <function_decl 0x7f78f8489100 promptSUBN>) [0 promptSUBN S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:287 663 {*call_value}
+     (nil)
+    (nil))
+(insn 10 8 11 2 (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -4 [0xfffffffffffffffc])) [0 s_u_out+0 S4 A32])
+        (reg:SI 0 ax [orig:60 D.5664 ] [60])) sim2fitman_error.cpp:287 89 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 0 ax [orig:60 D.5664 ] [60])
+        (nil)))
+(insn 11 10 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -4 [0xfffffffffffffffc])) [0 s_u_out+0 S4 A32])
+            (const_int 1 [0x1]))) sim2fitman_error.cpp:288 7 {*cmpsi_1}
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 17)
+            (pc))) sim2fitman_error.cpp:288 612 {*jcc_1}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil))
+ -> 17)
+(note 13 12 14 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 52 3 (set (reg:SI 0 ax [orig:59 D.5664 ] [59])
+        (const_int 1 [0x1])) sim2fitman_error.cpp:290 89 {*movsi_internal}
+     (nil))
+(jump_insn 52 14 53 3 (set (pc)
+        (label_ref 40)) sim2fitman_error.cpp:290 650 {jump}
+     (nil)
+ -> 40)
+(barrier 53 52 17)
+(code_label 17 53 18 4 33 "" [1 uses])
+(note 18 17 19 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -4 [0xfffffffffffffffc])) [0 s_u_out+0 S4 A32])
+            (const_int 2 [0x2]))) sim2fitman_error.cpp:291 7 {*cmpsi_1}
+     (nil))
+(jump_insn 20 19 21 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 25)
+            (pc))) sim2fitman_error.cpp:291 612 {*jcc_1}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil))
+ -> 25)
+(note 21 20 22 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 54 5 (set (reg:SI 0 ax [orig:59 D.5664 ] [59])
+        (const_int 2 [0x2])) sim2fitman_error.cpp:293 89 {*movsi_internal}
+     (nil))
+(jump_insn 54 22 55 5 (set (pc)
+        (label_ref 40)) sim2fitman_error.cpp:293 650 {jump}
+     (nil)
+ -> 40)
+(barrier 55 54 25)
+(code_label 25 55 26 6 35 "" [1 uses])
+(note 26 25 27 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 27 26 28 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -4 [0xfffffffffffffffc])) [0 s_u_out+0 S4 A32])
+            (const_int 0 [0]))) sim2fitman_error.cpp:294 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 28 27 29 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 33)
+            (pc))) sim2fitman_error.cpp:294 612 {*jcc_1}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil))
+ -> 33)
+(note 29 28 30 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 56 7 (set (reg:SI 0 ax [orig:59 D.5664 ] [59])
+        (const_int 0 [0])) sim2fitman_error.cpp:296 89 {*movsi_internal}
+     (nil))
+(jump_insn 56 30 57 7 (set (pc)
+        (label_ref 40)) sim2fitman_error.cpp:296 650 {jump}
+     (nil)
+ -> 40)
+(barrier 57 56 33)
+(code_label 33 57 34 8 36 "" [1 uses])
+(note 34 33 35 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 8 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC11") [flags 0x2]  <var_decl 0x7f78f80efab0 *.LC11>)) sim2fitman_error.cpp:298 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 36 35 37 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:298 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 37 36 38 8 (set (reg:SI 5 di)
+        (const_int -23 [0xffffffffffffffe9])) sim2fitman_error.cpp:299 89 {*movsi_internal}
+     (nil))
+(call_insn 38 37 39 8 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:299 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 39 38 40)
+(code_label 40 39 41 9 34 "" [3 uses])
+(note 41 40 49 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 49 41 62 9 (use (reg/i:SI 0 ax)) sim2fitman_error.cpp:300 -1
+     (nil))
+(note 62 49 71 9 NOTE_INSN_EPILOGUE_BEG)
+(note 71 62 63 9 0x7f78f84a8280 NOTE_INSN_BLOCK_END)
+(insn/f 63 71 64 9 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 6 bp)
+                    (const_int 8 [0x8])))
+            (set (reg/f:DI 6 bp)
+                (mem:DI (reg/f:DI 6 bp) [0  S8 A8]))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:300 686 {leave_rex64}
+     (expr_list:REG_CFA_DEF_CFA (plus:DI (reg/f:DI 7 sp)
+            (const_int 8 [0x8]))
+        (nil)))
+(jump_insn 64 63 65 9 (simple_return) sim2fitman_error.cpp:300 672 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 65 64 0)
+
+;; Function void exit_24(FILE**, int) (_Z7exit_24PP8_IO_FILEi, funcdef_no=25, decl_uid=5457, cgraph_uid=25)
+
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 26 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 26 5 27 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:306 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 27 26 28 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:306 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 28 27 29 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:306 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 29 28 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 29 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:306 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(insn 3 2 4 2 (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -12 [0xfffffffffffffff4])) [0 num+0 S4 A32])
+        (reg:SI 4 si [ num ])) sim2fitman_error.cpp:306 89 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 4 si [ num ])
+        (nil)))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC24") [flags 0x2]  <var_decl 0x7f78f8103be0 *.LC24>)) sim2fitman_error.cpp:307 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 8 7 9 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:307 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 9 8 10 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC42") [flags 0x2]  <var_decl 0x7f78f812f8e8 *.LC42>)) sim2fitman_error.cpp:308 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 10 9 11 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:308 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 11 10 12 2 (set (reg:SI 0 ax [59])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -12 [0xfffffffffffffff4])) [0 num+0 S4 A32])) sim2fitman_error.cpp:309 89 {*movsi_internal}
+     (nil))
+(insn 12 11 13 2 (set (reg:SI 4 si)
+        (reg:SI 0 ax [59])) sim2fitman_error.cpp:309 89 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 0 ax [59])
+        (nil)))
+(insn 13 12 14 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC43") [flags 0x2]  <var_decl 0x7f78f812f980 *.LC43>)) sim2fitman_error.cpp:309 87 {*movdi_internal_rex64}
+     (nil))
+(insn 14 13 15 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) sim2fitman_error.cpp:309 91 {*movqi_internal}
+     (nil))
+(call_insn 15 14 16 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f78f8586c00 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:309 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:SI 4 si)
+            (expr_list:REG_UNUSED (reg:SI 0 ax)
+                (nil))))
+    (expr_list:REG_DEP_TRUE (use (reg:QI 0 ax))
+        (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+            (expr_list:REG_BR_PRED (use (reg:SI 4 si))
+                (nil)))))
+(insn 16 15 17 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:310 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 17 16 18 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:310 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 18 17 19 2 (set (reg:DI 0 ax [60])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:311 87 {*movdi_internal_rex64}
+     (nil))
+(insn 19 18 20 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [60])) sim2fitman_error.cpp:311 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [60])
+        (nil)))
+(call_insn 20 19 21 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:311 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 21 20 22 2 (set (reg:SI 5 di)
+        (const_int -24 [0xffffffffffffffe8])) sim2fitman_error.cpp:312 89 {*movsi_internal}
+     (nil))
+(call_insn 22 21 23 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:312 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 23 22 0)
+
+;; Function void exit_25(FILE**) (_Z7exit_25PP8_IO_FILE, funcdef_no=26, decl_uid=5459, cgraph_uid=26)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 18 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 18 4 19 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:318 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 19 18 20 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:318 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 20 19 21 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:318 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 21 20 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 21 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:318 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC44") [flags 0x2]  <var_decl 0x7f78f812fbe0 *.LC44>)) sim2fitman_error.cpp:319 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:319 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:320 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:320 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:321 87 {*movdi_internal_rex64}
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:321 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 12 11 13 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:321 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 2 (set (reg:SI 5 di)
+        (const_int -25 [0xffffffffffffffe7])) sim2fitman_error.cpp:322 89 {*movsi_internal}
+     (nil))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:322 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 15 14 0)
+
+;; Function void exit_26(FILE**) (_Z7exit_26PP8_IO_FILE, funcdef_no=27, decl_uid=5461, cgraph_uid=27)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 18 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 18 4 19 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:328 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 19 18 20 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:328 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 20 19 21 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:328 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 21 20 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 21 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:328 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC45") [flags 0x2]  <var_decl 0x7f78f812fe40 *.LC45>)) sim2fitman_error.cpp:329 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:329 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:330 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:330 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:331 87 {*movdi_internal_rex64}
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:331 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 12 11 13 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:331 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 2 (set (reg:SI 5 di)
+        (const_int -26 [0xffffffffffffffe6])) sim2fitman_error.cpp:332 89 {*movsi_internal}
+     (nil))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:332 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 15 14 0)
+
+;; Function void exit_27(FILE**) (_Z7exit_27PP8_IO_FILE, funcdef_no=28, decl_uid=5463, cgraph_uid=28)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 18 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 18 4 19 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:338 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 19 18 20 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:338 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 20 19 21 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:338 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 21 20 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 21 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:338 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC46") [flags 0x2]  <var_decl 0x7f78f813c130 *.LC46>)) sim2fitman_error.cpp:339 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:339 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:340 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:340 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:341 87 {*movdi_internal_rex64}
+     (nil))
+(insn 11 10 12 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:341 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 12 11 13 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:341 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 2 (set (reg:SI 5 di)
+        (const_int -27 [0xffffffffffffffe5])) sim2fitman_error.cpp:342 89 {*movsi_internal}
+     (nil))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:342 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 15 14 0)
+
+;; Function void exit_28(FILE**) (_Z7exit_28PP8_IO_FILE, funcdef_no=29, decl_uid=5465, cgraph_uid=29)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+(note 4 1 20 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 20 4 21 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) sim2fitman_error.cpp:349 67 {*pushdi2_rex64}
+     (nil))
+(insn/f 21 20 22 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) sim2fitman_error.cpp:349 87 {*movdi_internal_rex64}
+     (nil))
+(insn/f 22 21 23 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) sim2fitman_error.cpp:349 953 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+(note 23 22 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 23 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])
+        (reg:DI 5 di [ in_file ])) sim2fitman_error.cpp:349 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 5 di [ in_file ])
+        (nil)))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC47") [flags 0x2]  <var_decl 0x7f78f813c390 *.LC47>)) sim2fitman_error.cpp:350 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:350 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC48") [flags 0x2]  <var_decl 0x7f78f813c428 *.LC48>)) sim2fitman_error.cpp:351 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:351 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x7f78f81031c8 *.LC20>)) sim2fitman_error.cpp:352 87 {*movdi_internal_rex64}
+     (nil))
+(call_insn 11 10 12 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f78f8588700 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) sim2fitman_error.cpp:352 663 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (nil)))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 12 11 13 2 (set (reg:DI 0 ax [59])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 in_file+0 S8 A64])) sim2fitman_error.cpp:353 87 {*movdi_internal_rex64}
+     (nil))
+(insn 13 12 14 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [59])) sim2fitman_error.cpp:353 87 {*movdi_internal_rex64}
+     (expr_list:REG_DEAD (reg:DI 0 ax [59])
+        (nil)))
+(call_insn 14 13 15 2 (call (mem:QI (symbol_ref:DI ("_Z13close_infilesPP8_IO_FILE") [flags 0x41]  <function_decl 0x7f78f8489800 close_infiles>) [0 close_infiles S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:353 656 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (nil))
+    (expr_list:REG_FRAME_RELATED_EXPR (use (reg:DI 5 di))
+        (nil)))
+(insn 15 14 16 2 (set (reg:SI 5 di)
+        (const_int -28 [0xffffffffffffffe4])) sim2fitman_error.cpp:354 89 {*movsi_internal}
+     (nil))
+(call_insn 16 15 17 2 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f78f85a1700 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) sim2fitman_error.cpp:354 656 {*call}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:REG_BR_PRED (use (reg:SI 5 di))
+        (nil)))
+(barrier 17 16 0)

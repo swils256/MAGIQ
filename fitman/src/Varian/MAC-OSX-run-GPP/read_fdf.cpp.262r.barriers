@@ -1,0 +1,3201 @@
+
+;; Function int read_fdf_data(int*, Preprocess*, IOFiles*, Data_file_header**, Data_block_header**, Precision2*, FILE**, Precision1*, float**, float**, Procpar_info*) (_Z13read_fdf_dataPiP10PreprocessP7IOFilesPP16Data_file_headerPP17Data_block_headerP10Precision2PP8_IO_FILEP10Precision1PPfSI_P12Procpar_info, funcdef_no=2, decl_uid=5447, cgraph_uid=2, symbol_order=2)
+
+
+
+int read_fdf_data(int*, Preprocess*, IOFiles*, Data_file_header**, Data_block_header**, Precision2*, FILE**, Precision1*, float**, float**, Procpar_info*)
+
+Dataflow summary:
+;;  invalidated by call 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 19 [fpcr] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 29 [mm0] 30 [mm1] 31 [mm2] 32 [mm3] 33 [mm4] 34 [mm5] 35 [mm6] 36 [mm7] 37 [r8] 38 [r9] 39 [r10] 40 [r11] 45 [xmm8] 46 [xmm9] 47 [xmm10] 48 [xmm11] 49 [xmm12] 50 [xmm13] 51 [xmm14] 52 [xmm15] 53 [] 54 [] 55 [] 56 [] 57 [] 58 [] 59 [] 60 [] 61 [] 62 [] 63 [] 64 [] 65 [] 66 [] 67 [] 68 [] 69 [] 70 [] 71 [] 72 [] 73 [] 74 [] 75 [] 76 [] 77 [] 78 [] 79 [] 80 []
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 6 [bp] 7 [sp]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 20 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 20 [frame] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 37 [r8] 38 [r9]
+;;  exit block uses 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 20 [frame]
+;;  regs ever live 	 0[ax] 1[dx] 2[cx] 3[bx] 4[si] 5[di] 6[bp] 7[sp] 17[flags] 21[xmm0] 22[xmm1] 23[xmm2] 37[r8] 38[r9]
+;;  ref usage 	r0={326d,309u} r1={112d,81u,22e} r2={72d,40u,8e} r3={8d,7u} r4={70d,38u,1e} r5={78d,42u} r6={3d,252u} r7={27d,106u} r8={32d} r9={32d} r10={32d} r11={32d} r12={32d} r13={32d} r14={32d} r15={32d} r17={142d,18u} r18={32d} r19={32d} r20={1d,1u,30e} r21={43d,10u} r22={35d,2u} r23={36d,3u} r24={33d} r25={33d} r26={33d} r27={33d} r28={33d} r29={32d} r30={32d} r31={32d} r32={32d} r33={32d} r34={32d} r35={32d} r36={32d} r37={45d,13u} r38={39d,7u} r39={32d} r40={32d} r45={32d} r46={32d} r47={32d} r48={32d} r49={32d} r50={32d} r51={32d} r52={32d} r53={32d} r54={32d} r55={32d} r56={32d} r57={32d} r58={32d} r59={32d} r60={32d} r61={32d} r62={32d} r63={32d} r64={32d} r65={32d} r66={32d} r67={32d} r68={32d} r69={32d} r70={32d} r71={32d} r72={32d} r73={32d} r74={32d} r75={32d} r76={32d} r77={32d} r78={32d} r79={32d} r80={32d} 
+;;    total ref usage 3984{2994d,929u,61e} in 675{643 regular + 32 call} insns.
+(note 1 0 20 NOTE_INSN_DELETED)
+(note 20 1 925 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 925 20 926 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) read_fdf.cpp:24 -1
+     (nil))
+(insn/f 926 925 927 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) read_fdf.cpp:24 -1
+     (nil))
+(insn/f 927 926 928 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 3 bx)) read_fdf.cpp:24 -1
+     (nil))
+(insn/f 928 927 929 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -808 [0xfffffffffffffcd8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) read_fdf.cpp:24 -1
+     (nil))
+(note 929 928 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 929 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -728 [0xfffffffffffffd28])) [0 fid+0 S8 A64])
+        (reg:DI 5 di [ fid ])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -736 [0xfffffffffffffd20])) [0 preprocess+0 S8 A64])
+        (reg:DI 4 si [ preprocess ])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 4 3 5 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -744 [0xfffffffffffffd18])) [0 file+0 S8 A64])
+        (reg:DI 1 dx [ file ])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 5 4 6 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -752 [0xfffffffffffffd10])) [0 main_header+0 S8 A64])
+        (reg:DI 2 cx [ main_header ])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 6 5 7 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -760 [0xfffffffffffffd08])) [0 block_header+0 S8 A64])
+        (reg:DI 37 r8 [ block_header ])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 7 6 8 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -768 [0xfffffffffffffd00])) [0 switch_data+0 S8 A64])
+        (reg:DI 38 r9 [ switch_data ])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 8 7 9 2 (set (reg/f:DI 0 ax [331])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int 16 [0x10])) [0 in_file+0 S8 A64])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 9 8 10 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -776 [0xfffffffffffffcf8])) [0 in_file+0 S8 A64])
+        (reg/f:DI 0 ax [331])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 10 9 11 2 (set (reg/f:DI 0 ax [332])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int 24 [0x18])) [0 in_data+0 S8 A64])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 11 10 12 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -784 [0xfffffffffffffcf0])) [0 in_data+0 S8 A64])
+        (reg/f:DI 0 ax [332])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 12 11 13 2 (set (reg/f:DI 0 ax [333])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int 32 [0x20])) [0 out_data+0 S8 A64])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 13 12 14 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -792 [0xfffffffffffffce8])) [0 out_data+0 S8 A64])
+        (reg/f:DI 0 ax [333])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 14 13 15 2 (set (reg/f:DI 0 ax [334])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int 40 [0x28])) [0 scratch_data+0 S8 A64])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 15 14 16 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -800 [0xfffffffffffffce0])) [0 scratch_data+0 S8 A64])
+        (reg/f:DI 0 ax [334])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 16 15 17 2 (set (reg/f:DI 0 ax [335])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int 48 [0x30])) [0 procpar_info+0 S8 A64])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(insn 17 16 18 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -808 [0xfffffffffffffcd8])) [0 procpar_info+0 S8 A64])
+        (reg/f:DI 0 ax [335])) read_fdf.cpp:24 89 {*movdi_internal}
+     (nil))
+(note 18 17 19 2 NOTE_INSN_FUNCTION_BEG)
+(insn 19 18 22 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                        (const_int -24 [0xffffffffffffffe8])) [0 D.5855+0 S8 A64])
+                (unspec:DI [
+                        (const_int 40 [0x28])
+                    ] UNSPEC_SP_TLS_SET))
+            (set (reg:DI 0 ax [547])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:24 986 {stack_tls_protect_set_di}
+     (nil))
+(insn 22 19 750 2 (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])
+        (const_int 0 [0])) read_fdf.cpp:33 90 {*movsi_internal}
+     (nil))
+(code_label 750 22 23 3 19 "" [1 uses])
+(note 23 750 24 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 3 (set (reg/f:DI 0 ax [336])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -728 [0xfffffffffffffd28])) [0 fid+0 S8 A64])) read_fdf.cpp:33 89 {*movdi_internal}
+     (nil))
+(insn 25 24 26 3 (set (reg:SI 0 ax [orig:87 D.5829 ] [87])
+        (mem:SI (reg/f:DI 0 ax [336]) [0 *fid_22(D)+0 S4 A32])) read_fdf.cpp:33 90 {*movsi_internal}
+     (nil))
+(insn 26 25 27 3 (parallel [
+            (set (reg:SI 0 ax [orig:88 D.5829 ] [88])
+                (plus:SI (reg:SI 0 ax [orig:87 D.5829 ] [87])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:33 217 {*addsi_1}
+     (nil))
+(insn 27 26 28 3 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 0 ax [orig:88 D.5829 ] [88])
+            (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32]))) read_fdf.cpp:33 7 {*cmpsi_1}
+     (nil))
+(jump_insn 28 27 29 3 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 753)
+            (pc))) read_fdf.cpp:33 612 {*jcc_1}
+     (nil)
+ -> 753)
+(note 29 28 30 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 31 4 (set (reg:SI 0 ax [337])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:35 90 {*movsi_internal}
+     (nil))
+(insn 31 30 32 4 (set (reg:DI 1 dx [orig:89 D.5830 ] [89])
+        (sign_extend:DI (reg:SI 0 ax [337]))) read_fdf.cpp:35 142 {*extendsidi2_rex64}
+     (nil))
+(insn 32 31 33 4 (set (reg:DI 0 ax [338])
+        (reg:DI 1 dx [orig:89 D.5830 ] [89])) read_fdf.cpp:35 89 {*movdi_internal}
+     (nil))
+(insn 33 32 34 4 (parallel [
+            (set (reg:DI 0 ax [338])
+                (ashift:DI (reg:DI 0 ax [338])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:35 512 {*ashldi3_1}
+     (nil))
+(insn 34 33 35 4 (parallel [
+            (set (reg:DI 0 ax [338])
+                (plus:DI (reg:DI 0 ax [338])
+                    (reg:DI 1 dx [orig:89 D.5830 ] [89])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:35 218 {*adddi_1}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 1 dx [orig:89 D.5830 ] [89])
+            (const_int 9 [0x9]))
+        (nil)))
+(insn 35 34 37 4 (parallel [
+            (set (reg:DI 0 ax [339])
+                (ashift:DI (reg:DI 0 ax [338])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:35 512 {*ashldi3_1}
+     (nil))
+(insn 37 35 38 4 (set (reg:DI 1 dx [orig:90 D.5830 ] [90])
+        (reg:DI 0 ax [338])) read_fdf.cpp:35 89 {*movdi_internal}
+     (nil))
+(insn 38 37 39 4 (set (reg/f:DI 0 ax [340])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -736 [0xfffffffffffffd20])) [0 preprocess+0 S8 A64])) read_fdf.cpp:35 89 {*movdi_internal}
+     (nil))
+(insn 39 38 40 4 (parallel [
+            (set (reg/f:DI 0 ax [orig:91 D.5831 ] [91])
+                (plus:DI (reg/f:DI 0 ax [340])
+                    (reg:DI 1 dx [orig:90 D.5830 ] [90])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:35 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -720 [0xfffffffffffffd30])) [0 preprocess+0 S8 A64])
+            (reg:DI 1 dx [orig:90 D.5830 ] [90]))
+        (nil)))
+(insn 40 39 41 4 (set (reg:SI 0 ax [orig:92 D.5829 ] [92])
+        (mem/j:SI (plus:DI (reg/f:DI 0 ax [orig:91 D.5831 ] [91])
+                (const_int 20 [0x14])) [0 _28->file_type+0 S4 A32])) read_fdf.cpp:35 90 {*movsi_internal}
+     (nil))
+(insn 41 40 42 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:92 D.5829 ] [92])
+            (const_int 0 [0]))) read_fdf.cpp:35 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 42 41 43 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 747)
+            (pc))) read_fdf.cpp:35 612 {*jcc_1}
+     (nil)
+ -> 747)
+(note 43 42 44 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 5 (set (reg:SI 0 ax [341])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:37 90 {*movsi_internal}
+     (nil))
+(insn 45 44 922 5 (set (reg:DI 0 ax [orig:93 D.5830 ] [93])
+        (sign_extend:DI (reg:SI 0 ax [341]))) read_fdf.cpp:37 142 {*extendsidi2_rex64}
+     (nil))
+(insn 922 45 47 5 (set (reg:DI 1 dx [orig:94 D.5830 ] [94])
+        (mult:DI (reg:DI 0 ax [orig:93 D.5830 ] [93])
+            (const_int 8 [0x8]))) read_fdf.cpp:37 214 {*leadi}
+     (nil))
+(insn 47 922 923 5 (set (reg/f:DI 0 ax [342])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -776 [0xfffffffffffffcf8])) [0 in_file+0 S8 A64])) read_fdf.cpp:37 89 {*movdi_internal}
+     (nil))
+(insn 923 47 49 5 (set (reg/f:DI 3 bx [orig:95 D.5832 ] [95])
+        (plus:DI (reg:DI 1 dx [orig:94 D.5830 ] [94])
+            (reg/f:DI 0 ax [342]))) read_fdf.cpp:37 214 {*leadi}
+     (nil))
+(insn 49 923 50 5 (set (reg:SI 0 ax [344])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:37 90 {*movsi_internal}
+     (nil))
+(insn 50 49 51 5 (set (reg:DI 0 ax [343])
+        (sign_extend:DI (reg:SI 0 ax [344]))) read_fdf.cpp:37 142 {*extendsidi2_rex64}
+     (nil))
+(insn 51 50 784 5 (parallel [
+            (set (reg:DI 0 ax [345])
+                (ashift:DI (reg:DI 0 ax [345])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:37 512 {*ashldi3_1}
+     (nil))
+(insn 784 51 52 5 (set (reg:DI 1 dx [345])
+        (reg:DI 0 ax [345])) read_fdf.cpp:37 89 {*movdi_internal}
+     (nil))
+(insn 52 784 53 5 (set (reg/f:DI 0 ax [346])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -744 [0xfffffffffffffd18])) [0 file+0 S8 A64])) read_fdf.cpp:37 89 {*movdi_internal}
+     (nil))
+(insn 53 52 54 5 (parallel [
+            (set (reg/f:DI 0 ax [orig:96 D.5833 ] [96])
+                (plus:DI (reg/f:DI 0 ax [346])
+                    (reg:DI 1 dx [345])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:37 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -728 [0xfffffffffffffd28])) [0 file+0 S8 A64])
+            (reg:DI 1 dx [345]))
+        (nil)))
+(insn 54 53 55 5 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f23845beab0 *.LC0>)) read_fdf.cpp:37 89 {*movdi_internal}
+     (nil))
+(insn 55 54 56 5 (set (reg:DI 5 di)
+        (reg/f:DI 0 ax [orig:96 D.5833 ] [96])) read_fdf.cpp:37 89 {*movdi_internal}
+     (nil))
+(call_insn 56 55 58 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fopen") [flags 0x41]  <function_decl 0x7f2384839510 fopen>) [0 fopen S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:37 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 58 56 59 5 (set (mem/f:DI (reg/f:DI 3 bx [orig:95 D.5832 ] [95]) [0 *_33+0 S8 A64])
+        (reg/f:DI 0 ax [orig:97 D.5834 ] [97])) read_fdf.cpp:37 89 {*movdi_internal}
+     (nil))
+(insn 59 58 60 5 (set (reg:SI 0 ax [347])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:39 90 {*movsi_internal}
+     (nil))
+(insn 60 59 924 5 (set (reg:DI 0 ax [orig:98 D.5830 ] [98])
+        (sign_extend:DI (reg:SI 0 ax [347]))) read_fdf.cpp:39 142 {*extendsidi2_rex64}
+     (nil))
+(insn 924 60 62 5 (set (reg:DI 1 dx [orig:99 D.5830 ] [99])
+        (mult:DI (reg:DI 0 ax [orig:98 D.5830 ] [98])
+            (const_int 8 [0x8]))) read_fdf.cpp:39 214 {*leadi}
+     (nil))
+(insn 62 924 63 5 (set (reg/f:DI 0 ax [348])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -776 [0xfffffffffffffcf8])) [0 in_file+0 S8 A64])) read_fdf.cpp:39 89 {*movdi_internal}
+     (nil))
+(insn 63 62 64 5 (parallel [
+            (set (reg/f:DI 0 ax [orig:100 D.5832 ] [100])
+                (plus:DI (reg/f:DI 0 ax [348])
+                    (reg:DI 1 dx [orig:99 D.5830 ] [99])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:39 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -760 [0xfffffffffffffd08])) [0 in_file+0 S8 A64])
+            (reg:DI 1 dx [orig:99 D.5830 ] [99]))
+        (nil)))
+(insn 64 63 65 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 0 ax [orig:100 D.5832 ] [100])
+            (const_int 0 [0]))) read_fdf.cpp:39 4 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 65 64 66 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 72)
+            (pc))) read_fdf.cpp:39 612 {*jcc_1}
+     (nil)
+ -> 72)
+(note 66 65 67 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 67 66 68 6 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f23845beb40 *.LC1>)) read_fdf.cpp:40 89 {*movdi_internal}
+     (nil))
+(call_insn 68 67 69 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x7f2384a7c000 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:40 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 69 68 70 6 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_fdf.cpp:41 90 {*movsi_internal}
+     (nil))
+(call_insn 70 69 71 6 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f2384a97ca8 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_fdf.cpp:41 660 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 71 70 72)
+(code_label 72 71 73 7 4 "" [1 uses])
+(note 73 72 74 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 74 73 75 7 (set (reg:SI 0 ax [349])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:46 90 {*movsi_internal}
+     (nil))
+(insn 75 74 918 7 (set (reg:DI 0 ax [orig:101 D.5830 ] [101])
+        (sign_extend:DI (reg:SI 0 ax [349]))) read_fdf.cpp:46 142 {*extendsidi2_rex64}
+     (nil))
+(insn 918 75 77 7 (set (reg:DI 1 dx [orig:102 D.5830 ] [102])
+        (mult:DI (reg:DI 0 ax [orig:101 D.5830 ] [101])
+            (const_int 8 [0x8]))) read_fdf.cpp:46 214 {*leadi}
+     (nil))
+(insn 77 918 78 7 (set (reg/f:DI 0 ax [350])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -776 [0xfffffffffffffcf8])) [0 in_file+0 S8 A64])) read_fdf.cpp:46 89 {*movdi_internal}
+     (nil))
+(insn 78 77 79 7 (parallel [
+            (set (reg/f:DI 0 ax [orig:103 D.5832 ] [103])
+                (plus:DI (reg/f:DI 0 ax [350])
+                    (reg:DI 1 dx [orig:102 D.5830 ] [102])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:46 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -760 [0xfffffffffffffd08])) [0 in_file+0 S8 A64])
+            (reg:DI 1 dx [orig:102 D.5830 ] [102]))
+        (nil)))
+(insn 79 78 919 7 (set (reg/f:DI 1 dx [orig:104 D.5834 ] [104])
+        (mem/f:DI (reg/f:DI 0 ax [orig:103 D.5832 ] [103]) [0 *_45+0 S8 A64])) read_fdf.cpp:46 89 {*movdi_internal}
+     (nil))
+(insn 919 79 82 7 (set (reg:DI 0 ax [351])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -672 [0xfffffffffffffd60]))) read_fdf.cpp:46 214 {*leadi}
+     (nil))
+(insn 82 919 83 7 (set (reg:SI 4 si)
+        (const_int 80 [0x50])) read_fdf.cpp:46 90 {*movsi_internal}
+     (nil))
+(insn 83 82 84 7 (set (reg:DI 5 di)
+        (reg:DI 0 ax [351])) read_fdf.cpp:46 89 {*movdi_internal}
+     (nil))
+(call_insn 84 83 920 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x7f238483faf8 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:46 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 920 84 921 7 (set (reg:DI 1 dx [352])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -592 [0xfffffffffffffdb0]))) read_fdf.cpp:47 214 {*leadi}
+     (nil))
+(insn 921 920 88 7 (set (reg:DI 0 ax [353])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -672 [0xfffffffffffffd60]))) read_fdf.cpp:47 214 {*leadi}
+     (nil))
+(insn 88 921 89 7 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f23845bebd0 *.LC2>)) read_fdf.cpp:47 89 {*movdi_internal}
+     (nil))
+(insn 89 88 90 7 (set (reg:DI 5 di)
+        (reg:DI 0 ax [353])) read_fdf.cpp:47 89 {*movdi_internal}
+     (nil))
+(insn 90 89 91 7 (set (reg:QI 0 ax)
+        (const_int 0 [0])) read_fdf.cpp:47 93 {*movqi_internal}
+     (nil))
+(call_insn 91 90 92 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("sscanf") [flags 0x41]  <function_decl 0x7f2384a7cd80 sscanf>) [0 __builtin_sscanf S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:47 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 92 91 93 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])
+            (const_int 0 [0]))) read_fdf.cpp:49 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 93 92 410 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 413)
+            (pc))) read_fdf.cpp:49 612 {*jcc_1}
+     (nil)
+ -> 413)
+(code_label 410 93 94 8 12 "" [2 uses])
+(note 94 410 917 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 917 94 96 8 (set (reg:DI 0 ax [354])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -672 [0xfffffffffffffd60]))) read_fdf.cpp:50 214 {*leadi}
+     (nil))
+(insn 96 917 97 8 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f23845bec60 *.LC3>)) read_fdf.cpp:50 89 {*movdi_internal}
+     (nil))
+(insn 97 96 98 8 (set (reg:DI 5 di)
+        (reg:DI 0 ax [354])) read_fdf.cpp:50 89 {*movdi_internal}
+     (nil))
+(call_insn/i 98 97 100 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f2384a70360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:50 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 100 98 101 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:105 D.5829 ] [105])
+            (const_int 0 [0]))) read_fdf.cpp:50 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 101 100 102 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 413)
+            (pc))) read_fdf.cpp:50 612 {*jcc_1}
+     (nil)
+ -> 413)
+(note 102 101 103 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 103 102 104 9 (set (reg:SI 0 ax [355])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:51 90 {*movsi_internal}
+     (nil))
+(insn 104 103 911 9 (set (reg:DI 0 ax [orig:106 D.5830 ] [106])
+        (sign_extend:DI (reg:SI 0 ax [355]))) read_fdf.cpp:51 142 {*extendsidi2_rex64}
+     (nil))
+(insn 911 104 106 9 (set (reg:DI 1 dx [orig:107 D.5830 ] [107])
+        (mult:DI (reg:DI 0 ax [orig:106 D.5830 ] [106])
+            (const_int 8 [0x8]))) read_fdf.cpp:51 214 {*leadi}
+     (nil))
+(insn 106 911 107 9 (set (reg/f:DI 0 ax [356])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -776 [0xfffffffffffffcf8])) [0 in_file+0 S8 A64])) read_fdf.cpp:51 89 {*movdi_internal}
+     (nil))
+(insn 107 106 108 9 (parallel [
+            (set (reg/f:DI 0 ax [orig:108 D.5832 ] [108])
+                (plus:DI (reg/f:DI 0 ax [356])
+                    (reg:DI 1 dx [orig:107 D.5830 ] [107])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:51 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -760 [0xfffffffffffffd08])) [0 in_file+0 S8 A64])
+            (reg:DI 1 dx [orig:107 D.5830 ] [107]))
+        (nil)))
+(insn 108 107 912 9 (set (reg/f:DI 1 dx [orig:109 D.5834 ] [109])
+        (mem/f:DI (reg/f:DI 0 ax [orig:108 D.5832 ] [108]) [0 *_52+0 S8 A64])) read_fdf.cpp:51 89 {*movdi_internal}
+     (nil))
+(insn 912 108 111 9 (set (reg:DI 0 ax [357])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -672 [0xfffffffffffffd60]))) read_fdf.cpp:51 214 {*leadi}
+     (nil))
+(insn 111 912 112 9 (set (reg:SI 4 si)
+        (const_int 80 [0x50])) read_fdf.cpp:51 90 {*movsi_internal}
+     (nil))
+(insn 112 111 113 9 (set (reg:DI 5 di)
+        (reg:DI 0 ax [357])) read_fdf.cpp:51 89 {*movdi_internal}
+     (nil))
+(call_insn 113 112 913 9 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x7f238483faf8 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:51 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 913 113 914 9 (set (reg:DI 2 cx [358])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -512 [0xfffffffffffffe00]))) read_fdf.cpp:52 214 {*leadi}
+     (nil))
+(insn 914 913 915 9 (set (reg:DI 1 dx [359])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -592 [0xfffffffffffffdb0]))) read_fdf.cpp:52 214 {*leadi}
+     (nil))
+(insn 915 914 119 9 (set (reg:DI 0 ax [360])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -672 [0xfffffffffffffd60]))) read_fdf.cpp:52 214 {*leadi}
+     (nil))
+(insn 119 915 120 9 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x7f23845becf0 *.LC4>)) read_fdf.cpp:52 89 {*movdi_internal}
+     (nil))
+(insn 120 119 121 9 (set (reg:DI 5 di)
+        (reg:DI 0 ax [360])) read_fdf.cpp:52 89 {*movdi_internal}
+     (nil))
+(insn 121 120 122 9 (set (reg:QI 0 ax)
+        (const_int 0 [0])) read_fdf.cpp:52 93 {*movqi_internal}
+     (nil))
+(call_insn 122 121 916 9 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("sscanf") [flags 0x41]  <function_decl 0x7f2384a7cd80 sscanf>) [0 __builtin_sscanf S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:52 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (nil)))))))
+(insn 916 122 124 9 (set (reg:DI 0 ax [361])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -512 [0xfffffffffffffe00]))) read_fdf.cpp:54 214 {*leadi}
+     (nil))
+(insn 124 916 125 9 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x7f23845bed80 *.LC5>)) read_fdf.cpp:54 89 {*movdi_internal}
+     (nil))
+(insn 125 124 126 9 (set (reg:DI 5 di)
+        (reg:DI 0 ax [361])) read_fdf.cpp:54 89 {*movdi_internal}
+     (nil))
+(call_insn/i 126 125 128 9 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f2384a70360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:54 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 128 126 129 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:110 D.5829 ] [110])
+            (const_int 0 [0]))) read_fdf.cpp:54 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 129 128 130 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 225)
+            (pc))) read_fdf.cpp:54 612 {*jcc_1}
+     (nil)
+ -> 225)
+(note 130 129 878 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 878 130 879 10 (set (reg:DI 37 r8 [362])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:56 214 {*leadi}
+     (nil))
+(insn 879 878 880 10 (set (reg:DI 5 di [363])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:56 214 {*leadi}
+     (nil))
+(insn 880 879 881 10 (set (reg:DI 2 cx [364])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:56 214 {*leadi}
+     (nil))
+(insn 881 880 882 10 (set (reg:DI 1 dx [365])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:56 214 {*leadi}
+     (nil))
+(insn 882 881 883 10 (set (reg:DI 0 ax [366])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -672 [0xfffffffffffffd60]))) read_fdf.cpp:56 214 {*leadi}
+     (nil))
+(insn 883 882 137 10 (set (reg:DI 4 si [367])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -112 [0xffffffffffffff90]))) read_fdf.cpp:56 214 {*leadi}
+     (nil))
+(insn 137 883 884 10 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 4 si [367])) read_fdf.cpp:56 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 8 [0x8])
+        (nil)))
+(insn 884 137 139 10 (set (reg:DI 4 si [368])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -192 [0xffffffffffffff40]))) read_fdf.cpp:56 214 {*leadi}
+     (nil))
+(insn 139 884 885 10 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 4 si [368])) read_fdf.cpp:56 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(insn 885 139 141 10 (set (reg:DI 4 si [369])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -272 [0xfffffffffffffef0]))) read_fdf.cpp:56 214 {*leadi}
+     (nil))
+(insn 141 885 886 10 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 4 si [369])) read_fdf.cpp:56 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 24 [0x18])
+        (nil)))
+(insn 886 141 143 10 (set (reg:DI 4 si [370])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -352 [0xfffffffffffffea0]))) read_fdf.cpp:56 214 {*leadi}
+     (nil))
+(insn 143 886 887 10 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 4 si [370])) read_fdf.cpp:56 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 32 [0x20])
+        (nil)))
+(insn 887 143 145 10 (set (reg:DI 4 si [371])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:56 214 {*leadi}
+     (nil))
+(insn 145 887 888 10 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 4 si [371])) read_fdf.cpp:56 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 40 [0x28])
+        (nil)))
+(insn 888 145 147 10 (set (reg:DI 4 si [372])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:56 214 {*leadi}
+     (nil))
+(insn 147 888 148 10 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 4 si [372])) read_fdf.cpp:56 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 48 [0x30])
+        (nil)))
+(insn 148 147 149 10 (set (reg:DI 38 r9)
+        (reg:DI 37 r8 [362])) read_fdf.cpp:56 89 {*movdi_internal}
+     (nil))
+(insn 149 148 152 10 (set (reg:DI 37 r8)
+        (reg:DI 5 di [363])) read_fdf.cpp:56 89 {*movdi_internal}
+     (nil))
+(insn 152 149 153 10 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x7f23845beea0 *.LC6>)) read_fdf.cpp:56 89 {*movdi_internal}
+     (nil))
+(insn 153 152 154 10 (set (reg:DI 5 di)
+        (reg:DI 0 ax [366])) read_fdf.cpp:56 89 {*movdi_internal}
+     (nil))
+(insn 154 153 155 10 (set (reg:QI 0 ax)
+        (const_int 0 [0])) read_fdf.cpp:56 93 {*movqi_internal}
+     (nil))
+(call_insn 155 154 156 10 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("sscanf") [flags 0x41]  <function_decl 0x7f2384a7cd80 sscanf>) [0 __builtin_sscanf S1 A8])
+            (const_int 48 [0x30]))) read_fdf.cpp:56 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (expr_list:DI (use (reg:DI 37 r8))
+                            (expr_list:DI (use (reg:DI 38 r9))
+                                (nil)))))))))
+(insn 156 155 889 10 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 48 [0x30])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:56 218 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 889 156 157 10 (set (reg:DI 0 ax [373])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:57 214 {*leadi}
+     (nil))
+(insn 157 889 158 10 (set (reg:DI 2 cx [377])
+        (const_int -1 [0xffffffffffffffff])) read_fdf.cpp:57 89 {*movdi_internal}
+     (nil))
+(insn 158 157 159 10 (set (reg:DI 1 dx [376])
+        (reg:DI 0 ax [373])) read_fdf.cpp:57 89 {*movdi_internal}
+     (nil))
+(insn 159 158 787 10 (set (reg:QI 0 ax [378])
+        (const_int 0 [0])) read_fdf.cpp:57 93 {*movqi_internal}
+     (nil))
+(insn 787 159 160 10 (set (reg:DI 5 di [376])
+        (reg:DI 1 dx [376])) read_fdf.cpp:57 89 {*movdi_internal}
+     (nil))
+(insn 160 787 786 10 (parallel [
+            (set (reg:DI 2 cx [374])
+                (unspec:DI [
+                        (mem:BLK (reg:DI 5 di [376]) [0  A8])
+                        (reg:QI 0 ax [378])
+                        (const_int 8 [0x8])
+                        (reg:DI 2 cx [374])
+                    ] UNSPEC_SCAS))
+            (clobber (reg:DI 5 di [376]))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:57 945 {*strlenqi_1}
+     (nil))
+(insn 786 160 161 10 (set (reg:DI 0 ax [374])
+        (reg:DI 2 cx [374])) read_fdf.cpp:57 89 {*movdi_internal}
+     (nil))
+(insn 161 786 890 10 (set (reg:DI 0 ax [375])
+        (not:DI (reg:DI 0 ax [374]))) read_fdf.cpp:57 494 {*one_cmpldi2_1}
+     (nil))
+(insn 890 161 891 10 (set (reg:DI 1 dx [orig:111 D.5830 ] [111])
+        (plus:DI (reg:DI 0 ax [375])
+            (const_int -1 [0xffffffffffffffff]))) read_fdf.cpp:57 214 {*leadi}
+     (nil))
+(insn 891 890 165 10 (set (reg:DI 0 ax [379])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:57 214 {*leadi}
+     (nil))
+(insn 165 891 166 10 (parallel [
+            (set (reg/f:DI 0 ax [orig:112 D.5835 ] [112])
+                (plus:DI (reg:DI 0 ax [379])
+                    (reg:DI 1 dx [orig:111 D.5830 ] [111])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:57 218 {*adddi_1}
+     (nil))
+(insn 166 165 892 10 (set (mem:HI (reg/f:DI 0 ax [orig:112 D.5835 ] [112]) [0 MEM[(void *)_59]+0 S2 A8])
+        (const_int 32 [0x20])) read_fdf.cpp:57 92 {*movhi_internal}
+     (nil))
+(insn 892 166 893 10 (set (reg:DI 1 dx [380])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -352 [0xfffffffffffffea0]))) read_fdf.cpp:58 214 {*leadi}
+     (nil))
+(insn 893 892 169 10 (set (reg:DI 0 ax [381])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:58 214 {*leadi}
+     (nil))
+(insn 169 893 170 10 (set (reg:DI 4 si)
+        (reg:DI 1 dx [380])) read_fdf.cpp:58 89 {*movdi_internal}
+     (nil))
+(insn 170 169 171 10 (set (reg:DI 5 di)
+        (reg:DI 0 ax [381])) read_fdf.cpp:58 89 {*movdi_internal}
+     (nil))
+(call_insn 171 170 894 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcat") [flags 0x41]  <function_decl 0x7f2384a6cd80 strcat>) [0 __builtin_strcat S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:58 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 894 171 172 10 (set (reg:DI 0 ax [382])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:59 214 {*leadi}
+     (nil))
+(insn 172 894 173 10 (set (reg:DI 2 cx [386])
+        (const_int -1 [0xffffffffffffffff])) read_fdf.cpp:59 89 {*movdi_internal}
+     (nil))
+(insn 173 172 174 10 (set (reg:DI 1 dx [385])
+        (reg:DI 0 ax [382])) read_fdf.cpp:59 89 {*movdi_internal}
+     (nil))
+(insn 174 173 790 10 (set (reg:QI 0 ax [387])
+        (const_int 0 [0])) read_fdf.cpp:59 93 {*movqi_internal}
+     (nil))
+(insn 790 174 175 10 (set (reg:DI 5 di [385])
+        (reg:DI 1 dx [385])) read_fdf.cpp:59 89 {*movdi_internal}
+     (nil))
+(insn 175 790 789 10 (parallel [
+            (set (reg:DI 2 cx [383])
+                (unspec:DI [
+                        (mem:BLK (reg:DI 5 di [385]) [0  A8])
+                        (reg:QI 0 ax [387])
+                        (const_int 8 [0x8])
+                        (reg:DI 2 cx [383])
+                    ] UNSPEC_SCAS))
+            (clobber (reg:DI 5 di [385]))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:59 945 {*strlenqi_1}
+     (nil))
+(insn 789 175 176 10 (set (reg:DI 0 ax [383])
+        (reg:DI 2 cx [383])) read_fdf.cpp:59 89 {*movdi_internal}
+     (nil))
+(insn 176 789 895 10 (set (reg:DI 0 ax [384])
+        (not:DI (reg:DI 0 ax [383]))) read_fdf.cpp:59 494 {*one_cmpldi2_1}
+     (nil))
+(insn 895 176 896 10 (set (reg:DI 1 dx [orig:113 D.5830 ] [113])
+        (plus:DI (reg:DI 0 ax [384])
+            (const_int -1 [0xffffffffffffffff]))) read_fdf.cpp:59 214 {*leadi}
+     (nil))
+(insn 896 895 180 10 (set (reg:DI 0 ax [388])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:59 214 {*leadi}
+     (nil))
+(insn 180 896 181 10 (parallel [
+            (set (reg/f:DI 0 ax [orig:114 D.5835 ] [114])
+                (plus:DI (reg:DI 0 ax [388])
+                    (reg:DI 1 dx [orig:113 D.5830 ] [113])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:59 218 {*adddi_1}
+     (nil))
+(insn 181 180 897 10 (set (mem:HI (reg/f:DI 0 ax [orig:114 D.5835 ] [114]) [0 MEM[(void *)_63]+0 S2 A8])
+        (const_int 32 [0x20])) read_fdf.cpp:59 92 {*movhi_internal}
+     (nil))
+(insn 897 181 898 10 (set (reg:DI 1 dx [389])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -272 [0xfffffffffffffef0]))) read_fdf.cpp:60 214 {*leadi}
+     (nil))
+(insn 898 897 184 10 (set (reg:DI 0 ax [390])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:60 214 {*leadi}
+     (nil))
+(insn 184 898 185 10 (set (reg:DI 4 si)
+        (reg:DI 1 dx [389])) read_fdf.cpp:60 89 {*movdi_internal}
+     (nil))
+(insn 185 184 186 10 (set (reg:DI 5 di)
+        (reg:DI 0 ax [390])) read_fdf.cpp:60 89 {*movdi_internal}
+     (nil))
+(call_insn 186 185 899 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcat") [flags 0x41]  <function_decl 0x7f2384a6cd80 strcat>) [0 __builtin_strcat S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:60 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 899 186 187 10 (set (reg:DI 0 ax [391])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:61 214 {*leadi}
+     (nil))
+(insn 187 899 188 10 (set (reg:DI 2 cx [395])
+        (const_int -1 [0xffffffffffffffff])) read_fdf.cpp:61 89 {*movdi_internal}
+     (nil))
+(insn 188 187 189 10 (set (reg:DI 1 dx [394])
+        (reg:DI 0 ax [391])) read_fdf.cpp:61 89 {*movdi_internal}
+     (nil))
+(insn 189 188 793 10 (set (reg:QI 0 ax [396])
+        (const_int 0 [0])) read_fdf.cpp:61 93 {*movqi_internal}
+     (nil))
+(insn 793 189 190 10 (set (reg:DI 5 di [394])
+        (reg:DI 1 dx [394])) read_fdf.cpp:61 89 {*movdi_internal}
+     (nil))
+(insn 190 793 792 10 (parallel [
+            (set (reg:DI 2 cx [392])
+                (unspec:DI [
+                        (mem:BLK (reg:DI 5 di [394]) [0  A8])
+                        (reg:QI 0 ax [396])
+                        (const_int 8 [0x8])
+                        (reg:DI 2 cx [392])
+                    ] UNSPEC_SCAS))
+            (clobber (reg:DI 5 di [394]))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:61 945 {*strlenqi_1}
+     (nil))
+(insn 792 190 191 10 (set (reg:DI 0 ax [392])
+        (reg:DI 2 cx [392])) read_fdf.cpp:61 89 {*movdi_internal}
+     (nil))
+(insn 191 792 900 10 (set (reg:DI 0 ax [393])
+        (not:DI (reg:DI 0 ax [392]))) read_fdf.cpp:61 494 {*one_cmpldi2_1}
+     (nil))
+(insn 900 191 901 10 (set (reg:DI 1 dx [orig:115 D.5830 ] [115])
+        (plus:DI (reg:DI 0 ax [393])
+            (const_int -1 [0xffffffffffffffff]))) read_fdf.cpp:61 214 {*leadi}
+     (nil))
+(insn 901 900 195 10 (set (reg:DI 0 ax [397])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:61 214 {*leadi}
+     (nil))
+(insn 195 901 196 10 (parallel [
+            (set (reg/f:DI 0 ax [orig:116 D.5835 ] [116])
+                (plus:DI (reg:DI 0 ax [397])
+                    (reg:DI 1 dx [orig:115 D.5830 ] [115])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:61 218 {*adddi_1}
+     (nil))
+(insn 196 195 902 10 (set (mem:HI (reg/f:DI 0 ax [orig:116 D.5835 ] [116]) [0 MEM[(void *)_67]+0 S2 A8])
+        (const_int 32 [0x20])) read_fdf.cpp:61 92 {*movhi_internal}
+     (nil))
+(insn 902 196 903 10 (set (reg:DI 1 dx [398])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -192 [0xffffffffffffff40]))) read_fdf.cpp:62 214 {*leadi}
+     (nil))
+(insn 903 902 199 10 (set (reg:DI 0 ax [399])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:62 214 {*leadi}
+     (nil))
+(insn 199 903 200 10 (set (reg:DI 4 si)
+        (reg:DI 1 dx [398])) read_fdf.cpp:62 89 {*movdi_internal}
+     (nil))
+(insn 200 199 201 10 (set (reg:DI 5 di)
+        (reg:DI 0 ax [399])) read_fdf.cpp:62 89 {*movdi_internal}
+     (nil))
+(call_insn 201 200 904 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcat") [flags 0x41]  <function_decl 0x7f2384a6cd80 strcat>) [0 __builtin_strcat S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:62 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 904 201 202 10 (set (reg:DI 0 ax [400])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:63 214 {*leadi}
+     (nil))
+(insn 202 904 203 10 (set (reg:DI 2 cx [404])
+        (const_int -1 [0xffffffffffffffff])) read_fdf.cpp:63 89 {*movdi_internal}
+     (nil))
+(insn 203 202 204 10 (set (reg:DI 1 dx [403])
+        (reg:DI 0 ax [400])) read_fdf.cpp:63 89 {*movdi_internal}
+     (nil))
+(insn 204 203 796 10 (set (reg:QI 0 ax [405])
+        (const_int 0 [0])) read_fdf.cpp:63 93 {*movqi_internal}
+     (nil))
+(insn 796 204 205 10 (set (reg:DI 5 di [403])
+        (reg:DI 1 dx [403])) read_fdf.cpp:63 89 {*movdi_internal}
+     (nil))
+(insn 205 796 795 10 (parallel [
+            (set (reg:DI 2 cx [401])
+                (unspec:DI [
+                        (mem:BLK (reg:DI 5 di [403]) [0  A8])
+                        (reg:QI 0 ax [405])
+                        (const_int 8 [0x8])
+                        (reg:DI 2 cx [401])
+                    ] UNSPEC_SCAS))
+            (clobber (reg:DI 5 di [403]))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:63 945 {*strlenqi_1}
+     (nil))
+(insn 795 205 206 10 (set (reg:DI 0 ax [401])
+        (reg:DI 2 cx [401])) read_fdf.cpp:63 89 {*movdi_internal}
+     (nil))
+(insn 206 795 905 10 (set (reg:DI 0 ax [402])
+        (not:DI (reg:DI 0 ax [401]))) read_fdf.cpp:63 494 {*one_cmpldi2_1}
+     (nil))
+(insn 905 206 906 10 (set (reg:DI 1 dx [orig:117 D.5830 ] [117])
+        (plus:DI (reg:DI 0 ax [402])
+            (const_int -1 [0xffffffffffffffff]))) read_fdf.cpp:63 214 {*leadi}
+     (nil))
+(insn 906 905 210 10 (set (reg:DI 0 ax [406])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:63 214 {*leadi}
+     (nil))
+(insn 210 906 211 10 (parallel [
+            (set (reg/f:DI 0 ax [orig:118 D.5835 ] [118])
+                (plus:DI (reg:DI 0 ax [406])
+                    (reg:DI 1 dx [orig:117 D.5830 ] [117])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:63 218 {*adddi_1}
+     (nil))
+(insn 211 210 907 10 (set (mem:HI (reg/f:DI 0 ax [orig:118 D.5835 ] [118]) [0 MEM[(void *)_71]+0 S2 A8])
+        (const_int 32 [0x20])) read_fdf.cpp:63 92 {*movhi_internal}
+     (nil))
+(insn 907 211 908 10 (set (reg:DI 1 dx [407])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -112 [0xffffffffffffff90]))) read_fdf.cpp:64 214 {*leadi}
+     (nil))
+(insn 908 907 214 10 (set (reg:DI 0 ax [408])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:64 214 {*leadi}
+     (nil))
+(insn 214 908 215 10 (set (reg:DI 4 si)
+        (reg:DI 1 dx [407])) read_fdf.cpp:64 89 {*movdi_internal}
+     (nil))
+(insn 215 214 216 10 (set (reg:DI 5 di)
+        (reg:DI 0 ax [408])) read_fdf.cpp:64 89 {*movdi_internal}
+     (nil))
+(call_insn 216 215 217 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcat") [flags 0x41]  <function_decl 0x7f2384a6cd80 strcat>) [0 __builtin_strcat S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:64 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 217 216 909 10 (set (reg/f:DI 0 ax [409])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -808 [0xfffffffffffffcd8])) [0 procpar_info+0 S8 A64])) read_fdf.cpp:65 89 {*movdi_internal}
+     (nil))
+(insn 909 217 910 10 (set (reg/f:DI 1 dx [orig:119 D.5836 ] [119])
+        (plus:DI (reg/f:DI 0 ax [409])
+            (const_int 4 [0x4]))) read_fdf.cpp:65 214 {*leadi}
+     (nil))
+(insn 910 909 220 10 (set (reg:DI 0 ax [410])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:65 214 {*leadi}
+     (nil))
+(insn 220 910 221 10 (set (reg:DI 4 si)
+        (reg:DI 0 ax [410])) read_fdf.cpp:65 89 {*movdi_internal}
+     (nil))
+(insn 221 220 222 10 (set (reg:DI 5 di)
+        (reg/f:DI 1 dx [orig:119 D.5836 ] [119])) read_fdf.cpp:65 89 {*movdi_internal}
+     (nil))
+(call_insn 222 221 223 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcpy") [flags 0x41]  <function_decl 0x7f2384a705e8 strcpy>) [0 __builtin_strcpy S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:65 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (nil)))))
+(insn 223 222 224 10 (set (reg:QI 0 ax [orig:120 D.5837 ] [120])
+        (mem/u/c:QI (symbol_ref/f:DI ("*.LC7") [flags 0x2]  <var_decl 0x7f23845bef30 *.LC7>) [0 MEM[(char * {ref-all})""]+0 S1 A8])) read_fdf.cpp:66 93 {*movqi_internal}
+     (nil))
+(insn 224 223 225 10 (set (mem/c:QI (plus:DI (reg/f:DI 6 bp)
+                (const_int -512 [0xfffffffffffffe00])) [0 MEM[(char * {ref-all})&symbol]+0 S1 A64])
+        (reg:QI 0 ax [orig:120 D.5837 ] [120])) read_fdf.cpp:66 93 {*movqi_internal}
+     (nil))
+(code_label 225 224 226 11 6 "" [1 uses])
+(note 226 225 877 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 877 226 228 11 (set (reg:DI 0 ax [411])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -512 [0xfffffffffffffe00]))) read_fdf.cpp:69 214 {*leadi}
+     (nil))
+(insn 228 877 229 11 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC8") [flags 0x2]  <var_decl 0x7f23845cf000 *.LC8>)) read_fdf.cpp:69 89 {*movdi_internal}
+     (nil))
+(insn 229 228 230 11 (set (reg:DI 5 di)
+        (reg:DI 0 ax [411])) read_fdf.cpp:69 89 {*movdi_internal}
+     (nil))
+(call_insn/i 230 229 232 11 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f2384a70360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:69 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 232 230 233 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:121 D.5829 ] [121])
+            (const_int 0 [0]))) read_fdf.cpp:69 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 233 232 234 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 256)
+            (pc))) read_fdf.cpp:69 612 {*jcc_1}
+     (nil)
+ -> 256)
+(note 234 233 870 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 870 234 871 12 (set (reg:DI 37 r8 [412])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -192 [0xffffffffffffff40]))) read_fdf.cpp:70 214 {*leadi}
+     (nil))
+(insn 871 870 872 12 (set (reg:DI 5 di [413])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -272 [0xfffffffffffffef0]))) read_fdf.cpp:70 214 {*leadi}
+     (nil))
+(insn 872 871 873 12 (set (reg:DI 2 cx [414])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -352 [0xfffffffffffffea0]))) read_fdf.cpp:70 214 {*leadi}
+     (nil))
+(insn 873 872 874 12 (set (reg:DI 1 dx [415])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:70 214 {*leadi}
+     (nil))
+(insn 874 873 875 12 (set (reg:DI 0 ax [416])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -672 [0xfffffffffffffd60]))) read_fdf.cpp:70 214 {*leadi}
+     (nil))
+(insn 875 874 241 12 (set (reg:DI 4 si [417])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -704 [0xfffffffffffffd40]))) read_fdf.cpp:70 214 {*leadi}
+     (nil))
+(insn 241 875 876 12 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 4 si [417])) read_fdf.cpp:70 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 8 [0x8])
+        (nil)))
+(insn 876 241 243 12 (set (reg:DI 4 si [418])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -680 [0xfffffffffffffd58]))) read_fdf.cpp:70 214 {*leadi}
+     (nil))
+(insn 243 876 244 12 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 4 si [418])) read_fdf.cpp:70 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(insn 244 243 245 12 (set (reg:DI 38 r9)
+        (reg:DI 37 r8 [412])) read_fdf.cpp:70 89 {*movdi_internal}
+     (nil))
+(insn 245 244 248 12 (set (reg:DI 37 r8)
+        (reg:DI 5 di [413])) read_fdf.cpp:70 89 {*movdi_internal}
+     (nil))
+(insn 248 245 249 12 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC9") [flags 0x2]  <var_decl 0x7f23845cf090 *.LC9>)) read_fdf.cpp:70 89 {*movdi_internal}
+     (nil))
+(insn 249 248 250 12 (set (reg:DI 5 di)
+        (reg:DI 0 ax [416])) read_fdf.cpp:70 89 {*movdi_internal}
+     (nil))
+(insn 250 249 251 12 (set (reg:QI 0 ax)
+        (const_int 0 [0])) read_fdf.cpp:70 93 {*movqi_internal}
+     (nil))
+(call_insn 251 250 252 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("sscanf") [flags 0x41]  <function_decl 0x7f2384a7cd80 sscanf>) [0 __builtin_sscanf S1 A8])
+            (const_int 16 [0x10]))) read_fdf.cpp:70 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (expr_list:DI (use (reg:DI 37 r8))
+                            (expr_list:DI (use (reg:DI 38 r9))
+                                (nil)))))))))
+(insn 252 251 253 12 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:70 218 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 253 252 254 12 (set (reg:DF 21 xmm0 [orig:122 D.5838 ] [122])
+        (mem/c:DF (plus:DI (reg/f:DI 6 bp)
+                (const_int -680 [0xfffffffffffffd58])) [0 dum8+0 S8 A64])) read_fdf.cpp:71 128 {*movdf_internal}
+     (nil))
+(insn 254 253 255 12 (set (reg/f:DI 0 ax [419])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -808 [0xfffffffffffffcd8])) [0 procpar_info+0 S8 A64])) read_fdf.cpp:71 89 {*movdi_internal}
+     (nil))
+(insn 255 254 256 12 (set (mem/j:DF (plus:DI (reg/f:DI 0 ax [419])
+                (const_int 304 [0x130])) [0 procpar_info_74(D)->main_frequency+0 S8 A64])
+        (reg:DF 21 xmm0 [orig:122 D.5838 ] [122])) read_fdf.cpp:71 128 {*movdf_internal}
+     (nil))
+(code_label 256 255 257 13 7 "" [1 uses])
+(note 257 256 869 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 869 257 259 13 (set (reg:DI 0 ax [420])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -512 [0xfffffffffffffe00]))) read_fdf.cpp:74 214 {*leadi}
+     (nil))
+(insn 259 869 260 13 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC10") [flags 0x2]  <var_decl 0x7f23845cf120 *.LC10>)) read_fdf.cpp:74 89 {*movdi_internal}
+     (nil))
+(insn 260 259 261 13 (set (reg:DI 5 di)
+        (reg:DI 0 ax [420])) read_fdf.cpp:74 89 {*movdi_internal}
+     (nil))
+(call_insn/i 261 260 263 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f2384a70360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:74 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 263 261 264 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:123 D.5829 ] [123])
+            (const_int 0 [0]))) read_fdf.cpp:74 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 264 263 265 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 287)
+            (pc))) read_fdf.cpp:74 612 {*jcc_1}
+     (nil)
+ -> 287)
+(note 265 264 863 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 863 265 864 14 (set (reg:DI 37 r8 [421])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -192 [0xffffffffffffff40]))) read_fdf.cpp:75 214 {*leadi}
+     (nil))
+(insn 864 863 865 14 (set (reg:DI 5 di [422])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -272 [0xfffffffffffffef0]))) read_fdf.cpp:75 214 {*leadi}
+     (nil))
+(insn 865 864 866 14 (set (reg:DI 2 cx [423])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -352 [0xfffffffffffffea0]))) read_fdf.cpp:75 214 {*leadi}
+     (nil))
+(insn 866 865 867 14 (set (reg:DI 1 dx [424])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:75 214 {*leadi}
+     (nil))
+(insn 867 866 271 14 (set (reg:DI 0 ax [425])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -672 [0xfffffffffffffd60]))) read_fdf.cpp:75 214 {*leadi}
+     (nil))
+(insn 271 867 868 14 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:75 218 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 8 [0x8])
+        (nil)))
+(insn 868 271 273 14 (set (reg:DI 4 si [426])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -708 [0xfffffffffffffd3c]))) read_fdf.cpp:75 214 {*leadi}
+     (nil))
+(insn 273 868 274 14 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 4 si [426])) read_fdf.cpp:75 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(insn 274 273 275 14 (set (reg:DI 38 r9)
+        (reg:DI 37 r8 [421])) read_fdf.cpp:75 89 {*movdi_internal}
+     (nil))
+(insn 275 274 278 14 (set (reg:DI 37 r8)
+        (reg:DI 5 di [422])) read_fdf.cpp:75 89 {*movdi_internal}
+     (nil))
+(insn 278 275 279 14 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC11") [flags 0x2]  <var_decl 0x7f23845cf1b0 *.LC11>)) read_fdf.cpp:75 89 {*movdi_internal}
+     (nil))
+(insn 279 278 280 14 (set (reg:DI 5 di)
+        (reg:DI 0 ax [425])) read_fdf.cpp:75 89 {*movdi_internal}
+     (nil))
+(insn 280 279 281 14 (set (reg:QI 0 ax)
+        (const_int 0 [0])) read_fdf.cpp:75 93 {*movqi_internal}
+     (nil))
+(call_insn 281 280 282 14 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("sscanf") [flags 0x41]  <function_decl 0x7f2384a7cd80 sscanf>) [0 __builtin_sscanf S1 A8])
+            (const_int 16 [0x10]))) read_fdf.cpp:75 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (expr_list:DI (use (reg:DI 37 r8))
+                            (expr_list:DI (use (reg:DI 38 r9))
+                                (nil)))))))))
+(insn 282 281 283 14 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:75 218 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 283 282 284 14 (set (reg:SF 21 xmm0 [orig:124 D.5839 ] [124])
+        (mem/c:SF (plus:DI (reg/f:DI 6 bp)
+                (const_int -708 [0xfffffffffffffd3c])) [0 dum5+0 S4 A32])) read_fdf.cpp:76 129 {*movsf_internal}
+     (nil))
+(insn 284 283 285 14 (set (reg:DF 21 xmm0 [orig:125 D.5838 ] [125])
+        (float_extend:DF (reg:SF 21 xmm0 [orig:124 D.5839 ] [124]))) read_fdf.cpp:76 152 {*extendsfdf2_sse}
+     (nil))
+(insn 285 284 286 14 (set (reg/f:DI 0 ax [427])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -808 [0xfffffffffffffcd8])) [0 procpar_info+0 S8 A64])) read_fdf.cpp:76 89 {*movdi_internal}
+     (nil))
+(insn 286 285 287 14 (set (mem/j:DF (plus:DI (reg/f:DI 0 ax [427])
+                (const_int 360 [0x168])) [0 procpar_info_74(D)->span+0 S8 A64])
+        (reg:DF 21 xmm0 [orig:125 D.5838 ] [125])) read_fdf.cpp:76 128 {*movdf_internal}
+     (nil))
+(code_label 287 286 288 15 8 "" [1 uses])
+(note 288 287 862 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 862 288 290 15 (set (reg:DI 0 ax [428])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -512 [0xfffffffffffffe00]))) read_fdf.cpp:79 214 {*leadi}
+     (nil))
+(insn 290 862 291 15 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC12") [flags 0x2]  <var_decl 0x7f23845cf240 *.LC12>)) read_fdf.cpp:79 89 {*movdi_internal}
+     (nil))
+(insn 291 290 292 15 (set (reg:DI 5 di)
+        (reg:DI 0 ax [428])) read_fdf.cpp:79 89 {*movdi_internal}
+     (nil))
+(call_insn/i 292 291 294 15 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f2384a70360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:79 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 294 292 295 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:126 D.5829 ] [126])
+            (const_int 0 [0]))) read_fdf.cpp:79 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 295 294 296 15 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 323)
+            (pc))) read_fdf.cpp:79 612 {*jcc_1}
+     (nil)
+ -> 323)
+(note 296 295 854 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 854 296 855 16 (set (reg:DI 37 r8 [429])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -700 [0xfffffffffffffd44]))) read_fdf.cpp:80 214 {*leadi}
+     (nil))
+(insn 855 854 856 16 (set (reg:DI 5 di [430])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -272 [0xfffffffffffffef0]))) read_fdf.cpp:80 214 {*leadi}
+     (nil))
+(insn 856 855 857 16 (set (reg:DI 2 cx [431])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -352 [0xfffffffffffffea0]))) read_fdf.cpp:80 214 {*leadi}
+     (nil))
+(insn 857 856 858 16 (set (reg:DI 1 dx [432])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:80 214 {*leadi}
+     (nil))
+(insn 858 857 302 16 (set (reg:DI 0 ax [433])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -672 [0xfffffffffffffd60]))) read_fdf.cpp:80 214 {*leadi}
+     (nil))
+(insn 302 858 859 16 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:80 218 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 8 [0x8])
+        (nil)))
+(insn 859 302 304 16 (set (reg:DI 4 si [434])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -192 [0xffffffffffffff40]))) read_fdf.cpp:80 214 {*leadi}
+     (nil))
+(insn 304 859 305 16 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 4 si [434])) read_fdf.cpp:80 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(insn 305 304 306 16 (set (reg:DI 38 r9)
+        (reg:DI 37 r8 [429])) read_fdf.cpp:80 89 {*movdi_internal}
+     (nil))
+(insn 306 305 309 16 (set (reg:DI 37 r8)
+        (reg:DI 5 di [430])) read_fdf.cpp:80 89 {*movdi_internal}
+     (nil))
+(insn 309 306 310 16 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC13") [flags 0x2]  <var_decl 0x7f23845cf2d0 *.LC13>)) read_fdf.cpp:80 89 {*movdi_internal}
+     (nil))
+(insn 310 309 311 16 (set (reg:DI 5 di)
+        (reg:DI 0 ax [433])) read_fdf.cpp:80 89 {*movdi_internal}
+     (nil))
+(insn 311 310 312 16 (set (reg:QI 0 ax)
+        (const_int 0 [0])) read_fdf.cpp:80 93 {*movqi_internal}
+     (nil))
+(call_insn 312 311 313 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("sscanf") [flags 0x41]  <function_decl 0x7f2384a7cd80 sscanf>) [0 __builtin_sscanf S1 A8])
+            (const_int 16 [0x10]))) read_fdf.cpp:80 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (expr_list:DI (use (reg:DI 37 r8))
+                            (expr_list:DI (use (reg:DI 38 r9))
+                                (nil)))))))))
+(insn 313 312 314 16 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:80 218 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 314 313 315 16 (set (reg:SI 0 ax [435])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:81 90 {*movsi_internal}
+     (nil))
+(insn 315 314 860 16 (set (reg:DI 0 ax [orig:127 D.5830 ] [127])
+        (sign_extend:DI (reg:SI 0 ax [435]))) read_fdf.cpp:81 142 {*extendsidi2_rex64}
+     (nil))
+(insn 860 315 317 16 (set (reg:DI 1 dx [orig:128 D.5830 ] [128])
+        (mult:DI (reg:DI 0 ax [orig:127 D.5830 ] [127])
+            (const_int 8 [0x8]))) read_fdf.cpp:81 214 {*leadi}
+     (nil))
+(insn 317 860 318 16 (set (reg/f:DI 0 ax [436])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -752 [0xfffffffffffffd10])) [0 main_header+0 S8 A64])) read_fdf.cpp:81 89 {*movdi_internal}
+     (nil))
+(insn 318 317 319 16 (parallel [
+            (set (reg/f:DI 0 ax [orig:129 D.5840 ] [129])
+                (plus:DI (reg/f:DI 0 ax [436])
+                    (reg:DI 1 dx [orig:128 D.5830 ] [128])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:81 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])
+            (reg:DI 1 dx [orig:128 D.5830 ] [128]))
+        (nil)))
+(insn 319 318 861 16 (set (reg/f:DI 0 ax [orig:130 D.5841 ] [130])
+        (mem/f:DI (reg/f:DI 0 ax [orig:129 D.5840 ] [129]) [0 *_93+0 S8 A64])) read_fdf.cpp:81 89 {*movdi_internal}
+     (nil))
+(insn 861 319 321 16 (set (reg/f:DI 1 dx [orig:131 D.5841 ] [131])
+        (plus:DI (reg/f:DI 0 ax [orig:130 D.5841 ] [130])
+            (const_int 32 [0x20]))) read_fdf.cpp:81 214 {*leadi}
+     (nil))
+(insn 321 861 322 16 (set (reg:SI 0 ax [orig:132 D.5829 ] [132])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -700 [0xfffffffffffffd44])) [0 dum7+0 S4 A32])) read_fdf.cpp:81 90 {*movsi_internal}
+     (nil))
+(insn 322 321 323 16 (set (mem/j:SI (plus:DI (reg/f:DI 1 dx [orig:131 D.5841 ] [131])
+                (const_int 4 [0x4])) [0 _95->ntraces.number+0 S4 A32])
+        (reg:SI 0 ax [orig:132 D.5829 ] [132])) read_fdf.cpp:81 90 {*movsi_internal}
+     (nil))
+(code_label 323 322 324 17 9 "" [1 uses])
+(note 324 323 853 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 853 324 326 17 (set (reg:DI 0 ax [437])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -512 [0xfffffffffffffe00]))) read_fdf.cpp:84 214 {*leadi}
+     (nil))
+(insn 326 853 327 17 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC14") [flags 0x2]  <var_decl 0x7f23845cf360 *.LC14>)) read_fdf.cpp:84 89 {*movdi_internal}
+     (nil))
+(insn 327 326 328 17 (set (reg:DI 5 di)
+        (reg:DI 0 ax [437])) read_fdf.cpp:84 89 {*movdi_internal}
+     (nil))
+(call_insn/i 328 327 330 17 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f2384a70360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:84 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 330 328 331 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:133 D.5829 ] [133])
+            (const_int 0 [0]))) read_fdf.cpp:84 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 331 330 332 17 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 365)
+            (pc))) read_fdf.cpp:84 612 {*jcc_1}
+     (nil)
+ -> 365)
+(note 332 331 844 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 844 332 845 18 (set (reg:DI 37 r8 [438])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -700 [0xfffffffffffffd44]))) read_fdf.cpp:85 214 {*leadi}
+     (nil))
+(insn 845 844 846 18 (set (reg:DI 5 di [439])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -272 [0xfffffffffffffef0]))) read_fdf.cpp:85 214 {*leadi}
+     (nil))
+(insn 846 845 847 18 (set (reg:DI 2 cx [440])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -352 [0xfffffffffffffea0]))) read_fdf.cpp:85 214 {*leadi}
+     (nil))
+(insn 847 846 848 18 (set (reg:DI 1 dx [441])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:85 214 {*leadi}
+     (nil))
+(insn 848 847 338 18 (set (reg:DI 0 ax [442])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -672 [0xfffffffffffffd60]))) read_fdf.cpp:85 214 {*leadi}
+     (nil))
+(insn 338 848 849 18 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:85 218 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 8 [0x8])
+        (nil)))
+(insn 849 338 340 18 (set (reg:DI 4 si [443])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -192 [0xffffffffffffff40]))) read_fdf.cpp:85 214 {*leadi}
+     (nil))
+(insn 340 849 341 18 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 4 si [443])) read_fdf.cpp:85 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(insn 341 340 342 18 (set (reg:DI 38 r9)
+        (reg:DI 37 r8 [438])) read_fdf.cpp:85 89 {*movdi_internal}
+     (nil))
+(insn 342 341 345 18 (set (reg:DI 37 r8)
+        (reg:DI 5 di [439])) read_fdf.cpp:85 89 {*movdi_internal}
+     (nil))
+(insn 345 342 346 18 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC13") [flags 0x2]  <var_decl 0x7f23845cf2d0 *.LC13>)) read_fdf.cpp:85 89 {*movdi_internal}
+     (nil))
+(insn 346 345 347 18 (set (reg:DI 5 di)
+        (reg:DI 0 ax [442])) read_fdf.cpp:85 89 {*movdi_internal}
+     (nil))
+(insn 347 346 348 18 (set (reg:QI 0 ax)
+        (const_int 0 [0])) read_fdf.cpp:85 93 {*movqi_internal}
+     (nil))
+(call_insn 348 347 349 18 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("sscanf") [flags 0x41]  <function_decl 0x7f2384a7cd80 sscanf>) [0 __builtin_sscanf S1 A8])
+            (const_int 16 [0x10]))) read_fdf.cpp:85 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (expr_list:DI (use (reg:DI 37 r8))
+                            (expr_list:DI (use (reg:DI 38 r9))
+                                (nil)))))))))
+(insn 349 348 350 18 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:85 218 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 350 349 351 18 (set (reg:SI 0 ax [444])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:86 90 {*movsi_internal}
+     (nil))
+(insn 351 350 850 18 (set (reg:DI 0 ax [orig:134 D.5830 ] [134])
+        (sign_extend:DI (reg:SI 0 ax [444]))) read_fdf.cpp:86 142 {*extendsidi2_rex64}
+     (nil))
+(insn 850 351 353 18 (set (reg:DI 1 dx [orig:135 D.5830 ] [135])
+        (mult:DI (reg:DI 0 ax [orig:134 D.5830 ] [134])
+            (const_int 8 [0x8]))) read_fdf.cpp:86 214 {*leadi}
+     (nil))
+(insn 353 850 354 18 (set (reg/f:DI 0 ax [445])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -752 [0xfffffffffffffd10])) [0 main_header+0 S8 A64])) read_fdf.cpp:86 89 {*movdi_internal}
+     (nil))
+(insn 354 353 355 18 (parallel [
+            (set (reg/f:DI 0 ax [orig:136 D.5840 ] [136])
+                (plus:DI (reg/f:DI 0 ax [445])
+                    (reg:DI 1 dx [orig:135 D.5830 ] [135])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:86 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])
+            (reg:DI 1 dx [orig:135 D.5830 ] [135]))
+        (nil)))
+(insn 355 354 851 18 (set (reg/f:DI 0 ax [orig:137 D.5841 ] [137])
+        (mem/f:DI (reg/f:DI 0 ax [orig:136 D.5840 ] [136]) [0 *_102+0 S8 A64])) read_fdf.cpp:86 89 {*movdi_internal}
+     (nil))
+(insn 851 355 357 18 (set (reg/f:DI 1 dx [orig:138 D.5841 ] [138])
+        (plus:DI (reg/f:DI 0 ax [orig:137 D.5841 ] [137])
+            (const_int 32 [0x20]))) read_fdf.cpp:86 214 {*leadi}
+     (nil))
+(insn 357 851 852 18 (set (reg:SI 0 ax [orig:139 D.5829 ] [139])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -700 [0xfffffffffffffd44])) [0 dum7+0 S4 A32])) read_fdf.cpp:86 90 {*movsi_internal}
+     (nil))
+(insn 852 357 360 18 (set (reg:SI 2 cx [447])
+        (plus:SI (reg:SI 0 ax [446])
+            (const_int 7 [0x7]))) read_fdf.cpp:86 213 {*leasi}
+     (nil))
+(insn 360 852 361 18 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 0 ax [446])
+            (const_int 0 [0]))) read_fdf.cpp:86 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 361 360 362 18 (set (reg:SI 0 ax [446])
+        (if_then_else:SI (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 2 cx [447])
+            (reg:SI 0 ax [446]))) read_fdf.cpp:86 953 {*movsicc_noc}
+     (nil))
+(insn 362 361 364 18 (parallel [
+            (set (reg:SI 0 ax [448])
+                (ashiftrt:SI (reg:SI 0 ax [446])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:86 545 {*ashrsi3_1}
+     (nil))
+(insn 364 362 365 18 (set (mem/j:SI (plus:DI (reg/f:DI 1 dx [orig:138 D.5841 ] [138])
+                (const_int 12 [0xc])) [0 _104->ebytes.number+0 S4 A32])
+        (reg:SI 0 ax [orig:140 D.5829 ] [140])) read_fdf.cpp:86 90 {*movsi_internal}
+     (nil))
+(code_label 365 364 366 19 10 "" [1 uses])
+(note 366 365 843 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 843 366 368 19 (set (reg:DI 0 ax [449])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -512 [0xfffffffffffffe00]))) read_fdf.cpp:89 214 {*leadi}
+     (nil))
+(insn 368 843 369 19 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC15") [flags 0x2]  <var_decl 0x7f23845cf3f0 *.LC15>)) read_fdf.cpp:89 89 {*movdi_internal}
+     (nil))
+(insn 369 368 370 19 (set (reg:DI 5 di)
+        (reg:DI 0 ax [449])) read_fdf.cpp:89 89 {*movdi_internal}
+     (nil))
+(call_insn/i 370 369 372 19 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f2384a70360 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:89 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 372 370 373 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:141 D.5829 ] [141])
+            (const_int 0 [0]))) read_fdf.cpp:89 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 373 372 374 19 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 410)
+            (pc))) read_fdf.cpp:89 612 {*jcc_1}
+     (nil)
+ -> 410)
+(note 374 373 835 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 835 374 836 20 (set (reg:DI 37 r8 [450])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -192 [0xffffffffffffff40]))) read_fdf.cpp:90 214 {*leadi}
+     (nil))
+(insn 836 835 837 20 (set (reg:DI 5 di [451])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -272 [0xfffffffffffffef0]))) read_fdf.cpp:90 214 {*leadi}
+     (nil))
+(insn 837 836 838 20 (set (reg:DI 2 cx [452])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -352 [0xfffffffffffffea0]))) read_fdf.cpp:90 214 {*leadi}
+     (nil))
+(insn 838 837 839 20 (set (reg:DI 1 dx [453])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -432 [0xfffffffffffffe50]))) read_fdf.cpp:90 214 {*leadi}
+     (nil))
+(insn 839 838 380 20 (set (reg:DI 0 ax [454])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -672 [0xfffffffffffffd60]))) read_fdf.cpp:90 214 {*leadi}
+     (nil))
+(insn 380 839 840 20 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:90 218 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 8 [0x8])
+        (nil)))
+(insn 840 380 382 20 (set (reg:DI 4 si [455])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -700 [0xfffffffffffffd44]))) read_fdf.cpp:90 214 {*leadi}
+     (nil))
+(insn 382 840 383 20 (set (mem/f:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A64])
+        (reg:DI 4 si [455])) read_fdf.cpp:90 65 {*pushdi2_rex64}
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(insn 383 382 384 20 (set (reg:DI 38 r9)
+        (reg:DI 37 r8 [450])) read_fdf.cpp:90 89 {*movdi_internal}
+     (nil))
+(insn 384 383 387 20 (set (reg:DI 37 r8)
+        (reg:DI 5 di [451])) read_fdf.cpp:90 89 {*movdi_internal}
+     (nil))
+(insn 387 384 388 20 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC16") [flags 0x2]  <var_decl 0x7f23845cf480 *.LC16>)) read_fdf.cpp:90 89 {*movdi_internal}
+     (nil))
+(insn 388 387 389 20 (set (reg:DI 5 di)
+        (reg:DI 0 ax [454])) read_fdf.cpp:90 89 {*movdi_internal}
+     (nil))
+(insn 389 388 390 20 (set (reg:QI 0 ax)
+        (const_int 0 [0])) read_fdf.cpp:90 93 {*movqi_internal}
+     (nil))
+(call_insn 390 389 391 20 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("sscanf") [flags 0x41]  <function_decl 0x7f2384a7cd80 sscanf>) [0 __builtin_sscanf S1 A8])
+            (const_int 16 [0x10]))) read_fdf.cpp:90 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (expr_list:DI (use (reg:DI 37 r8))
+                            (expr_list:DI (use (reg:DI 38 r9))
+                                (nil)))))))))
+(insn 391 390 392 20 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:90 218 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 392 391 393 20 (set (reg:SI 0 ax [456])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:91 90 {*movsi_internal}
+     (nil))
+(insn 393 392 841 20 (set (reg:DI 0 ax [orig:142 D.5830 ] [142])
+        (sign_extend:DI (reg:SI 0 ax [456]))) read_fdf.cpp:91 142 {*extendsidi2_rex64}
+     (nil))
+(insn 841 393 395 20 (set (reg:DI 1 dx [orig:143 D.5830 ] [143])
+        (mult:DI (reg:DI 0 ax [orig:142 D.5830 ] [142])
+            (const_int 8 [0x8]))) read_fdf.cpp:91 214 {*leadi}
+     (nil))
+(insn 395 841 396 20 (set (reg/f:DI 0 ax [457])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -752 [0xfffffffffffffd10])) [0 main_header+0 S8 A64])) read_fdf.cpp:91 89 {*movdi_internal}
+     (nil))
+(insn 396 395 397 20 (parallel [
+            (set (reg/f:DI 0 ax [orig:144 D.5840 ] [144])
+                (plus:DI (reg/f:DI 0 ax [457])
+                    (reg:DI 1 dx [orig:143 D.5830 ] [143])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:91 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])
+            (reg:DI 1 dx [orig:143 D.5830 ] [143]))
+        (nil)))
+(insn 397 396 398 20 (set (reg/f:DI 0 ax [orig:145 D.5841 ] [145])
+        (mem/f:DI (reg/f:DI 0 ax [orig:144 D.5840 ] [144]) [0 *_112+0 S8 A64])) read_fdf.cpp:91 89 {*movdi_internal}
+     (nil))
+(insn 398 397 399 20 (parallel [
+            (set (reg/f:DI 0 ax [orig:146 D.5841 ] [146])
+                (plus:DI (reg/f:DI 0 ax [orig:145 D.5841 ] [145])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:91 218 {*adddi_1}
+     (nil))
+(insn 399 398 401 20 (set (reg:SI 1 dx [orig:147 D.5829 ] [147])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -700 [0xfffffffffffffd44])) [0 dum7+0 S4 A32])) read_fdf.cpp:91 90 {*movsi_internal}
+     (nil))
+(insn 401 399 403 20 (parallel [
+            (set (reg:SI 1 dx [orig:149 D.5842 ] [149])
+                (ashift:SI (reg:SI 1 dx [orig:148 D.5842 ] [148])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:91 511 {*ashlsi3_1}
+     (nil))
+(insn 403 401 404 20 (set (mem/j:SI (plus:DI (reg/f:DI 0 ax [orig:146 D.5841 ] [146])
+                (const_int 8 [0x8])) [0 _114->np.number+0 S4 A32])
+        (reg:SI 1 dx [orig:150 D.5829 ] [150])) read_fdf.cpp:91 90 {*movsi_internal}
+     (nil))
+(insn 404 403 842 20 (set (reg:SI 0 ax [orig:151 D.5829 ] [151])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -700 [0xfffffffffffffd44])) [0 dum7+0 S4 A32])) read_fdf.cpp:92 90 {*movsi_internal}
+     (nil))
+(insn 842 404 406 20 (set (reg:SI 1 dx [orig:152 D.5829 ] [152])
+        (mult:SI (reg:SI 0 ax [orig:151 D.5829 ] [151])
+            (const_int 2 [0x2]))) read_fdf.cpp:92 213 {*leasi}
+     (nil))
+(insn 406 842 407 20 (set (reg/f:DI 0 ax [458])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -808 [0xfffffffffffffcd8])) [0 procpar_info+0 S8 A64])) read_fdf.cpp:92 89 {*movdi_internal}
+     (nil))
+(insn 407 406 772 20 (set (mem/j:SI (plus:DI (reg/f:DI 0 ax [458])
+                (const_int 300 [0x12c])) [0 procpar_info_74(D)->num_points+0 S4 A32])
+        (reg:SI 1 dx [orig:152 D.5829 ] [152])) read_fdf.cpp:92 90 {*movsi_internal}
+     (nil))
+(jump_insn 772 407 773 20 (set (pc)
+        (label_ref 410)) read_fdf.cpp:50 654 {jump}
+     (nil)
+ -> 410)
+(barrier 773 772 413)
+(code_label 413 773 414 21 5 "" [2 uses])
+(note 414 413 415 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 415 414 416 21 (set (reg/f:DI 0 ax [459])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -808 [0xfffffffffffffcd8])) [0 procpar_info+0 S8 A64])) read_fdf.cpp:99 89 {*movdi_internal}
+     (nil))
+(insn 416 415 797 21 (set (reg:SI 0 ax [orig:153 D.5829 ] [153])
+        (mem/j:SI (plus:DI (reg/f:DI 0 ax [459])
+                (const_int 300 [0x12c])) [0 procpar_info_74(D)->num_points+0 S4 A32])) read_fdf.cpp:99 90 {*movsi_internal}
+     (nil))
+(insn 797 416 417 21 (set (reg:SI 1 dx [460])
+        (reg:SI 0 ax [orig:153 D.5829 ] [153])) read_fdf.cpp:99 90 {*movsi_internal}
+     (nil))
+(insn 417 797 418 21 (parallel [
+            (set (reg:SI 1 dx [460])
+                (lshiftrt:SI (reg:SI 1 dx [460])
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:99 544 {*lshrsi3_1}
+     (nil))
+(insn 418 417 419 21 (parallel [
+            (set (reg:SI 0 ax [461])
+                (plus:SI (reg:SI 0 ax [orig:153 D.5829 ] [153])
+                    (reg:SI 1 dx [460])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:99 217 {*addsi_1}
+     (nil))
+(insn 419 418 829 21 (parallel [
+            (set (reg:SI 0 ax [462])
+                (ashiftrt:SI (reg:SI 0 ax [461])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:99 545 {*ashrsi3_1}
+     (nil))
+(insn 829 419 830 21 (set (reg:V2DF 22 xmm1 [orig:155 D.5838 ] [155])
+        (const_vector:V2DF [
+                (const_double:DF 0.0 [0x0.0p+0])
+                (const_double:DF 0.0 [0x0.0p+0])
+            ])) read_fdf.cpp:99 1208 {*movv2df_internal}
+     (nil))
+(insn 830 829 422 21 (set (reg:V2DF 22 xmm1 [orig:155 D.5838 ] [155])
+        (vec_merge:V2DF (vec_duplicate:V2DF (float:DF (reg:SI 0 ax [orig:154 D.5829 ] [154])))
+            (reg:V2DF 22 xmm1 [orig:155 D.5838 ] [155])
+            (const_int 1 [0x1]))) read_fdf.cpp:99 2205 {sse2_cvtsi2sd}
+     (nil))
+(insn 422 830 423 21 (set (reg/f:DI 0 ax [463])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -808 [0xfffffffffffffcd8])) [0 procpar_info+0 S8 A64])) read_fdf.cpp:99 89 {*movdi_internal}
+     (nil))
+(insn 423 422 424 21 (set (reg:DF 23 xmm2 [orig:156 D.5838 ] [156])
+        (mem/j:DF (plus:DI (reg/f:DI 0 ax [463])
+                (const_int 360 [0x168])) [0 procpar_info_74(D)->span+0 S8 A64])) read_fdf.cpp:99 128 {*movdf_internal}
+     (nil))
+(insn 424 423 425 21 (set (reg/f:DI 0 ax [464])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -808 [0xfffffffffffffcd8])) [0 procpar_info+0 S8 A64])) read_fdf.cpp:99 89 {*movdi_internal}
+     (nil))
+(insn 425 424 426 21 (set (reg:DF 21 xmm0 [orig:157 D.5838 ] [157])
+        (mem/j:DF (plus:DI (reg/f:DI 0 ax [464])
+                (const_int 304 [0x130])) [0 procpar_info_74(D)->main_frequency+0 S8 A64])) read_fdf.cpp:99 128 {*movdf_internal}
+     (nil))
+(insn 426 425 427 21 (set (reg:DF 21 xmm0 [orig:158 D.5838 ] [158])
+        (mult:DF (reg:DF 21 xmm0 [orig:157 D.5838 ] [157])
+            (reg:DF 23 xmm2 [orig:156 D.5838 ] [156]))) read_fdf.cpp:99 798 {*fop_df_comm_sse}
+     (nil))
+(insn 427 426 428 21 (set (reg:DF 23 xmm2 [465])
+        (mem/u/c:DF (symbol_ref/u:DI ("*.LC17") [flags 0x2]) [0  S8 A64])) read_fdf.cpp:99 128 {*movdf_internal}
+     (expr_list:REG_EQUAL (const_double:DF 1.0e+0 [0x0.8p+1])
+        (nil)))
+(insn 428 427 800 21 (set (reg:DF 23 xmm2 [orig:159 D.5838 ] [159])
+        (div:DF (reg:DF 23 xmm2 [orig:159 D.5838 ] [159])
+            (reg:DF 21 xmm0 [orig:158 D.5838 ] [158]))) read_fdf.cpp:99 805 {*fop_df_1_sse}
+     (nil))
+(insn 800 428 429 21 (set (reg:DF 21 xmm0 [orig:159 D.5838 ] [159])
+        (reg:DF 23 xmm2 [orig:159 D.5838 ] [159])) read_fdf.cpp:99 128 {*movdf_internal}
+     (nil))
+(insn 429 800 430 21 (set (reg:DF 21 xmm0 [orig:160 D.5838 ] [160])
+        (mult:DF (reg:DF 21 xmm0 [orig:159 D.5838 ] [159])
+            (reg:DF 22 xmm1 [orig:155 D.5838 ] [155]))) read_fdf.cpp:99 798 {*fop_df_comm_sse}
+     (nil))
+(insn 430 429 431 21 (set (reg:SF 21 xmm0 [orig:161 D.5839 ] [161])
+        (float_truncate:SF (reg:DF 21 xmm0 [orig:160 D.5838 ] [160]))) read_fdf.cpp:99 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 431 430 432 21 (set (reg/f:DI 0 ax [466])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -808 [0xfffffffffffffcd8])) [0 procpar_info+0 S8 A64])) read_fdf.cpp:99 89 {*movdi_internal}
+     (nil))
+(insn 432 431 433 21 (set (mem/j:SF (reg/f:DI 0 ax [466]) [0 procpar_info_74(D)->acquision_time+0 S4 A64])
+        (reg:SF 21 xmm0 [orig:161 D.5839 ] [161])) read_fdf.cpp:99 129 {*movsf_internal}
+     (nil))
+(insn 433 432 434 21 (set (reg/f:DI 0 ax [467])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -808 [0xfffffffffffffcd8])) [0 procpar_info+0 S8 A64])) read_fdf.cpp:100 89 {*movdi_internal}
+     (nil))
+(insn 434 433 435 21 (set (mem/j:SI (plus:DI (reg/f:DI 0 ax [467])
+                (const_int 296 [0x128])) [0 procpar_info_74(D)->num_transients+0 S4 A64])
+        (const_int 1 [0x1])) read_fdf.cpp:100 90 {*movsi_internal}
+     (nil))
+(insn 435 434 831 21 (set (reg/f:DI 0 ax [468])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -808 [0xfffffffffffffcd8])) [0 procpar_info+0 S8 A64])) read_fdf.cpp:101 89 {*movdi_internal}
+     (nil))
+(insn 831 435 437 21 (set (reg:SF 21 xmm0 [469])
+        (const_double:SF 0.0 [0x0.0p+0])) read_fdf.cpp:101 129 {*movsf_internal}
+     (nil))
+(insn 437 831 438 21 (set (mem/j:SF (plus:DI (reg/f:DI 0 ax [468])
+                (const_int 320 [0x140])) [0 procpar_info_74(D)->te+0 S4 A64])
+        (reg:SF 21 xmm0 [469])) read_fdf.cpp:101 129 {*movsf_internal}
+     (nil))
+(insn 438 437 832 21 (set (reg/f:DI 0 ax [470])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -808 [0xfffffffffffffcd8])) [0 procpar_info+0 S8 A64])) read_fdf.cpp:102 89 {*movdi_internal}
+     (nil))
+(insn 832 438 440 21 (set (reg:SF 21 xmm0 [471])
+        (const_double:SF 0.0 [0x0.0p+0])) read_fdf.cpp:102 129 {*movsf_internal}
+     (nil))
+(insn 440 832 441 21 (set (mem/j:SF (plus:DI (reg/f:DI 0 ax [470])
+                (const_int 324 [0x144])) [0 procpar_info_74(D)->tm+0 S4 A32])
+        (reg:SF 21 xmm0 [471])) read_fdf.cpp:102 129 {*movsf_internal}
+     (nil))
+(insn 441 440 442 21 (set (reg/f:DI 0 ax [472])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -760 [0xfffffffffffffd08])) [0 block_header+0 S8 A64])) read_fdf.cpp:103 89 {*movdi_internal}
+     (nil))
+(insn 442 441 443 21 (set (reg/f:DI 0 ax [orig:162 D.5843 ] [162])
+        (mem/f:DI (reg/f:DI 0 ax [472]) [0 *block_header_136(D)+0 S8 A64])) read_fdf.cpp:103 89 {*movdi_internal}
+     (nil))
+(insn 443 442 444 21 (parallel [
+            (set (reg/f:DI 0 ax [orig:163 D.5843 ] [163])
+                (plus:DI (reg/f:DI 0 ax [orig:162 D.5843 ] [162])
+                    (const_int 28 [0x1c])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:103 218 {*adddi_1}
+     (nil))
+(insn 444 443 445 21 (set (mem/j:HI (reg/f:DI 0 ax [orig:163 D.5843 ] [163]) [0 _138->scale.number+0 S2 A32])
+        (const_int 1 [0x1])) read_fdf.cpp:103 92 {*movhi_internal}
+     (nil))
+(insn 445 444 446 21 (set (reg:SI 0 ax [473])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:105 90 {*movsi_internal}
+     (nil))
+(insn 446 445 833 21 (set (reg:DI 0 ax [orig:164 D.5830 ] [164])
+        (sign_extend:DI (reg:SI 0 ax [473]))) read_fdf.cpp:105 142 {*extendsidi2_rex64}
+     (nil))
+(insn 833 446 448 21 (set (reg:DI 1 dx [orig:165 D.5830 ] [165])
+        (mult:DI (reg:DI 0 ax [orig:164 D.5830 ] [164])
+            (const_int 8 [0x8]))) read_fdf.cpp:105 214 {*leadi}
+     (nil))
+(insn 448 833 449 21 (set (reg/f:DI 0 ax [474])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -752 [0xfffffffffffffd10])) [0 main_header+0 S8 A64])) read_fdf.cpp:105 89 {*movdi_internal}
+     (nil))
+(insn 449 448 450 21 (parallel [
+            (set (reg/f:DI 0 ax [orig:166 D.5840 ] [166])
+                (plus:DI (reg/f:DI 0 ax [474])
+                    (reg:DI 1 dx [orig:165 D.5830 ] [165])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:105 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])
+            (reg:DI 1 dx [orig:165 D.5830 ] [165]))
+        (nil)))
+(insn 450 449 451 21 (set (reg/f:DI 0 ax [orig:167 D.5841 ] [167])
+        (mem/f:DI (reg/f:DI 0 ax [orig:166 D.5840 ] [166]) [0 *_142+0 S8 A64])) read_fdf.cpp:105 89 {*movdi_internal}
+     (nil))
+(insn 451 450 452 21 (parallel [
+            (set (reg/f:DI 0 ax [orig:168 D.5841 ] [168])
+                (plus:DI (reg/f:DI 0 ax [orig:167 D.5841 ] [167])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:105 218 {*adddi_1}
+     (nil))
+(insn 452 451 453 21 (set (reg:SI 0 ax [475])
+        (mem/j:SI (plus:DI (reg/f:DI 0 ax [orig:168 D.5841 ] [168])
+                (const_int 8 [0x8])) [0 _144->np.number+0 S4 A32])) read_fdf.cpp:105 90 {*movsi_internal}
+     (nil))
+(insn 453 452 454 21 (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -688 [0xfffffffffffffd50])) [0 out_data_size+0 S4 A32])
+        (reg:SI 0 ax [475])) read_fdf.cpp:105 90 {*movsi_internal}
+     (nil))
+(insn 454 453 455 21 (set (reg/f:DI 0 ax [476])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -736 [0xfffffffffffffd20])) [0 preprocess+0 S8 A64])) read_fdf.cpp:108 89 {*movdi_internal}
+     (nil))
+(insn 455 454 456 21 (set (reg:SI 1 dx [orig:169 D.5829 ] [169])
+        (mem/j:SI (plus:DI (reg/f:DI 0 ax [476])
+                (const_int 24 [0x18])) [0 preprocess_27(D)->data_zero_fill+0 S4 A32])) read_fdf.cpp:108 90 {*movsi_internal}
+     (nil))
+(insn 456 455 457 21 (set (reg:SI 0 ax [477])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:108 90 {*movsi_internal}
+     (nil))
+(insn 457 456 834 21 (set (reg:DI 0 ax [orig:170 D.5830 ] [170])
+        (sign_extend:DI (reg:SI 0 ax [477]))) read_fdf.cpp:108 142 {*extendsidi2_rex64}
+     (nil))
+(insn 834 457 459 21 (set (reg:DI 2 cx [orig:171 D.5830 ] [171])
+        (mult:DI (reg:DI 0 ax [orig:170 D.5830 ] [170])
+            (const_int 8 [0x8]))) read_fdf.cpp:108 214 {*leadi}
+     (nil))
+(insn 459 834 460 21 (set (reg/f:DI 0 ax [478])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -752 [0xfffffffffffffd10])) [0 main_header+0 S8 A64])) read_fdf.cpp:108 89 {*movdi_internal}
+     (nil))
+(insn 460 459 461 21 (parallel [
+            (set (reg/f:DI 0 ax [orig:172 D.5840 ] [172])
+                (plus:DI (reg/f:DI 0 ax [478])
+                    (reg:DI 2 cx [orig:171 D.5830 ] [171])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:108 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])
+            (reg:DI 2 cx [orig:171 D.5830 ] [171]))
+        (nil)))
+(insn 461 460 462 21 (set (reg/f:DI 0 ax [orig:173 D.5841 ] [173])
+        (mem/f:DI (reg/f:DI 0 ax [orig:172 D.5840 ] [172]) [0 *_149+0 S8 A64])) read_fdf.cpp:108 89 {*movdi_internal}
+     (nil))
+(insn 462 461 463 21 (set (reg:SI 0 ax [orig:174 D.5829 ] [174])
+        (mem/j:SI (plus:DI (reg/f:DI 0 ax [orig:173 D.5841 ] [173])
+                (const_int 8 [0x8])) [0 _150->np.number+0 S4 A32])) read_fdf.cpp:108 90 {*movsi_internal}
+     (nil))
+(insn 463 462 464 21 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 1 dx [orig:169 D.5829 ] [169])
+            (reg:SI 0 ax [orig:174 D.5829 ] [174]))) read_fdf.cpp:108 7 {*cmpsi_1}
+     (nil))
+(jump_insn 464 463 465 21 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 469)
+            (pc))) read_fdf.cpp:108 612 {*jcc_1}
+     (nil)
+ -> 469)
+(note 465 464 466 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 466 465 467 22 (set (reg/f:DI 0 ax [479])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -736 [0xfffffffffffffd20])) [0 preprocess+0 S8 A64])) read_fdf.cpp:109 89 {*movdi_internal}
+     (nil))
+(insn 467 466 468 22 (set (reg:SI 0 ax [480])
+        (mem/j:SI (plus:DI (reg/f:DI 0 ax [479])
+                (const_int 24 [0x18])) [0 preprocess_27(D)->data_zero_fill+0 S4 A32])) read_fdf.cpp:109 90 {*movsi_internal}
+     (nil))
+(insn 468 467 469 22 (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -688 [0xfffffffffffffd50])) [0 out_data_size+0 S4 A32])
+        (reg:SI 0 ax [480])) read_fdf.cpp:109 90 {*movsi_internal}
+     (nil))
+(code_label 469 468 470 23 13 "" [1 uses])
+(note 470 469 471 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 471 470 472 23 (set (reg:SI 0 ax [481])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:111 90 {*movsi_internal}
+     (nil))
+(insn 472 471 819 23 (set (reg:DI 0 ax [orig:175 D.5830 ] [175])
+        (sign_extend:DI (reg:SI 0 ax [481]))) read_fdf.cpp:111 142 {*extendsidi2_rex64}
+     (nil))
+(insn 819 472 474 23 (set (reg:DI 1 dx [orig:176 D.5830 ] [176])
+        (mult:DI (reg:DI 0 ax [orig:175 D.5830 ] [175])
+            (const_int 8 [0x8]))) read_fdf.cpp:111 214 {*leadi}
+     (nil))
+(insn 474 819 820 23 (set (reg/f:DI 0 ax [482])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -792 [0xfffffffffffffce8])) [0 out_data+0 S8 A64])) read_fdf.cpp:111 89 {*movdi_internal}
+     (nil))
+(insn 820 474 476 23 (set (reg/f:DI 3 bx [orig:177 D.5844 ] [177])
+        (plus:DI (reg:DI 1 dx [orig:176 D.5830 ] [176])
+            (reg/f:DI 0 ax [482]))) read_fdf.cpp:111 214 {*leadi}
+     (nil))
+(insn 476 820 477 23 (set (reg:SI 0 ax [483])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -688 [0xfffffffffffffd50])) [0 out_data_size+0 S4 A32])) read_fdf.cpp:111 90 {*movsi_internal}
+     (nil))
+(insn 477 476 478 23 (set (reg:DI 0 ax [orig:178 D.5830 ] [178])
+        (sign_extend:DI (reg:SI 0 ax [483]))) read_fdf.cpp:111 142 {*extendsidi2_rex64}
+     (nil))
+(insn 478 477 479 23 (parallel [
+            (set (reg:DI 0 ax [orig:179 D.5830 ] [179])
+                (ashift:DI (reg:DI 0 ax [orig:178 D.5830 ] [178])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:111 512 {*ashldi3_1}
+     (nil))
+(insn 479 478 480 23 (set (reg:DI 5 di)
+        (reg:DI 0 ax [orig:179 D.5830 ] [179])) read_fdf.cpp:111 89 {*movdi_internal}
+     (nil))
+(call_insn 480 479 483 23 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f2384aa6a20 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:111 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 483 480 484 23 (set (mem/f:DI (reg/f:DI 3 bx [orig:177 D.5844 ] [177]) [0 *_156+0 S8 A64])
+        (reg/f:DI 0 ax [orig:180 D.5845 ] [180])) read_fdf.cpp:111 89 {*movdi_internal}
+     (nil))
+(insn 484 483 485 23 (set (reg:SI 0 ax [485])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:112 90 {*movsi_internal}
+     (nil))
+(insn 485 484 821 23 (set (reg:DI 0 ax [orig:181 D.5830 ] [181])
+        (sign_extend:DI (reg:SI 0 ax [485]))) read_fdf.cpp:112 142 {*extendsidi2_rex64}
+     (nil))
+(insn 821 485 487 23 (set (reg:DI 1 dx [orig:182 D.5830 ] [182])
+        (mult:DI (reg:DI 0 ax [orig:181 D.5830 ] [181])
+            (const_int 8 [0x8]))) read_fdf.cpp:112 214 {*leadi}
+     (nil))
+(insn 487 821 822 23 (set (reg/f:DI 0 ax [486])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -800 [0xfffffffffffffce0])) [0 scratch_data+0 S8 A64])) read_fdf.cpp:112 89 {*movdi_internal}
+     (nil))
+(insn 822 487 489 23 (set (reg/f:DI 3 bx [orig:183 D.5844 ] [183])
+        (plus:DI (reg:DI 1 dx [orig:182 D.5830 ] [182])
+            (reg/f:DI 0 ax [486]))) read_fdf.cpp:112 214 {*leadi}
+     (nil))
+(insn 489 822 490 23 (set (reg:SI 0 ax [487])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -688 [0xfffffffffffffd50])) [0 out_data_size+0 S4 A32])) read_fdf.cpp:112 90 {*movsi_internal}
+     (nil))
+(insn 490 489 491 23 (set (reg:DI 0 ax [orig:184 D.5830 ] [184])
+        (sign_extend:DI (reg:SI 0 ax [487]))) read_fdf.cpp:112 142 {*extendsidi2_rex64}
+     (nil))
+(insn 491 490 492 23 (parallel [
+            (set (reg:DI 0 ax [orig:185 D.5830 ] [185])
+                (ashift:DI (reg:DI 0 ax [orig:184 D.5830 ] [184])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:112 512 {*ashldi3_1}
+     (nil))
+(insn 492 491 493 23 (set (reg:DI 5 di)
+        (reg:DI 0 ax [orig:185 D.5830 ] [185])) read_fdf.cpp:112 89 {*movdi_internal}
+     (nil))
+(call_insn 493 492 496 23 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f2384aa6a20 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:112 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 496 493 497 23 (set (mem/f:DI (reg/f:DI 3 bx [orig:183 D.5844 ] [183]) [0 *_165+0 S8 A64])
+        (reg/f:DI 0 ax [orig:186 D.5845 ] [186])) read_fdf.cpp:112 89 {*movdi_internal}
+     (nil))
+(insn 497 496 498 23 (set (reg:SI 0 ax [489])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:114 90 {*movsi_internal}
+     (nil))
+(insn 498 497 823 23 (set (reg:DI 0 ax [orig:187 D.5830 ] [187])
+        (sign_extend:DI (reg:SI 0 ax [489]))) read_fdf.cpp:114 142 {*extendsidi2_rex64}
+     (nil))
+(insn 823 498 500 23 (set (reg:DI 1 dx [orig:188 D.5830 ] [188])
+        (mult:DI (reg:DI 0 ax [orig:187 D.5830 ] [187])
+            (const_int 8 [0x8]))) read_fdf.cpp:114 214 {*leadi}
+     (nil))
+(insn 500 823 824 23 (set (reg/f:DI 0 ax [490])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -784 [0xfffffffffffffcf0])) [0 in_data+0 S8 A64])) read_fdf.cpp:114 89 {*movdi_internal}
+     (nil))
+(insn 824 500 502 23 (set (reg/f:DI 3 bx [orig:189 D.5846 ] [189])
+        (plus:DI (reg:DI 1 dx [orig:188 D.5830 ] [188])
+            (reg/f:DI 0 ax [490]))) read_fdf.cpp:114 214 {*leadi}
+     (nil))
+(insn 502 824 503 23 (set (reg:SI 0 ax [491])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:114 90 {*movsi_internal}
+     (nil))
+(insn 503 502 825 23 (set (reg:DI 0 ax [orig:190 D.5830 ] [190])
+        (sign_extend:DI (reg:SI 0 ax [491]))) read_fdf.cpp:114 142 {*extendsidi2_rex64}
+     (nil))
+(insn 825 503 505 23 (set (reg:DI 1 dx [orig:191 D.5830 ] [191])
+        (mult:DI (reg:DI 0 ax [orig:190 D.5830 ] [190])
+            (const_int 8 [0x8]))) read_fdf.cpp:114 214 {*leadi}
+     (nil))
+(insn 505 825 506 23 (set (reg/f:DI 0 ax [492])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -752 [0xfffffffffffffd10])) [0 main_header+0 S8 A64])) read_fdf.cpp:114 89 {*movdi_internal}
+     (nil))
+(insn 506 505 507 23 (parallel [
+            (set (reg/f:DI 0 ax [orig:192 D.5840 ] [192])
+                (plus:DI (reg/f:DI 0 ax [492])
+                    (reg:DI 1 dx [orig:191 D.5830 ] [191])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:114 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])
+            (reg:DI 1 dx [orig:191 D.5830 ] [191]))
+        (nil)))
+(insn 507 506 508 23 (set (reg/f:DI 0 ax [orig:193 D.5841 ] [193])
+        (mem/f:DI (reg/f:DI 0 ax [orig:192 D.5840 ] [192]) [0 *_177+0 S8 A64])) read_fdf.cpp:114 89 {*movdi_internal}
+     (nil))
+(insn 508 507 509 23 (set (reg:SI 0 ax [orig:194 D.5829 ] [194])
+        (mem/j:SI (plus:DI (reg/f:DI 0 ax [orig:193 D.5841 ] [193])
+                (const_int 8 [0x8])) [0 _178->np.number+0 S4 A32])) read_fdf.cpp:114 90 {*movsi_internal}
+     (nil))
+(insn 509 508 510 23 (set (reg:DI 0 ax [orig:195 D.5830 ] [195])
+        (sign_extend:DI (reg:SI 0 ax [orig:194 D.5829 ] [194]))) read_fdf.cpp:114 142 {*extendsidi2_rex64}
+     (nil))
+(insn 510 509 511 23 (parallel [
+            (set (reg:DI 0 ax [orig:196 D.5830 ] [196])
+                (ashift:DI (reg:DI 0 ax [orig:195 D.5830 ] [195])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:114 512 {*ashldi3_1}
+     (nil))
+(insn 511 510 512 23 (set (reg:DI 5 di)
+        (reg:DI 0 ax [orig:196 D.5830 ] [196])) read_fdf.cpp:114 89 {*movdi_internal}
+     (nil))
+(call_insn 512 511 515 23 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f2384aa6a20 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:114 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 515 512 516 23 (set (mem/f/j:DI (reg/f:DI 3 bx [orig:189 D.5846 ] [189]) [0 _174->lo+0 S8 A64])
+        (reg/f:DI 0 ax [orig:197 D.5845 ] [197])) read_fdf.cpp:114 89 {*movdi_internal}
+     (nil))
+(insn 516 515 517 23 (set (reg:SI 0 ax [494])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:115 90 {*movsi_internal}
+     (nil))
+(insn 517 516 826 23 (set (reg:DI 0 ax [orig:198 D.5830 ] [198])
+        (sign_extend:DI (reg:SI 0 ax [494]))) read_fdf.cpp:115 142 {*extendsidi2_rex64}
+     (nil))
+(insn 826 517 519 23 (set (reg:DI 1 dx [orig:199 D.5830 ] [199])
+        (mult:DI (reg:DI 0 ax [orig:198 D.5830 ] [198])
+            (const_int 8 [0x8]))) read_fdf.cpp:115 214 {*leadi}
+     (nil))
+(insn 519 826 827 23 (set (reg/f:DI 0 ax [495])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -768 [0xfffffffffffffd00])) [0 switch_data+0 S8 A64])) read_fdf.cpp:115 89 {*movdi_internal}
+     (nil))
+(insn 827 519 521 23 (set (reg/f:DI 3 bx [orig:200 D.5847 ] [200])
+        (plus:DI (reg:DI 1 dx [orig:199 D.5830 ] [199])
+            (reg/f:DI 0 ax [495]))) read_fdf.cpp:115 214 {*leadi}
+     (nil))
+(insn 521 827 522 23 (set (reg:SI 0 ax [496])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:115 90 {*movsi_internal}
+     (nil))
+(insn 522 521 828 23 (set (reg:DI 0 ax [orig:201 D.5830 ] [201])
+        (sign_extend:DI (reg:SI 0 ax [496]))) read_fdf.cpp:115 142 {*extendsidi2_rex64}
+     (nil))
+(insn 828 522 524 23 (set (reg:DI 1 dx [orig:202 D.5830 ] [202])
+        (mult:DI (reg:DI 0 ax [orig:201 D.5830 ] [201])
+            (const_int 8 [0x8]))) read_fdf.cpp:115 214 {*leadi}
+     (nil))
+(insn 524 828 525 23 (set (reg/f:DI 0 ax [497])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -752 [0xfffffffffffffd10])) [0 main_header+0 S8 A64])) read_fdf.cpp:115 89 {*movdi_internal}
+     (nil))
+(insn 525 524 526 23 (parallel [
+            (set (reg/f:DI 0 ax [orig:203 D.5840 ] [203])
+                (plus:DI (reg/f:DI 0 ax [497])
+                    (reg:DI 1 dx [orig:202 D.5830 ] [202])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:115 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])
+            (reg:DI 1 dx [orig:202 D.5830 ] [202]))
+        (nil)))
+(insn 526 525 527 23 (set (reg/f:DI 0 ax [orig:204 D.5841 ] [204])
+        (mem/f:DI (reg/f:DI 0 ax [orig:203 D.5840 ] [203]) [0 *_191+0 S8 A64])) read_fdf.cpp:115 89 {*movdi_internal}
+     (nil))
+(insn 527 526 528 23 (set (reg:SI 0 ax [orig:205 D.5829 ] [205])
+        (mem/j:SI (plus:DI (reg/f:DI 0 ax [orig:204 D.5841 ] [204])
+                (const_int 8 [0x8])) [0 _192->np.number+0 S4 A32])) read_fdf.cpp:115 90 {*movsi_internal}
+     (nil))
+(insn 528 527 529 23 (set (reg:DI 0 ax [orig:206 D.5830 ] [206])
+        (sign_extend:DI (reg:SI 0 ax [orig:205 D.5829 ] [205]))) read_fdf.cpp:115 142 {*extendsidi2_rex64}
+     (nil))
+(insn 529 528 530 23 (parallel [
+            (set (reg:DI 0 ax [orig:207 D.5830 ] [207])
+                (ashift:DI (reg:DI 0 ax [orig:206 D.5830 ] [206])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:115 512 {*ashldi3_1}
+     (nil))
+(insn 530 529 531 23 (set (reg:DI 5 di)
+        (reg:DI 0 ax [orig:207 D.5830 ] [207])) read_fdf.cpp:115 89 {*movdi_internal}
+     (nil))
+(call_insn 531 530 534 23 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f2384aa6a20 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:115 669 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 534 531 549 23 (set (mem/f/j:DI (reg/f:DI 3 bx [orig:200 D.5847 ] [200]) [0 _188->lo+0 S8 A64])
+        (reg/f:DI 0 ax [orig:208 D.5845 ] [208])) read_fdf.cpp:115 89 {*movdi_internal}
+     (nil))
+(code_label 549 534 535 24 15 "" [1 uses])
+(note 535 549 536 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 536 535 537 24 (set (reg:SI 0 ax [499])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:120 90 {*movsi_internal}
+     (nil))
+(insn 537 536 818 24 (set (reg:DI 0 ax [orig:209 D.5830 ] [209])
+        (sign_extend:DI (reg:SI 0 ax [499]))) read_fdf.cpp:120 142 {*extendsidi2_rex64}
+     (nil))
+(insn 818 537 539 24 (set (reg:DI 1 dx [orig:210 D.5830 ] [210])
+        (mult:DI (reg:DI 0 ax [orig:209 D.5830 ] [209])
+            (const_int 8 [0x8]))) read_fdf.cpp:120 214 {*leadi}
+     (nil))
+(insn 539 818 540 24 (set (reg/f:DI 0 ax [500])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -776 [0xfffffffffffffcf8])) [0 in_file+0 S8 A64])) read_fdf.cpp:120 89 {*movdi_internal}
+     (nil))
+(insn 540 539 541 24 (parallel [
+            (set (reg/f:DI 0 ax [orig:211 D.5832 ] [211])
+                (plus:DI (reg/f:DI 0 ax [500])
+                    (reg:DI 1 dx [orig:210 D.5830 ] [210])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:120 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -760 [0xfffffffffffffd08])) [0 in_file+0 S8 A64])
+            (reg:DI 1 dx [orig:210 D.5830 ] [210]))
+        (nil)))
+(insn 541 540 542 24 (set (reg/f:DI 0 ax [orig:212 D.5834 ] [212])
+        (mem/f:DI (reg/f:DI 0 ax [orig:211 D.5832 ] [211]) [0 *_201+0 S8 A64])) read_fdf.cpp:120 89 {*movdi_internal}
+     (nil))
+(insn 542 541 543 24 (set (reg:DI 5 di)
+        (reg/f:DI 0 ax [orig:212 D.5834 ] [212])) read_fdf.cpp:120 89 {*movdi_internal}
+     (nil))
+(call_insn 543 542 545 24 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_IO_getc") [flags 0x41]  <function_decl 0x7f23847d4ca8 _IO_getc>) [0 _IO_getc S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:120 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 545 543 546 24 (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -684 [0xfffffffffffffd54])) [0 ch+0 S4 A32])
+        (reg:SI 0 ax [orig:213 D.5829 ] [213])) read_fdf.cpp:120 90 {*movsi_internal}
+     (nil))
+(insn 546 545 547 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -684 [0xfffffffffffffd54])) [0 ch+0 S4 A32])
+            (const_int 0 [0]))) read_fdf.cpp:121 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 547 546 548 24 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 552)
+            (pc))) read_fdf.cpp:121 612 {*jcc_1}
+     (nil)
+ -> 552)
+(note 548 547 774 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 774 548 775 25 (set (pc)
+        (label_ref 549)) read_fdf.cpp:119 654 {jump}
+     (nil)
+ -> 549)
+(barrier 775 774 552)
+(code_label 552 775 553 26 14 "" [1 uses])
+(note 553 552 554 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 554 553 555 26 (set (reg:SI 0 ax [501])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:126 90 {*movsi_internal}
+     (nil))
+(insn 555 554 813 26 (set (reg:DI 0 ax [orig:214 D.5830 ] [214])
+        (sign_extend:DI (reg:SI 0 ax [501]))) read_fdf.cpp:126 142 {*extendsidi2_rex64}
+     (nil))
+(insn 813 555 557 26 (set (reg:DI 1 dx [orig:215 D.5830 ] [215])
+        (mult:DI (reg:DI 0 ax [orig:214 D.5830 ] [214])
+            (const_int 8 [0x8]))) read_fdf.cpp:126 214 {*leadi}
+     (nil))
+(insn 557 813 558 26 (set (reg/f:DI 0 ax [502])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -776 [0xfffffffffffffcf8])) [0 in_file+0 S8 A64])) read_fdf.cpp:126 89 {*movdi_internal}
+     (nil))
+(insn 558 557 559 26 (parallel [
+            (set (reg/f:DI 0 ax [orig:216 D.5832 ] [216])
+                (plus:DI (reg/f:DI 0 ax [502])
+                    (reg:DI 1 dx [orig:215 D.5830 ] [215])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:126 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -760 [0xfffffffffffffd08])) [0 in_file+0 S8 A64])
+            (reg:DI 1 dx [orig:215 D.5830 ] [215]))
+        (nil)))
+(insn 559 558 560 26 (set (reg/f:DI 1 dx [orig:217 D.5834 ] [217])
+        (mem/f:DI (reg/f:DI 0 ax [orig:216 D.5832 ] [216]) [0 *_208+0 S8 A64])) read_fdf.cpp:125 89 {*movdi_internal}
+     (nil))
+(insn 560 559 561 26 (set (reg:SI 0 ax [503])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:125 90 {*movsi_internal}
+     (nil))
+(insn 561 560 814 26 (set (reg:DI 0 ax [orig:218 D.5830 ] [218])
+        (sign_extend:DI (reg:SI 0 ax [503]))) read_fdf.cpp:125 142 {*extendsidi2_rex64}
+     (nil))
+(insn 814 561 563 26 (set (reg:DI 2 cx [orig:219 D.5830 ] [219])
+        (mult:DI (reg:DI 0 ax [orig:218 D.5830 ] [218])
+            (const_int 8 [0x8]))) read_fdf.cpp:125 214 {*leadi}
+     (nil))
+(insn 563 814 564 26 (set (reg/f:DI 0 ax [504])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -752 [0xfffffffffffffd10])) [0 main_header+0 S8 A64])) read_fdf.cpp:125 89 {*movdi_internal}
+     (nil))
+(insn 564 563 565 26 (parallel [
+            (set (reg/f:DI 0 ax [orig:220 D.5840 ] [220])
+                (plus:DI (reg/f:DI 0 ax [504])
+                    (reg:DI 2 cx [orig:219 D.5830 ] [219])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:125 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])
+            (reg:DI 2 cx [orig:219 D.5830 ] [219]))
+        (nil)))
+(insn 565 564 566 26 (set (reg/f:DI 0 ax [orig:221 D.5841 ] [221])
+        (mem/f:DI (reg/f:DI 0 ax [orig:220 D.5840 ] [220]) [0 *_212+0 S8 A64])) read_fdf.cpp:125 89 {*movdi_internal}
+     (nil))
+(insn 566 565 567 26 (set (reg:SI 2 cx [orig:222 D.5829 ] [222])
+        (mem/j:SI (plus:DI (reg/f:DI 0 ax [orig:221 D.5841 ] [221])
+                (const_int 8 [0x8])) [0 _213->np.number+0 S4 A32])) read_fdf.cpp:125 90 {*movsi_internal}
+     (nil))
+(insn 567 566 568 26 (set (reg:SI 0 ax [505])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:126 90 {*movsi_internal}
+     (nil))
+(insn 568 567 815 26 (set (reg:DI 0 ax [orig:223 D.5830 ] [223])
+        (sign_extend:DI (reg:SI 0 ax [505]))) read_fdf.cpp:126 142 {*extendsidi2_rex64}
+     (nil))
+(insn 815 568 570 26 (set (reg:DI 4 si [orig:224 D.5830 ] [224])
+        (mult:DI (reg:DI 0 ax [orig:223 D.5830 ] [223])
+            (const_int 8 [0x8]))) read_fdf.cpp:126 214 {*leadi}
+     (nil))
+(insn 570 815 571 26 (set (reg/f:DI 0 ax [506])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -752 [0xfffffffffffffd10])) [0 main_header+0 S8 A64])) read_fdf.cpp:126 89 {*movdi_internal}
+     (nil))
+(insn 571 570 572 26 (parallel [
+            (set (reg/f:DI 0 ax [orig:225 D.5840 ] [225])
+                (plus:DI (reg/f:DI 0 ax [506])
+                    (reg:DI 4 si [orig:224 D.5830 ] [224])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:126 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])
+            (reg:DI 4 si [orig:224 D.5830 ] [224]))
+        (nil)))
+(insn 572 571 573 26 (set (reg/f:DI 0 ax [orig:226 D.5841 ] [226])
+        (mem/f:DI (reg/f:DI 0 ax [orig:225 D.5840 ] [225]) [0 *_217+0 S8 A64])) read_fdf.cpp:126 89 {*movdi_internal}
+     (nil))
+(insn 573 572 574 26 (set (reg:SI 0 ax [orig:227 D.5829 ] [227])
+        (mem/j:SI (plus:DI (reg/f:DI 0 ax [orig:226 D.5841 ] [226])
+                (const_int 12 [0xc])) [0 _218->ebytes.number+0 S4 A32])) read_fdf.cpp:126 90 {*movsi_internal}
+     (nil))
+(insn 574 573 575 26 (parallel [
+            (set (reg:SI 0 ax [orig:228 D.5829 ] [228])
+                (mult:SI (reg:SI 0 ax [orig:227 D.5829 ] [227])
+                    (reg:SI 2 cx [orig:222 D.5829 ] [222])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:125 305 {*mulsi3_1}
+     (nil))
+(insn 575 574 576 26 (set (reg:DI 4 si [orig:229 D.5830 ] [229])
+        (sign_extend:DI (reg:SI 0 ax [orig:228 D.5829 ] [228]))) read_fdf.cpp:125 142 {*extendsidi2_rex64}
+     (nil))
+(insn 576 575 577 26 (set (reg:SI 0 ax [507])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:125 90 {*movsi_internal}
+     (nil))
+(insn 577 576 816 26 (set (reg:DI 0 ax [orig:230 D.5830 ] [230])
+        (sign_extend:DI (reg:SI 0 ax [507]))) read_fdf.cpp:125 142 {*extendsidi2_rex64}
+     (nil))
+(insn 816 577 579 26 (set (reg:DI 2 cx [orig:231 D.5830 ] [231])
+        (mult:DI (reg:DI 0 ax [orig:230 D.5830 ] [230])
+            (const_int 8 [0x8]))) read_fdf.cpp:125 214 {*leadi}
+     (nil))
+(insn 579 816 580 26 (set (reg/f:DI 0 ax [508])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -784 [0xfffffffffffffcf0])) [0 in_data+0 S8 A64])) read_fdf.cpp:125 89 {*movdi_internal}
+     (nil))
+(insn 580 579 581 26 (parallel [
+            (set (reg/f:DI 0 ax [orig:232 D.5846 ] [232])
+                (plus:DI (reg/f:DI 0 ax [508])
+                    (reg:DI 2 cx [orig:231 D.5830 ] [231])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:125 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -768 [0xfffffffffffffd00])) [0 in_data+0 S8 A64])
+            (reg:DI 2 cx [orig:231 D.5830 ] [231]))
+        (nil)))
+(insn 581 580 582 26 (set (reg/f:DI 0 ax [orig:233 D.5848 ] [233])
+        (mem/f/j:DI (reg/f:DI 0 ax [orig:232 D.5846 ] [232]) [0 _224->fl+0 S8 A64])) read_fdf.cpp:125 89 {*movdi_internal}
+     (nil))
+(insn 582 581 583 26 (set (reg:DI 2 cx)
+        (reg/f:DI 1 dx [orig:217 D.5834 ] [217])) read_fdf.cpp:126 89 {*movdi_internal}
+     (nil))
+(insn 583 582 585 26 (set (reg:DI 1 dx)
+        (const_int 1 [0x1])) read_fdf.cpp:126 89 {*movdi_internal}
+     (nil))
+(insn 585 583 586 26 (set (reg:DI 5 di)
+        (reg/f:DI 0 ax [orig:233 D.5848 ] [233])) read_fdf.cpp:126 89 {*movdi_internal}
+     (nil))
+(call_insn 586 585 587 26 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fread") [flags 0x41]  <function_decl 0x7f238484b360 fread>) [0 fread S1 A8])
+            (const_int 0 [0]))) read_fdf.cpp:126 669 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(insn 587 586 588 26 (set (reg:SI 0 ax [509])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:132 90 {*movsi_internal}
+     (nil))
+(insn 588 587 817 26 (set (reg:DI 0 ax [orig:234 D.5830 ] [234])
+        (sign_extend:DI (reg:SI 0 ax [509]))) read_fdf.cpp:132 142 {*extendsidi2_rex64}
+     (nil))
+(insn 817 588 590 26 (set (reg:DI 1 dx [orig:235 D.5830 ] [235])
+        (mult:DI (reg:DI 0 ax [orig:234 D.5830 ] [234])
+            (const_int 8 [0x8]))) read_fdf.cpp:132 214 {*leadi}
+     (nil))
+(insn 590 817 591 26 (set (reg/f:DI 0 ax [510])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -752 [0xfffffffffffffd10])) [0 main_header+0 S8 A64])) read_fdf.cpp:132 89 {*movdi_internal}
+     (nil))
+(insn 591 590 592 26 (parallel [
+            (set (reg/f:DI 0 ax [orig:236 D.5840 ] [236])
+                (plus:DI (reg/f:DI 0 ax [510])
+                    (reg:DI 1 dx [orig:235 D.5830 ] [235])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:132 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])
+            (reg:DI 1 dx [orig:235 D.5830 ] [235]))
+        (nil)))
+(insn 592 591 593 26 (set (reg/f:DI 0 ax [orig:237 D.5841 ] [237])
+        (mem/f:DI (reg/f:DI 0 ax [orig:236 D.5840 ] [236]) [0 *_229+0 S8 A64])) read_fdf.cpp:132 89 {*movdi_internal}
+     (nil))
+(insn 593 592 594 26 (parallel [
+            (set (reg/f:DI 0 ax [orig:238 D.5841 ] [238])
+                (plus:DI (reg/f:DI 0 ax [orig:237 D.5841 ] [237])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:132 218 {*adddi_1}
+     (nil))
+(insn 594 593 595 26 (set (reg:SI 0 ax [orig:239 D.5829 ] [239])
+        (mem/j:SI (plus:DI (reg/f:DI 0 ax [orig:238 D.5841 ] [238])
+                (const_int 12 [0xc])) [0 _231->ebytes.number+0 S4 A32])) read_fdf.cpp:132 90 {*movsi_internal}
+     (nil))
+(insn 595 594 596 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:239 D.5829 ] [239])
+            (const_int 2 [0x2]))) read_fdf.cpp:132 7 {*cmpsi_1}
+     (nil))
+(jump_insn 596 595 597 26 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 638)
+            (pc))) read_fdf.cpp:132 612 {*jcc_1}
+     (nil)
+ -> 638)
+(note 597 596 598 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 598 597 599 27 (set (reg:SI 0 ax [511])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:133 90 {*movsi_internal}
+     (nil))
+(insn 599 598 812 27 (set (reg:DI 0 ax [orig:240 D.5830 ] [240])
+        (sign_extend:DI (reg:SI 0 ax [511]))) read_fdf.cpp:133 142 {*extendsidi2_rex64}
+     (nil))
+(insn 812 599 601 27 (set (reg:DI 1 dx [orig:241 D.5830 ] [241])
+        (mult:DI (reg:DI 0 ax [orig:240 D.5830 ] [240])
+            (const_int 8 [0x8]))) read_fdf.cpp:133 214 {*leadi}
+     (nil))
+(insn 601 812 602 27 (set (reg/f:DI 0 ax [512])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -752 [0xfffffffffffffd10])) [0 main_header+0 S8 A64])) read_fdf.cpp:133 89 {*movdi_internal}
+     (nil))
+(insn 602 601 603 27 (parallel [
+            (set (reg/f:DI 0 ax [orig:242 D.5840 ] [242])
+                (plus:DI (reg/f:DI 0 ax [512])
+                    (reg:DI 1 dx [orig:241 D.5830 ] [241])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:133 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])
+            (reg:DI 1 dx [orig:241 D.5830 ] [241]))
+        (nil)))
+(insn 603 602 604 27 (set (reg/f:DI 0 ax [orig:243 D.5841 ] [243])
+        (mem/f:DI (reg/f:DI 0 ax [orig:242 D.5840 ] [242]) [0 *_235+0 S8 A64])) read_fdf.cpp:133 89 {*movdi_internal}
+     (nil))
+(insn 604 603 605 27 (set (reg:SI 0 ax [orig:244 D.5829 ] [244])
+        (mem/j:SI (plus:DI (reg/f:DI 0 ax [orig:243 D.5841 ] [243])
+                (const_int 8 [0x8])) [0 _236->np.number+0 S4 A32])) read_fdf.cpp:133 90 {*movsi_internal}
+     (nil))
+(insn 605 604 606 27 (parallel [
+            (set (reg:SI 0 ax [513])
+                (plus:SI (reg:SI 0 ax [orig:244 D.5829 ] [244])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:133 217 {*addsi_1}
+     (nil))
+(insn 606 605 635 27 (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])
+        (reg:SI 0 ax [513])) read_fdf.cpp:133 90 {*movsi_internal}
+     (nil))
+(code_label 635 606 607 28 17 "" [1 uses])
+(note 607 635 608 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 608 607 609 28 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])
+            (const_int 0 [0]))) read_fdf.cpp:133 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 609 608 610 28 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 638)
+            (pc))) read_fdf.cpp:133 612 {*jcc_1}
+     (nil)
+ -> 638)
+(note 610 609 611 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 611 610 612 29 (set (reg:SI 0 ax [514])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:134 90 {*movsi_internal}
+     (nil))
+(insn 612 611 810 29 (set (reg:DI 0 ax [orig:245 D.5830 ] [245])
+        (sign_extend:DI (reg:SI 0 ax [514]))) read_fdf.cpp:134 142 {*extendsidi2_rex64}
+     (nil))
+(insn 810 612 614 29 (set (reg:DI 1 dx [orig:246 D.5830 ] [246])
+        (mult:DI (reg:DI 0 ax [orig:245 D.5830 ] [245])
+            (const_int 8 [0x8]))) read_fdf.cpp:134 214 {*leadi}
+     (nil))
+(insn 614 810 615 29 (set (reg/f:DI 0 ax [515])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -784 [0xfffffffffffffcf0])) [0 in_data+0 S8 A64])) read_fdf.cpp:134 89 {*movdi_internal}
+     (nil))
+(insn 615 614 616 29 (parallel [
+            (set (reg/f:DI 0 ax [orig:247 D.5846 ] [247])
+                (plus:DI (reg/f:DI 0 ax [515])
+                    (reg:DI 1 dx [orig:246 D.5830 ] [246])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:134 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -768 [0xfffffffffffffd00])) [0 in_data+0 S8 A64])
+            (reg:DI 1 dx [orig:246 D.5830 ] [246]))
+        (nil)))
+(insn 616 615 617 29 (set (reg/f:DI 0 ax [orig:248 D.5849 ] [248])
+        (mem/f/j:DI (reg/f:DI 0 ax [orig:247 D.5846 ] [247]) [0 _241->lo+0 S8 A64])) read_fdf.cpp:134 89 {*movdi_internal}
+     (nil))
+(insn 617 616 618 29 (set (reg:SI 1 dx [516])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])) read_fdf.cpp:134 90 {*movsi_internal}
+     (nil))
+(insn 618 617 619 29 (set (reg:DI 1 dx [orig:249 D.5830 ] [249])
+        (sign_extend:DI (reg:SI 1 dx [516]))) read_fdf.cpp:134 142 {*extendsidi2_rex64}
+     (nil))
+(insn 619 618 620 29 (parallel [
+            (set (reg:DI 1 dx [orig:250 D.5830 ] [250])
+                (ashift:DI (reg:DI 1 dx [orig:249 D.5830 ] [249])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:134 512 {*ashldi3_1}
+     (nil))
+(insn 620 619 621 29 (parallel [
+            (set (reg/f:DI 1 dx [orig:251 D.5849 ] [251])
+                (plus:DI (reg:DI 1 dx [orig:250 D.5830 ] [250])
+                    (reg/f:DI 0 ax [orig:248 D.5849 ] [248])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:134 218 {*adddi_1}
+     (nil))
+(insn 621 620 622 29 (set (reg:SI 0 ax [517])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:134 90 {*movsi_internal}
+     (nil))
+(insn 622 621 811 29 (set (reg:DI 0 ax [orig:252 D.5830 ] [252])
+        (sign_extend:DI (reg:SI 0 ax [517]))) read_fdf.cpp:134 142 {*extendsidi2_rex64}
+     (nil))
+(insn 811 622 624 29 (set (reg:DI 2 cx [orig:253 D.5830 ] [253])
+        (mult:DI (reg:DI 0 ax [orig:252 D.5830 ] [252])
+            (const_int 8 [0x8]))) read_fdf.cpp:134 214 {*leadi}
+     (nil))
+(insn 624 811 625 29 (set (reg/f:DI 0 ax [518])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -784 [0xfffffffffffffcf0])) [0 in_data+0 S8 A64])) read_fdf.cpp:134 89 {*movdi_internal}
+     (nil))
+(insn 625 624 626 29 (parallel [
+            (set (reg/f:DI 0 ax [orig:254 D.5846 ] [254])
+                (plus:DI (reg/f:DI 0 ax [518])
+                    (reg:DI 2 cx [orig:253 D.5830 ] [253])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:134 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -768 [0xfffffffffffffd00])) [0 in_data+0 S8 A64])
+            (reg:DI 2 cx [orig:253 D.5830 ] [253]))
+        (nil)))
+(insn 626 625 627 29 (set (reg/f:DI 0 ax [orig:255 D.5850 ] [255])
+        (mem/f/j:DI (reg/f:DI 0 ax [orig:254 D.5846 ] [254]) [0 _248->sh+0 S8 A64])) read_fdf.cpp:134 89 {*movdi_internal}
+     (nil))
+(insn 627 626 628 29 (set (reg:SI 2 cx [519])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])) read_fdf.cpp:134 90 {*movsi_internal}
+     (nil))
+(insn 628 627 629 29 (set (reg:DI 2 cx [orig:256 D.5830 ] [256])
+        (sign_extend:DI (reg:SI 2 cx [519]))) read_fdf.cpp:134 142 {*extendsidi2_rex64}
+     (nil))
+(insn 629 628 630 29 (parallel [
+            (set (reg:DI 2 cx [orig:257 D.5830 ] [257])
+                (ashift:DI (reg:DI 2 cx [orig:256 D.5830 ] [256])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:134 512 {*ashldi3_1}
+     (nil))
+(insn 630 629 631 29 (parallel [
+            (set (reg/f:DI 0 ax [orig:258 D.5850 ] [258])
+                (plus:DI (reg/f:DI 0 ax [orig:255 D.5850 ] [255])
+                    (reg:DI 2 cx [orig:257 D.5830 ] [257])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:134 218 {*adddi_1}
+     (nil))
+(insn 631 630 632 29 (set (reg:HI 0 ax [orig:259 D.5851 ] [259])
+        (mem:HI (reg/f:DI 0 ax [orig:258 D.5850 ] [258]) [0 *_252+0 S2 A16])) read_fdf.cpp:134 92 {*movhi_internal}
+     (nil))
+(insn 632 631 633 29 (set (reg:DI 0 ax [orig:260 D.5852 ] [260])
+        (sign_extend:DI (reg:HI 0 ax [orig:259 D.5851 ] [259]))) read_fdf.cpp:134 145 {extendhidi2}
+     (nil))
+(insn 633 632 634 29 (set (mem:DI (reg/f:DI 1 dx [orig:251 D.5849 ] [251]) [0 *_245+0 S8 A64])
+        (reg:DI 0 ax [orig:260 D.5852 ] [260])) read_fdf.cpp:134 89 {*movdi_internal}
+     (nil))
+(insn 634 633 776 29 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                        (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                            (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:133 217 {*addsi_1}
+     (nil))
+(jump_insn 776 634 777 29 (set (pc)
+        (label_ref 635)) read_fdf.cpp:133 654 {jump}
+     (nil)
+ -> 635)
+(barrier 777 776 638)
+(code_label 638 777 639 30 16 "" [2 uses])
+(note 639 638 640 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 640 639 744 30 (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])
+        (const_int 0 [0])) read_fdf.cpp:138 90 {*movsi_internal}
+     (nil))
+(code_label 744 640 641 31 18 "" [1 uses])
+(note 641 744 642 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 642 641 643 31 (set (reg:SI 0 ax [520])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:138 90 {*movsi_internal}
+     (nil))
+(insn 643 642 809 31 (set (reg:DI 0 ax [orig:261 D.5830 ] [261])
+        (sign_extend:DI (reg:SI 0 ax [520]))) read_fdf.cpp:138 142 {*extendsidi2_rex64}
+     (nil))
+(insn 809 643 645 31 (set (reg:DI 1 dx [orig:262 D.5830 ] [262])
+        (mult:DI (reg:DI 0 ax [orig:261 D.5830 ] [261])
+            (const_int 8 [0x8]))) read_fdf.cpp:138 214 {*leadi}
+     (nil))
+(insn 645 809 646 31 (set (reg/f:DI 0 ax [521])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -752 [0xfffffffffffffd10])) [0 main_header+0 S8 A64])) read_fdf.cpp:138 89 {*movdi_internal}
+     (nil))
+(insn 646 645 647 31 (parallel [
+            (set (reg/f:DI 0 ax [orig:263 D.5840 ] [263])
+                (plus:DI (reg/f:DI 0 ax [521])
+                    (reg:DI 1 dx [orig:262 D.5830 ] [262])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:138 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -736 [0xfffffffffffffd20])) [0 main_header+0 S8 A64])
+            (reg:DI 1 dx [orig:262 D.5830 ] [262]))
+        (nil)))
+(insn 647 646 648 31 (set (reg/f:DI 0 ax [orig:264 D.5841 ] [264])
+        (mem/f:DI (reg/f:DI 0 ax [orig:263 D.5840 ] [263]) [0 *_260+0 S8 A64])) read_fdf.cpp:138 89 {*movdi_internal}
+     (nil))
+(insn 648 647 649 31 (set (reg:SI 0 ax [orig:265 D.5829 ] [265])
+        (mem/j:SI (plus:DI (reg/f:DI 0 ax [orig:264 D.5841 ] [264])
+                (const_int 8 [0x8])) [0 _261->np.number+0 S4 A32])) read_fdf.cpp:138 90 {*movsi_internal}
+     (nil))
+(insn 649 648 650 31 (set (reg:DI 0 ax [orig:266 D.5830 ] [266])
+        (sign_extend:DI (reg:SI 0 ax [orig:265 D.5829 ] [265]))) read_fdf.cpp:138 142 {*extendsidi2_rex64}
+     (nil))
+(insn 650 649 651 31 (set (reg:SI 1 dx [orig:267 D.5842 ] [267])
+        (reg:SI 0 ax [orig:266 D.5830 ] [266])) read_fdf.cpp:138 90 {*movsi_internal}
+     (nil))
+(insn 651 650 652 31 (set (reg:SI 0 ax [orig:268 D.5842 ] [268])
+        (const_int 4 [0x4])) read_fdf.cpp:138 90 {*movsi_internal}
+     (nil))
+(insn 652 651 654 31 (parallel [
+            (set (reg:SI 0 ax [orig:269 D.5842 ] [269])
+                (mult:SI (reg:SI 0 ax [orig:268 D.5842 ] [268])
+                    (reg:SI 1 dx [orig:267 D.5842 ] [267])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:138 305 {*mulsi3_1}
+     (nil))
+(insn 654 652 655 31 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 0 ax [orig:270 D.5829 ] [270])
+            (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32]))) read_fdf.cpp:138 7 {*cmpsi_1}
+     (nil))
+(jump_insn 655 654 656 31 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 747)
+            (pc))) read_fdf.cpp:138 612 {*jcc_1}
+     (nil)
+ -> 747)
+(note 656 655 657 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(insn 657 656 658 32 (set (reg:SI 0 ax [522])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:139 90 {*movsi_internal}
+     (nil))
+(insn 658 657 801 32 (set (reg:DI 0 ax [orig:271 D.5830 ] [271])
+        (sign_extend:DI (reg:SI 0 ax [522]))) read_fdf.cpp:139 142 {*extendsidi2_rex64}
+     (nil))
+(insn 801 658 660 32 (set (reg:DI 1 dx [orig:272 D.5830 ] [272])
+        (mult:DI (reg:DI 0 ax [orig:271 D.5830 ] [271])
+            (const_int 8 [0x8]))) read_fdf.cpp:139 214 {*leadi}
+     (nil))
+(insn 660 801 661 32 (set (reg/f:DI 0 ax [523])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -768 [0xfffffffffffffd00])) [0 switch_data+0 S8 A64])) read_fdf.cpp:139 89 {*movdi_internal}
+     (nil))
+(insn 661 660 662 32 (parallel [
+            (set (reg/f:DI 0 ax [orig:273 D.5847 ] [273])
+                (plus:DI (reg/f:DI 0 ax [523])
+                    (reg:DI 1 dx [orig:272 D.5830 ] [272])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:139 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -752 [0xfffffffffffffd10])) [0 switch_data+0 S8 A64])
+            (reg:DI 1 dx [orig:272 D.5830 ] [272]))
+        (nil)))
+(insn 662 661 663 32 (set (reg/f:DI 1 dx [orig:274 D.5853 ] [274])
+        (mem/f/j:DI (reg/f:DI 0 ax [orig:273 D.5847 ] [273]) [0 _270->character+0 S8 A64])) read_fdf.cpp:139 89 {*movdi_internal}
+     (nil))
+(insn 663 662 664 32 (set (reg:SI 0 ax [524])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])) read_fdf.cpp:139 90 {*movsi_internal}
+     (nil))
+(insn 664 663 665 32 (set (reg:DI 0 ax [orig:275 D.5854 ] [275])
+        (sign_extend:DI (reg:SI 0 ax [524]))) read_fdf.cpp:139 142 {*extendsidi2_rex64}
+     (nil))
+(insn 665 664 666 32 (parallel [
+            (set (reg/f:DI 1 dx [orig:276 D.5853 ] [276])
+                (plus:DI (reg/f:DI 1 dx [orig:274 D.5853 ] [274])
+                    (reg:DI 0 ax [orig:275 D.5854 ] [275])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:139 218 {*adddi_1}
+     (nil))
+(insn 666 665 667 32 (set (reg:SI 0 ax [525])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:139 90 {*movsi_internal}
+     (nil))
+(insn 667 666 802 32 (set (reg:DI 0 ax [orig:277 D.5830 ] [277])
+        (sign_extend:DI (reg:SI 0 ax [525]))) read_fdf.cpp:139 142 {*extendsidi2_rex64}
+     (nil))
+(insn 802 667 669 32 (set (reg:DI 2 cx [orig:278 D.5830 ] [278])
+        (mult:DI (reg:DI 0 ax [orig:277 D.5830 ] [277])
+            (const_int 8 [0x8]))) read_fdf.cpp:139 214 {*leadi}
+     (nil))
+(insn 669 802 670 32 (set (reg/f:DI 0 ax [526])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -784 [0xfffffffffffffcf0])) [0 in_data+0 S8 A64])) read_fdf.cpp:139 89 {*movdi_internal}
+     (nil))
+(insn 670 669 671 32 (parallel [
+            (set (reg/f:DI 0 ax [orig:279 D.5846 ] [279])
+                (plus:DI (reg/f:DI 0 ax [526])
+                    (reg:DI 2 cx [orig:278 D.5830 ] [278])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:139 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -768 [0xfffffffffffffd00])) [0 in_data+0 S8 A64])
+            (reg:DI 2 cx [orig:278 D.5830 ] [278]))
+        (nil)))
+(insn 671 670 672 32 (set (reg/f:DI 2 cx [orig:280 D.5853 ] [280])
+        (mem/f/j:DI (reg/f:DI 0 ax [orig:279 D.5846 ] [279]) [0 _276->character+0 S8 A64])) read_fdf.cpp:139 89 {*movdi_internal}
+     (nil))
+(insn 672 671 673 32 (set (reg:SI 0 ax [527])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])) read_fdf.cpp:139 90 {*movsi_internal}
+     (nil))
+(insn 673 672 674 32 (set (reg:DI 0 ax [orig:281 D.5854 ] [281])
+        (sign_extend:DI (reg:SI 0 ax [527]))) read_fdf.cpp:139 142 {*extendsidi2_rex64}
+     (nil))
+(insn 674 673 675 32 (parallel [
+            (set (reg/f:DI 0 ax [orig:282 D.5853 ] [282])
+                (plus:DI (reg:DI 0 ax [orig:281 D.5854 ] [281])
+                    (reg/f:DI 2 cx [orig:280 D.5853 ] [280])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:139 218 {*adddi_1}
+     (nil))
+(insn 675 674 676 32 (set (reg:QI 0 ax [orig:283 D.5837 ] [283])
+        (mem:QI (reg/f:DI 0 ax [orig:282 D.5853 ] [282]) [0 *_279+0 S1 A8])) read_fdf.cpp:139 93 {*movqi_internal}
+     (nil))
+(insn 676 675 677 32 (set (mem:QI (reg/f:DI 1 dx [orig:276 D.5853 ] [276]) [0 *_273+0 S1 A8])
+        (reg:QI 0 ax [orig:283 D.5837 ] [283])) read_fdf.cpp:139 93 {*movqi_internal}
+     (nil))
+(insn 677 676 678 32 (set (reg:SI 0 ax [528])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:140 90 {*movsi_internal}
+     (nil))
+(insn 678 677 803 32 (set (reg:DI 0 ax [orig:284 D.5830 ] [284])
+        (sign_extend:DI (reg:SI 0 ax [528]))) read_fdf.cpp:140 142 {*extendsidi2_rex64}
+     (nil))
+(insn 803 678 680 32 (set (reg:DI 1 dx [orig:285 D.5830 ] [285])
+        (mult:DI (reg:DI 0 ax [orig:284 D.5830 ] [284])
+            (const_int 8 [0x8]))) read_fdf.cpp:140 214 {*leadi}
+     (nil))
+(insn 680 803 681 32 (set (reg/f:DI 0 ax [529])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -768 [0xfffffffffffffd00])) [0 switch_data+0 S8 A64])) read_fdf.cpp:140 89 {*movdi_internal}
+     (nil))
+(insn 681 680 682 32 (parallel [
+            (set (reg/f:DI 0 ax [orig:286 D.5847 ] [286])
+                (plus:DI (reg/f:DI 0 ax [529])
+                    (reg:DI 1 dx [orig:285 D.5830 ] [285])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:140 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -752 [0xfffffffffffffd10])) [0 switch_data+0 S8 A64])
+            (reg:DI 1 dx [orig:285 D.5830 ] [285]))
+        (nil)))
+(insn 682 681 683 32 (set (reg/f:DI 0 ax [orig:287 D.5853 ] [287])
+        (mem/f/j:DI (reg/f:DI 0 ax [orig:286 D.5847 ] [286]) [0 _284->character+0 S8 A64])) read_fdf.cpp:140 89 {*movdi_internal}
+     (nil))
+(insn 683 682 684 32 (set (reg:SI 1 dx [530])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])) read_fdf.cpp:140 90 {*movsi_internal}
+     (nil))
+(insn 684 683 685 32 (set (reg:DI 1 dx [orig:288 D.5854 ] [288])
+        (sign_extend:DI (reg:SI 1 dx [530]))) read_fdf.cpp:140 142 {*extendsidi2_rex64}
+     (nil))
+(insn 685 684 686 32 (parallel [
+            (set (reg:DI 1 dx [orig:289 D.5854 ] [289])
+                (plus:DI (reg:DI 1 dx [orig:288 D.5854 ] [288])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:140 218 {*adddi_1}
+     (nil))
+(insn 686 685 687 32 (parallel [
+            (set (reg/f:DI 1 dx [orig:290 D.5853 ] [290])
+                (plus:DI (reg:DI 1 dx [orig:289 D.5854 ] [289])
+                    (reg/f:DI 0 ax [orig:287 D.5853 ] [287])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:140 218 {*adddi_1}
+     (nil))
+(insn 687 686 688 32 (set (reg:SI 0 ax [531])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:140 90 {*movsi_internal}
+     (nil))
+(insn 688 687 804 32 (set (reg:DI 0 ax [orig:291 D.5830 ] [291])
+        (sign_extend:DI (reg:SI 0 ax [531]))) read_fdf.cpp:140 142 {*extendsidi2_rex64}
+     (nil))
+(insn 804 688 690 32 (set (reg:DI 2 cx [orig:292 D.5830 ] [292])
+        (mult:DI (reg:DI 0 ax [orig:291 D.5830 ] [291])
+            (const_int 8 [0x8]))) read_fdf.cpp:140 214 {*leadi}
+     (nil))
+(insn 690 804 691 32 (set (reg/f:DI 0 ax [532])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -784 [0xfffffffffffffcf0])) [0 in_data+0 S8 A64])) read_fdf.cpp:140 89 {*movdi_internal}
+     (nil))
+(insn 691 690 692 32 (parallel [
+            (set (reg/f:DI 0 ax [orig:293 D.5846 ] [293])
+                (plus:DI (reg/f:DI 0 ax [532])
+                    (reg:DI 2 cx [orig:292 D.5830 ] [292])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:140 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -768 [0xfffffffffffffd00])) [0 in_data+0 S8 A64])
+            (reg:DI 2 cx [orig:292 D.5830 ] [292]))
+        (nil)))
+(insn 692 691 693 32 (set (reg/f:DI 0 ax [orig:294 D.5853 ] [294])
+        (mem/f/j:DI (reg/f:DI 0 ax [orig:293 D.5846 ] [293]) [0 _291->character+0 S8 A64])) read_fdf.cpp:140 89 {*movdi_internal}
+     (nil))
+(insn 693 692 694 32 (set (reg:SI 2 cx [533])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])) read_fdf.cpp:140 90 {*movsi_internal}
+     (nil))
+(insn 694 693 695 32 (set (reg:DI 2 cx [orig:295 D.5854 ] [295])
+        (sign_extend:DI (reg:SI 2 cx [533]))) read_fdf.cpp:140 142 {*extendsidi2_rex64}
+     (nil))
+(insn 695 694 696 32 (parallel [
+            (set (reg:DI 2 cx [orig:296 D.5854 ] [296])
+                (plus:DI (reg:DI 2 cx [orig:295 D.5854 ] [295])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:140 218 {*adddi_1}
+     (nil))
+(insn 696 695 697 32 (parallel [
+            (set (reg/f:DI 0 ax [orig:297 D.5853 ] [297])
+                (plus:DI (reg/f:DI 0 ax [orig:294 D.5853 ] [294])
+                    (reg:DI 2 cx [orig:296 D.5854 ] [296])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:140 218 {*adddi_1}
+     (nil))
+(insn 697 696 698 32 (set (reg:QI 0 ax [orig:298 D.5837 ] [298])
+        (mem:QI (reg/f:DI 0 ax [orig:297 D.5853 ] [297]) [0 *_295+0 S1 A8])) read_fdf.cpp:140 93 {*movqi_internal}
+     (nil))
+(insn 698 697 699 32 (set (mem:QI (reg/f:DI 1 dx [orig:290 D.5853 ] [290]) [0 *_288+0 S1 A8])
+        (reg:QI 0 ax [orig:298 D.5837 ] [298])) read_fdf.cpp:140 93 {*movqi_internal}
+     (nil))
+(insn 699 698 700 32 (set (reg:SI 0 ax [534])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:141 90 {*movsi_internal}
+     (nil))
+(insn 700 699 805 32 (set (reg:DI 0 ax [orig:299 D.5830 ] [299])
+        (sign_extend:DI (reg:SI 0 ax [534]))) read_fdf.cpp:141 142 {*extendsidi2_rex64}
+     (nil))
+(insn 805 700 702 32 (set (reg:DI 1 dx [orig:300 D.5830 ] [300])
+        (mult:DI (reg:DI 0 ax [orig:299 D.5830 ] [299])
+            (const_int 8 [0x8]))) read_fdf.cpp:141 214 {*leadi}
+     (nil))
+(insn 702 805 703 32 (set (reg/f:DI 0 ax [535])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -768 [0xfffffffffffffd00])) [0 switch_data+0 S8 A64])) read_fdf.cpp:141 89 {*movdi_internal}
+     (nil))
+(insn 703 702 704 32 (parallel [
+            (set (reg/f:DI 0 ax [orig:301 D.5847 ] [301])
+                (plus:DI (reg/f:DI 0 ax [535])
+                    (reg:DI 1 dx [orig:300 D.5830 ] [300])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:141 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -752 [0xfffffffffffffd10])) [0 switch_data+0 S8 A64])
+            (reg:DI 1 dx [orig:300 D.5830 ] [300]))
+        (nil)))
+(insn 704 703 705 32 (set (reg/f:DI 0 ax [orig:302 D.5853 ] [302])
+        (mem/f/j:DI (reg/f:DI 0 ax [orig:301 D.5847 ] [301]) [0 _300->character+0 S8 A64])) read_fdf.cpp:141 89 {*movdi_internal}
+     (nil))
+(insn 705 704 706 32 (set (reg:SI 1 dx [536])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])) read_fdf.cpp:141 90 {*movsi_internal}
+     (nil))
+(insn 706 705 707 32 (set (reg:DI 1 dx [orig:303 D.5854 ] [303])
+        (sign_extend:DI (reg:SI 1 dx [536]))) read_fdf.cpp:141 142 {*extendsidi2_rex64}
+     (nil))
+(insn 707 706 708 32 (parallel [
+            (set (reg:DI 1 dx [orig:304 D.5854 ] [304])
+                (plus:DI (reg:DI 1 dx [orig:303 D.5854 ] [303])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:141 218 {*adddi_1}
+     (nil))
+(insn 708 707 709 32 (parallel [
+            (set (reg/f:DI 1 dx [orig:305 D.5853 ] [305])
+                (plus:DI (reg:DI 1 dx [orig:304 D.5854 ] [304])
+                    (reg/f:DI 0 ax [orig:302 D.5853 ] [302])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:141 218 {*adddi_1}
+     (nil))
+(insn 709 708 710 32 (set (reg:SI 0 ax [537])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:141 90 {*movsi_internal}
+     (nil))
+(insn 710 709 806 32 (set (reg:DI 0 ax [orig:306 D.5830 ] [306])
+        (sign_extend:DI (reg:SI 0 ax [537]))) read_fdf.cpp:141 142 {*extendsidi2_rex64}
+     (nil))
+(insn 806 710 712 32 (set (reg:DI 2 cx [orig:307 D.5830 ] [307])
+        (mult:DI (reg:DI 0 ax [orig:306 D.5830 ] [306])
+            (const_int 8 [0x8]))) read_fdf.cpp:141 214 {*leadi}
+     (nil))
+(insn 712 806 713 32 (set (reg/f:DI 0 ax [538])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -784 [0xfffffffffffffcf0])) [0 in_data+0 S8 A64])) read_fdf.cpp:141 89 {*movdi_internal}
+     (nil))
+(insn 713 712 714 32 (parallel [
+            (set (reg/f:DI 0 ax [orig:308 D.5846 ] [308])
+                (plus:DI (reg/f:DI 0 ax [538])
+                    (reg:DI 2 cx [orig:307 D.5830 ] [307])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:141 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -768 [0xfffffffffffffd00])) [0 in_data+0 S8 A64])
+            (reg:DI 2 cx [orig:307 D.5830 ] [307]))
+        (nil)))
+(insn 714 713 715 32 (set (reg/f:DI 0 ax [orig:309 D.5853 ] [309])
+        (mem/f/j:DI (reg/f:DI 0 ax [orig:308 D.5846 ] [308]) [0 _307->character+0 S8 A64])) read_fdf.cpp:141 89 {*movdi_internal}
+     (nil))
+(insn 715 714 716 32 (set (reg:SI 2 cx [539])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])) read_fdf.cpp:141 90 {*movsi_internal}
+     (nil))
+(insn 716 715 717 32 (set (reg:DI 2 cx [orig:310 D.5854 ] [310])
+        (sign_extend:DI (reg:SI 2 cx [539]))) read_fdf.cpp:141 142 {*extendsidi2_rex64}
+     (nil))
+(insn 717 716 718 32 (parallel [
+            (set (reg:DI 2 cx [orig:311 D.5854 ] [311])
+                (plus:DI (reg:DI 2 cx [orig:310 D.5854 ] [310])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:141 218 {*adddi_1}
+     (nil))
+(insn 718 717 719 32 (parallel [
+            (set (reg/f:DI 0 ax [orig:312 D.5853 ] [312])
+                (plus:DI (reg/f:DI 0 ax [orig:309 D.5853 ] [309])
+                    (reg:DI 2 cx [orig:311 D.5854 ] [311])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:141 218 {*adddi_1}
+     (nil))
+(insn 719 718 720 32 (set (reg:QI 0 ax [orig:313 D.5837 ] [313])
+        (mem:QI (reg/f:DI 0 ax [orig:312 D.5853 ] [312]) [0 *_311+0 S1 A8])) read_fdf.cpp:141 93 {*movqi_internal}
+     (nil))
+(insn 720 719 721 32 (set (mem:QI (reg/f:DI 1 dx [orig:305 D.5853 ] [305]) [0 *_304+0 S1 A8])
+        (reg:QI 0 ax [orig:313 D.5837 ] [313])) read_fdf.cpp:141 93 {*movqi_internal}
+     (nil))
+(insn 721 720 722 32 (set (reg:SI 0 ax [540])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:142 90 {*movsi_internal}
+     (nil))
+(insn 722 721 807 32 (set (reg:DI 0 ax [orig:314 D.5830 ] [314])
+        (sign_extend:DI (reg:SI 0 ax [540]))) read_fdf.cpp:142 142 {*extendsidi2_rex64}
+     (nil))
+(insn 807 722 724 32 (set (reg:DI 1 dx [orig:315 D.5830 ] [315])
+        (mult:DI (reg:DI 0 ax [orig:314 D.5830 ] [314])
+            (const_int 8 [0x8]))) read_fdf.cpp:142 214 {*leadi}
+     (nil))
+(insn 724 807 725 32 (set (reg/f:DI 0 ax [541])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -768 [0xfffffffffffffd00])) [0 switch_data+0 S8 A64])) read_fdf.cpp:142 89 {*movdi_internal}
+     (nil))
+(insn 725 724 726 32 (parallel [
+            (set (reg/f:DI 0 ax [orig:316 D.5847 ] [316])
+                (plus:DI (reg/f:DI 0 ax [541])
+                    (reg:DI 1 dx [orig:315 D.5830 ] [315])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:142 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -752 [0xfffffffffffffd10])) [0 switch_data+0 S8 A64])
+            (reg:DI 1 dx [orig:315 D.5830 ] [315]))
+        (nil)))
+(insn 726 725 727 32 (set (reg/f:DI 0 ax [orig:317 D.5853 ] [317])
+        (mem/f/j:DI (reg/f:DI 0 ax [orig:316 D.5847 ] [316]) [0 _316->character+0 S8 A64])) read_fdf.cpp:142 89 {*movdi_internal}
+     (nil))
+(insn 727 726 728 32 (set (reg:SI 1 dx [542])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])) read_fdf.cpp:142 90 {*movsi_internal}
+     (nil))
+(insn 728 727 729 32 (set (reg:DI 1 dx [orig:318 D.5854 ] [318])
+        (sign_extend:DI (reg:SI 1 dx [542]))) read_fdf.cpp:142 142 {*extendsidi2_rex64}
+     (nil))
+(insn 729 728 730 32 (parallel [
+            (set (reg:DI 1 dx [orig:319 D.5854 ] [319])
+                (plus:DI (reg:DI 1 dx [orig:318 D.5854 ] [318])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:142 218 {*adddi_1}
+     (nil))
+(insn 730 729 731 32 (parallel [
+            (set (reg/f:DI 1 dx [orig:320 D.5853 ] [320])
+                (plus:DI (reg:DI 1 dx [orig:319 D.5854 ] [319])
+                    (reg/f:DI 0 ax [orig:317 D.5853 ] [317])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:142 218 {*adddi_1}
+     (nil))
+(insn 731 730 732 32 (set (reg:SI 0 ax [543])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])) read_fdf.cpp:142 90 {*movsi_internal}
+     (nil))
+(insn 732 731 808 32 (set (reg:DI 0 ax [orig:321 D.5830 ] [321])
+        (sign_extend:DI (reg:SI 0 ax [543]))) read_fdf.cpp:142 142 {*extendsidi2_rex64}
+     (nil))
+(insn 808 732 734 32 (set (reg:DI 2 cx [orig:322 D.5830 ] [322])
+        (mult:DI (reg:DI 0 ax [orig:321 D.5830 ] [321])
+            (const_int 8 [0x8]))) read_fdf.cpp:142 214 {*leadi}
+     (nil))
+(insn 734 808 735 32 (set (reg/f:DI 0 ax [544])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -784 [0xfffffffffffffcf0])) [0 in_data+0 S8 A64])) read_fdf.cpp:142 89 {*movdi_internal}
+     (nil))
+(insn 735 734 736 32 (parallel [
+            (set (reg/f:DI 0 ax [orig:323 D.5846 ] [323])
+                (plus:DI (reg/f:DI 0 ax [544])
+                    (reg:DI 2 cx [orig:322 D.5830 ] [322])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:142 218 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 20 frame)
+                    (const_int -768 [0xfffffffffffffd00])) [0 in_data+0 S8 A64])
+            (reg:DI 2 cx [orig:322 D.5830 ] [322]))
+        (nil)))
+(insn 736 735 737 32 (set (reg/f:DI 0 ax [orig:324 D.5853 ] [324])
+        (mem/f/j:DI (reg/f:DI 0 ax [orig:323 D.5846 ] [323]) [0 _323->character+0 S8 A64])) read_fdf.cpp:142 89 {*movdi_internal}
+     (nil))
+(insn 737 736 738 32 (set (reg:SI 2 cx [545])
+        (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])) read_fdf.cpp:142 90 {*movsi_internal}
+     (nil))
+(insn 738 737 739 32 (set (reg:DI 2 cx [orig:325 D.5854 ] [325])
+        (sign_extend:DI (reg:SI 2 cx [545]))) read_fdf.cpp:142 142 {*extendsidi2_rex64}
+     (nil))
+(insn 739 738 740 32 (parallel [
+            (set (reg:DI 2 cx [orig:326 D.5854 ] [326])
+                (plus:DI (reg:DI 2 cx [orig:325 D.5854 ] [325])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:142 218 {*adddi_1}
+     (nil))
+(insn 740 739 741 32 (parallel [
+            (set (reg/f:DI 0 ax [orig:327 D.5853 ] [327])
+                (plus:DI (reg/f:DI 0 ax [orig:324 D.5853 ] [324])
+                    (reg:DI 2 cx [orig:326 D.5854 ] [326])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:142 218 {*adddi_1}
+     (nil))
+(insn 741 740 742 32 (set (reg:QI 0 ax [orig:328 D.5837 ] [328])
+        (mem:QI (reg/f:DI 0 ax [orig:327 D.5853 ] [327]) [0 *_327+0 S1 A8])) read_fdf.cpp:142 93 {*movqi_internal}
+     (nil))
+(insn 742 741 743 32 (set (mem:QI (reg/f:DI 1 dx [orig:320 D.5853 ] [320]) [0 *_320+0 S1 A8])
+        (reg:QI 0 ax [orig:328 D.5837 ] [328])) read_fdf.cpp:142 93 {*movqi_internal}
+     (nil))
+(insn 743 742 778 32 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                        (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                            (const_int -692 [0xfffffffffffffd4c])) [0 j+0 S4 A32])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:138 217 {*addsi_1}
+     (nil))
+(jump_insn 778 743 779 32 (set (pc)
+        (label_ref 744)) read_fdf.cpp:138 654 {jump}
+     (nil)
+ -> 744)
+(barrier 779 778 747)
+(code_label 747 779 748 33 3 "" [2 uses])
+(note 748 747 749 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+(insn 749 748 780 33 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                        (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                            (const_int -696 [0xfffffffffffffd48])) [0 i+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) read_fdf.cpp:33 217 {*addsi_1}
+     (nil))
+(jump_insn 780 749 781 33 (set (pc)
+        (label_ref 750)) read_fdf.cpp:33 654 {jump}
+     (nil)
+ -> 750)
+(barrier 781 780 753)
+(code_label 753 781 754 34 2 "" [1 uses])
+(note 754 753 755 34 [bb 34] NOTE_INSN_BASIC_BLOCK)
+(insn 755 754 763 34 (set (reg:SI 0 ax [orig:329 D.5829 ] [329])
+        (const_int 1 [0x1])) read_fdf.cpp:147 90 {*movsi_internal}
+     (nil))
+(insn 763 755 764 34 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                                (const_int -24 [0xffffffffffffffe8])) [0 D.5855+0 S8 A64])
+                        (const_int 40 [0x28])
+                    ] UNSPEC_SP_TLS_TEST))
+            (clobber (reg:DI 3 bx [548]))
+        ]) read_fdf.cpp:149 990 {stack_tls_protect_test_di}
+     (nil))
+(jump_insn 764 763 770 34 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 767)
+            (pc))) read_fdf.cpp:149 612 {*jcc_1}
+     (nil)
+ -> 767)
+(note 770 764 765 35 [bb 35] NOTE_INSN_BASIC_BLOCK)
+(call_insn 765 770 766 35 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f2384979000 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) read_fdf.cpp:149 660 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (nil))
+(barrier 766 765 767)
+(code_label 767 766 771 36 21 "" [1 uses])
+(note 771 767 768 36 [bb 36] NOTE_INSN_BASIC_BLOCK)
+(insn 768 771 930 36 (use (reg/i:SI 0 ax)) read_fdf.cpp:149 -1
+     (nil))
+(note 930 768 931 36 NOTE_INSN_EPILOGUE_BEG)
+(insn 931 930 932 36 (set (reg:DI 3 bx)
+        (mem/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0  S8 A8])) read_fdf.cpp:149 -1
+     (nil))
+(insn/f 932 931 933 36 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 6 bp)
+                    (const_int 8 [0x8])))
+            (set (reg/f:DI 6 bp)
+                (mem:DI (reg/f:DI 6 bp) [0  S8 A8]))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) read_fdf.cpp:149 -1
+     (expr_list:REG_CFA_DEF_CFA (plus:DI (reg/f:DI 7 sp)
+            (const_int 8 [0x8]))
+        (nil)))
+(jump_insn 933 932 934 36 (simple_return) read_fdf.cpp:149 -1
+     (nil)
+ -> simple_return)
+(barrier 934 933 782)
+(note 782 934 0 NOTE_INSN_DELETED)

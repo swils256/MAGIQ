@@ -1,0 +1,2002 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mainWindow</class>
+ <widget class="QWidget" name="mainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1600</width>
+    <height>900</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PINTS for FITMAN</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Prior Information Templates (PINTS) for FITMAN v0.4&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="authorLabel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Dickson Wong, Robarts Research Institute&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="mainTabWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="simulateTab">
+      <attribute name="title">
+       <string>Simulate</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="0">
+        <layout class="QGridLayout" name="simGridLayout">
+         <item row="2" column="0" rowspan="2">
+          <widget class="QGroupBox" name="pulSeqCalParamsGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Pulse Sequence Calibration Parameters</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_5">
+            <item row="2" column="1">
+             <widget class="QLabel" name="afpAmpMinLabel">
+              <property name="text">
+               <string>Minimum:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QLabel" name="label_17">
+              <property name="text">
+               <string>[mT]</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLineEdit" name="slrAmpMinInput">
+              <property name="text">
+               <string>0</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="slrAmpLabel">
+              <property name="text">
+               <string>90 Degree SLR Pulse Amplitudes:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="afpAmpLabel">
+              <property name="text">
+               <string>180 Degree AFP Pulse Amplitudes:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="slrAmpMinLabel">
+              <property name="text">
+               <string>Minimum:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QLineEdit" name="slrAmpMaxInput">
+              <property name="text">
+               <string>30</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3">
+             <widget class="QLabel" name="label_21">
+              <property name="text">
+               <string>[mT]</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLabel" name="slrAmpMaxLabel">
+              <property name="text">
+               <string>Maximum:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLabel" name="afpAmpMaxLabel">
+              <property name="text">
+               <string>Maximum:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QLineEdit" name="afpAmpMinInput">
+              <property name="text">
+               <string>0</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QLineEdit" name="afpAmpMaxInput">
+              <property name="text">
+               <string>30</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="3">
+             <widget class="QLabel" name="label_24">
+              <property name="text">
+               <string>[mT]</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="3">
+             <widget class="QLabel" name="label_25">
+              <property name="text">
+               <string>[mT]</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QGroupBox" name="pulSeqParamsGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Pulse Sequence Parameters</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="3" column="0">
+             <widget class="QLabel" name="rfOffsetLabel">
+              <property name="text">
+               <string>RF Offset:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="rfOffsetInput">
+              <property name="text">
+               <string>4.7</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>[msec]</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="slrPulseLengthLabel">
+              <property name="text">
+               <string>90 Degree SLR Pulse Length: </string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="slrPulseLengthInput">
+              <property name="text">
+               <string>4000</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="afpPulseLengthInput">
+              <property name="text">
+               <string>8000</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="afpPulseLengthLabel">
+              <property name="text">
+               <string>180 Degree AFP Pulse Length:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string>[msec]</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QLabel" name="label_27">
+              <property name="text">
+               <string>[ppm]</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="fudgeFactorLabel">
+              <property name="text">
+               <string>90 Degree SLR Fudge Factor:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="fudgeFactorInput">
+              <property name="text">
+               <string>0</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="1" rowspan="3">
+          <widget class="QGroupBox" name="binningParamsGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Binning Parameters</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_7">
+            <item row="2" column="1">
+             <widget class="QLabel" name="ppmloLabel">
+              <property name="text">
+               <string>Low (ppmlo):</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="tolppmLabel">
+              <property name="text">
+               <string>PPM Tolerance (tolppm):</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="tolphaLabel">
+              <property name="text">
+               <string>Phase Tolerance (tolpha):</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="ppmSearchRangeLabel">
+              <property name="text">
+               <string>PPM Search Range:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLabel" name="ppmhiLabel">
+              <property name="text">
+               <string>High (ppmhi):</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QLineEdit" name="ppmloInput">
+              <property name="text">
+               <string>0.0</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1" colspan="2">
+             <widget class="QLineEdit" name="tolphaInput">
+              <property name="text">
+               <string>50.0</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" colspan="2">
+             <widget class="QLineEdit" name="tolppmInput">
+              <property name="text">
+               <string>0.0015</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QLineEdit" name="ppmhiInput">
+              <property name="text">
+               <string>10.0</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <widget class="QGroupBox" name="simOptionsGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Simulation Options</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="0" column="1">
+             <widget class="QLabel" name="fieldStrengthLabel">
+              <property name="text">
+               <string>Field Strength:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1">
+             <widget class="QLabel" name="label_33">
+              <property name="text">
+               <string>PPM Range:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="2">
+             <widget class="QLabel" name="ppmMinLabel">
+              <property name="text">
+               <string>Minimum:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="2">
+             <widget class="QLabel" name="ppmMaxLabel">
+              <property name="text">
+               <string>Maximum:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLabel" name="acqLengthLabel_sim">
+              <property name="text">
+               <string>Acquisition Time: </string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QLabel" name="echoTimeLabel_sim">
+              <property name="text">
+               <string>Echo Time:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="2" colspan="3">
+             <widget class="QLineEdit" name="acqLengthInput_sim">
+              <property name="text">
+               <string>341E-3</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2" colspan="3">
+             <widget class="QLineEdit" name="dwellTimeInput_sim">
+              <property name="text">
+               <string>0.000166</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="5">
+             <widget class="QLabel" name="label_13">
+              <property name="text">
+               <string>[msec]</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2" colspan="2">
+             <widget class="QRadioButton" name="T7Button">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="text">
+               <string>&amp;7 Tesla (297.2 MHz)</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">fieldStrength_sim_ButtonGroup</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="6" column="3" colspan="2">
+             <widget class="QLineEdit" name="ppmMinInput">
+              <property name="text">
+               <string>0</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="5">
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>[sec]</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="5">
+             <widget class="QLabel" name="label_8">
+              <property name="text">
+               <string>[sec]</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLabel" name="dwellTimeLabel_sim">
+              <property name="text">
+               <string>Dwell Time:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="5">
+             <widget class="QLabel" name="label_36">
+              <property name="text">
+               <string>[ppm]</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4" colspan="2">
+             <widget class="QRadioButton" name="T3Button">
+              <property name="text">
+               <string>&amp;3 Tesla (123.3 MHz)</string>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">fieldStrength_sim_ButtonGroup</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="7" column="5">
+             <widget class="QLabel" name="label_37">
+              <property name="text">
+               <string>[ppm]</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="3" colspan="2">
+             <widget class="QLineEdit" name="ppmMaxInput">
+              <property name="text">
+               <string>5</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="1" colspan="5">
+             <widget class="QRadioButton" name="macroIncludeButton">
+              <property name="text">
+               <string>I&amp;nclude macromolecules in the simulation.</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="2" colspan="3">
+             <widget class="QLineEdit" name="echoTimeInput_sim">
+              <property name="text">
+               <string>60</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="2">
+          <widget class="QPushButton" name="runSimulationButton">
+           <property name="text">
+            <string>Run semi-LASER Simulation</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" rowspan="7">
+          <widget class="QGroupBox" name="simProgressGroupBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>800</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Simulation Progress</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QTextBrowser" name="simConsole">
+              <property name="font">
+               <font>
+                <family>Monospace</family>
+               </font>
+              </property>
+              <property name="lineWrapMode">
+               <enum>QTextEdit::NoWrap</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="2">
+          <widget class="QProgressBar" name="simProgressBar">
+           <property name="value">
+            <number>0</number>
+           </property>
+           <property name="invertedAppearance">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0" colspan="2">
+          <widget class="QPushButton" name="confirmSimParamsButton">
+           <property name="text">
+            <string>Confirm Simulation Parameters</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="loadExperimentTab">
+      <attribute name="title">
+       <string>Load Experiment</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <layout class="QGridLayout" name="loadExpGridLayout">
+         <item row="0" column="0" colspan="3">
+          <widget class="QGroupBox" name="filenameInputGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Experiment File</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <layout class="QGridLayout" name="filenameGridLayout">
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="filenameInput">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="filenameInputLabel">
+                <property name="text">
+                 <string>Enter input file path:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="3">
+               <widget class="QPushButton" name="filenameConfirmButton">
+                <property name="text">
+                 <string>Confirm</string>
+                </property>
+                <property name="default">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0" colspan="4" alignment="Qt::AlignHCenter">
+               <widget class="QLabel" name="filenameInfoLabel">
+                <property name="text">
+                 <string>No experiment loaded!</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QPushButton" name="filenameBrowseButton">
+                <property name="text">
+                 <string>Browse</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="3">
+          <widget class="QGroupBox" name="expParamsGroupBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Experimental Parameters</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <layout class="QGridLayout" name="expParamsGridLayout">
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="dwellTimeInput">
+                <property name="text">
+                 <string>0.000166</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="dwellTimeLabel">
+                <property name="text">
+                 <string>Dwell Time [sec]:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="acqLengthLabel">
+                <property name="text">
+                 <string>Acq. Length [sec]:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="acqLengthInput">
+                <property name="text">
+                 <string>341E-3</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0" colspan="2" alignment="Qt::AlignHCenter">
+               <widget class="QLabel" name="specExpInfoLabel">
+                <property name="text">
+                 <string>Experiment not specified!</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="2" column="0" colspan="3">
+          <widget class="QPushButton" name="specExpButton">
+           <property name="text">
+            <string>Specify</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="editMetabTab">
+      <attribute name="title">
+       <string>Edit Metabolites</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_9">
+       <item>
+        <layout class="QVBoxLayout" name="editMetabVerticalLayout">
+         <item>
+          <widget class="QTableWidget" name="metabTableWidget">
+           <attribute name="verticalHeaderStretchLastSection">
+            <bool>true</bool>
+           </attribute>
+           <column>
+            <property name="text">
+             <string>Metabolite</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Scaling Factor</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>T2</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="loadMetabGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Load parameters from .metab file</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <layout class="QGridLayout" name="loadMetabGridLayout">
+              <item row="0" column="0">
+               <widget class="QLabel" name="loadMetabFileLabel">
+                <property name="text">
+                 <string>Enter input file path:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="loadMetabFileInput">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="3">
+               <widget class="QPushButton" name="loadMetabConfirmButton">
+                <property name="text">
+                 <string>Confirm</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0" colspan="4" alignment="Qt::AlignHCenter">
+               <widget class="QLabel" name="loadMetabInfoLabel">
+                <property name="text">
+                 <string>No parameter file loaded!</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QPushButton" name="loadMetabBrowseButton">
+                <property name="text">
+                 <string>Browse</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="editMetabHorizontalLayout">
+           <item>
+            <widget class="QPushButton" name="editMetabOKButton">
+             <property name="text">
+              <string>Apply to Experiment</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="plotTab">
+      <attribute name="title">
+       <string>Plot Metabolites</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="plotGridLayout">
+         <item row="0" column="1" rowspan="5">
+          <widget class="QGroupBox" name="plotTimeGroupBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Time Domain</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_12">
+            <item>
+             <layout class="QVBoxLayout" name="plotTime_mplvl"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="0" column="2" rowspan="5">
+          <widget class="QGroupBox" name="plotFreqGroupBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Frequency Domain</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_10">
+            <item>
+             <layout class="QVBoxLayout" name="plotFreq_mplvl"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QGroupBox" name="plotParamsGroupBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>400</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Plotting Parameters</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <layout class="QGridLayout" name="plotParamsGridLayout">
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="loop1Input">
+                <property name="text">
+                 <string>60</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="loop1Label">
+                <property name="text">
+                 <string>TE [msec]:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="lbLabel">
+                <property name="text">
+                 <string>LB [Hz]: </string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="lbInput">
+                <property name="text">
+                 <string>15</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="shiftLabel">
+                <property name="text">
+                 <string>Shift [ppm]:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="shiftInput">
+                <property name="text">
+                 <string>0</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QGroupBox" name="metabGroupBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>400</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Metabolites</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <layout class="QGridLayout" name="metabGridLayout">
+              <item row="0" column="0">
+               <widget class="QListWidget" name="metabListWidget"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="3" column="0" rowspan="2">
+          <widget class="QPushButton" name="plotButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>400</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Plot</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="plotErrorLabel">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="exportTab">
+      <attribute name="title">
+       <string>Export Basis Set</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <widget class="QGroupBox" name="exportSettingsGroupBox_rawTime">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+         </property>
+         <property name="title">
+          <string>Export Raw Time Domain Data</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_13">
+          <item>
+           <layout class="QGridLayout" name="exportSettings_rawTime_GridLayout">
+            <item row="0" column="0" colspan="3">
+             <widget class="QTextBrowser" name="outputFilenameInfoLabel_rawTime">
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt;&quot;&gt;This exports the raw time domain data for each metabolite selected in the &amp;quot;Plot Metabolites&amp;quot; tab.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" rowspan="2">
+             <widget class="QLabel" name="outputFilenameLabel_rawTime">
+              <property name="text">
+               <string>Output Filename:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1" rowspan="2">
+             <widget class="QLineEdit" name="outputFilenameInput_rawTime"/>
+            </item>
+            <item row="3" column="0" rowspan="2" colspan="3">
+             <widget class="QPushButton" name="exportButton_rawTime">
+              <property name="text">
+               <string>Export Raw Time Domain Data</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2" rowspan="2">
+             <widget class="QPushButton" name="outputFilenameConfirmButton_rawTime">
+              <property name="text">
+               <string>Confirm</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="exportSettingsGroupBox_rawFreq">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+         </property>
+         <property name="title">
+          <string>Export Raw Frequency Domain Data</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_12">
+          <item>
+           <layout class="QGridLayout" name="exportSettings_rawFreq_GridLayout">
+            <item row="0" column="0" colspan="3">
+             <widget class="QTextBrowser" name="outputFilenameInfoLabel_rawFreq">
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt;&quot;&gt;This exports the raw frequency domain data for each metabolite selected int he &amp;quot;Plot Metabolites&amp;quot; tab.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0" rowspan="2" colspan="3">
+             <widget class="QPushButton" name="exportButton_rawFreq">
+              <property name="text">
+               <string>Export Raw Frequency Domain Data</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2" rowspan="2">
+             <widget class="QPushButton" name="outputFilenameConfirmButton_rawFreq">
+              <property name="text">
+               <string>Confirm</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1" rowspan="2">
+             <widget class="QLineEdit" name="outputFilenameInput_rawFreq"/>
+            </item>
+            <item row="1" column="0" rowspan="2">
+             <widget class="QLabel" name="outputFilenameLabel_rawFreq">
+              <property name="text">
+               <string>Output Filename:</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="exportSettingsGroupBox_dat">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+         </property>
+         <property name="title">
+          <string>Export to .dat File</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <item>
+           <layout class="QGridLayout" name="exportSettings_dat_GridLayout">
+            <item row="1" column="0">
+             <widget class="QLabel" name="outputFilenameLabel_dat">
+              <property name="text">
+               <string>Output Filename:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0" colspan="3">
+             <widget class="QPushButton" name="exportButton_dat">
+              <property name="text">
+               <string>Export to .dat File</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1" colspan="2">
+             <widget class="QLineEdit" name="outputTEInput">
+              <property name="text">
+               <string>60</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="outputFilenameInput_dat"/>
+            </item>
+            <item row="1" column="2">
+             <widget class="QPushButton" name="outputFilenameConfirmButton_dat">
+              <property name="text">
+               <string>Confirm</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>TE [msec]:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" colspan="3">
+             <widget class="QTextBrowser" name="outputFilenameInfoLabel_dat">
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt;&quot;&gt;This exports the sum of the metabolites selected in the &amp;quot;Plot Metabolites&amp;quot; tab in one FITMAN compatible .dat file.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="cstTab">
+      <attribute name="title">
+       <string>Generate Constraint File</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <layout class="QGridLayout" name="cstGridLayout">
+         <item row="2" column="3">
+          <widget class="QGroupBox" name="phasesGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Phases</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_13">
+            <item>
+             <widget class="QPlainTextEdit" name="phasesTextEdit"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QGroupBox" name="availMetabGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Available Metabolites</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QTextBrowser" name="metabTextBrowser"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QGroupBox" name="ampsGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Amplitudes</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_11">
+            <item>
+             <widget class="QPlainTextEdit" name="ampsTextEdit"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="3" column="1" colspan="3">
+          <widget class="QGroupBox" name="lwGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Linewidths</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_6">
+            <item row="1" column="1" colspan="2">
+             <widget class="QCheckBox" name="linkAllCheckBox">
+              <property name="text">
+               <string>Link all linewidths</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" rowspan="2">
+             <widget class="QLabel" name="lwInstructionsLabel">
+              <property name="minimumSize">
+               <size>
+                <width>400</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>By default, all linewidths of a single metabolite are linked.
+This cannot be changed! You can set the maximum linewidth
+for all metabolites here. Type '0' if you don't want a limit.</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="maxLWLabel">
+              <property name="text">
+               <string>Max Linewidth (Hz): </string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="4">
+             <widget class="QCheckBox" name="splitNAACheckBox">
+              <property name="text">
+               <string>Fit NAA Multiplets Separately</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2" colspan="4">
+             <widget class="QLineEdit" name="maxLWInput">
+              <property name="text">
+               <string>50</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3">
+             <widget class="QCheckBox" name="linkLipidsCheckBox">
+              <property name="text">
+               <string>Link lipid linewidths</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="4" column="2" rowspan="2" colspan="2">
+          <widget class="QLineEdit" name="cstFilenameLineEdit"/>
+         </item>
+         <item row="0" column="1" colspan="2">
+          <widget class="QGroupBox" name="instrGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Instructions for Editing Constraints Information</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QTextBrowser" name="instrTextBrowser">
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;In each column type in your constraints according to the following formatting rules.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;1. An semi-colon (;) indicates the end of the definition of a group of linked metabolites. A comma (,) separates each parameter of the definition. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;2. The first parameter is the name of the group. Each group's peaks will be defined relative to the tallest peak of the group. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;3. The next two parameters signify the minimum and maximum allowable value of the parameter of the tallest peak. If you don't want to set a minmum, type &lt;/span&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-weight:600;&quot;&gt;-inf&lt;/span&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;. If you don't want to set a maximum, type &lt;/span&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-weight:600;&quot;&gt;+inf&lt;/span&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;4. Everything else is the list of group members. Pick the group members from the list of avaialable metabolites.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;5. Each metabolite can only be part of a single linked group.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-style:italic; text-decoration: underline;&quot;&gt;Example (shifts):&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;SNaax, 1.8, 2.2, NAA, NAAG;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;This means that the shifts of NAA and NAAG are linked, with a group called SNaax. The tallest peak within this group will be constrained to 1.8 ppm to 2.2 ppm. Now NAA and NAAG cannot be a part of another linked shift group.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-weight:600;&quot;&gt;Note:&lt;/span&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt; By default, the peaks of a single metabolite are linked together. This tool allows you to link multiple metabolites together.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QGroupBox" name="shiftsGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Shifts</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_14">
+            <item>
+             <widget class="QPlainTextEdit" name="shiftsTextEdit"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="6" column="3">
+          <widget class="QPushButton" name="cstOKButton">
+           <property name="text">
+            <string>Save and Apply Constraints</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1" rowspan="2" alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="cstInfoFileLabel">
+           <property name="text">
+            <string>Constraints Information File Path:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="2">
+          <widget class="QPushButton" name="cstLoadButton">
+           <property name="text">
+            <string>Load Constraints</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1" alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="cstInfoErrorLabel">
+           <property name="text">
+            <string>No file loaded!</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="cstVerticalLayout">
+         <item>
+          <widget class="QGroupBox" name="genCSTGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Generate Constraint File (.cst)</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_15">
+            <item>
+             <layout class="QGridLayout" name="genCSTGridLayout">
+              <item row="0" column="0" colspan="3">
+               <widget class="QTextBrowser" name="cstFilenameInfoLabel">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt;&quot;&gt;This will generate a FITMAN compatiable constraint file using the metabolites selected in the &amp;quot;Plot Metabolites&amp;quot; tab.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0" colspan="3">
+               <widget class="QPushButton" name="genCSTButton">
+                <property name="text">
+                 <string>Generate .cst file</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0" rowspan="3">
+               <widget class="QLabel" name="cstFilenameLabel">
+                <property name="text">
+                 <string>Output Filename:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1" rowspan="3">
+               <widget class="QLineEdit" name="cstFilenameInput"/>
+              </item>
+              <item row="1" column="2" rowspan="3">
+               <widget class="QPushButton" name="cstFilenameConfirmButton">
+                <property name="text">
+                 <string>Confirm</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gesTab">
+      <attribute name="title">
+       <string>Generate Guess File</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_8">
+       <item row="1" column="0" colspan="2">
+        <widget class="QGroupBox" name="gesParamsGroupBox">
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+         </property>
+         <property name="title">
+          <string>Guess File Parameters</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_9">
+          <item row="3" column="2">
+           <widget class="QLineEdit" name="wFactorLineEdit">
+            <property name="text">
+             <string>15</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLineEdit" name="sFactorLineEdit">
+            <property name="text">
+             <string>4.65</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="pFactorLabel">
+            <property name="text">
+             <string>Phase Factor (rad):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="wFactorLabel">
+            <property name="text">
+             <string>Width Factor (Hz):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLineEdit" name="pFactorLineEdit">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="aFactorLabel">
+            <property name="text">
+             <string>Amplitude Factor:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="sFactorLabel">
+            <property name="text">
+             <string>Shift Factor (ppm):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="dFactorLabel">
+            <property name="text">
+             <string>Delay Factor (sec):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="3">
+           <widget class="QPushButton" name="plotGESButton">
+            <property name="text">
+             <string>Plot</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLineEdit" name="aFactorLineEdit">
+            <property name="text">
+             <string>1.0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLineEdit" name="dFactorLineEdit">
+            <property name="text">
+             <string>-0.000498</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0" rowspan="2" colspan="2">
+        <widget class="QGroupBox" name="genGESGroupBox">
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+         </property>
+         <property name="title">
+          <string>Generate Guess File (.ges)</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_18">
+          <item>
+           <layout class="QGridLayout" name="genGESGridLayout">
+            <item row="4" column="0" colspan="3">
+             <widget class="QPushButton" name="genGESButton">
+              <property name="text">
+               <string>Generate .ges file</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1" rowspan="3">
+             <widget class="QLineEdit" name="gesFilenameInput"/>
+            </item>
+            <item row="1" column="2" rowspan="3">
+             <widget class="QPushButton" name="gesFilenameConfirmButton">
+              <property name="text">
+               <string>Confirm</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" rowspan="3">
+             <widget class="QLabel" name="gesFilenameLabel">
+              <property name="text">
+               <string>Output Filename:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" colspan="3">
+             <widget class="QTextBrowser" name="gesFilenameInfoLabel">
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt;&quot;&gt;This will generate a FITMAN compatiable guess file using the metabolites selected in the &amp;quot;Plot Metabolites&amp;quot; tab.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="2" rowspan="4">
+        <widget class="QGroupBox" name="plotGESGroupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>800</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+         </property>
+         <property name="title">
+          <string>Plot of Guess</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_16">
+          <item>
+           <layout class="QVBoxLayout" name="plotGES_mplvl"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QGroupBox" name="loadDatFileGroupBox">
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+         </property>
+         <property name="title">
+          <string>Load Acquired Data (.dat) File</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_19">
+          <item>
+           <layout class="QGridLayout" name="filenameGridLayout_dat">
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="filenameInput_dat">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="filenameInputLabel_dat">
+              <property name="text">
+               <string>Enter input file path:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QPushButton" name="filenameConfirmButton_dat">
+              <property name="text">
+               <string>Confirm</string>
+              </property>
+              <property name="default">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="4" alignment="Qt::AlignHCenter">
+             <widget class="QLabel" name="filenameInfoLabel_dat">
+              <property name="text">
+               <string>No acquired data loaded!</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QPushButton" name="filenameBrowseButton_dat">
+              <property name="text">
+               <string>Browse</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="aboutTab">
+      <attribute name="title">
+       <string>About PINTS</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_17">
+       <item>
+        <widget class="QTextBrowser" name="aboutText">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-weight:600;&quot;&gt;PINTS v0.4&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-weight:600;&quot;&gt;Prior Information Templates for FITMAN&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;Dickson Wong&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;MD/PhD Candidate&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;dwong263@uwo.ca&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-style:italic;&quot;&gt;Last modified: Jun 16, 2017&lt;/span&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-weight:600; text-decoration: underline;&quot;&gt;About PINTS&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;A program to generate simulated semi-LASER &lt;/span&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; vertical-align:super;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;H-MRS prior information templates (basis sets) for FITMAN. With this program, you can simulate metabolites, visualize the basis sets, and generate FITMAN compatible *.CST, *.GES, and *.DAT files. You may also simulate other basis sets with VeSPA, import them here, and generate FITMAN compatible files.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-weight:600; text-decoration: underline;&quot;&gt;Dependencies&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;1. PyQt5&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;2. scipy 0.17.1&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;3. numpy 1.10.4&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;4. pyfftw 0.10.1&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;5. matplotlib 1.5.1&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;6. Python 2.7.10&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;7. PyGamma &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="fieldStrength_sim_ButtonGroup"/>
+ </buttongroups>
+</ui>

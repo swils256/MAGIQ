@@ -1,0 +1,3641 @@
+
+;; Function int read_procpar(Procpar_info*, char*) (_Z12read_procparP12Procpar_infoPc, funcdef_no=2, decl_uid=5284, symbol_order=2)
+
+
+
+int read_procpar(Procpar_info*, char*)
+
+Dataflow summary:
+;;  invalidated by call 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 19 [fpcr] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 29 [mm0] 30 [mm1] 31 [mm2] 32 [mm3] 33 [mm4] 34 [mm5] 35 [mm6] 36 [mm7] 37 [r8] 38 [r9] 39 [r10] 40 [r11] 45 [xmm8] 46 [xmm9] 47 [xmm10] 48 [xmm11] 49 [xmm12] 50 [xmm13] 51 [xmm14] 52 [xmm15] 53 [] 54 [] 55 [] 56 [] 57 [] 58 [] 59 [] 60 [] 61 [] 62 [] 63 [] 64 [] 65 [] 66 [] 67 [] 68 [] 69 [] 70 [] 71 [] 72 [] 73 [] 74 [] 75 [] 76 []
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 6 [bp] 7 [sp]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 20 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 20 [frame] 21 [xmm0] 22 [xmm1] 23 [xmm2] 24 [xmm3] 25 [xmm4] 26 [xmm5] 27 [xmm6] 28 [xmm7] 37 [r8] 38 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 20 [frame]
+;;  regs ever live 	 0[ax] 1[dx] 2[cx] 4[si] 5[di] 6[bp] 7[sp] 17[flags] 21[xmm0] 22[xmm1] 23[xmm2] 24[xmm3] 25[xmm4] 26[xmm5] 27[xmm6] 28[xmm7]
+;;  ref usage 	r0={288d,209u} r1={192d,38u} r2={155d} r4={243d,90u} r5={306d,153u} r6={3d,262u} r7={4d,240u} r8={153d} r9={153d} r10={153d} r11={153d} r12={153d} r13={153d} r14={153d} r15={153d} r17={216d,60u} r18={153d} r19={153d} r20={1d,1u} r21={154d,14u} r22={156d,2u} r23={156d,2u} r24={156d,2u} r25={156d,2u} r26={156d,2u} r27={155d,1u} r28={155d,1u} r29={153d} r30={153d} r31={153d} r32={153d} r33={153d} r34={153d} r35={153d} r36={153d} r37={154d} r38={154d} r39={153d} r40={153d} r45={153d} r46={153d} r47={153d} r48={153d} r49={153d} r50={153d} r51={153d} r52={153d} r53={153d} r54={153d} r55={153d} r56={153d} r57={153d} r58={153d} r59={153d} r60={153d} r61={153d} r62={153d} r63={153d} r64={153d} r65={153d} r66={153d} r67={153d} r68={153d} r69={153d} r70={153d} r71={153d} r72={153d} r73={153d} r74={153d} r75={153d} r76={153d} 
+;;    total ref usage 11995{10916d,1079u,0e} in 760{607 regular + 153 call} insns.
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 1108 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn/f 1108 6 1109 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg/f:DI 6 bp)) read_procpar.cpp:20 -1
+     (nil))
+(insn/f 1109 1108 1110 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) read_procpar.cpp:20 -1
+     (nil))
+(insn/f 1110 1109 1111 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -50064 [0xffffffffffff3c70])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) read_procpar.cpp:20 -1
+     (nil))
+(note 1111 1110 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 1111 3 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])
+        (reg:DI 5 di [ procpar_info ])) read_procpar.cpp:20 89 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50064 [0xffffffffffff3c70])) [0 procpar_string+0 S8 A64])
+        (reg:DI 4 si [ procpar_string ])) read_procpar.cpp:20 89 {*movdi_internal}
+     (nil))
+(note 4 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 4 8 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                        (const_int -8 [0xfffffffffffffff8])) [0 D.5608+0 S8 A64])
+                (unspec:DI [
+                        (const_int 40 [0x28])
+                    ] UNSPEC_SP_TLS_SET))
+            (set (reg:DI 0 ax [341])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) read_procpar.cpp:20 964 {stack_tls_protect_set_di}
+     (nil))
+(insn 8 5 9 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])
+        (const_int 0 [0])) read_procpar.cpp:22 89 {*movdi_internal}
+     (nil))
+(insn 9 8 10 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (const_int 0 [0])) read_procpar.cpp:25 89 {*movdi_internal}
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 0 ax [orig:83 D.5599 ] [83])
+        (const_int 5000 [0x1388])) read_procpar.cpp:28 89 {*movdi_internal}
+     (nil))
+(insn 11 10 12 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [orig:83 D.5599 ] [83])) read_procpar.cpp:28 89 {*movdi_internal}
+     (nil))
+(insn 12 11 13 2 (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50036 [0xffffffffffff3c8c])) [0 i+0 S4 A32])
+        (const_int 0 [0])) read_procpar.cpp:31 90 {*movsi_internal}
+     (nil))
+(insn 13 12 14 2 (set (reg:DI 0 ax [176])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50064 [0xffffffffffff3c70])) [0 procpar_string+0 S8 A64])) read_procpar.cpp:34 89 {*movdi_internal}
+     (nil))
+(insn 14 13 15 2 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x2b04d640a5f0 *.LC0>)) read_procpar.cpp:34 89 {*movdi_internal}
+     (nil))
+(insn 15 14 16 2 (set (reg:DI 5 di)
+        (reg:DI 0 ax [176])) read_procpar.cpp:34 89 {*movdi_internal}
+     (nil))
+(call_insn 16 15 18 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fopen") [flags 0x41]  <function_decl 0x2b04d627bd00 fopen>) [0 fopen S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:34 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 18 16 19 2 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])
+        (reg/f:DI 0 ax [orig:84 D.5600 ] [84])) read_procpar.cpp:34 89 {*movdi_internal}
+     (nil))
+(insn 19 18 20 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])
+            (const_int 0 [0]))) read_procpar.cpp:35 4 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 20 19 21 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) read_procpar.cpp:35 596 {*jcc_1}
+     (nil)
+ -> 27)
+(note 21 20 22 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 3 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x2b04d640a688 *.LC1>)) read_procpar.cpp:36 89 {*movdi_internal}
+     (nil))
+(call_insn 23 22 24 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:36 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 24 23 25 3 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:37 90 {*movsi_internal}
+     (nil))
+(call_insn 25 24 26 3 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:37 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 26 25 27)
+(code_label 27 26 28 4 2 "" [1 uses])
+(note 28 27 29 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 1107 4 (set (reg:DI 1 dx [177])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:41 89 {*movdi_internal}
+     (nil))
+(insn 1107 29 32 4 (set (reg:DI 0 ax [178])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:41 214 {*leadi}
+     (nil))
+(insn 32 1107 33 4 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:41 90 {*movsi_internal}
+     (nil))
+(insn 33 32 34 4 (set (reg:DI 5 di)
+        (reg:DI 0 ax [178])) read_procpar.cpp:41 89 {*movdi_internal}
+     (nil))
+(call_insn 34 33 35 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:41 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 35 34 36 4 (set (reg:DI 0 ax [179])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:42 89 {*movdi_internal}
+     (nil))
+(insn 36 35 37 4 (set (reg:DI 5 di)
+        (reg:DI 0 ax [179])) read_procpar.cpp:42 89 {*movdi_internal}
+     (nil))
+(call_insn 37 36 39 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:42 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 39 37 40 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:85 D.5601 ] [85])
+            (const_int 0 [0]))) read_procpar.cpp:42 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 40 39 41 4 (set (reg:QI 0 ax [orig:86 D.5602 ] [86])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:42 592 {*setcc_qi}
+     (nil))
+(insn 41 40 42 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:86 D.5602 ] [86])
+            (const_int 0 [0]))) read_procpar.cpp:42 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 42 41 43 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 49)
+            (pc))) read_procpar.cpp:42 596 {*jcc_1}
+     (nil)
+ -> 49)
+(note 43 42 44 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 5 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:43 89 {*movdi_internal}
+     (nil))
+(call_insn 45 44 46 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:43 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 46 45 47 5 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:44 90 {*movsi_internal}
+     (nil))
+(call_insn 47 46 48 5 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:44 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 48 47 49)
+(code_label 49 48 50 6 3 "" [1 uses])
+(note 50 49 1021 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 1021 50 1022 6 (set (pc)
+        (label_ref 979)) read_procpar.cpp:51 636 {jump}
+     (nil)
+ -> 979)
+(barrier 1022 1021 987)
+(code_label 987 1022 53 7 39 "" [1 uses])
+(note 53 987 54 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 1106 7 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                        (const_int -50036 [0xffffffffffff3c8c])) [0 i+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 6 bp)
+                            (const_int -50036 [0xffffffffffff3c8c])) [0 i+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) read_procpar.cpp:57 220 {*addsi_1}
+     (nil))
+(insn 1106 54 56 7 (set (reg:DI 0 ax [180])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:65 214 {*leadi}
+     (nil))
+(insn 56 1106 57 7 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x2b04d640a7b8 *.LC3>)) read_procpar.cpp:65 89 {*movdi_internal}
+     (nil))
+(insn 57 56 58 7 (set (reg:DI 5 di)
+        (reg:DI 0 ax [180])) read_procpar.cpp:65 89 {*movdi_internal}
+     (nil))
+(call_insn 58 57 60 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:65 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 60 58 61 7 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [181])) read_procpar.cpp:65 89 {*movdi_internal}
+     (nil))
+(insn 61 60 62 7 (set (reg:DI 0 ax [182])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:80 89 {*movdi_internal}
+     (nil))
+(insn 62 61 63 7 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x2b04d640a850 *.LC4>)) read_procpar.cpp:80 89 {*movdi_internal}
+     (nil))
+(insn 63 62 64 7 (set (reg:DI 5 di)
+        (reg:DI 0 ax [182])) read_procpar.cpp:80 89 {*movdi_internal}
+     (nil))
+(call_insn/i 64 63 66 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:80 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 66 64 67 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:89 D.5601 ] [89])
+            (const_int 0 [0]))) read_procpar.cpp:80 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 67 66 68 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 112)
+            (pc))) read_procpar.cpp:80 596 {*jcc_1}
+     (nil)
+ -> 112)
+(note 68 67 69 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 69 68 1105 8 (set (reg:DI 1 dx [183])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:90 89 {*movdi_internal}
+     (nil))
+(insn 1105 69 72 8 (set (reg:DI 0 ax [184])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:90 214 {*leadi}
+     (nil))
+(insn 72 1105 73 8 (set (reg:SI 4 si)
+        (const_int 5000 [0x1388])) read_procpar.cpp:90 90 {*movsi_internal}
+     (nil))
+(insn 73 72 74 8 (set (reg:DI 5 di)
+        (reg:DI 0 ax [184])) read_procpar.cpp:90 89 {*movdi_internal}
+     (nil))
+(call_insn 74 73 75 8 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:90 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 75 74 76 8 (set (reg:DI 0 ax [185])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:92 89 {*movdi_internal}
+     (nil))
+(insn 76 75 77 8 (set (reg:DI 5 di)
+        (reg:DI 0 ax [185])) read_procpar.cpp:92 89 {*movdi_internal}
+     (nil))
+(call_insn 77 76 79 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:92 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 79 77 80 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:90 D.5601 ] [90])
+            (const_int 0 [0]))) read_procpar.cpp:92 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 80 79 81 8 (set (reg:QI 0 ax [orig:91 D.5602 ] [91])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:92 592 {*setcc_qi}
+     (nil))
+(insn 81 80 82 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:91 D.5602 ] [91])
+            (const_int 0 [0]))) read_procpar.cpp:92 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 82 81 83 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 89)
+            (pc))) read_procpar.cpp:92 596 {*jcc_1}
+     (nil)
+ -> 89)
+(note 83 82 84 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 84 83 85 9 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:93 89 {*movdi_internal}
+     (nil))
+(call_insn 85 84 86 9 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:93 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 86 85 87 9 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:94 90 {*movsi_internal}
+     (nil))
+(call_insn 87 86 88 9 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:94 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 88 87 89)
+(code_label 89 88 90 10 6 "" [1 uses])
+(note 90 89 1104 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 1104 90 92 10 (set (reg:DI 0 ax [186])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:106 214 {*leadi}
+     (nil))
+(insn 92 1104 93 10 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:106 89 {*movdi_internal}
+     (nil))
+(insn 93 92 94 10 (set (reg:DI 5 di)
+        (reg:DI 0 ax [186])) read_procpar.cpp:106 89 {*movdi_internal}
+     (nil))
+(call_insn 94 93 96 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:106 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 96 94 97 10 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [187])) read_procpar.cpp:106 89 {*movdi_internal}
+     (nil))
+(insn 97 96 98 10 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:110 89 {*movdi_internal}
+     (nil))
+(insn 98 97 99 10 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:110 89 {*movdi_internal}
+     (nil))
+(call_insn 99 98 101 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:110 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 101 99 102 10 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [188])) read_procpar.cpp:110 89 {*movdi_internal}
+     (nil))
+(insn 102 101 103 10 (set (reg:DI 0 ax [189])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:115 89 {*movdi_internal}
+     (nil))
+(insn 103 102 104 10 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:115 89 {*movdi_internal}
+     (nil))
+(insn 104 103 105 10 (set (reg:DI 5 di)
+        (reg:DI 0 ax [189])) read_procpar.cpp:115 89 {*movdi_internal}
+     (nil))
+(call_insn 105 104 107 10 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:115 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 107 105 1056 10 (set (reg:SF 22 xmm1 [orig:93 D.5604 ] [93])
+        (float_truncate:SF (reg:DF 21 xmm0 [orig:92 D.5603 ] [92]))) read_procpar.cpp:115 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 1056 107 108 10 (set (reg:SF 0 ax [orig:93 D.5604 ] [93])
+        (reg:SF 22 xmm1 [orig:93 D.5604 ] [93])) read_procpar.cpp:115 129 {*movsf_internal}
+     (nil))
+(insn 108 1056 109 10 (set (reg/f:DI 1 dx [190])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:115 89 {*movdi_internal}
+     (nil))
+(insn 109 108 1023 10 (set (mem/j:SF (reg/f:DI 1 dx [190]) [0 procpar_info_23(D)->acquision_time+0 S4 A64])
+        (reg:SF 0 ax [orig:93 D.5604 ] [93])) read_procpar.cpp:115 129 {*movsf_internal}
+     (nil))
+(jump_insn 1023 109 1024 10 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1024 1023 112)
+(code_label 112 1024 113 11 5 "" [1 uses])
+(note 113 112 114 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 114 113 115 11 (set (reg:DI 0 ax [191])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:122 89 {*movdi_internal}
+     (nil))
+(insn 115 114 116 11 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC6") [flags 0x2]  <var_decl 0x2b04d640a980 *.LC6>)) read_procpar.cpp:122 89 {*movdi_internal}
+     (nil))
+(insn 116 115 117 11 (set (reg:DI 5 di)
+        (reg:DI 0 ax [191])) read_procpar.cpp:122 89 {*movdi_internal}
+     (nil))
+(call_insn/i 117 116 119 11 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:122 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 119 117 120 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:94 D.5601 ] [94])
+            (const_int 0 [0]))) read_procpar.cpp:122 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 120 119 121 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 163)
+            (pc))) read_procpar.cpp:122 596 {*jcc_1}
+     (nil)
+ -> 163)
+(note 121 120 122 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 122 121 1103 12 (set (reg:DI 1 dx [192])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:125 89 {*movdi_internal}
+     (nil))
+(insn 1103 122 125 12 (set (reg:DI 0 ax [193])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:125 214 {*leadi}
+     (nil))
+(insn 125 1103 126 12 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:125 90 {*movsi_internal}
+     (nil))
+(insn 126 125 127 12 (set (reg:DI 5 di)
+        (reg:DI 0 ax [193])) read_procpar.cpp:125 89 {*movdi_internal}
+     (nil))
+(call_insn 127 126 128 12 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:125 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 128 127 129 12 (set (reg:DI 0 ax [194])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:126 89 {*movdi_internal}
+     (nil))
+(insn 129 128 130 12 (set (reg:DI 5 di)
+        (reg:DI 0 ax [194])) read_procpar.cpp:126 89 {*movdi_internal}
+     (nil))
+(call_insn 130 129 132 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:126 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 132 130 133 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:95 D.5601 ] [95])
+            (const_int 0 [0]))) read_procpar.cpp:126 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 133 132 134 12 (set (reg:QI 0 ax [orig:96 D.5602 ] [96])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:126 592 {*setcc_qi}
+     (nil))
+(insn 134 133 135 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:96 D.5602 ] [96])
+            (const_int 0 [0]))) read_procpar.cpp:126 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 135 134 136 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 142)
+            (pc))) read_procpar.cpp:126 596 {*jcc_1}
+     (nil)
+ -> 142)
+(note 136 135 137 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 137 136 138 13 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:127 89 {*movdi_internal}
+     (nil))
+(call_insn 138 137 139 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:127 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 139 138 140 13 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:128 90 {*movsi_internal}
+     (nil))
+(call_insn 140 139 141 13 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:128 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 141 140 142)
+(code_label 142 141 143 14 9 "" [1 uses])
+(note 143 142 1101 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 1101 143 145 14 (set (reg:DI 0 ax [195])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:132 214 {*leadi}
+     (nil))
+(insn 145 1101 146 14 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC7") [flags 0x2]  <var_decl 0x2b04d640aa18 *.LC7>)) read_procpar.cpp:132 89 {*movdi_internal}
+     (nil))
+(insn 146 145 147 14 (set (reg:DI 5 di)
+        (reg:DI 0 ax [195])) read_procpar.cpp:132 89 {*movdi_internal}
+     (nil))
+(call_insn 147 146 149 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:132 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 149 147 150 14 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [196])) read_procpar.cpp:132 89 {*movdi_internal}
+     (nil))
+(insn 150 149 151 14 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC8") [flags 0x2]  <var_decl 0x2b04d640aab0 *.LC8>)) read_procpar.cpp:133 89 {*movdi_internal}
+     (nil))
+(insn 151 150 152 14 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:133 89 {*movdi_internal}
+     (nil))
+(call_insn 152 151 154 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:133 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 154 152 155 14 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [197])) read_procpar.cpp:133 89 {*movdi_internal}
+     (nil))
+(insn 155 154 1102 14 (set (reg/f:DI 0 ax [198])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:134 89 {*movdi_internal}
+     (nil))
+(insn 1102 155 157 14 (set (reg/f:DI 1 dx [orig:97 D.5605 ] [97])
+        (plus:DI (reg/f:DI 0 ax [198])
+            (const_int 4 [0x4]))) read_procpar.cpp:134 214 {*leadi}
+     (nil))
+(insn 157 1102 158 14 (set (reg:DI 0 ax [199])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:134 89 {*movdi_internal}
+     (nil))
+(insn 158 157 159 14 (set (reg:DI 4 si)
+        (reg:DI 0 ax [199])) read_procpar.cpp:134 89 {*movdi_internal}
+     (nil))
+(insn 159 158 160 14 (set (reg:DI 5 di)
+        (reg/f:DI 1 dx [orig:97 D.5605 ] [97])) read_procpar.cpp:134 89 {*movdi_internal}
+     (nil))
+(call_insn 160 159 1025 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcpy") [flags 0x41]  <function_decl 0x2b04d60bd600 strcpy>) [0 __builtin_strcpy S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:134 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (nil)))))
+(jump_insn 1025 160 1026 14 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1026 1025 163)
+(code_label 163 1026 164 15 8 "" [1 uses])
+(note 164 163 165 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 165 164 166 15 (set (reg:DI 0 ax [200])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:136 89 {*movdi_internal}
+     (nil))
+(insn 166 165 167 15 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC9") [flags 0x2]  <var_decl 0x2b04d640ab48 *.LC9>)) read_procpar.cpp:136 89 {*movdi_internal}
+     (nil))
+(insn 167 166 168 15 (set (reg:DI 5 di)
+        (reg:DI 0 ax [200])) read_procpar.cpp:136 89 {*movdi_internal}
+     (nil))
+(call_insn/i 168 167 170 15 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:136 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 170 168 171 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:98 D.5601 ] [98])
+            (const_int 0 [0]))) read_procpar.cpp:136 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 171 170 172 15 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 216)
+            (pc))) read_procpar.cpp:136 596 {*jcc_1}
+     (nil)
+ -> 216)
+(note 172 171 173 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 173 172 1100 16 (set (reg:DI 1 dx [201])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:138 89 {*movdi_internal}
+     (nil))
+(insn 1100 173 176 16 (set (reg:DI 0 ax [202])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:138 214 {*leadi}
+     (nil))
+(insn 176 1100 177 16 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:138 90 {*movsi_internal}
+     (nil))
+(insn 177 176 178 16 (set (reg:DI 5 di)
+        (reg:DI 0 ax [202])) read_procpar.cpp:138 89 {*movdi_internal}
+     (nil))
+(call_insn 178 177 179 16 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:138 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 179 178 180 16 (set (reg:DI 0 ax [203])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:139 89 {*movdi_internal}
+     (nil))
+(insn 180 179 181 16 (set (reg:DI 5 di)
+        (reg:DI 0 ax [203])) read_procpar.cpp:139 89 {*movdi_internal}
+     (nil))
+(call_insn 181 180 183 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:139 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 183 181 184 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:99 D.5601 ] [99])
+            (const_int 0 [0]))) read_procpar.cpp:139 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 184 183 185 16 (set (reg:QI 0 ax [orig:100 D.5602 ] [100])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:139 592 {*setcc_qi}
+     (nil))
+(insn 185 184 186 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:100 D.5602 ] [100])
+            (const_int 0 [0]))) read_procpar.cpp:139 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 186 185 187 16 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 193)
+            (pc))) read_procpar.cpp:139 596 {*jcc_1}
+     (nil)
+ -> 193)
+(note 187 186 188 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 188 187 189 17 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:140 89 {*movdi_internal}
+     (nil))
+(call_insn 189 188 190 17 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:140 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 190 189 191 17 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:141 90 {*movsi_internal}
+     (nil))
+(call_insn 191 190 192 17 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:141 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 192 191 193)
+(code_label 193 192 194 18 11 "" [1 uses])
+(note 194 193 1099 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 1099 194 196 18 (set (reg:DI 0 ax [204])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:145 214 {*leadi}
+     (nil))
+(insn 196 1099 197 18 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:145 89 {*movdi_internal}
+     (nil))
+(insn 197 196 198 18 (set (reg:DI 5 di)
+        (reg:DI 0 ax [204])) read_procpar.cpp:145 89 {*movdi_internal}
+     (nil))
+(call_insn 198 197 200 18 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:145 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 200 198 201 18 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [205])) read_procpar.cpp:145 89 {*movdi_internal}
+     (nil))
+(insn 201 200 202 18 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:146 89 {*movdi_internal}
+     (nil))
+(insn 202 201 203 18 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:146 89 {*movdi_internal}
+     (nil))
+(call_insn 203 202 205 18 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:146 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 205 203 206 18 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [206])) read_procpar.cpp:146 89 {*movdi_internal}
+     (nil))
+(insn 206 205 207 18 (set (reg:DI 0 ax [207])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:147 89 {*movdi_internal}
+     (nil))
+(insn 207 206 208 18 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:147 89 {*movdi_internal}
+     (nil))
+(insn 208 207 209 18 (set (reg:DI 5 di)
+        (reg:DI 0 ax [207])) read_procpar.cpp:147 89 {*movdi_internal}
+     (nil))
+(call_insn 209 208 211 18 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:147 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 211 209 1057 18 (set (reg:SF 23 xmm2 [orig:102 D.5604 ] [102])
+        (float_truncate:SF (reg:DF 21 xmm0 [orig:101 D.5603 ] [101]))) read_procpar.cpp:147 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 1057 211 212 18 (set (reg:SF 0 ax [orig:102 D.5604 ] [102])
+        (reg:SF 23 xmm2 [orig:102 D.5604 ] [102])) read_procpar.cpp:147 129 {*movsf_internal}
+     (nil))
+(insn 212 1057 213 18 (set (reg/f:DI 1 dx [208])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:147 89 {*movdi_internal}
+     (nil))
+(insn 213 212 1027 18 (set (mem/j:SF (plus:DI (reg/f:DI 1 dx [208])
+                (const_int 292 [0x124])) [0 procpar_info_23(D)->filter+0 S4 A32])
+        (reg:SF 0 ax [orig:102 D.5604 ] [102])) read_procpar.cpp:147 129 {*movsf_internal}
+     (nil))
+(jump_insn 1027 213 1028 18 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1028 1027 216)
+(code_label 216 1028 217 19 10 "" [1 uses])
+(note 217 216 218 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 218 217 219 19 (set (reg:DI 0 ax [209])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:149 89 {*movdi_internal}
+     (nil))
+(insn 219 218 220 19 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC10") [flags 0x2]  <var_decl 0x2b04d640abe0 *.LC10>)) read_procpar.cpp:149 89 {*movdi_internal}
+     (nil))
+(insn 220 219 221 19 (set (reg:DI 5 di)
+        (reg:DI 0 ax [209])) read_procpar.cpp:149 89 {*movdi_internal}
+     (nil))
+(call_insn/i 221 220 223 19 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:149 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 223 221 224 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:103 D.5601 ] [103])
+            (const_int 0 [0]))) read_procpar.cpp:149 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 224 223 225 19 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 270)
+            (pc))) read_procpar.cpp:149 596 {*jcc_1}
+     (nil)
+ -> 270)
+(note 225 224 226 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 226 225 1098 20 (set (reg:DI 1 dx [210])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:151 89 {*movdi_internal}
+     (nil))
+(insn 1098 226 229 20 (set (reg:DI 0 ax [211])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:151 214 {*leadi}
+     (nil))
+(insn 229 1098 230 20 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:151 90 {*movsi_internal}
+     (nil))
+(insn 230 229 231 20 (set (reg:DI 5 di)
+        (reg:DI 0 ax [211])) read_procpar.cpp:151 89 {*movdi_internal}
+     (nil))
+(call_insn 231 230 232 20 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:151 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 232 231 233 20 (set (reg:DI 0 ax [212])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:152 89 {*movdi_internal}
+     (nil))
+(insn 233 232 234 20 (set (reg:DI 5 di)
+        (reg:DI 0 ax [212])) read_procpar.cpp:152 89 {*movdi_internal}
+     (nil))
+(call_insn 234 233 236 20 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:152 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 236 234 237 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:104 D.5601 ] [104])
+            (const_int 0 [0]))) read_procpar.cpp:152 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 237 236 238 20 (set (reg:QI 0 ax [orig:105 D.5602 ] [105])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:152 592 {*setcc_qi}
+     (nil))
+(insn 238 237 239 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:105 D.5602 ] [105])
+            (const_int 0 [0]))) read_procpar.cpp:152 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 239 238 240 20 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 246)
+            (pc))) read_procpar.cpp:152 596 {*jcc_1}
+     (nil)
+ -> 246)
+(note 240 239 241 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 241 240 242 21 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:153 89 {*movdi_internal}
+     (nil))
+(call_insn 242 241 243 21 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:153 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 243 242 244 21 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:154 90 {*movsi_internal}
+     (nil))
+(call_insn 244 243 245 21 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:154 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 245 244 246)
+(code_label 246 245 247 22 13 "" [1 uses])
+(note 247 246 1097 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 1097 247 249 22 (set (reg:DI 0 ax [213])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:158 214 {*leadi}
+     (nil))
+(insn 249 1097 250 22 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:158 89 {*movdi_internal}
+     (nil))
+(insn 250 249 251 22 (set (reg:DI 5 di)
+        (reg:DI 0 ax [213])) read_procpar.cpp:158 89 {*movdi_internal}
+     (nil))
+(call_insn 251 250 253 22 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:158 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 253 251 254 22 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [214])) read_procpar.cpp:158 89 {*movdi_internal}
+     (nil))
+(insn 254 253 255 22 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:159 89 {*movdi_internal}
+     (nil))
+(insn 255 254 256 22 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:159 89 {*movdi_internal}
+     (nil))
+(call_insn 256 255 258 22 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:159 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 258 256 259 22 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [215])) read_procpar.cpp:159 89 {*movdi_internal}
+     (nil))
+(insn 259 258 260 22 (set (reg:DI 0 ax [216])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:160 89 {*movdi_internal}
+     (nil))
+(insn 260 259 261 22 (set (reg:SI 1 dx)
+        (const_int 10 [0xa])) read_procpar.cpp:160 90 {*movsi_internal}
+     (nil))
+(insn 261 260 262 22 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:160 89 {*movdi_internal}
+     (nil))
+(insn 262 261 263 22 (set (reg:DI 5 di)
+        (reg:DI 0 ax [216])) read_procpar.cpp:160 89 {*movdi_internal}
+     (nil))
+(call_insn 263 262 265 22 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtol") [flags 0x41]  <function_decl 0x2b04d634d300 strtol>) [0 strtol S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:160 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 265 263 266 22 (set (reg:SI 1 dx [orig:107 D.5601 ] [107])
+        (reg:SI 0 ax [orig:106 D.5606 ] [106])) read_procpar.cpp:160 90 {*movsi_internal}
+     (nil))
+(insn 266 265 267 22 (set (reg/f:DI 0 ax [217])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:160 89 {*movdi_internal}
+     (nil))
+(insn 267 266 1029 22 (set (mem/j:SI (plus:DI (reg/f:DI 0 ax [217])
+                (const_int 296 [0x128])) [0 procpar_info_23(D)->num_transients+0 S4 A64])
+        (reg:SI 1 dx [orig:107 D.5601 ] [107])) read_procpar.cpp:160 90 {*movsi_internal}
+     (nil))
+(jump_insn 1029 267 1030 22 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1030 1029 270)
+(code_label 270 1030 271 23 12 "" [1 uses])
+(note 271 270 272 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 272 271 273 23 (set (reg:DI 0 ax [218])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:162 89 {*movdi_internal}
+     (nil))
+(insn 273 272 274 23 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC11") [flags 0x2]  <var_decl 0x2b04d640ac78 *.LC11>)) read_procpar.cpp:162 89 {*movdi_internal}
+     (nil))
+(insn 274 273 275 23 (set (reg:DI 5 di)
+        (reg:DI 0 ax [218])) read_procpar.cpp:162 89 {*movdi_internal}
+     (nil))
+(call_insn/i 275 274 277 23 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:162 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 277 275 278 23 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:108 D.5601 ] [108])
+            (const_int 0 [0]))) read_procpar.cpp:162 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 278 277 279 23 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 324)
+            (pc))) read_procpar.cpp:162 596 {*jcc_1}
+     (nil)
+ -> 324)
+(note 279 278 280 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 280 279 1096 24 (set (reg:DI 1 dx [219])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:164 89 {*movdi_internal}
+     (nil))
+(insn 1096 280 283 24 (set (reg:DI 0 ax [220])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:164 214 {*leadi}
+     (nil))
+(insn 283 1096 284 24 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:164 90 {*movsi_internal}
+     (nil))
+(insn 284 283 285 24 (set (reg:DI 5 di)
+        (reg:DI 0 ax [220])) read_procpar.cpp:164 89 {*movdi_internal}
+     (nil))
+(call_insn 285 284 286 24 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:164 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 286 285 287 24 (set (reg:DI 0 ax [221])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:165 89 {*movdi_internal}
+     (nil))
+(insn 287 286 288 24 (set (reg:DI 5 di)
+        (reg:DI 0 ax [221])) read_procpar.cpp:165 89 {*movdi_internal}
+     (nil))
+(call_insn 288 287 290 24 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:165 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 290 288 291 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:109 D.5601 ] [109])
+            (const_int 0 [0]))) read_procpar.cpp:165 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 291 290 292 24 (set (reg:QI 0 ax [orig:110 D.5602 ] [110])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:165 592 {*setcc_qi}
+     (nil))
+(insn 292 291 293 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:110 D.5602 ] [110])
+            (const_int 0 [0]))) read_procpar.cpp:165 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 293 292 294 24 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 300)
+            (pc))) read_procpar.cpp:165 596 {*jcc_1}
+     (nil)
+ -> 300)
+(note 294 293 295 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 295 294 296 25 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:166 89 {*movdi_internal}
+     (nil))
+(call_insn 296 295 297 25 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:166 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 297 296 298 25 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:167 90 {*movsi_internal}
+     (nil))
+(call_insn 298 297 299 25 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:167 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 299 298 300)
+(code_label 300 299 301 26 15 "" [1 uses])
+(note 301 300 1095 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 1095 301 303 26 (set (reg:DI 0 ax [222])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:171 214 {*leadi}
+     (nil))
+(insn 303 1095 304 26 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:171 89 {*movdi_internal}
+     (nil))
+(insn 304 303 305 26 (set (reg:DI 5 di)
+        (reg:DI 0 ax [222])) read_procpar.cpp:171 89 {*movdi_internal}
+     (nil))
+(call_insn 305 304 307 26 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:171 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 307 305 308 26 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [223])) read_procpar.cpp:171 89 {*movdi_internal}
+     (nil))
+(insn 308 307 309 26 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:172 89 {*movdi_internal}
+     (nil))
+(insn 309 308 310 26 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:172 89 {*movdi_internal}
+     (nil))
+(call_insn 310 309 312 26 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:172 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 312 310 313 26 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [224])) read_procpar.cpp:172 89 {*movdi_internal}
+     (nil))
+(insn 313 312 314 26 (set (reg:DI 0 ax [225])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:173 89 {*movdi_internal}
+     (nil))
+(insn 314 313 315 26 (set (reg:SI 1 dx)
+        (const_int 10 [0xa])) read_procpar.cpp:173 90 {*movsi_internal}
+     (nil))
+(insn 315 314 316 26 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:173 89 {*movdi_internal}
+     (nil))
+(insn 316 315 317 26 (set (reg:DI 5 di)
+        (reg:DI 0 ax [225])) read_procpar.cpp:173 89 {*movdi_internal}
+     (nil))
+(call_insn 317 316 319 26 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtol") [flags 0x41]  <function_decl 0x2b04d634d300 strtol>) [0 strtol S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:173 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 319 317 320 26 (set (reg:SI 1 dx [orig:112 D.5601 ] [112])
+        (reg:SI 0 ax [orig:111 D.5606 ] [111])) read_procpar.cpp:173 90 {*movsi_internal}
+     (nil))
+(insn 320 319 321 26 (set (reg/f:DI 0 ax [226])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:173 89 {*movdi_internal}
+     (nil))
+(insn 321 320 1031 26 (set (mem/j:SI (plus:DI (reg/f:DI 0 ax [226])
+                (const_int 300 [0x12c])) [0 procpar_info_23(D)->num_points+0 S4 A32])
+        (reg:SI 1 dx [orig:112 D.5601 ] [112])) read_procpar.cpp:173 90 {*movsi_internal}
+     (nil))
+(jump_insn 1031 321 1032 26 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1032 1031 324)
+(code_label 324 1032 325 27 14 "" [1 uses])
+(note 325 324 326 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 326 325 327 27 (set (reg:DI 0 ax [227])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:175 89 {*movdi_internal}
+     (nil))
+(insn 327 326 328 27 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC12") [flags 0x2]  <var_decl 0x2b04d640ad10 *.LC12>)) read_procpar.cpp:175 89 {*movdi_internal}
+     (nil))
+(insn 328 327 329 27 (set (reg:DI 5 di)
+        (reg:DI 0 ax [227])) read_procpar.cpp:175 89 {*movdi_internal}
+     (nil))
+(call_insn/i 329 328 331 27 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:175 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 331 329 332 27 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:113 D.5601 ] [113])
+            (const_int 0 [0]))) read_procpar.cpp:175 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 332 331 333 27 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 376)
+            (pc))) read_procpar.cpp:175 596 {*jcc_1}
+     (nil)
+ -> 376)
+(note 333 332 334 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 334 333 1094 28 (set (reg:DI 1 dx [228])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:177 89 {*movdi_internal}
+     (nil))
+(insn 1094 334 337 28 (set (reg:DI 0 ax [229])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:177 214 {*leadi}
+     (nil))
+(insn 337 1094 338 28 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:177 90 {*movsi_internal}
+     (nil))
+(insn 338 337 339 28 (set (reg:DI 5 di)
+        (reg:DI 0 ax [229])) read_procpar.cpp:177 89 {*movdi_internal}
+     (nil))
+(call_insn 339 338 340 28 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:177 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 340 339 341 28 (set (reg:DI 0 ax [230])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:178 89 {*movdi_internal}
+     (nil))
+(insn 341 340 342 28 (set (reg:DI 5 di)
+        (reg:DI 0 ax [230])) read_procpar.cpp:178 89 {*movdi_internal}
+     (nil))
+(call_insn 342 341 344 28 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:178 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 344 342 345 28 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:114 D.5601 ] [114])
+            (const_int 0 [0]))) read_procpar.cpp:178 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 345 344 346 28 (set (reg:QI 0 ax [orig:115 D.5602 ] [115])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:178 592 {*setcc_qi}
+     (nil))
+(insn 346 345 347 28 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:115 D.5602 ] [115])
+            (const_int 0 [0]))) read_procpar.cpp:178 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 347 346 348 28 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 354)
+            (pc))) read_procpar.cpp:178 596 {*jcc_1}
+     (nil)
+ -> 354)
+(note 348 347 349 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 349 348 350 29 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:179 89 {*movdi_internal}
+     (nil))
+(call_insn 350 349 351 29 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:179 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 351 350 352 29 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:180 90 {*movsi_internal}
+     (nil))
+(call_insn 352 351 353 29 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:180 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 353 352 354)
+(code_label 354 353 355 30 17 "" [1 uses])
+(note 355 354 1092 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 1092 355 357 30 (set (reg:DI 0 ax [231])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:184 214 {*leadi}
+     (nil))
+(insn 357 1092 358 30 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:184 89 {*movdi_internal}
+     (nil))
+(insn 358 357 359 30 (set (reg:DI 5 di)
+        (reg:DI 0 ax [231])) read_procpar.cpp:184 89 {*movdi_internal}
+     (nil))
+(call_insn 359 358 361 30 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:184 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 361 359 362 30 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [232])) read_procpar.cpp:184 89 {*movdi_internal}
+     (nil))
+(insn 362 361 363 30 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:185 89 {*movdi_internal}
+     (nil))
+(insn 363 362 364 30 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:185 89 {*movdi_internal}
+     (nil))
+(call_insn 364 363 366 30 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:185 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 366 364 367 30 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [233])) read_procpar.cpp:185 89 {*movdi_internal}
+     (nil))
+(insn 367 366 368 30 (set (reg:DI 0 ax [234])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:186 89 {*movdi_internal}
+     (nil))
+(insn 368 367 369 30 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:186 89 {*movdi_internal}
+     (nil))
+(insn 369 368 370 30 (set (reg:DI 5 di)
+        (reg:DI 0 ax [234])) read_procpar.cpp:186 89 {*movdi_internal}
+     (nil))
+(call_insn 370 369 371 30 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:186 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 371 370 372 30 (set (reg:DF 1 dx [orig:116 D.5603 ] [116])
+        (reg:DF 21 xmm0)) read_procpar.cpp:186 128 {*movdf_internal}
+     (nil))
+(insn 372 371 1093 30 (set (reg/f:DI 0 ax [235])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:186 89 {*movdi_internal}
+     (nil))
+(insn 1093 372 1033 30 (set (mem/j:DI (plus:DI (reg/f:DI 0 ax [235])
+                (const_int 304 [0x130])) [0 procpar_info_23(D)->main_frequency+0 S8 A64])
+        (reg:DI 1 dx [orig:116 D.5603 ] [116])) read_procpar.cpp:186 89 {*movdi_internal}
+     (nil))
+(jump_insn 1033 1093 1034 30 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1034 1033 376)
+(code_label 376 1034 377 31 16 "" [1 uses])
+(note 377 376 378 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 378 377 379 31 (set (reg:DI 0 ax [236])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:188 89 {*movdi_internal}
+     (nil))
+(insn 379 378 380 31 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC13") [flags 0x2]  <var_decl 0x2b04d640ada8 *.LC13>)) read_procpar.cpp:188 89 {*movdi_internal}
+     (nil))
+(insn 380 379 381 31 (set (reg:DI 5 di)
+        (reg:DI 0 ax [236])) read_procpar.cpp:188 89 {*movdi_internal}
+     (nil))
+(call_insn/i 381 380 383 31 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:188 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 383 381 384 31 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:117 D.5601 ] [117])
+            (const_int 0 [0]))) read_procpar.cpp:188 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 384 383 385 31 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 428)
+            (pc))) read_procpar.cpp:188 596 {*jcc_1}
+     (nil)
+ -> 428)
+(note 385 384 386 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(insn 386 385 1091 32 (set (reg:DI 1 dx [237])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:190 89 {*movdi_internal}
+     (nil))
+(insn 1091 386 389 32 (set (reg:DI 0 ax [238])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:190 214 {*leadi}
+     (nil))
+(insn 389 1091 390 32 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:190 90 {*movsi_internal}
+     (nil))
+(insn 390 389 391 32 (set (reg:DI 5 di)
+        (reg:DI 0 ax [238])) read_procpar.cpp:190 89 {*movdi_internal}
+     (nil))
+(call_insn 391 390 392 32 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:190 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 392 391 393 32 (set (reg:DI 0 ax [239])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:191 89 {*movdi_internal}
+     (nil))
+(insn 393 392 394 32 (set (reg:DI 5 di)
+        (reg:DI 0 ax [239])) read_procpar.cpp:191 89 {*movdi_internal}
+     (nil))
+(call_insn 394 393 396 32 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:191 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 396 394 397 32 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:118 D.5601 ] [118])
+            (const_int 0 [0]))) read_procpar.cpp:191 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 397 396 398 32 (set (reg:QI 0 ax [orig:119 D.5602 ] [119])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:191 592 {*setcc_qi}
+     (nil))
+(insn 398 397 399 32 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:119 D.5602 ] [119])
+            (const_int 0 [0]))) read_procpar.cpp:191 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 399 398 400 32 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 406)
+            (pc))) read_procpar.cpp:191 596 {*jcc_1}
+     (nil)
+ -> 406)
+(note 400 399 401 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+(insn 401 400 402 33 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:192 89 {*movdi_internal}
+     (nil))
+(call_insn 402 401 403 33 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:192 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 403 402 404 33 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:193 90 {*movsi_internal}
+     (nil))
+(call_insn 404 403 405 33 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:193 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 405 404 406)
+(code_label 406 405 407 34 19 "" [1 uses])
+(note 407 406 1089 34 [bb 34] NOTE_INSN_BASIC_BLOCK)
+(insn 1089 407 409 34 (set (reg:DI 0 ax [240])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:197 214 {*leadi}
+     (nil))
+(insn 409 1089 410 34 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:197 89 {*movdi_internal}
+     (nil))
+(insn 410 409 411 34 (set (reg:DI 5 di)
+        (reg:DI 0 ax [240])) read_procpar.cpp:197 89 {*movdi_internal}
+     (nil))
+(call_insn 411 410 413 34 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:197 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 413 411 414 34 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [241])) read_procpar.cpp:197 89 {*movdi_internal}
+     (nil))
+(insn 414 413 415 34 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:198 89 {*movdi_internal}
+     (nil))
+(insn 415 414 416 34 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:198 89 {*movdi_internal}
+     (nil))
+(call_insn 416 415 418 34 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:198 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 418 416 419 34 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [242])) read_procpar.cpp:198 89 {*movdi_internal}
+     (nil))
+(insn 419 418 420 34 (set (reg:DI 0 ax [243])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:199 89 {*movdi_internal}
+     (nil))
+(insn 420 419 421 34 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:199 89 {*movdi_internal}
+     (nil))
+(insn 421 420 422 34 (set (reg:DI 5 di)
+        (reg:DI 0 ax [243])) read_procpar.cpp:199 89 {*movdi_internal}
+     (nil))
+(call_insn 422 421 423 34 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:199 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 423 422 424 34 (set (reg:DF 1 dx [orig:120 D.5603 ] [120])
+        (reg:DF 21 xmm0)) read_procpar.cpp:199 128 {*movdf_internal}
+     (nil))
+(insn 424 423 1090 34 (set (reg/f:DI 0 ax [244])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:199 89 {*movdi_internal}
+     (nil))
+(insn 1090 424 1035 34 (set (mem/j:DI (plus:DI (reg/f:DI 0 ax [244])
+                (const_int 312 [0x138])) [0 procpar_info_23(D)->offset_frequency+0 S8 A64])
+        (reg:DI 1 dx [orig:120 D.5603 ] [120])) read_procpar.cpp:199 89 {*movdi_internal}
+     (nil))
+(jump_insn 1035 1090 1036 34 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1036 1035 428)
+(code_label 428 1036 429 35 18 "" [1 uses])
+(note 429 428 430 35 [bb 35] NOTE_INSN_BASIC_BLOCK)
+(insn 430 429 431 35 (set (reg:DI 0 ax [245])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:201 89 {*movdi_internal}
+     (nil))
+(insn 431 430 432 35 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC14") [flags 0x2]  <var_decl 0x2b04d640ae40 *.LC14>)) read_procpar.cpp:201 89 {*movdi_internal}
+     (nil))
+(insn 432 431 433 35 (set (reg:DI 5 di)
+        (reg:DI 0 ax [245])) read_procpar.cpp:201 89 {*movdi_internal}
+     (nil))
+(call_insn/i 433 432 435 35 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:201 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 435 433 436 35 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:121 D.5601 ] [121])
+            (const_int 0 [0]))) read_procpar.cpp:201 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 436 435 437 35 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 481)
+            (pc))) read_procpar.cpp:201 596 {*jcc_1}
+     (nil)
+ -> 481)
+(note 437 436 438 36 [bb 36] NOTE_INSN_BASIC_BLOCK)
+(insn 438 437 1088 36 (set (reg:DI 1 dx [246])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:203 89 {*movdi_internal}
+     (nil))
+(insn 1088 438 441 36 (set (reg:DI 0 ax [247])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:203 214 {*leadi}
+     (nil))
+(insn 441 1088 442 36 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:203 90 {*movsi_internal}
+     (nil))
+(insn 442 441 443 36 (set (reg:DI 5 di)
+        (reg:DI 0 ax [247])) read_procpar.cpp:203 89 {*movdi_internal}
+     (nil))
+(call_insn 443 442 444 36 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:203 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 444 443 445 36 (set (reg:DI 0 ax [248])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:204 89 {*movdi_internal}
+     (nil))
+(insn 445 444 446 36 (set (reg:DI 5 di)
+        (reg:DI 0 ax [248])) read_procpar.cpp:204 89 {*movdi_internal}
+     (nil))
+(call_insn 446 445 448 36 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:204 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 448 446 449 36 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:122 D.5601 ] [122])
+            (const_int 0 [0]))) read_procpar.cpp:204 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 449 448 450 36 (set (reg:QI 0 ax [orig:123 D.5602 ] [123])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:204 592 {*setcc_qi}
+     (nil))
+(insn 450 449 451 36 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:123 D.5602 ] [123])
+            (const_int 0 [0]))) read_procpar.cpp:204 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 451 450 452 36 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 458)
+            (pc))) read_procpar.cpp:204 596 {*jcc_1}
+     (nil)
+ -> 458)
+(note 452 451 453 37 [bb 37] NOTE_INSN_BASIC_BLOCK)
+(insn 453 452 454 37 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:205 89 {*movdi_internal}
+     (nil))
+(call_insn 454 453 455 37 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:205 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 455 454 456 37 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:206 90 {*movsi_internal}
+     (nil))
+(call_insn 456 455 457 37 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:206 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 457 456 458)
+(code_label 458 457 459 38 21 "" [1 uses])
+(note 459 458 1087 38 [bb 38] NOTE_INSN_BASIC_BLOCK)
+(insn 1087 459 461 38 (set (reg:DI 0 ax [249])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:210 214 {*leadi}
+     (nil))
+(insn 461 1087 462 38 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:210 89 {*movdi_internal}
+     (nil))
+(insn 462 461 463 38 (set (reg:DI 5 di)
+        (reg:DI 0 ax [249])) read_procpar.cpp:210 89 {*movdi_internal}
+     (nil))
+(call_insn 463 462 465 38 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:210 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 465 463 466 38 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [250])) read_procpar.cpp:210 89 {*movdi_internal}
+     (nil))
+(insn 466 465 467 38 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:211 89 {*movdi_internal}
+     (nil))
+(insn 467 466 468 38 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:211 89 {*movdi_internal}
+     (nil))
+(call_insn 468 467 470 38 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:211 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 470 468 471 38 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [251])) read_procpar.cpp:211 89 {*movdi_internal}
+     (nil))
+(insn 471 470 472 38 (set (reg:DI 0 ax [252])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:212 89 {*movdi_internal}
+     (nil))
+(insn 472 471 473 38 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:212 89 {*movdi_internal}
+     (nil))
+(insn 473 472 474 38 (set (reg:DI 5 di)
+        (reg:DI 0 ax [252])) read_procpar.cpp:212 89 {*movdi_internal}
+     (nil))
+(call_insn 474 473 476 38 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:212 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 476 474 1058 38 (set (reg:SF 24 xmm3 [orig:125 D.5604 ] [125])
+        (float_truncate:SF (reg:DF 21 xmm0 [orig:124 D.5603 ] [124]))) read_procpar.cpp:212 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 1058 476 477 38 (set (reg:SF 0 ax [orig:125 D.5604 ] [125])
+        (reg:SF 24 xmm3 [orig:125 D.5604 ] [125])) read_procpar.cpp:212 129 {*movsf_internal}
+     (nil))
+(insn 477 1058 478 38 (set (reg/f:DI 1 dx [253])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:212 89 {*movdi_internal}
+     (nil))
+(insn 478 477 1037 38 (set (mem/j:SF (plus:DI (reg/f:DI 1 dx [253])
+                (const_int 320 [0x140])) [0 procpar_info_23(D)->te+0 S4 A64])
+        (reg:SF 0 ax [orig:125 D.5604 ] [125])) read_procpar.cpp:212 129 {*movsf_internal}
+     (nil))
+(jump_insn 1037 478 1038 38 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1038 1037 481)
+(code_label 481 1038 482 39 20 "" [1 uses])
+(note 482 481 483 39 [bb 39] NOTE_INSN_BASIC_BLOCK)
+(insn 483 482 484 39 (set (reg:DI 0 ax [254])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:214 89 {*movdi_internal}
+     (nil))
+(insn 484 483 485 39 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC15") [flags 0x2]  <var_decl 0x2b04d640aed8 *.LC15>)) read_procpar.cpp:214 89 {*movdi_internal}
+     (nil))
+(insn 485 484 486 39 (set (reg:DI 5 di)
+        (reg:DI 0 ax [254])) read_procpar.cpp:214 89 {*movdi_internal}
+     (nil))
+(call_insn/i 486 485 488 39 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:214 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 488 486 489 39 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:126 D.5601 ] [126])
+            (const_int 0 [0]))) read_procpar.cpp:214 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 489 488 490 39 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 534)
+            (pc))) read_procpar.cpp:214 596 {*jcc_1}
+     (nil)
+ -> 534)
+(note 490 489 491 40 [bb 40] NOTE_INSN_BASIC_BLOCK)
+(insn 491 490 1086 40 (set (reg:DI 1 dx [255])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:216 89 {*movdi_internal}
+     (nil))
+(insn 1086 491 494 40 (set (reg:DI 0 ax [256])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:216 214 {*leadi}
+     (nil))
+(insn 494 1086 495 40 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:216 90 {*movsi_internal}
+     (nil))
+(insn 495 494 496 40 (set (reg:DI 5 di)
+        (reg:DI 0 ax [256])) read_procpar.cpp:216 89 {*movdi_internal}
+     (nil))
+(call_insn 496 495 497 40 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:216 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 497 496 498 40 (set (reg:DI 0 ax [257])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:217 89 {*movdi_internal}
+     (nil))
+(insn 498 497 499 40 (set (reg:DI 5 di)
+        (reg:DI 0 ax [257])) read_procpar.cpp:217 89 {*movdi_internal}
+     (nil))
+(call_insn 499 498 501 40 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:217 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 501 499 502 40 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:127 D.5601 ] [127])
+            (const_int 0 [0]))) read_procpar.cpp:217 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 502 501 503 40 (set (reg:QI 0 ax [orig:128 D.5602 ] [128])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:217 592 {*setcc_qi}
+     (nil))
+(insn 503 502 504 40 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:128 D.5602 ] [128])
+            (const_int 0 [0]))) read_procpar.cpp:217 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 504 503 505 40 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 511)
+            (pc))) read_procpar.cpp:217 596 {*jcc_1}
+     (nil)
+ -> 511)
+(note 505 504 506 41 [bb 41] NOTE_INSN_BASIC_BLOCK)
+(insn 506 505 507 41 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:218 89 {*movdi_internal}
+     (nil))
+(call_insn 507 506 508 41 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:218 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 508 507 509 41 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:219 90 {*movsi_internal}
+     (nil))
+(call_insn 509 508 510 41 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:219 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 510 509 511)
+(code_label 511 510 512 42 23 "" [1 uses])
+(note 512 511 1085 42 [bb 42] NOTE_INSN_BASIC_BLOCK)
+(insn 1085 512 514 42 (set (reg:DI 0 ax [258])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:223 214 {*leadi}
+     (nil))
+(insn 514 1085 515 42 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:223 89 {*movdi_internal}
+     (nil))
+(insn 515 514 516 42 (set (reg:DI 5 di)
+        (reg:DI 0 ax [258])) read_procpar.cpp:223 89 {*movdi_internal}
+     (nil))
+(call_insn 516 515 518 42 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:223 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 518 516 519 42 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [259])) read_procpar.cpp:223 89 {*movdi_internal}
+     (nil))
+(insn 519 518 520 42 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:224 89 {*movdi_internal}
+     (nil))
+(insn 520 519 521 42 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:224 89 {*movdi_internal}
+     (nil))
+(call_insn 521 520 523 42 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:224 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 523 521 524 42 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [260])) read_procpar.cpp:224 89 {*movdi_internal}
+     (nil))
+(insn 524 523 525 42 (set (reg:DI 0 ax [261])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:225 89 {*movdi_internal}
+     (nil))
+(insn 525 524 526 42 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:225 89 {*movdi_internal}
+     (nil))
+(insn 526 525 527 42 (set (reg:DI 5 di)
+        (reg:DI 0 ax [261])) read_procpar.cpp:225 89 {*movdi_internal}
+     (nil))
+(call_insn 527 526 529 42 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:225 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 529 527 1059 42 (set (reg:SF 25 xmm4 [orig:130 D.5604 ] [130])
+        (float_truncate:SF (reg:DF 21 xmm0 [orig:129 D.5603 ] [129]))) read_procpar.cpp:225 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 1059 529 530 42 (set (reg:SF 0 ax [orig:130 D.5604 ] [130])
+        (reg:SF 25 xmm4 [orig:130 D.5604 ] [130])) read_procpar.cpp:225 129 {*movsf_internal}
+     (nil))
+(insn 530 1059 531 42 (set (reg/f:DI 1 dx [262])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:225 89 {*movdi_internal}
+     (nil))
+(insn 531 530 1039 42 (set (mem/j:SF (plus:DI (reg/f:DI 1 dx [262])
+                (const_int 324 [0x144])) [0 procpar_info_23(D)->tm+0 S4 A32])
+        (reg:SF 0 ax [orig:130 D.5604 ] [130])) read_procpar.cpp:225 129 {*movsf_internal}
+     (nil))
+(jump_insn 1039 531 1040 42 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1040 1039 534)
+(code_label 534 1040 535 43 22 "" [1 uses])
+(note 535 534 536 43 [bb 43] NOTE_INSN_BASIC_BLOCK)
+(insn 536 535 537 43 (set (reg:DI 0 ax [263])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:227 89 {*movdi_internal}
+     (nil))
+(insn 537 536 538 43 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC16") [flags 0x2]  <var_decl 0x2b04d6425000 *.LC16>)) read_procpar.cpp:227 89 {*movdi_internal}
+     (nil))
+(insn 538 537 539 43 (set (reg:DI 5 di)
+        (reg:DI 0 ax [263])) read_procpar.cpp:227 89 {*movdi_internal}
+     (nil))
+(call_insn/i 539 538 541 43 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:227 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 541 539 542 43 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:131 D.5601 ] [131])
+            (const_int 0 [0]))) read_procpar.cpp:227 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 542 541 543 43 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 587)
+            (pc))) read_procpar.cpp:227 596 {*jcc_1}
+     (nil)
+ -> 587)
+(note 543 542 544 44 [bb 44] NOTE_INSN_BASIC_BLOCK)
+(insn 544 543 1084 44 (set (reg:DI 1 dx [264])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:229 89 {*movdi_internal}
+     (nil))
+(insn 1084 544 547 44 (set (reg:DI 0 ax [265])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:229 214 {*leadi}
+     (nil))
+(insn 547 1084 548 44 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:229 90 {*movsi_internal}
+     (nil))
+(insn 548 547 549 44 (set (reg:DI 5 di)
+        (reg:DI 0 ax [265])) read_procpar.cpp:229 89 {*movdi_internal}
+     (nil))
+(call_insn 549 548 550 44 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:229 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 550 549 551 44 (set (reg:DI 0 ax [266])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:230 89 {*movdi_internal}
+     (nil))
+(insn 551 550 552 44 (set (reg:DI 5 di)
+        (reg:DI 0 ax [266])) read_procpar.cpp:230 89 {*movdi_internal}
+     (nil))
+(call_insn 552 551 554 44 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:230 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 554 552 555 44 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:132 D.5601 ] [132])
+            (const_int 0 [0]))) read_procpar.cpp:230 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 555 554 556 44 (set (reg:QI 0 ax [orig:133 D.5602 ] [133])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:230 592 {*setcc_qi}
+     (nil))
+(insn 556 555 557 44 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:133 D.5602 ] [133])
+            (const_int 0 [0]))) read_procpar.cpp:230 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 557 556 558 44 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 564)
+            (pc))) read_procpar.cpp:230 596 {*jcc_1}
+     (nil)
+ -> 564)
+(note 558 557 559 45 [bb 45] NOTE_INSN_BASIC_BLOCK)
+(insn 559 558 560 45 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:231 89 {*movdi_internal}
+     (nil))
+(call_insn 560 559 561 45 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:231 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 561 560 562 45 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:232 90 {*movsi_internal}
+     (nil))
+(call_insn 562 561 563 45 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:232 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 563 562 564)
+(code_label 564 563 565 46 25 "" [1 uses])
+(note 565 564 1083 46 [bb 46] NOTE_INSN_BASIC_BLOCK)
+(insn 1083 565 567 46 (set (reg:DI 0 ax [267])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:236 214 {*leadi}
+     (nil))
+(insn 567 1083 568 46 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:236 89 {*movdi_internal}
+     (nil))
+(insn 568 567 569 46 (set (reg:DI 5 di)
+        (reg:DI 0 ax [267])) read_procpar.cpp:236 89 {*movdi_internal}
+     (nil))
+(call_insn 569 568 571 46 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:236 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 571 569 572 46 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [268])) read_procpar.cpp:236 89 {*movdi_internal}
+     (nil))
+(insn 572 571 573 46 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:237 89 {*movdi_internal}
+     (nil))
+(insn 573 572 574 46 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:237 89 {*movdi_internal}
+     (nil))
+(call_insn 574 573 576 46 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:237 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 576 574 577 46 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [269])) read_procpar.cpp:237 89 {*movdi_internal}
+     (nil))
+(insn 577 576 578 46 (set (reg:DI 0 ax [270])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:238 89 {*movdi_internal}
+     (nil))
+(insn 578 577 579 46 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:238 89 {*movdi_internal}
+     (nil))
+(insn 579 578 580 46 (set (reg:DI 5 di)
+        (reg:DI 0 ax [270])) read_procpar.cpp:238 89 {*movdi_internal}
+     (nil))
+(call_insn 580 579 582 46 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:238 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 582 580 1060 46 (set (reg:SF 26 xmm5 [orig:135 D.5604 ] [135])
+        (float_truncate:SF (reg:DF 21 xmm0 [orig:134 D.5603 ] [134]))) read_procpar.cpp:238 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 1060 582 583 46 (set (reg:SF 0 ax [orig:135 D.5604 ] [135])
+        (reg:SF 26 xmm5 [orig:135 D.5604 ] [135])) read_procpar.cpp:238 129 {*movsf_internal}
+     (nil))
+(insn 583 1060 584 46 (set (reg/f:DI 1 dx [271])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:238 89 {*movdi_internal}
+     (nil))
+(insn 584 583 1041 46 (set (mem/j:SF (plus:DI (reg/f:DI 1 dx [271])
+                (const_int 328 [0x148])) [0 procpar_info_23(D)->gain+0 S4 A64])
+        (reg:SF 0 ax [orig:135 D.5604 ] [135])) read_procpar.cpp:238 129 {*movsf_internal}
+     (nil))
+(jump_insn 1041 584 1042 46 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1042 1041 587)
+(code_label 587 1042 588 47 24 "" [1 uses])
+(note 588 587 589 47 [bb 47] NOTE_INSN_BASIC_BLOCK)
+(insn 589 588 590 47 (set (reg:DI 0 ax [272])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:240 89 {*movdi_internal}
+     (nil))
+(insn 590 589 591 47 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC17") [flags 0x2]  <var_decl 0x2b04d6425098 *.LC17>)) read_procpar.cpp:240 89 {*movdi_internal}
+     (nil))
+(insn 591 590 592 47 (set (reg:DI 5 di)
+        (reg:DI 0 ax [272])) read_procpar.cpp:240 89 {*movdi_internal}
+     (nil))
+(call_insn/i 592 591 594 47 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:240 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 594 592 595 47 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:136 D.5601 ] [136])
+            (const_int 0 [0]))) read_procpar.cpp:240 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 595 594 596 47 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 640)
+            (pc))) read_procpar.cpp:240 596 {*jcc_1}
+     (nil)
+ -> 640)
+(note 596 595 597 48 [bb 48] NOTE_INSN_BASIC_BLOCK)
+(insn 597 596 1082 48 (set (reg:DI 1 dx [273])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:242 89 {*movdi_internal}
+     (nil))
+(insn 1082 597 600 48 (set (reg:DI 0 ax [274])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:242 214 {*leadi}
+     (nil))
+(insn 600 1082 601 48 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:242 90 {*movsi_internal}
+     (nil))
+(insn 601 600 602 48 (set (reg:DI 5 di)
+        (reg:DI 0 ax [274])) read_procpar.cpp:242 89 {*movdi_internal}
+     (nil))
+(call_insn 602 601 603 48 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:242 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 603 602 604 48 (set (reg:DI 0 ax [275])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:243 89 {*movdi_internal}
+     (nil))
+(insn 604 603 605 48 (set (reg:DI 5 di)
+        (reg:DI 0 ax [275])) read_procpar.cpp:243 89 {*movdi_internal}
+     (nil))
+(call_insn 605 604 607 48 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:243 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 607 605 608 48 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:137 D.5601 ] [137])
+            (const_int 0 [0]))) read_procpar.cpp:243 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 608 607 609 48 (set (reg:QI 0 ax [orig:138 D.5602 ] [138])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:243 592 {*setcc_qi}
+     (nil))
+(insn 609 608 610 48 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:138 D.5602 ] [138])
+            (const_int 0 [0]))) read_procpar.cpp:243 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 610 609 611 48 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 617)
+            (pc))) read_procpar.cpp:243 596 {*jcc_1}
+     (nil)
+ -> 617)
+(note 611 610 612 49 [bb 49] NOTE_INSN_BASIC_BLOCK)
+(insn 612 611 613 49 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:244 89 {*movdi_internal}
+     (nil))
+(call_insn 613 612 614 49 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:244 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 614 613 615 49 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:245 90 {*movsi_internal}
+     (nil))
+(call_insn 615 614 616 49 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:245 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 616 615 617)
+(code_label 617 616 618 50 27 "" [1 uses])
+(note 618 617 1081 50 [bb 50] NOTE_INSN_BASIC_BLOCK)
+(insn 1081 618 620 50 (set (reg:DI 0 ax [276])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:249 214 {*leadi}
+     (nil))
+(insn 620 1081 621 50 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:249 89 {*movdi_internal}
+     (nil))
+(insn 621 620 622 50 (set (reg:DI 5 di)
+        (reg:DI 0 ax [276])) read_procpar.cpp:249 89 {*movdi_internal}
+     (nil))
+(call_insn 622 621 624 50 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:249 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 624 622 625 50 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [277])) read_procpar.cpp:249 89 {*movdi_internal}
+     (nil))
+(insn 625 624 626 50 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:250 89 {*movdi_internal}
+     (nil))
+(insn 626 625 627 50 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:250 89 {*movdi_internal}
+     (nil))
+(call_insn 627 626 629 50 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:250 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 629 627 630 50 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [278])) read_procpar.cpp:250 89 {*movdi_internal}
+     (nil))
+(insn 630 629 631 50 (set (reg:DI 0 ax [279])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:251 89 {*movdi_internal}
+     (nil))
+(insn 631 630 632 50 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:251 89 {*movdi_internal}
+     (nil))
+(insn 632 631 633 50 (set (reg:DI 5 di)
+        (reg:DI 0 ax [279])) read_procpar.cpp:251 89 {*movdi_internal}
+     (nil))
+(call_insn 633 632 635 50 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:251 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 635 633 1061 50 (set (reg:SF 27 xmm6 [orig:140 D.5604 ] [140])
+        (float_truncate:SF (reg:DF 21 xmm0 [orig:139 D.5603 ] [139]))) read_procpar.cpp:251 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 1061 635 636 50 (set (reg:SF 0 ax [orig:140 D.5604 ] [140])
+        (reg:SF 27 xmm6 [orig:140 D.5604 ] [140])) read_procpar.cpp:251 129 {*movsf_internal}
+     (nil))
+(insn 636 1061 637 50 (set (reg/f:DI 1 dx [280])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:251 89 {*movdi_internal}
+     (nil))
+(insn 637 636 1043 50 (set (mem/j:SF (plus:DI (reg/f:DI 1 dx [280])
+                (const_int 332 [0x14c])) [0 procpar_info_23(D)->pos1+0 S4 A32])
+        (reg:SF 0 ax [orig:140 D.5604 ] [140])) read_procpar.cpp:251 129 {*movsf_internal}
+     (nil))
+(jump_insn 1043 637 1044 50 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1044 1043 640)
+(code_label 640 1044 641 51 26 "" [1 uses])
+(note 641 640 642 51 [bb 51] NOTE_INSN_BASIC_BLOCK)
+(insn 642 641 643 51 (set (reg:DI 0 ax [281])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:253 89 {*movdi_internal}
+     (nil))
+(insn 643 642 644 51 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC18") [flags 0x2]  <var_decl 0x2b04d6425130 *.LC18>)) read_procpar.cpp:253 89 {*movdi_internal}
+     (nil))
+(insn 644 643 645 51 (set (reg:DI 5 di)
+        (reg:DI 0 ax [281])) read_procpar.cpp:253 89 {*movdi_internal}
+     (nil))
+(call_insn/i 645 644 647 51 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:253 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 647 645 648 51 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:141 D.5601 ] [141])
+            (const_int 0 [0]))) read_procpar.cpp:253 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 648 647 649 51 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 693)
+            (pc))) read_procpar.cpp:253 596 {*jcc_1}
+     (nil)
+ -> 693)
+(note 649 648 650 52 [bb 52] NOTE_INSN_BASIC_BLOCK)
+(insn 650 649 1080 52 (set (reg:DI 1 dx [282])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:255 89 {*movdi_internal}
+     (nil))
+(insn 1080 650 653 52 (set (reg:DI 0 ax [283])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:255 214 {*leadi}
+     (nil))
+(insn 653 1080 654 52 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:255 90 {*movsi_internal}
+     (nil))
+(insn 654 653 655 52 (set (reg:DI 5 di)
+        (reg:DI 0 ax [283])) read_procpar.cpp:255 89 {*movdi_internal}
+     (nil))
+(call_insn 655 654 656 52 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:255 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 656 655 657 52 (set (reg:DI 0 ax [284])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:256 89 {*movdi_internal}
+     (nil))
+(insn 657 656 658 52 (set (reg:DI 5 di)
+        (reg:DI 0 ax [284])) read_procpar.cpp:256 89 {*movdi_internal}
+     (nil))
+(call_insn 658 657 660 52 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:256 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 660 658 661 52 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:142 D.5601 ] [142])
+            (const_int 0 [0]))) read_procpar.cpp:256 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 661 660 662 52 (set (reg:QI 0 ax [orig:143 D.5602 ] [143])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:256 592 {*setcc_qi}
+     (nil))
+(insn 662 661 663 52 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:143 D.5602 ] [143])
+            (const_int 0 [0]))) read_procpar.cpp:256 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 663 662 664 52 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 670)
+            (pc))) read_procpar.cpp:256 596 {*jcc_1}
+     (nil)
+ -> 670)
+(note 664 663 665 53 [bb 53] NOTE_INSN_BASIC_BLOCK)
+(insn 665 664 666 53 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:257 89 {*movdi_internal}
+     (nil))
+(call_insn 666 665 667 53 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:257 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 667 666 668 53 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:258 90 {*movsi_internal}
+     (nil))
+(call_insn 668 667 669 53 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:258 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 669 668 670)
+(code_label 670 669 671 54 29 "" [1 uses])
+(note 671 670 1079 54 [bb 54] NOTE_INSN_BASIC_BLOCK)
+(insn 1079 671 673 54 (set (reg:DI 0 ax [285])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:262 214 {*leadi}
+     (nil))
+(insn 673 1079 674 54 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:262 89 {*movdi_internal}
+     (nil))
+(insn 674 673 675 54 (set (reg:DI 5 di)
+        (reg:DI 0 ax [285])) read_procpar.cpp:262 89 {*movdi_internal}
+     (nil))
+(call_insn 675 674 677 54 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:262 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 677 675 678 54 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [286])) read_procpar.cpp:262 89 {*movdi_internal}
+     (nil))
+(insn 678 677 679 54 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:263 89 {*movdi_internal}
+     (nil))
+(insn 679 678 680 54 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:263 89 {*movdi_internal}
+     (nil))
+(call_insn 680 679 682 54 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:263 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 682 680 683 54 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [287])) read_procpar.cpp:263 89 {*movdi_internal}
+     (nil))
+(insn 683 682 684 54 (set (reg:DI 0 ax [288])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:264 89 {*movdi_internal}
+     (nil))
+(insn 684 683 685 54 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:264 89 {*movdi_internal}
+     (nil))
+(insn 685 684 686 54 (set (reg:DI 5 di)
+        (reg:DI 0 ax [288])) read_procpar.cpp:264 89 {*movdi_internal}
+     (nil))
+(call_insn 686 685 688 54 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:264 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 688 686 1062 54 (set (reg:SF 28 xmm7 [orig:145 D.5604 ] [145])
+        (float_truncate:SF (reg:DF 21 xmm0 [orig:144 D.5603 ] [144]))) read_procpar.cpp:264 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 1062 688 689 54 (set (reg:SF 0 ax [orig:145 D.5604 ] [145])
+        (reg:SF 28 xmm7 [orig:145 D.5604 ] [145])) read_procpar.cpp:264 129 {*movsf_internal}
+     (nil))
+(insn 689 1062 690 54 (set (reg/f:DI 1 dx [289])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:264 89 {*movdi_internal}
+     (nil))
+(insn 690 689 1045 54 (set (mem/j:SF (plus:DI (reg/f:DI 1 dx [289])
+                (const_int 336 [0x150])) [0 procpar_info_23(D)->pos2+0 S4 A64])
+        (reg:SF 0 ax [orig:145 D.5604 ] [145])) read_procpar.cpp:264 129 {*movsf_internal}
+     (nil))
+(jump_insn 1045 690 1046 54 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1046 1045 693)
+(code_label 693 1046 694 55 28 "" [1 uses])
+(note 694 693 695 55 [bb 55] NOTE_INSN_BASIC_BLOCK)
+(insn 695 694 696 55 (set (reg:DI 0 ax [290])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:266 89 {*movdi_internal}
+     (nil))
+(insn 696 695 697 55 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC19") [flags 0x2]  <var_decl 0x2b04d64251c8 *.LC19>)) read_procpar.cpp:266 89 {*movdi_internal}
+     (nil))
+(insn 697 696 698 55 (set (reg:DI 5 di)
+        (reg:DI 0 ax [290])) read_procpar.cpp:266 89 {*movdi_internal}
+     (nil))
+(call_insn/i 698 697 700 55 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:266 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 700 698 701 55 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:146 D.5601 ] [146])
+            (const_int 0 [0]))) read_procpar.cpp:266 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 701 700 702 55 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 746)
+            (pc))) read_procpar.cpp:266 596 {*jcc_1}
+     (nil)
+ -> 746)
+(note 702 701 703 56 [bb 56] NOTE_INSN_BASIC_BLOCK)
+(insn 703 702 1078 56 (set (reg:DI 1 dx [291])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:268 89 {*movdi_internal}
+     (nil))
+(insn 1078 703 706 56 (set (reg:DI 0 ax [292])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:268 214 {*leadi}
+     (nil))
+(insn 706 1078 707 56 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:268 90 {*movsi_internal}
+     (nil))
+(insn 707 706 708 56 (set (reg:DI 5 di)
+        (reg:DI 0 ax [292])) read_procpar.cpp:268 89 {*movdi_internal}
+     (nil))
+(call_insn 708 707 709 56 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:268 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 709 708 710 56 (set (reg:DI 0 ax [293])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:269 89 {*movdi_internal}
+     (nil))
+(insn 710 709 711 56 (set (reg:DI 5 di)
+        (reg:DI 0 ax [293])) read_procpar.cpp:269 89 {*movdi_internal}
+     (nil))
+(call_insn 711 710 713 56 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:269 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 713 711 714 56 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:147 D.5601 ] [147])
+            (const_int 0 [0]))) read_procpar.cpp:269 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 714 713 715 56 (set (reg:QI 0 ax [orig:148 D.5602 ] [148])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:269 592 {*setcc_qi}
+     (nil))
+(insn 715 714 716 56 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:148 D.5602 ] [148])
+            (const_int 0 [0]))) read_procpar.cpp:269 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 716 715 717 56 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 723)
+            (pc))) read_procpar.cpp:269 596 {*jcc_1}
+     (nil)
+ -> 723)
+(note 717 716 718 57 [bb 57] NOTE_INSN_BASIC_BLOCK)
+(insn 718 717 719 57 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:270 89 {*movdi_internal}
+     (nil))
+(call_insn 719 718 720 57 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:270 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 720 719 721 57 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:271 90 {*movsi_internal}
+     (nil))
+(call_insn 721 720 722 57 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:271 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 722 721 723)
+(code_label 723 722 724 58 31 "" [1 uses])
+(note 724 723 1077 58 [bb 58] NOTE_INSN_BASIC_BLOCK)
+(insn 1077 724 726 58 (set (reg:DI 0 ax [294])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:275 214 {*leadi}
+     (nil))
+(insn 726 1077 727 58 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:275 89 {*movdi_internal}
+     (nil))
+(insn 727 726 728 58 (set (reg:DI 5 di)
+        (reg:DI 0 ax [294])) read_procpar.cpp:275 89 {*movdi_internal}
+     (nil))
+(call_insn 728 727 730 58 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:275 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 730 728 731 58 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [295])) read_procpar.cpp:275 89 {*movdi_internal}
+     (nil))
+(insn 731 730 732 58 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:276 89 {*movdi_internal}
+     (nil))
+(insn 732 731 733 58 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:276 89 {*movdi_internal}
+     (nil))
+(call_insn 733 732 735 58 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:276 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 735 733 736 58 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [296])) read_procpar.cpp:276 89 {*movdi_internal}
+     (nil))
+(insn 736 735 737 58 (set (reg:DI 0 ax [297])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:277 89 {*movdi_internal}
+     (nil))
+(insn 737 736 738 58 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:277 89 {*movdi_internal}
+     (nil))
+(insn 738 737 739 58 (set (reg:DI 5 di)
+        (reg:DI 0 ax [297])) read_procpar.cpp:277 89 {*movdi_internal}
+     (nil))
+(call_insn 739 738 741 58 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:277 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 741 739 1063 58 (set (reg:SF 22 xmm1 [orig:150 D.5604 ] [150])
+        (float_truncate:SF (reg:DF 21 xmm0 [orig:149 D.5603 ] [149]))) read_procpar.cpp:277 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 1063 741 742 58 (set (reg:SF 0 ax [orig:150 D.5604 ] [150])
+        (reg:SF 22 xmm1 [orig:150 D.5604 ] [150])) read_procpar.cpp:277 129 {*movsf_internal}
+     (nil))
+(insn 742 1063 743 58 (set (reg/f:DI 1 dx [298])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:277 89 {*movdi_internal}
+     (nil))
+(insn 743 742 1047 58 (set (mem/j:SF (plus:DI (reg/f:DI 1 dx [298])
+                (const_int 340 [0x154])) [0 procpar_info_23(D)->pos3+0 S4 A32])
+        (reg:SF 0 ax [orig:150 D.5604 ] [150])) read_procpar.cpp:277 129 {*movsf_internal}
+     (nil))
+(jump_insn 1047 743 1048 58 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1048 1047 746)
+(code_label 746 1048 747 59 30 "" [1 uses])
+(note 747 746 748 59 [bb 59] NOTE_INSN_BASIC_BLOCK)
+(insn 748 747 749 59 (set (reg:DI 0 ax [299])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:279 89 {*movdi_internal}
+     (nil))
+(insn 749 748 750 59 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC20") [flags 0x2]  <var_decl 0x2b04d6425260 *.LC20>)) read_procpar.cpp:279 89 {*movdi_internal}
+     (nil))
+(insn 750 749 751 59 (set (reg:DI 5 di)
+        (reg:DI 0 ax [299])) read_procpar.cpp:279 89 {*movdi_internal}
+     (nil))
+(call_insn/i 751 750 753 59 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:279 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 753 751 754 59 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:151 D.5601 ] [151])
+            (const_int 0 [0]))) read_procpar.cpp:279 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 754 753 755 59 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 799)
+            (pc))) read_procpar.cpp:279 596 {*jcc_1}
+     (nil)
+ -> 799)
+(note 755 754 756 60 [bb 60] NOTE_INSN_BASIC_BLOCK)
+(insn 756 755 1076 60 (set (reg:DI 1 dx [300])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:281 89 {*movdi_internal}
+     (nil))
+(insn 1076 756 759 60 (set (reg:DI 0 ax [301])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:281 214 {*leadi}
+     (nil))
+(insn 759 1076 760 60 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:281 90 {*movsi_internal}
+     (nil))
+(insn 760 759 761 60 (set (reg:DI 5 di)
+        (reg:DI 0 ax [301])) read_procpar.cpp:281 89 {*movdi_internal}
+     (nil))
+(call_insn 761 760 762 60 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:281 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 762 761 763 60 (set (reg:DI 0 ax [302])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:282 89 {*movdi_internal}
+     (nil))
+(insn 763 762 764 60 (set (reg:DI 5 di)
+        (reg:DI 0 ax [302])) read_procpar.cpp:282 89 {*movdi_internal}
+     (nil))
+(call_insn 764 763 766 60 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:282 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 766 764 767 60 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:152 D.5601 ] [152])
+            (const_int 0 [0]))) read_procpar.cpp:282 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 767 766 768 60 (set (reg:QI 0 ax [orig:153 D.5602 ] [153])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:282 592 {*setcc_qi}
+     (nil))
+(insn 768 767 769 60 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:153 D.5602 ] [153])
+            (const_int 0 [0]))) read_procpar.cpp:282 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 769 768 770 60 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 776)
+            (pc))) read_procpar.cpp:282 596 {*jcc_1}
+     (nil)
+ -> 776)
+(note 770 769 771 61 [bb 61] NOTE_INSN_BASIC_BLOCK)
+(insn 771 770 772 61 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:283 89 {*movdi_internal}
+     (nil))
+(call_insn 772 771 773 61 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:283 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 773 772 774 61 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:284 90 {*movsi_internal}
+     (nil))
+(call_insn 774 773 775 61 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:284 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 775 774 776)
+(code_label 776 775 777 62 33 "" [1 uses])
+(note 777 776 1075 62 [bb 62] NOTE_INSN_BASIC_BLOCK)
+(insn 1075 777 779 62 (set (reg:DI 0 ax [303])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:288 214 {*leadi}
+     (nil))
+(insn 779 1075 780 62 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:288 89 {*movdi_internal}
+     (nil))
+(insn 780 779 781 62 (set (reg:DI 5 di)
+        (reg:DI 0 ax [303])) read_procpar.cpp:288 89 {*movdi_internal}
+     (nil))
+(call_insn 781 780 783 62 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:288 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 783 781 784 62 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [304])) read_procpar.cpp:288 89 {*movdi_internal}
+     (nil))
+(insn 784 783 785 62 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:289 89 {*movdi_internal}
+     (nil))
+(insn 785 784 786 62 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:289 89 {*movdi_internal}
+     (nil))
+(call_insn 786 785 788 62 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:289 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 788 786 789 62 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [305])) read_procpar.cpp:289 89 {*movdi_internal}
+     (nil))
+(insn 789 788 790 62 (set (reg:DI 0 ax [306])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:290 89 {*movdi_internal}
+     (nil))
+(insn 790 789 791 62 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:290 89 {*movdi_internal}
+     (nil))
+(insn 791 790 792 62 (set (reg:DI 5 di)
+        (reg:DI 0 ax [306])) read_procpar.cpp:290 89 {*movdi_internal}
+     (nil))
+(call_insn 792 791 794 62 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:290 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 794 792 1064 62 (set (reg:SF 23 xmm2 [orig:155 D.5604 ] [155])
+        (float_truncate:SF (reg:DF 21 xmm0 [orig:154 D.5603 ] [154]))) read_procpar.cpp:290 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 1064 794 795 62 (set (reg:SF 0 ax [orig:155 D.5604 ] [155])
+        (reg:SF 23 xmm2 [orig:155 D.5604 ] [155])) read_procpar.cpp:290 129 {*movsf_internal}
+     (nil))
+(insn 795 1064 796 62 (set (reg/f:DI 1 dx [307])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:290 89 {*movdi_internal}
+     (nil))
+(insn 796 795 1049 62 (set (mem/j:SF (plus:DI (reg/f:DI 1 dx [307])
+                (const_int 344 [0x158])) [0 procpar_info_23(D)->vox1+0 S4 A64])
+        (reg:SF 0 ax [orig:155 D.5604 ] [155])) read_procpar.cpp:290 129 {*movsf_internal}
+     (nil))
+(jump_insn 1049 796 1050 62 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1050 1049 799)
+(code_label 799 1050 800 63 32 "" [1 uses])
+(note 800 799 801 63 [bb 63] NOTE_INSN_BASIC_BLOCK)
+(insn 801 800 802 63 (set (reg:DI 0 ax [308])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:292 89 {*movdi_internal}
+     (nil))
+(insn 802 801 803 63 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC21") [flags 0x2]  <var_decl 0x2b04d64252f8 *.LC21>)) read_procpar.cpp:292 89 {*movdi_internal}
+     (nil))
+(insn 803 802 804 63 (set (reg:DI 5 di)
+        (reg:DI 0 ax [308])) read_procpar.cpp:292 89 {*movdi_internal}
+     (nil))
+(call_insn/i 804 803 806 63 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:292 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 806 804 807 63 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:156 D.5601 ] [156])
+            (const_int 0 [0]))) read_procpar.cpp:292 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 807 806 808 63 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 852)
+            (pc))) read_procpar.cpp:292 596 {*jcc_1}
+     (nil)
+ -> 852)
+(note 808 807 809 64 [bb 64] NOTE_INSN_BASIC_BLOCK)
+(insn 809 808 1074 64 (set (reg:DI 1 dx [309])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:294 89 {*movdi_internal}
+     (nil))
+(insn 1074 809 812 64 (set (reg:DI 0 ax [310])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:294 214 {*leadi}
+     (nil))
+(insn 812 1074 813 64 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:294 90 {*movsi_internal}
+     (nil))
+(insn 813 812 814 64 (set (reg:DI 5 di)
+        (reg:DI 0 ax [310])) read_procpar.cpp:294 89 {*movdi_internal}
+     (nil))
+(call_insn 814 813 815 64 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:294 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 815 814 816 64 (set (reg:DI 0 ax [311])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:295 89 {*movdi_internal}
+     (nil))
+(insn 816 815 817 64 (set (reg:DI 5 di)
+        (reg:DI 0 ax [311])) read_procpar.cpp:295 89 {*movdi_internal}
+     (nil))
+(call_insn 817 816 819 64 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:295 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 819 817 820 64 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:157 D.5601 ] [157])
+            (const_int 0 [0]))) read_procpar.cpp:295 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 820 819 821 64 (set (reg:QI 0 ax [orig:158 D.5602 ] [158])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:295 592 {*setcc_qi}
+     (nil))
+(insn 821 820 822 64 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:158 D.5602 ] [158])
+            (const_int 0 [0]))) read_procpar.cpp:295 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 822 821 823 64 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 829)
+            (pc))) read_procpar.cpp:295 596 {*jcc_1}
+     (nil)
+ -> 829)
+(note 823 822 824 65 [bb 65] NOTE_INSN_BASIC_BLOCK)
+(insn 824 823 825 65 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:296 89 {*movdi_internal}
+     (nil))
+(call_insn 825 824 826 65 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:296 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 826 825 827 65 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:297 90 {*movsi_internal}
+     (nil))
+(call_insn 827 826 828 65 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:297 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 828 827 829)
+(code_label 829 828 830 66 35 "" [1 uses])
+(note 830 829 1073 66 [bb 66] NOTE_INSN_BASIC_BLOCK)
+(insn 1073 830 832 66 (set (reg:DI 0 ax [312])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:301 214 {*leadi}
+     (nil))
+(insn 832 1073 833 66 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:301 89 {*movdi_internal}
+     (nil))
+(insn 833 832 834 66 (set (reg:DI 5 di)
+        (reg:DI 0 ax [312])) read_procpar.cpp:301 89 {*movdi_internal}
+     (nil))
+(call_insn 834 833 836 66 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:301 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 836 834 837 66 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [313])) read_procpar.cpp:301 89 {*movdi_internal}
+     (nil))
+(insn 837 836 838 66 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:302 89 {*movdi_internal}
+     (nil))
+(insn 838 837 839 66 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:302 89 {*movdi_internal}
+     (nil))
+(call_insn 839 838 841 66 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:302 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 841 839 842 66 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [314])) read_procpar.cpp:302 89 {*movdi_internal}
+     (nil))
+(insn 842 841 843 66 (set (reg:DI 0 ax [315])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:303 89 {*movdi_internal}
+     (nil))
+(insn 843 842 844 66 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:303 89 {*movdi_internal}
+     (nil))
+(insn 844 843 845 66 (set (reg:DI 5 di)
+        (reg:DI 0 ax [315])) read_procpar.cpp:303 89 {*movdi_internal}
+     (nil))
+(call_insn 845 844 847 66 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:303 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 847 845 1065 66 (set (reg:SF 24 xmm3 [orig:160 D.5604 ] [160])
+        (float_truncate:SF (reg:DF 21 xmm0 [orig:159 D.5603 ] [159]))) read_procpar.cpp:303 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 1065 847 848 66 (set (reg:SF 0 ax [orig:160 D.5604 ] [160])
+        (reg:SF 24 xmm3 [orig:160 D.5604 ] [160])) read_procpar.cpp:303 129 {*movsf_internal}
+     (nil))
+(insn 848 1065 849 66 (set (reg/f:DI 1 dx [316])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:303 89 {*movdi_internal}
+     (nil))
+(insn 849 848 1051 66 (set (mem/j:SF (plus:DI (reg/f:DI 1 dx [316])
+                (const_int 348 [0x15c])) [0 procpar_info_23(D)->vox2+0 S4 A32])
+        (reg:SF 0 ax [orig:160 D.5604 ] [160])) read_procpar.cpp:303 129 {*movsf_internal}
+     (nil))
+(jump_insn 1051 849 1052 66 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1052 1051 852)
+(code_label 852 1052 853 67 34 "" [1 uses])
+(note 853 852 854 67 [bb 67] NOTE_INSN_BASIC_BLOCK)
+(insn 854 853 855 67 (set (reg:DI 0 ax [317])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:305 89 {*movdi_internal}
+     (nil))
+(insn 855 854 856 67 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC22") [flags 0x2]  <var_decl 0x2b04d6425390 *.LC22>)) read_procpar.cpp:305 89 {*movdi_internal}
+     (nil))
+(insn 856 855 857 67 (set (reg:DI 5 di)
+        (reg:DI 0 ax [317])) read_procpar.cpp:305 89 {*movdi_internal}
+     (nil))
+(call_insn/i 857 856 859 67 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:305 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 859 857 860 67 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:161 D.5601 ] [161])
+            (const_int 0 [0]))) read_procpar.cpp:305 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 860 859 861 67 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 905)
+            (pc))) read_procpar.cpp:305 596 {*jcc_1}
+     (nil)
+ -> 905)
+(note 861 860 862 68 [bb 68] NOTE_INSN_BASIC_BLOCK)
+(insn 862 861 1072 68 (set (reg:DI 1 dx [318])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:307 89 {*movdi_internal}
+     (nil))
+(insn 1072 862 865 68 (set (reg:DI 0 ax [319])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:307 214 {*leadi}
+     (nil))
+(insn 865 1072 866 68 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:307 90 {*movsi_internal}
+     (nil))
+(insn 866 865 867 68 (set (reg:DI 5 di)
+        (reg:DI 0 ax [319])) read_procpar.cpp:307 89 {*movdi_internal}
+     (nil))
+(call_insn 867 866 868 68 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:307 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 868 867 869 68 (set (reg:DI 0 ax [320])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:308 89 {*movdi_internal}
+     (nil))
+(insn 869 868 870 68 (set (reg:DI 5 di)
+        (reg:DI 0 ax [320])) read_procpar.cpp:308 89 {*movdi_internal}
+     (nil))
+(call_insn 870 869 872 68 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:308 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 872 870 873 68 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:162 D.5601 ] [162])
+            (const_int 0 [0]))) read_procpar.cpp:308 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 873 872 874 68 (set (reg:QI 0 ax [orig:163 D.5602 ] [163])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:308 592 {*setcc_qi}
+     (nil))
+(insn 874 873 875 68 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:163 D.5602 ] [163])
+            (const_int 0 [0]))) read_procpar.cpp:308 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 875 874 876 68 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 882)
+            (pc))) read_procpar.cpp:308 596 {*jcc_1}
+     (nil)
+ -> 882)
+(note 876 875 877 69 [bb 69] NOTE_INSN_BASIC_BLOCK)
+(insn 877 876 878 69 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:309 89 {*movdi_internal}
+     (nil))
+(call_insn 878 877 879 69 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:309 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 879 878 880 69 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:310 90 {*movsi_internal}
+     (nil))
+(call_insn 880 879 881 69 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:310 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 881 880 882)
+(code_label 882 881 883 70 37 "" [1 uses])
+(note 883 882 1071 70 [bb 70] NOTE_INSN_BASIC_BLOCK)
+(insn 1071 883 885 70 (set (reg:DI 0 ax [321])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:314 214 {*leadi}
+     (nil))
+(insn 885 1071 886 70 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:314 89 {*movdi_internal}
+     (nil))
+(insn 886 885 887 70 (set (reg:DI 5 di)
+        (reg:DI 0 ax [321])) read_procpar.cpp:314 89 {*movdi_internal}
+     (nil))
+(call_insn 887 886 889 70 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:314 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 889 887 890 70 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [322])) read_procpar.cpp:314 89 {*movdi_internal}
+     (nil))
+(insn 890 889 891 70 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:315 89 {*movdi_internal}
+     (nil))
+(insn 891 890 892 70 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:315 89 {*movdi_internal}
+     (nil))
+(call_insn 892 891 894 70 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:315 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 894 892 895 70 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [323])) read_procpar.cpp:315 89 {*movdi_internal}
+     (nil))
+(insn 895 894 896 70 (set (reg:DI 0 ax [324])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:316 89 {*movdi_internal}
+     (nil))
+(insn 896 895 897 70 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:316 89 {*movdi_internal}
+     (nil))
+(insn 897 896 898 70 (set (reg:DI 5 di)
+        (reg:DI 0 ax [324])) read_procpar.cpp:316 89 {*movdi_internal}
+     (nil))
+(call_insn 898 897 900 70 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:316 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 900 898 1066 70 (set (reg:SF 25 xmm4 [orig:165 D.5604 ] [165])
+        (float_truncate:SF (reg:DF 21 xmm0 [orig:164 D.5603 ] [164]))) read_procpar.cpp:316 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 1066 900 901 70 (set (reg:SF 0 ax [orig:165 D.5604 ] [165])
+        (reg:SF 25 xmm4 [orig:165 D.5604 ] [165])) read_procpar.cpp:316 129 {*movsf_internal}
+     (nil))
+(insn 901 1066 902 70 (set (reg/f:DI 1 dx [325])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:316 89 {*movdi_internal}
+     (nil))
+(insn 902 901 1053 70 (set (mem/j:SF (plus:DI (reg/f:DI 1 dx [325])
+                (const_int 352 [0x160])) [0 procpar_info_23(D)->vox3+0 S4 A64])
+        (reg:SF 0 ax [orig:165 D.5604 ] [165])) read_procpar.cpp:316 129 {*movsf_internal}
+     (nil))
+(jump_insn 1053 902 1054 70 (set (pc)
+        (label_ref 956)) 636 {jump}
+     (nil)
+ -> 956)
+(barrier 1054 1053 905)
+(code_label 905 1054 906 71 36 "" [1 uses])
+(note 906 905 907 71 [bb 71] NOTE_INSN_BASIC_BLOCK)
+(insn 907 906 908 71 (set (reg:DI 0 ax [326])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:318 89 {*movdi_internal}
+     (nil))
+(insn 908 907 909 71 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC23") [flags 0x2]  <var_decl 0x2b04d6425428 *.LC23>)) read_procpar.cpp:318 89 {*movdi_internal}
+     (nil))
+(insn 909 908 910 71 (set (reg:DI 5 di)
+        (reg:DI 0 ax [326])) read_procpar.cpp:318 89 {*movdi_internal}
+     (nil))
+(call_insn/i 910 909 912 71 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x2b04d60bd300 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:318 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 912 910 913 71 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:166 D.5601 ] [166])
+            (const_int 0 [0]))) read_procpar.cpp:318 3 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 913 912 914 71 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 956)
+            (pc))) read_procpar.cpp:318 596 {*jcc_1}
+     (nil)
+ -> 956)
+(note 914 913 915 72 [bb 72] NOTE_INSN_BASIC_BLOCK)
+(insn 915 914 1070 72 (set (reg:DI 1 dx [327])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:320 89 {*movdi_internal}
+     (nil))
+(insn 1070 915 918 72 (set (reg:DI 0 ax [328])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:320 214 {*leadi}
+     (nil))
+(insn 918 1070 919 72 (set (reg:SI 4 si)
+        (const_int 255 [0xff])) read_procpar.cpp:320 90 {*movsi_internal}
+     (nil))
+(insn 919 918 920 72 (set (reg:DI 5 di)
+        (reg:DI 0 ax [328])) read_procpar.cpp:320 89 {*movdi_internal}
+     (nil))
+(call_insn 920 919 921 72 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:320 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 921 920 922 72 (set (reg:DI 0 ax [329])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:321 89 {*movdi_internal}
+     (nil))
+(insn 922 921 923 72 (set (reg:DI 5 di)
+        (reg:DI 0 ax [329])) read_procpar.cpp:321 89 {*movdi_internal}
+     (nil))
+(call_insn 923 922 925 72 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:321 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 925 923 926 72 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:167 D.5601 ] [167])
+            (const_int 0 [0]))) read_procpar.cpp:321 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 926 925 927 72 (set (reg:QI 0 ax [orig:168 D.5602 ] [168])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:321 592 {*setcc_qi}
+     (nil))
+(insn 927 926 928 72 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:168 D.5602 ] [168])
+            (const_int 0 [0]))) read_procpar.cpp:321 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 928 927 929 72 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 935)
+            (pc))) read_procpar.cpp:321 596 {*jcc_1}
+     (nil)
+ -> 935)
+(note 929 928 930 73 [bb 73] NOTE_INSN_BASIC_BLOCK)
+(insn 930 929 931 73 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:322 89 {*movdi_internal}
+     (nil))
+(call_insn 931 930 932 73 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:322 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 932 931 933 73 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:323 90 {*movsi_internal}
+     (nil))
+(call_insn 933 932 934 73 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:323 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 934 933 935)
+(code_label 935 934 936 74 38 "" [1 uses])
+(note 936 935 1069 74 [bb 74] NOTE_INSN_BASIC_BLOCK)
+(insn 1069 936 938 74 (set (reg:DI 0 ax [330])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:327 214 {*leadi}
+     (nil))
+(insn 938 1069 939 74 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:327 89 {*movdi_internal}
+     (nil))
+(insn 939 938 940 74 (set (reg:DI 5 di)
+        (reg:DI 0 ax [330])) read_procpar.cpp:327 89 {*movdi_internal}
+     (nil))
+(call_insn 940 939 942 74 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:327 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 942 940 943 74 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [331])) read_procpar.cpp:327 89 {*movdi_internal}
+     (nil))
+(insn 943 942 944 74 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x2b04d640a8e8 *.LC5>)) read_procpar.cpp:328 89 {*movdi_internal}
+     (nil))
+(insn 944 943 945 74 (set (reg:DI 5 di)
+        (const_int 0 [0])) read_procpar.cpp:328 89 {*movdi_internal}
+     (nil))
+(call_insn 945 944 947 74 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strtok") [flags 0x41]  <function_decl 0x2b04d62faa00 strtok>) [0 strtok S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:328 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 947 945 948 74 (set (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])
+        (reg:DI 0 ax [332])) read_procpar.cpp:328 89 {*movdi_internal}
+     (nil))
+(insn 948 947 949 74 (set (reg:DI 0 ax [333])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50024 [0xffffffffffff3c98])) [0 token+0 S8 A64])) read_procpar.cpp:329 89 {*movdi_internal}
+     (nil))
+(insn 949 948 950 74 (set (reg:DI 4 si)
+        (const_int 0 [0])) read_procpar.cpp:329 89 {*movdi_internal}
+     (nil))
+(insn 950 949 951 74 (set (reg:DI 5 di)
+        (reg:DI 0 ax [333])) read_procpar.cpp:329 89 {*movdi_internal}
+     (nil))
+(call_insn 951 950 953 74 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("strtod") [flags 0x41]  <function_decl 0x2b04d634d000 strtod>) [0 strtod S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:329 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 953 951 1067 74 (set (reg:SF 26 xmm5 [orig:170 D.5604 ] [170])
+        (float_truncate:SF (reg:DF 21 xmm0 [orig:169 D.5603 ] [169]))) read_procpar.cpp:329 157 {*truncdfsf_fast_sse}
+     (nil))
+(insn 1067 953 954 74 (set (reg:SF 0 ax [orig:170 D.5604 ] [170])
+        (reg:SF 26 xmm5 [orig:170 D.5604 ] [170])) read_procpar.cpp:329 129 {*movsf_internal}
+     (nil))
+(insn 954 1067 955 74 (set (reg/f:DI 1 dx [334])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50056 [0xffffffffffff3c78])) [0 procpar_info+0 S8 A64])) read_procpar.cpp:329 89 {*movdi_internal}
+     (nil))
+(insn 955 954 956 74 (set (mem/j:SF (plus:DI (reg/f:DI 1 dx [334])
+                (const_int 368 [0x170])) [0 procpar_info_23(D)->vtheta+0 S4 A64])
+        (reg:SF 0 ax [orig:170 D.5604 ] [170])) read_procpar.cpp:329 129 {*movsf_internal}
+     (nil))
+(code_label 956 955 957 75 7 "" [17 uses])
+(note 957 956 958 75 [bb 75] NOTE_INSN_BASIC_BLOCK)
+(insn 958 957 1068 75 (set (reg:DI 1 dx [335])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:339 89 {*movdi_internal}
+     (nil))
+(insn 1068 958 961 75 (set (reg:DI 0 ax [336])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -50016 [0xffffffffffff3ca0]))) read_procpar.cpp:339 214 {*leadi}
+     (nil))
+(insn 961 1068 962 75 (set (reg:SI 4 si)
+        (const_int 5000 [0x1388])) read_procpar.cpp:339 90 {*movsi_internal}
+     (nil))
+(insn 962 961 963 75 (set (reg:DI 5 di)
+        (reg:DI 0 ax [336])) read_procpar.cpp:339 89 {*movdi_internal}
+     (nil))
+(call_insn 963 962 965 75 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fgets") [flags 0x41]  <function_decl 0x2b04d628bc00 fgets>) [0 fgets S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:339 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 965 963 966 75 (set (reg:DI 0 ax [337])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:341 89 {*movdi_internal}
+     (nil))
+(insn 966 965 967 75 (set (reg:DI 5 di)
+        (reg:DI 0 ax [337])) read_procpar.cpp:341 89 {*movdi_internal}
+     (nil))
+(call_insn 967 966 969 75 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ferror") [flags 0x41]  <function_decl 0x2b04d6292c00 ferror>) [0 ferror S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:341 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 969 967 970 75 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:171 D.5601 ] [171])
+            (const_int 0 [0]))) read_procpar.cpp:341 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 970 969 971 75 (set (reg:QI 0 ax [orig:172 D.5602 ] [172])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:341 592 {*setcc_qi}
+     (nil))
+(insn 971 970 972 75 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:172 D.5602 ] [172])
+            (const_int 0 [0]))) read_procpar.cpp:341 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 972 971 973 75 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 979)
+            (pc))) read_procpar.cpp:341 596 {*jcc_1}
+     (nil)
+ -> 979)
+(note 973 972 974 76 [bb 76] NOTE_INSN_BASIC_BLOCK)
+(insn 974 973 975 76 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x2b04d640a720 *.LC2>)) read_procpar.cpp:342 89 {*movdi_internal}
+     (nil))
+(call_insn 975 974 976 76 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:342 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 976 975 977 76 (set (reg:SI 5 di)
+        (const_int 4 [0x4])) read_procpar.cpp:343 90 {*movsi_internal}
+     (nil))
+(call_insn 977 976 978 76 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x2b04d60e5900 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:343 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(barrier 978 977 979)
+(code_label 979 978 980 77 4 "" [2 uses])
+(note 980 979 981 77 [bb 77] NOTE_INSN_BASIC_BLOCK)
+(insn 981 980 982 77 (set (reg:DI 0 ax [338])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:51 89 {*movdi_internal}
+     (nil))
+(insn 982 981 983 77 (set (reg:DI 5 di)
+        (reg:DI 0 ax [338])) read_procpar.cpp:51 89 {*movdi_internal}
+     (nil))
+(call_insn 983 982 985 77 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("feof") [flags 0x41]  <function_decl 0x2b04d6292b00 feof>) [0 feof S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:51 649 {*call_value}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 985 983 986 77 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:87 D.5601 ] [87])
+            (const_int 0 [0]))) read_procpar.cpp:51 3 {*cmpsi_ccno_1}
+     (nil))
+(insn 986 985 988 77 (set (reg:QI 0 ax [orig:88 D.5602 ] [88])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) read_procpar.cpp:51 592 {*setcc_qi}
+     (nil))
+(insn 988 986 989 77 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:88 D.5602 ] [88])
+            (const_int 0 [0]))) read_procpar.cpp:51 1 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 989 988 990 77 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 987)
+            (pc))) read_procpar.cpp:51 596 {*jcc_1}
+     (nil)
+ -> 987)
+(note 990 989 991 78 [bb 78] NOTE_INSN_BASIC_BLOCK)
+(insn 991 990 992 78 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])
+            (const_int 0 [0]))) read_procpar.cpp:354 4 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 992 991 993 78 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 1002)
+            (pc))) read_procpar.cpp:354 596 {*jcc_1}
+     (nil)
+ -> 1002)
+(note 993 992 994 79 [bb 79] NOTE_INSN_BASIC_BLOCK)
+(insn 994 993 995 79 (set (reg:DI 5 di)
+        (symbol_ref/f:DI ("*.LC24") [flags 0x2]  <var_decl 0x2b04d64254c0 *.LC24>)) read_procpar.cpp:356 89 {*movdi_internal}
+     (nil))
+(call_insn 995 994 996 79 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("puts") [flags 0x41]  <function_decl 0x2b04d60ca900 __builtin_puts>) [0 __builtin_puts S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:356 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 996 995 997 79 (set (reg/f:DI 0 ax [orig:173 D.5607 ] [173])
+        (mem/f/c:DI (symbol_ref:DI ("stdout") [flags 0x40]  <var_decl 0x2b04d627c098 stdout>) [0 stdout+0 S8 A64])) read_procpar.cpp:357 89 {*movdi_internal}
+     (nil))
+(insn 997 996 998 79 (set (reg:DI 5 di)
+        (reg/f:DI 0 ax [orig:173 D.5607 ] [173])) read_procpar.cpp:357 89 {*movdi_internal}
+     (nil))
+(call_insn 998 997 999 79 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fflush") [flags 0x41]  <function_decl 0x2b04d627ba00 fflush>) [0 fflush S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:357 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 999 998 1000 79 (set (reg:DI 0 ax [339])
+        (mem/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -50032 [0xffffffffffff3c90])) [0 in_file+0 S8 A64])) read_procpar.cpp:358 89 {*movdi_internal}
+     (nil))
+(insn 1000 999 1001 79 (set (reg:DI 5 di)
+        (reg:DI 0 ax [339])) read_procpar.cpp:358 89 {*movdi_internal}
+     (nil))
+(call_insn 1001 1000 1002 79 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fclose") [flags 0x41]  <function_decl 0x2b04d627b900 fclose>) [0 fclose S1 A8])
+            (const_int 0 [0]))) read_procpar.cpp:358 649 {*call_value}
+     (nil)
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(code_label 1002 1001 1003 80 40 "" [1 uses])
+(note 1003 1002 1004 80 [bb 80] NOTE_INSN_BASIC_BLOCK)
+(insn 1004 1003 1012 80 (set (reg:SI 0 ax [orig:174 D.5601 ] [174])
+        (const_int 2 [0x2])) read_procpar.cpp:364 90 {*movsi_internal}
+     (nil))
+(insn 1012 1004 1013 80 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 6 bp)
+                                (const_int -8 [0xfffffffffffffff8])) [0 D.5608+0 S8 A64])
+                        (const_int 40 [0x28])
+                    ] UNSPEC_SP_TLS_TEST))
+            (clobber (reg:DI 2 cx [342]))
+        ]) read_procpar.cpp:365 968 {stack_tls_protect_test_di}
+     (nil))
+(jump_insn 1013 1012 1019 80 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 1016)
+            (pc))) read_procpar.cpp:365 596 {*jcc_1}
+     (nil)
+ -> 1016)
+(note 1019 1013 1014 81 [bb 81] NOTE_INSN_BASIC_BLOCK)
+(call_insn 1014 1019 1015 81 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x2b04d63c1800 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) read_procpar.cpp:365 642 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (nil))
+(barrier 1015 1014 1016)
+(code_label 1016 1015 1020 82 42 "" [1 uses])
+(note 1020 1016 1017 82 [bb 82] NOTE_INSN_BASIC_BLOCK)
+(insn 1017 1020 1112 82 (use (reg/i:SI 0 ax)) read_procpar.cpp:365 -1
+     (nil))
+(note 1112 1017 1113 82 NOTE_INSN_EPILOGUE_BEG)
+(insn/f 1113 1112 1114 82 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 6 bp)
+                    (const_int 8 [0x8])))
+            (set (reg/f:DI 6 bp)
+                (mem:DI (reg/f:DI 6 bp) [0  S8 A8]))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) read_procpar.cpp:365 -1
+     (expr_list:REG_CFA_DEF_CFA (plus:DI (reg/f:DI 7 sp)
+            (const_int 8 [0x8]))
+        (nil)))
+(jump_insn 1114 1113 1115 82 (simple_return) read_procpar.cpp:365 -1
+     (nil)
+ -> simple_return)
+(barrier 1115 1114 1055)
+(note 1055 1115 0 NOTE_INSN_DELETED)

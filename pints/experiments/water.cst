@@ -1,0 +1,23 @@
+****_Constraints_File_Begins_****  <--- Do not remove this line
+[Parameters]		
+number_peaks		1    
+tolerence		0.001	
+minimum_iterations	5	
+maximum_iterations	500	
+range			1	1024
+fwhm_exp_weighting	0	
+shift_units		ppm	
+output_shift_unit	ppm		
+alambda_inc		1000	
+alambda_dec		0.5	
+noise_equal
+
+[Variables]
+
+[Peaks]			
+
+;Peak#	Shift		Width		Amp			Phase			DT	WG
+;Water
+1	{S}	{WL}	{Water} >0	{PH}	{DT}	 @{WL}
+
+****_Constraints_File_Ends_****  <--- Do not remove

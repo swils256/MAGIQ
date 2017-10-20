@@ -1,0 +1,28 @@
+.compile List__define
+.compile Stack__define
+.run start.pro
+.run FitmanGui.pro
+.run FitmanMouseControls.pro
+.run FitmanFileOptions.pro
+.run FitmanDomainOptions.pro
+.run Display.pro
+.run FitmanComponentsOptions.pro
+.run FitmanViewOptions.pro
+.run FitmanConfigOptions.pro
+.run FitmanScalingOptions.pro
+.run FitmanUnitsOptions.pro
+.run FitmanDisplayOptions.pro
+.run FitmanGroupOptions.pro
+.run FitmanToolsOptions.pro
+.run FitmanStatisticOptions.pro
+.run ArithmeticCalculations.pro
+.run FitmanHelp.pro
+.run MakeGuess.pro
+.run plothist.pro
+.run FitmanSimulationOptions.pro
+.run disTest.pro
+.compile CSpecPlot__define
+.run FitmanMultiSpecViewer.pro
+fitman
+exit
+

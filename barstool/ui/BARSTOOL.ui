@@ -1,0 +1,894 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mainWindow</class>
+ <widget class="QWidget" name="mainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1600</width>
+    <height>900</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>BARSTOOL</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="2" column="0">
+    <widget class="QTabWidget" name="mainTabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="ampTab">
+      <attribute name="title">
+       <string>Amplitudes and CRLBs</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QGroupBox" name="loadOutputFilesGroupBox">
+         <property name="title">
+          <string>Load fitMAN Outputs</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QPushButton" name="setWorkingDirectoryButton">
+            <property name="text">
+             <string>Set Working Directory</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="loadOutputsButton">
+            <property name="text">
+             <string>Load Output Files</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Study IDs (one per line)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPlainTextEdit" name="studyIDsTextEdit"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="confirmIDsButton">
+            <property name="text">
+             <string>Confirm Study IDs</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="saveFileNameGroupBox">
+            <property name="title">
+             <string>Save File Name</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="0" column="0">
+              <widget class="QLineEdit" name="saveFileLineEdit"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="QPushButton" name="confirmSaveFileButton">
+               <property name="text">
+                <string>Confirm Save File Name</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="calculateButton">
+         <property name="text">
+          <string>Calculate Amplitudes and CRLBs</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="brainExtTab">
+      <attribute name="title">
+       <string>Brain Extraction</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QGroupBox" name="prepareImagesGroupBox_Bet">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Prepare Images</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QPushButton" name="selectBetImagesButton">
+            <property name="text">
+             <string>Select Image Files</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="reorientBetImagesButton">
+            <property name="text">
+             <string>Reorient Images (fslreorient2std)</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="isoGroupBox">
+         <property name="title">
+          <string>Identify Brain Isocenter</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="1" column="5">
+           <widget class="QLabel" name="isoZLabel">
+            <property name="text">
+             <string>z:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="7">
+           <widget class="QPushButton" name="identifyIsoButton">
+            <property name="text">
+             <string>Launch FSLView</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="6">
+           <widget class="QLineEdit" name="isoZLineEdit"/>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLabel" name="isoYLabel">
+            <property name="text">
+             <string>y:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLineEdit" name="isoXLineEdit"/>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="isoXLabel">
+            <property name="text">
+             <string>x:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QLineEdit" name="isoYLineEdit"/>
+          </item>
+          <item row="2" column="0" colspan="7">
+           <widget class="QPushButton" name="confirmIsoButton">
+            <property name="text">
+             <string>Confirm Brain Isocenter</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="fthreshGroupBox">
+         <property name="title">
+          <string>Identify Intensity Threshold</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="fthreshListLabel">
+            <property name="text">
+             <string>Thresholds to Test:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QPushButton" name="confirmFthreshListButton">
+            <property name="text">
+             <string>Confirm Test Thresholds</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="QLineEdit" name="fthreshListLineEdit">
+            <property name="text">
+             <string>0.4, 0.45, 0.5, 0.55, 0.6, 0.65</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="4">
+           <widget class="QPushButton" name="checkFthreshButton">
+            <property name="text">
+             <string>Check Test Thresholds</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="selectFthreshLabel">
+            <property name="text">
+             <string>Select Best Threshold:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="QComboBox" name="selectFthreshComboBox"/>
+          </item>
+          <item row="3" column="3">
+           <widget class="QPushButton" name="selectFthreshButton">
+            <property name="text">
+             <string>Confirm Intensity Threshold</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="4">
+           <widget class="QPushButton" name="runBetTestButton">
+            <property name="text">
+             <string>Run Test FSL BET Using Above Thresholds</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="runBetButton">
+         <property name="text">
+          <string>Run Brain Extraction (FSL BET)</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="brainSegTab">
+      <attribute name="title">
+       <string>Brain Segmentation</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <widget class="QGroupBox" name="prepareImagesGroupBox_Fast">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Prepare Images</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <widget class="QPushButton" name="selectFastImagesButton">
+            <property name="text">
+             <string>Select Brain Extracted Image Files</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="imageTypeGroupBox">
+         <property name="title">
+          <string>Select Image Type</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="1" column="1" colspan="3">
+           <widget class="QPushButton" name="confirmImageTypeButton">
+            <property name="text">
+             <string>Confirm Image Type</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QRadioButton" name="T3RadioButton">
+            <property name="text">
+             <string>Proton Density</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QRadioButton" name="T1RadioButton">
+            <property name="text">
+             <string>T&amp;1 Weighted</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QRadioButton" name="T2RadioButton">
+            <property name="text">
+             <string>T&amp;2 Weighted</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="fastSettingsGroupBox">
+         <property name="title">
+          <string>FSL FAST Settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="1" column="0">
+           <widget class="QLabel" name="fast_iLabel">
+            <property name="text">
+             <string>Number of Iterations During Bias-Filed Removal: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="fast_hLabel">
+            <property name="text">
+             <string>Segmentation Spatial Smoothness: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="3">
+           <widget class="QLineEdit" name="fast_hLineEdit">
+            <property name="text">
+             <string>0.1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="3">
+           <widget class="QLineEdit" name="fast_iLineEdit">
+            <property name="text">
+             <string>4</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="fast_lLabel">
+            <property name="text">
+             <string>Bias Field Smoothing Extent (FWHM) [mm]: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="3">
+           <widget class="QLineEdit" name="fast_lLineEdit">
+            <property name="text">
+             <string>20</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="4">
+           <widget class="QPushButton" name="confirmFastSettingsButton">
+            <property name="text">
+             <string>Confirm FAST Settings</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="runFastButton">
+         <property name="text">
+          <string>Run Partial Volume Segmentation (FSL FAST)</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="setParamsTab">
+      <attribute name="title">
+       <string>Set Parameters</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_11">
+       <item row="5" column="0">
+        <widget class="QLineEdit" name="metabParamsFileLineEdit"/>
+       </item>
+       <item row="5" column="1">
+        <widget class="QPushButton" name="loadMetabParamsButton">
+         <property name="text">
+          <string>Load</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QPushButton" name="saveMetabParamsButton">
+         <property name="text">
+          <string>Save</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Water Reference</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_9">
+          <item row="2" column="6">
+           <widget class="QLabel" name="T1CSFLabel_water">
+            <property name="text">
+             <string>T1 (CSF) [sec]: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5">
+           <widget class="QLineEdit" name="protonsLineEdit_water">
+            <property name="text">
+             <string>2</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="7">
+           <widget class="QLineEdit" name="T2CSFLineEdit_water"/>
+          </item>
+          <item row="3" column="6">
+           <widget class="QLabel" name="T2CSFLabel_water">
+            <property name="text">
+             <string>T2 (CSF) [ms]: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="5">
+           <widget class="QLineEdit" name="T2WMLineEdit_water"/>
+          </item>
+          <item row="3" column="4">
+           <widget class="QLabel" name="T2WMLabel_water">
+            <property name="text">
+             <string>T2 (WM) [ms]: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="7">
+           <widget class="QLineEdit" name="T1CSFLineEdit_water"/>
+          </item>
+          <item row="1" column="4">
+           <widget class="QLabel" name="protonsLabel_water">
+            <property name="text">
+             <string>Protons: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QLineEdit" name="T1GMLineEdit_water"/>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLabel" name="T1GMLabel_water">
+            <property name="text">
+             <string>T1 (GM) [sec]: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="4">
+           <widget class="QLabel" name="T1WMLabel_water">
+            <property name="text">
+             <string>T1 (WM) [sec]: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="5">
+           <widget class="QLineEdit" name="T1WMLineEdit_water"/>
+          </item>
+          <item row="3" column="2">
+           <widget class="QLabel" name="T2GMLabel_water">
+            <property name="text">
+             <string>T2 (GM) [ms]: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QLineEdit" name="T2GMLineEdit_water"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="3">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>Experimental Parameters</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="TRLineEdit"/>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLabel" name="waterConcGMLabel">
+            <property name="text">
+             <string>GM Scaling Factor for Water:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="TRLabel">
+            <property name="text">
+             <string>TR [ms]: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QRadioButton" name="tissueConcButton">
+            <property name="text">
+             <string>Ca&amp;lculate Tissue Concentration</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="4">
+           <widget class="QLineEdit" name="waterConcWMLineEdit">
+            <property name="text">
+             <string>0.73</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QLineEdit" name="waterConcGMLineEdit">
+            <property name="text">
+             <string>0.82</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="TELabel">
+            <property name="text">
+             <string>TE [ms]:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QRadioButton" name="voxelConcButton">
+            <property name="text">
+             <string>Calculate &amp;Voxel Concentration</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="waterConcLabel">
+            <property name="text">
+             <string>Water Concentration [M]: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QLineEdit" name="waterConcLineEdit">
+            <property name="text">
+             <string>55.14</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="TELineEdit"/>
+          </item>
+          <item row="2" column="3">
+           <widget class="QLabel" name="waterConcWMLabel">
+            <property name="text">
+             <string>WM Scaling Factor for Water:</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="3">
+        <widget class="QPushButton" name="confirmParamsButton">
+         <property name="text">
+          <string>Confirm Quantification Parameters</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="3">
+        <widget class="QGroupBox" name="metabParamsGroupBox">
+         <property name="title">
+          <string>Metabolite Properties</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="1" column="0" colspan="3">
+           <widget class="QTableWidget" name="metabParamsTableWidget">
+            <column>
+             <property name="text">
+              <string>Metabolite</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Protons</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>T1 (GM) [sec]</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>T2 (GM) [ms]</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>T1 (WM) [sec]</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>T2 (GM) [ms]</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>First Peak</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Last Peak</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="metabQuantTab">
+      <attribute name="title">
+       <string>Quantify Metabolites</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_10">
+       <item>
+        <widget class="QGroupBox" name="loadOutputFilesGroupBox_quant">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Load fitMAN Output</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <item>
+           <widget class="QLabel" name="loadOutputFilesInstructions_quant">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>BARSTOOL auto-selects the spectroscopy, image, and partial volume segmentation files. Ensure all files are &amp;located
+in the same folder and follow the expected naming convention.</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="loadOutputsButton_quant">
+            <property name="text">
+             <string>Load Suppressed Output Files</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="saveFileNameGroupBox_quant">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>Save File Name</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_10">
+             <item row="0" column="0">
+              <widget class="QLineEdit" name="saveFileLineEdit_quant"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="QPushButton" name="confirmSaveFileButton_quant">
+               <property name="text">
+                <string>Confirm Save File Name</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="scannerTypeGroupBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>Scanner Type</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QRadioButton" name="siemensScanner">
+               <property name="text">
+                <string>Siemens</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="varianScanner">
+               <property name="text">
+                <string>&amp;Varian</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="runQuantButton">
+         <property name="text">
+          <string>Run Quantification</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="plotQuantGroupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Plot of Last Quantification</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_11">
+          <item>
+           <layout class="QVBoxLayout" name="plotQuant_mplvl"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="aboutTab">
+      <attribute name="title">
+       <string>About</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <widget class="QTextBrowser" name="aboutText">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-weight:600;&quot;&gt;BARSTOOL v0.4&lt;br /&gt;Brain Metabolite Quantification for FITMAN&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;Dickson Wong&lt;br /&gt;MD/PhD Candidate&lt;br /&gt;dwong263@uwo.ca&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;With code contributions from:&lt;br /&gt;Todd Stevens and John Adams (jadam33@uwo.ca)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-style:italic;&quot;&gt;Last modified: June 11, 2017&lt;/span&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-weight:600; text-decoration: underline;&quot;&gt;About BARSTOOL&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A program to perform metabolite quantification for brain &lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; vertical-align:super;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;H-MRS. It allows you to perform brain extraction, partial volume segmentation, and calculate absolute metabolite concentrations. The program uses FSL for brain extraction and partial volume segmentation, and takes as input fitMAN *.output files.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-weight:600; text-decoration: underline;&quot;&gt;Dependencies&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;1. PyQt5&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;2. scipy 0.17.1&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;3. numpy 1.10.4&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;4. pyfftw 0.10.1&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;5. matplotlib 1.5.1&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;6. Python 2.7.10&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;7. FSL 5.0.9&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QGroupBox" name="consoleGroupBox">
+     <property name="title">
+      <string>Console Output</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QTextBrowser" name="consoleOutputText">
+        <property name="font">
+         <font>
+          <family>Monospace</family>
+         </font>
+        </property>
+        <property name="lineWrapMode">
+         <enum>QTextEdit::NoWrap</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QLabel" name="titleLabel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Barstool v4.0&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QLabel" name="authorLabel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Dickson Wong, Todd Stevens, John Adams&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Robarts Research Institute&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>mainTabWidget</tabstop>
+  <tabstop>setWorkingDirectoryButton</tabstop>
+  <tabstop>loadOutputsButton</tabstop>
+  <tabstop>studyIDsTextEdit</tabstop>
+  <tabstop>confirmIDsButton</tabstop>
+  <tabstop>saveFileLineEdit</tabstop>
+  <tabstop>confirmSaveFileButton</tabstop>
+  <tabstop>calculateButton</tabstop>
+  <tabstop>selectBetImagesButton</tabstop>
+  <tabstop>reorientBetImagesButton</tabstop>
+  <tabstop>identifyIsoButton</tabstop>
+  <tabstop>isoXLineEdit</tabstop>
+  <tabstop>isoYLineEdit</tabstop>
+  <tabstop>isoZLineEdit</tabstop>
+  <tabstop>confirmIsoButton</tabstop>
+  <tabstop>fthreshListLineEdit</tabstop>
+  <tabstop>confirmFthreshListButton</tabstop>
+  <tabstop>checkFthreshButton</tabstop>
+  <tabstop>selectFthreshComboBox</tabstop>
+  <tabstop>selectFthreshButton</tabstop>
+  <tabstop>runBetButton</tabstop>
+  <tabstop>consoleOutputText</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
