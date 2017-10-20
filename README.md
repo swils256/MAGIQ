@@ -47,7 +47,10 @@ MAGIQ requires the following dependencies to run:
 
 ## Usage
 After downloading MAGIQ, launch the program using the command:
-`python main.py`
+
+```
+python main.py
+```
 
 ## Credits
 **PINTS**: Dickson Wong (dwong263@uwo.ca)
