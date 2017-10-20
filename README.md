@@ -18,7 +18,7 @@ FITMAN is a program used to post-process and fit MR spectra collected in-vivo. W
 * fit spectra (including fitting of water suppressed and unsuppressed data)
 * generate SPICeS and BARSTOOL compatible `*.out` files
 
-### SPICeS
+### SPICeS (Spectroscopy Interactive Component Selector)
 SPICeS is a program used to visualize fitted spectral models. with SPICeS, you can:
 * visualize the raw spectra data (`*.dat` files) and fitted models (`*.out` files)
 * define groups of metabolites to visualize together
