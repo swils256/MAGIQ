@@ -53,8 +53,11 @@ After downloading MAGIQ, launch the program using the command:
 
 ## Credits
 **PINTS**: Dickson Wong (dwong263@uwo.ca)
+
 **FITMAN**: Robert Bartha (rbartha@robarts.ca), John Potwarka, and Dick Drost
+
 **SPICeS**: Dickson Wong (dwong263@uwo.ca)
+
 **BARSTOOL**: Dickson Wong (dwong263@uwo.ca), Todd Stevens, John Adams (jadam33@uwo.ca)
 
 ## License
