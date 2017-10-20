@@ -1,8 +1,6 @@
 # MAGIQ Software Suite
 
-MAGIQ stands for MRS Analysis, Generation, and In-Vivo Quantification. This software software is used by the Bartha Lab to generate simulated prior-knowledge templates, post-process spectra, to fit spectra, and to quantify metabolite concentrations.
-
-MAGIQ incorporates previously used tools such as PINTS, FITMAN, and BARSTOOL. All future development of these tools will be under the MAGIQ umbrella.
+MAGIQ stands for MRS Analysis, Generation, and In-Vivo Quantification. This software software is used by the Bartha Lab to generate simulated prior-knowledge templates, post-process spectra, to fit spectra, and to quantify metabolite concentrations. MAGIQ incorporates previously used tools such as PINTS, FITMAN, and BARSTOOL. All future development of these tools will be under the MAGIQ umbrella.
 
 ## Included Tools
 ### PINTS (Prior Information Templates)
@@ -53,8 +51,11 @@ After downloading MAGIQ, launch the program using the command:
 
 ## Credits
 **PINTS**: Dickson Wong (dwong263@uwo.ca)
+
 **FITMAN**: Robert Bartha (rbartha@robarts.ca), John Potwarka, and Dick Drost
+
 **SPICeS**: Dickson Wong (dwong263@uwo.ca)
+
 **BARSTOOL**: Dickson Wong (dwong263@uwo.ca), Todd Stevens, John Adams (jadam33@uwo.ca)
 
 ## License
