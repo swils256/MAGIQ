@@ -64,10 +64,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.datFileConfirmButton.clicked.connect(self.loadDatFile)
 		self.datFileConfirmButton.setEnabled(False)
 
-		# self.loadGroupsButton.clicked.connect(self.loadVisGroupFile)
+		self.loadGroupsButton.clicked.connect(self.loadVisGroupFile)
 		self.loadGroupsButton.setEnabled(False)
 
-		# self.saveGroupsButton.clicked.connect(self.saveVisGroupFile)
+		self.saveGroupsButton.clicked.connect(self.saveVisGroupFile)
 		self.saveGroupsButton.setEnabled(False)
 
 		self.plotButton.clicked.connect(self.plot)
@@ -154,6 +154,37 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		except Exception as e:
 			self.datFileInfoLabel.setText("ERROR: " + str(e) + "\n>> Please try again.")
 
+	def loadVisGroupFile(self):
+		try:
+			vis_filename = str(QtWidgets.QFileDialog.getOpenFileName(self, 'Open Visualization Information File', os.getcwd() + '/spices/vis', 'Visualization information files (*.vis)')[0])
+
+			if vis_filename != '':
+				print 'Loading vis groups from: ' + vis_filename
+				vis_file = open(vis_filename, 'r')
+
+				self.groupsTextEdit.clear()
+
+				for line in vis_file:
+					self.groupsTextEdit.appendPlainText(line.replace('\n',''))
+
+				vis_file.close()
+
+		except Exception as e:
+			print e
+
+	def saveVisGroupFile(self):
+		try:
+			vis_filename = str(QtWidgets.QFileDialog.getSaveFileName(self, 'Save Visualization Information File', os.getcwd() + '/spices/vis', 'Visualization information files (*.vis)')[0])
+
+			if vis_filename != '':
+				print 'Writing vis groups to: ' + vis_filename
+				vis_file = open(vis_filename, 'w')
+				vis_file.write(self.groupsTextEdit.self.shiftsTextEdit.toPlainText())
+				vis_file.close()
+
+		except Exception as e:
+			print e
+
 	# ---- Methods to Calculate and Plot Spectra ---- #
 	def addmpl(self, canvas_index, fig, vertical_layout):
 		self.canvas[canvas_index] = FigureCanvas(fig)
@@ -196,15 +227,15 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			fs = 1/dwell_time
 			t = sp.arange(0, acq_time, dwell_time)
 
-			tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),    
-						 (44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),    
-						 (148, 103, 189), (195, 176, 213), (140, 86, 75), (196, 156, 148),    
-						 (227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),    
-						 (188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
+			tableau10 = [(31, 119, 180), (255, 127, 14),    
+						 (44, 160, 44), (214, 39, 40),    
+						 (148, 103, 189), (140, 86, 75),    
+						 (227, 119, 194), (127, 127, 127),    
+						 (188, 189, 34), (23, 190, 207)]
 
-			for i in range(len(tableau20)):    
-				r, g, b = tableau20[i]    
-				tableau20[i] = (r / 255., g / 255., b / 255.)
+			for i in range(len(tableau10)):    
+				r, g, b = tableau10[i]    
+				tableau10[i] = (r / 255., g / 255., b / 255.)
 
 			# Calculate Summed Spectra
 			fit_spec_sum = []
@@ -246,12 +277,11 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 							labelbottom="on", left="off", right="off", labelleft="off")
 
 			for i, spec in enumerate(fit_spec):
-				plt.plot(np.array(-fit_f)+sfactor, np.real(spec)+i*VSHIFT*np.amax(np.real(fit_spec_sum)), color=tableau20[(i+1)%np.size(tableau20)], lw=1.5)
-				ax.text(5, i*VSHIFT*np.amax(np.real(fit_spec_sum)), fit_spec_names[i])
+				plt.plot(np.array(-fit_f)+sfactor, np.real(fit_spec[-(i+1)])-i*VSHIFT*np.amax(np.real(fit_spec_sum)), color=tableau10[-((i)%np.size(tableau10, axis=0)+1)], lw=1.5, alpha=0.8)
+				ax.text(5, -i*VSHIFT*np.amax(np.real(fit_spec_sum)), fit_spec_names[-(i+1)])
 
-			if i == 0: i = 1
-			plt.plot(np.array(-invivo_f)+sfactor+HSHIFT, np.real(invivo_spec)+(i+2)*VSHIFT*np.amax(np.real(invivo_spec)), color=tableau20[0], lw=1.5)
-			plt.plot(np.array(-fit_f)+sfactor, np.real(fit_spec_sum)+(i+2)*VSHIFT*np.amax(np.real(invivo_spec)), color=tableau20[2], lw=1.5, alpha=0.8)
+			plt.plot(np.array(-invivo_f)+sfactor+HSHIFT, np.real(invivo_spec)+1.5*VSHIFT*np.amax(np.real(invivo_spec)), color=tableau10[0], lw=1.5)
+			plt.plot(np.array(-fit_f)+sfactor, np.real(fit_spec_sum)+1.5*VSHIFT*np.amax(np.real(invivo_spec)), color=tableau10[1], lw=1.5, alpha=0.8)
 
 			plt.xlabel('ppm')
 
