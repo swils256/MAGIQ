@@ -7,6 +7,7 @@ import datetime
 import time
 import glob
 import platform
+import copy
 
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import subprocess as subproc
@@ -31,7 +32,7 @@ mpl.use("Qt5Agg")
 from matplotlib.backends.backend_qt5agg import (
 	FigureCanvasQTAgg as FigureCanvas,
 	NavigationToolbar2QT as NavigationToolbar)
-import matplotlib.pyplot as plt; plt.style.use('ggplot')
+import matplotlib.pyplot as plt
 
 # ---- Data Classes ---- #
 from dataclasses import *
@@ -220,6 +221,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			pfactor = sp.deg2rad(float(self.pfactorInput.text()))
 			VSHIFT  = float(self.VSHIFTInput.text())
 			HSHIFT  = float(self.HSHIFTInput.text())
+			FT1     = int(self.ft1Input.text())
+			lb      = float(self.lbInput.text())
 
 			b0 = float(self.b0Input.text())
 			dwell_time = float(self.dwellTimeInput.text())
@@ -240,15 +243,25 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			# Calculate Summed Spectra
 			fit_spec_sum = []
 			for metabolite in self.fit_out.metabolites_list:
-				fit_f, spec = self.fit_out.metabolites[metabolite].getSpec(0, b0, t, 0, 1, pfactor, 0, 0, fs)
+				fid  = self.fit_out.metabolites[metabolite].getFID(0, b0, t, 0, 1, pfactor, 0, lb)
+				fid  = fid[FT1:]
+				spec = fftw.fftshift(fftw.fft(fid))
+
+				n = sp.size(fid)
+				f = sp.arange(+n/2,-n/2,-1)*(fs/n)*(1/b0)
+				fit_f = -f
+
+				# fit_f, spec = self.fit_out.metabolites[metabolite].getSpec(0, b0, t, 0, 1, pfactor, 0, lb, fs)
 				fit_spec_sum.append(spec)
 			fit_spec_sum = np.real(np.sum(np.array(fit_spec_sum), axis=0))
 			fit_spec_sum = fit_spec_sum
 
 
 			# Calculate In-Vivo Spectra
-			self.invivo_dat.signal = self.invivo_dat.signal * sp.exp(1j*pfactor)
-			invivo_f, invivo_spec = self.invivo_dat.getSpec()
+			invivo_dat_temp        = copy.copy(self.invivo_dat);
+			invivo_dat_temp.signal = invivo_dat_temp.signal[0:np.size(t)] * sp.exp(1j*pfactor) * sp.exp(-sp.pi*lb*t)
+			invivo_dat_temp.signal = invivo_dat_temp.signal[FT1:]
+			invivo_f, invivo_spec  = invivo_dat_temp.getSpec()
 			invivo_spec = np.real(invivo_spec)
 
 			# Calculate Fitted Spectra
@@ -256,7 +269,14 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			for group in plot_groups:
 				group_spec = []
 				for member in group.members:
-					fit_f, spec = self.fit_out.metabolites[member].getSpec(0, b0, t, 0, 1, pfactor, 0, 0, fs)
+					fid  = self.fit_out.metabolites[member].getFID(0, b0, t, 0, 1, pfactor, 0, lb)
+					fid  = fid[FT1:]
+					spec = fftw.fftshift(fftw.fft(fid))
+
+					n = sp.size(fid)
+					f = sp.arange(+n/2,-n/2,-1)*(fs/n)*(1/b0)
+					fit_f = -f
+					# fit_f, spec = self.fit_out.metabolites[member].getSpec(0, b0, t, 0, 1, pfactor, 0, lb, fs)
 					group_spec.append(spec)
 				group_spec = np.real(np.sum(np.array(group_spec), axis=0))
 				group_spec = group_spec
@@ -280,15 +300,15 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				plt.plot(np.array(-fit_f)+sfactor, np.real(fit_spec[-(i+1)])-i*VSHIFT*np.amax(np.real(fit_spec_sum)), color=tableau10[-((i)%np.size(tableau10, axis=0)+1)], lw=1.5, alpha=0.8)
 				ax.text(5, -i*VSHIFT*np.amax(np.real(fit_spec_sum)), fit_spec_names[-(i+1)])
 
-			plt.plot(np.array(-invivo_f)+sfactor+HSHIFT, np.real(invivo_spec)+1.5*VSHIFT*np.amax(np.real(invivo_spec)), color=tableau10[0], lw=1.5)
+			print np.size(fit_f), np.size(fit_spec_sum), np.size(invivo_spec)
+
+			plt.plot(np.array(-fit_f)+sfactor, (np.real(fit_spec_sum)-np.roll(np.real(invivo_spec)[0:np.size(fit_f)], int(HSHIFT)))+np.amax(np.real(invivo_spec))+3.0*VSHIFT*np.amax(np.real(invivo_spec)), color=tableau10[2], lw=1.5, alpha=0.8)
+			plt.plot(np.array(-fit_f)+sfactor, np.roll(np.real(invivo_spec)[0:np.size(fit_f)], int(HSHIFT))+1.5*VSHIFT*np.amax(np.real(invivo_spec)), color=tableau10[0], lw=1.5)
 			plt.plot(np.array(-fit_f)+sfactor, np.real(fit_spec_sum)+1.5*VSHIFT*np.amax(np.real(invivo_spec)), color=tableau10[1], lw=1.5, alpha=0.8)
 
 			plt.xlabel('ppm')
 
 			self.canvas[0].draw()
-
-			# Reset In-Vivo Spectra
-			self.invivo_dat.signal = self.invivo_dat.signal * sp.exp(-1j*pfactor)
 
 		except Exception as e:
 			self.plotErrorLabel.setText('>> ERROR: ' + str(e) + '\n>> Could not plot. Please try again.')
