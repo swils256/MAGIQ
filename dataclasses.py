@@ -191,7 +191,7 @@ class Metabolite:
 			# ---- MODEL BASED ON FITMAN ---- #
 			c_k = self.area[i] * afactor
 			w_k = -(-self.ppm[i] + sfactor) * ppmtoHz
-			a_k = lb if sp.size(self.width_L) == 0 else self.width_L[i]
+			a_k = lb if sp.size(self.width_L) == 0 else self.width_L[i] + lb
 			b_k = 0 if sp.size(self.width_G) == 0 else self.width_G[i]
 			phi_k = sp.deg2rad(self.phase[i]) + pfactor	# radians
 			t_0 = dfactor if sp.size(self.delay) == 0 else self.delay[i]
@@ -279,7 +279,7 @@ class Macromolecule:
 		return FID * sp.exp(-sp.pi*lb*t)
 
 	def getSpec(self, TE, b0, t, sfactor, afactor, pfactor, dfactor, lb, fs):
-		n = sp.size(self.getFID(b0, t, sfactor, afactor, pfactor, lb))
+		n = sp.size(self.getFID(TE, b0, t, sfactor, afactor, pfactor, lb))
 		f = sp.arange(+n/2,-n/2,-1)*(fs/n)*(1/b0)
 
 		return (-f, fftw.fftshift(fftw.fft(self.getFID(TE, b0, t, sfactor, afactor, pfactor, dfactor, lb))))
