@@ -5,15 +5,15 @@ shift_units		ppm
 
 [Variables]
 sfactor 4.650000
-afactor 1.000000
-dfactor -0.000498
+afactor 0.250000
+dfactor -0.000598
 wfactor 15.000000
 pfactor 0.000000
 
 [Peaks]
 ;PEAK#	SHIFT	LORENTZIAN WIDTH	AMPLITUDE	PHASE	DELAY	GAUSSIAN WIDTH
 ;naa_acetyl
-1	-2.008000+sfactor	0+wfactor	1.791688*afactor	0.680371+pfactor 	 0+dfactor	0	
+1	-2.008000+sfactor	0+wfactor	1.791688*afactor	0.680371+-0.1+pfactor 	 0+dfactor	0	
 ;naa_aspartate
 2	0	0+wfactor	0.281416*afactor	0 	 0	0	
 3	0	0+wfactor	0	0 	 0	0	
@@ -77,7 +77,7 @@ pfactor 0.000000
 ;creatine_X
 55	0	0+wfactor	0.583947*afactor	0 	 0	0	
 ;choline_N(CH3)3_a
-56	-3.183082+sfactor	0+wfactor	0.219426*afactor	-0.097176+pfactor 	 0+dfactor	0	
+56	-3.183082+-0.03+sfactor	0+wfactor	0.219426*afactor	-0.097176+pfactor 	 0+dfactor	0	
 57	0	0+wfactor	0	0 	 0	0	
 58	0	0+wfactor	0	0 	 0	0	
 59	0	0+wfactor	0	0 	 0	0	

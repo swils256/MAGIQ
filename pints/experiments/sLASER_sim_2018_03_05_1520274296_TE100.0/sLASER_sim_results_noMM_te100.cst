@@ -13,6 +13,7 @@ alambda_dec		0.5
 noise_equal
 
 [Variables]
+crs	-0.01
 
 [Peaks]
 ;PEAK#	SHIFT	LORENTZIAN WIDTH	AMPLITUDE	PHASE	DELAY	GAUSSIAN WIDTH
@@ -79,7 +80,7 @@ noise_equal
 ;creatine_N(CH3)
 54	{StCr}	{LW} >0.000000 <50.000000	{creatine_0} >0.000000	{PHCr}	{DT}	@{WL}	
 ;creatine_X
-55	{StCr}-0.886000	{LW} >0.000000 <50.000000	{creatine_1} >0.000000	{PHCr}-0.101853	{DT}	@{WL}	
+55	{StCr}-0.886000+crs	{LW} >0.000000 <50.000000	{creatine_1} >0.000000	{PHCr}-0.101853	{DT}	@{WL}	
 ;choline_N(CH3)3_a
 56	{StCho}	{LW} >0.000000 <50.000000	{choline_0} >0.000000	{PHCho}	{DT}	@{WL}	
 57	{StCho}-0.001918	{LW} >0.000000 <50.000000	{choline_0}*0.109835 >0.000000	{PHCho}+2.997966	{DT}	@{WL}	
