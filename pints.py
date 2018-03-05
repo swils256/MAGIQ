@@ -268,6 +268,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				self.sim_experiment.b0 = 297.2
 			elif self.T3Button.isChecked():
 				self.sim_experiment.b0 = 123.3
+			elif self.T9Button.isChecked():
+				self.sim_experiment.b0 = 400.2
 
 			self.sim_experiment.acq_time = float(self.acqLengthInput_sim.text())
 			self.sim_experiment.dwell_time = float(self.dwellTimeInput_sim.text())
@@ -394,7 +396,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			outf, outa, outp = self.binning_code(mx, self.sim_experiment.b0, spin_system, self.sim_experiment.obs_iso, self.sim_experiment.tolppm, self.sim_experiment.tolpha, self.sim_experiment.ppmlo, self.sim_experiment.ppmhi, self.sim_experiment.RF_OFFSET)
 
 			metab_calib180 = self.apply_metab_properties('naa_acetyl', A_180, outf, outa, outp, insysfile)
-			lb = 15 if self.sim_experiment.b0 == 297.2 else 6
+			lb = 15 if (self.sim_experiment.b0 == 297.2 or self.sim_experiment.b0 == 400.2) else 6
 			f, spectra = metab_calib180.getSpec(TE, self.sim_experiment.b0, self.sim_experiment.getTime(), 0, 1, 0, 0, lb, self.sim_experiment.getFs())
 
 			A180_calibration_data.append(np.real(spectra)[np.argmax(np.abs(spectra))])
@@ -490,7 +492,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			outf, outa, outp = self.binning_code(mx, self.sim_experiment.b0, spin_system, self.sim_experiment.obs_iso, self.sim_experiment.tolppm, self.sim_experiment.tolpha, self.sim_experiment.ppmlo, self.sim_experiment.ppmhi, self.sim_experiment.RF_OFFSET)
 
 			metab_calib90 = self.apply_metab_properties('naa_acetyl', A_90, outf, outa, outp, insysfile)
-			lb = 15 if self.sim_experiment.b0 == 297.2 else 6
+			lb = 15 if (self.sim_experiment.b0 == 297.2 or self.sim_experiment.b0 == 400.2) else 6
 			f, spectra = metab_calib90.getSpec(TE, self.sim_experiment.b0, self.sim_experiment.getTime(), 0, 1, 0, 0, lb, self.sim_experiment.getFs())
 
 			A90_calibration_data.append(np.real(spectra)[np.argmax(np.abs(spectra))])

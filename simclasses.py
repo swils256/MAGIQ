@@ -48,7 +48,13 @@ class MetaboliteSimulation(QtCore.QObject):
 		self.postToConsole.emit('   | Simulating ... ' + self.insysfile)
 
 		metab_name = self.insysfile.replace('.sys','')
-		self.insysfile = 'pints/metabolites/3T_' + self.insysfile if self.sim_experiment.b0 == 123.3 else 'pints/metabolites/7T_' + self.insysfile
+
+		if self.sim_experiment.b0 == 123.3:
+			self.insysfile = 'pints/metabolites/3T_' + self.insysfile
+		elif self.sim_experiment.b0 == 297.2:
+			self.insysfile = 'pints/metabolites/7T_' + self.insysfile
+		else:
+			self.insysfile = 'pints/metabolites/9.4T_' + self.insysfile
 
 		spin_system = pg.spin_system()
 		spin_system.read(self.insysfile)
@@ -255,6 +261,7 @@ class MetaboliteSimulation(QtCore.QObject):
 
 		insysfile = self.insysfile.replace('pints/metabolites/3T_', '')
 		insysfile = self.insysfile.replace('pints/metabolites/7T_', '')
+		insysfile = self.insysfile.replace('pints/metabolites/9.4T_','')
 
 		if insysfile == 'alanine.sys': #
 			metab.A_m = 0.078
