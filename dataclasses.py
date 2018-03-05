@@ -332,16 +332,18 @@ class OutputFile:
 			elif i > 14 and i < int(self.num_peaks) + 15:
 				peak = int(filter(None, line.replace('\r','').replace('\n','').split(' '))[0])
 				output[peak] = filter(None, line.replace('\r','').replace('\n','').split(' '))
+				print filter(None, line.replace('\r','').replace('\n','').split(' '))
 			elif i > 14 and i > int(self.num_peaks) + 17 and i < 2*int(self.num_peaks) + 18:
 				peak = int(filter(None, line.replace('\r','').replace('\n','').replace(';','').split(' '))[0])
 				crlb[peak] = filter(None, line.replace('\r','').replace('\n','').replace(';','').split(' '))
-			elif ";PEAK#" in line or ";Peak #" in line:
+			elif ";PEAK#" in line or ";PEAK #" in line or ";Peak#" in line or ";Peak #" in line:
 				constraints_file_flag = True
 			elif "Constraints_File_Ends" in line:
 				constraints_file_flag = False
 			elif constraints_file_flag == True:
 				if (";" in line) and not("\t" in line):
 					current_metabolite = line.replace(';', '').replace('\r','').replace('\n','')
+					print line.replace(';', '').replace('\r','').replace('\n','')
 					self.metabolites_list.append(current_metabolite)
 					self.metabolites[current_metabolite] = Metabolite()
 					self.metabolites[current_metabolite].name = current_metabolite
@@ -552,3 +554,364 @@ class RDAFile:
 	    spec = sp.fftpack.fftshift(sp.fftpack.fft(fid_data)) 
 	    freq = sp.fftpack.fftshift(sp.fftpack.fftfreq(fid_data.size, time[1] - time[0])) 
 	    return spec, freq
+
+class Procpar:
+	def __init__(self, filename):
+		self.filename = filename
+		self.load_procpar()
+
+	def load_procpar(self):
+
+		f = open(self.filename, 'rb')
+		rawproc = f.read()
+		rawproc1 = rawproc.split("\n")
+		rawproc2 = filter(lambda x : x != '0 ', rawproc1)
+		f.close()
+
+		# Remove exccess characters and data
+		y = 0
+		rawproc3 = rawproc2
+		while (y < len(rawproc2)):
+			ele = rawproc2[y]
+			if ele[0:2] == '1 ':
+				rawproc3[y] = ele[2:]
+				y = y+1
+			else:
+				name = ele.split(' ')
+				rawproc3[y] = name[0]
+				y = y+1
+
+		self.lro     = float(rawproc3[rawproc3.index("lro")+1])
+		self.lpe     = float(rawproc3[rawproc3.index("lpe")+1])
+		self.lpe2    = float(rawproc3[rawproc3.index("lpe2")+1])
+		# self.fovunit = float(rawproc3[rawproc3.index("fovunit")+1]) 
+
+		self.pro  = float(rawproc3[rawproc3.index("pro")+1])
+		self.ppe  = float(rawproc3[rawproc3.index("ppe")+1])
+		self.ppe2 = float(rawproc3[rawproc3.index("ppe2")+1])
+		self.pss  = float(rawproc3[rawproc3.index("pss")+1])
+		self.pss0 = float(rawproc3[rawproc3.index("pss0")+1])
+
+		self.sw  = float(rawproc3[rawproc3.index("sw")+1])
+		self.sw1 = float(rawproc3[rawproc3.index("sw1")+1])
+		self.sw2 = float(rawproc3[rawproc3.index("sw2")+1])
+
+		self.psi   = float(rawproc3[rawproc3.index("psi")+1])
+		self.phi   = float(rawproc3[rawproc3.index("phi")+1])
+		self.theta = float(rawproc3[rawproc3.index("theta")+1])
+
+		self.vpsi   = float(rawproc3[rawproc3.index("vpsi")+1])
+		self.vphi   = float(rawproc3[rawproc3.index("vphi")+1])
+		self.vtheta = float(rawproc3[rawproc3.index("vtheta")+1])
+
+		self.pos1 = float(rawproc3[rawproc3.index("pos1")+1])
+		self.pos2 = float(rawproc3[rawproc3.index("pos2")+1])
+		self.pos3 = float(rawproc3[rawproc3.index("pos3")+1])
+
+		self.vox1    = float(rawproc3[rawproc3.index("vox1")+1])
+		self.vox2    = float(rawproc3[rawproc3.index("vox2")+1])
+		self.vox3    = float(rawproc3[rawproc3.index("vox3")+1])
+
+class FDF2D:
+	def __init__(self, fdfdir, size):
+		self.size    = size
+		self.fdfdir  = fdfdir
+		print 'Loading ... ' + fdfdir
+		self.load_fdf2D()
+		self.load_imginfo()
+		print ''
+
+	def load_fdf2D(self):
+		self.fseimg = np.empty(self.size)
+		self.header = self.tree()
+
+		for sl in range(1, self.size[2]):
+			f = open(self.fdfdir + '/slice%03dimage001echo001.fdf' % sl, 'r')
+			line = f.readline()
+
+			while not(line == '') and len(line) > 1 and not('checksum' in line):
+				line = f.readline()
+				var = filter(None, line.replace('\n','').replace('=','').replace(';','').replace(',','').replace('*','').replace('[]','').replace('"','').replace('{', '').replace('}', '').split(' '))
+				varval = []
+				for i, el in enumerate(var):
+					if i == 0:
+						vartype = var[i]
+					elif i == 1:
+						varname = var[i]
+					else:
+						if vartype == 'float':
+							varval.append(float(var[i]))
+						elif vartype == 'char':
+							varval.append(str(var[i]))
+						elif vartype == 'int':
+							varval.append(int(var[i]))
+				self.header[sl][varname] = np.squeeze(varval)
+
+				if sl == self.size[2]/2:
+					print vartype, varname, varval, f.tell()
+
+			# compute data size
+			dataSize = int(np.prod(self.header[sl]['matrix']) * self.header[sl]['bits'] / 8)
+			# print ''
+			# print dataSize
+
+			# see how much data is left in file
+			currentPos = f.tell();
+			f.seek(0,2);
+			bytesInFile = f.tell()-currentPos;
+			# print bytesInFile
+
+			# seek back from end the number of bytes needed
+			f.seek(-dataSize, 2)
+
+			# now read the data and reshape
+			# if header['storage'] == 'float' and header['bits'] == 32:
+			self.fseimg[:,:,sl] = np.fromfile(f, np.float32).reshape(np.int_(self.header[sl]['matrix']), order="F")
+
+			f.close()
+
+		# middle slice of volume
+		mid = self.size[2]/2; self.mid = mid
+
+		# signed resolution
+		res = np.array([10*(self.header[mid]['span'][0]) / (self.header[mid]['matrix'][0]) , 
+			  		    10*(self.header[mid]['span'][1]) / (self.header[mid]['matrix'][1]) ,
+						10*(self.header[mid]['roi'][2])])
+		self.res = res
+
+	def load_imginfo(self):
+		mid = self.mid
+		res = self.res
+		fseimg = self.fseimg
+		header = self.header
+
+		fse2d_procpar = Procpar(self.fdfdir + '/procpar'); self.procpar = fse2d_procpar
+
+		X_VARIAN = np.zeros(3); X_VARIAN[0] = 1; self.X_VARIAN = X_VARIAN
+		Y_VARIAN = np.zeros(3); Y_VARIAN[1] = 1; self.Y_VARIAN = Y_VARIAN
+		Z_VARIAN = np.zeros(3); Z_VARIAN[2]	= 1; self.Z_VARIAN = Z_VARIAN
+
+		a = np.deg2rad(90 - fse2d_procpar.psi)
+		b = np.deg2rad(fse2d_procpar.theta)
+		v = np.deg2rad(fse2d_procpar.phi)
+
+		R_img = np.eye(3)
+		R_img = np.dot(self.R_z(-a), R_img)
+		R_img = np.dot(self.R_y(-b), R_img)
+		R_img = np.dot(self.R_z(v),  R_img)
+		R_img = np.dot(self.R_y(b),  R_img)
+		R_img = np.dot(self.R_z(a),  R_img)
+		self.R_img = R_img
+
+		R_img_scaled = np.array([[res[0],0,0],[0,res[1],0],[0,0,res[2]]])
+		R_img_scaled = np.dot(self.R_z(-a), R_img_scaled)
+		R_img_scaled = np.dot(self.R_y(-b), R_img_scaled)
+		R_img_scaled = np.dot(self.R_z(v),  R_img_scaled)
+		R_img_scaled = np.dot(self.R_y(b),  R_img_scaled)
+		R_img_scaled = np.dot(self.R_z(a),  R_img_scaled)
+		self.R_img_scaled = R_img_scaled
+
+		x_img = np.dot(R_img, X_VARIAN); self.x_img = x_img
+		y_img = np.dot(R_img, Y_VARIAN); self.y_img = y_img
+		z_img = np.dot(R_img, Z_VARIAN); self.z_img = z_img
+
+		x_img_scaled = np.dot(R_img_scaled, X_VARIAN); self.x_img_scaled = x_img_scaled
+		y_img_scaled = np.dot(R_img_scaled, Y_VARIAN); self.y_img_scaled = y_img_scaled
+		z_img_scaled = np.dot(R_img_scaled, Z_VARIAN); self.z_img_scaled = z_img_scaled
+
+		p_img_varian    = np.zeros(3)
+		p_img_varian[0] = 10*(header[mid]['location'][0])
+		p_img_varian[1] = 10*(header[mid]['location'][1])
+		p_img_varian[2] = 10*(header[mid]['location'][2])
+		self.p_img_varian = p_img_varian
+
+		o_img_varian    = np.zeros(3)
+		o_img_varian[0] = 10*(header[1]['origin'][0])
+		o_img_varian[1] = 10*(header[1]['origin'][1])
+		o_img_varian[2] = 10*(header[1]['location'][2])
+		self.o_img_varian = o_img_varian
+
+		fseimg_ijk = []
+		fseimg_xyz = []
+
+		for i in range(0,np.size(fseimg, 0)):
+			for j in range(0,np.size(fseimg, 1)):
+				for k in range(0,np.size(fseimg, 2)):
+					xyz_img = i*x_img_scaled + \
+								 j*y_img_scaled + \
+								 k*z_img_scaled + \
+								 o_img_varian
+					fseimg_ijk.append([i,j,k])
+					fseimg_xyz.append(xyz_img)
+
+		self.fseimg_ijk = fseimg_ijk
+		self.fseimg_xyz = fseimg_xyz
+		self.fseimg_xyz_kdt = sp.spatial.KDTree(fseimg_xyz)
+
+		R_img_nifti = self.varian_to_nifti(R_img_scaled); self.R_img_nifti = R_img_nifti
+
+		o_img_nifti = o_img_varian - p_img_varian
+		o_img_nifti = np.dot(R_img, o_img_nifti)
+		o_img_nifti = self.varian_to_nifti(o_img_nifti)
+		self.o_img_nifti = o_img_nifti
+
+		p_img_nifti    = self.varian_to_nifti(p_img_varian)
+		p_img_nifti[0] = p_img_nifti[0] + o_img_nifti[0]
+		p_img_nifti[1] = p_img_nifti[1] + o_img_nifti[1]
+		p_img_nifti[2] = p_img_nifti[2] + o_img_nifti[2]
+		self.p_img_nifti = p_img_nifti
+
+		affine = np.eye(4)
+
+		affine[0][0] = R_img_nifti[0][0]
+		affine[0][1] = R_img_nifti[0][1]
+		affine[0][2] = R_img_nifti[0][2]
+		affine[0][3] = p_img_nifti[0]
+
+		affine[1][0] = R_img_nifti[1][0]
+		affine[1][1] = R_img_nifti[1][1]
+		affine[1][2] = R_img_nifti[1][2]
+		affine[1][3] = p_img_nifti[1]
+
+		affine[2][0] = R_img_nifti[2][0]
+		affine[2][1] = R_img_nifti[2][1]
+		affine[2][2] = R_img_nifti[2][2]
+		affine[2][3] = p_img_nifti[2]
+
+		self.affine = affine
+
+	def tree(self): return defaultdict(self.tree)
+
+	def R_x(self, angle, handedness='r'):
+		if handedness == 'r':
+			return np.c_[[1, 0, 0], [0, np.cos(angle), np.sin(angle)],[0, -np.sin(angle), np.cos(angle)]]
+		else:
+			return np.c_[[1, 0, 0], [0, np.cos(angle), -np.sin(angle)],[0, np.sin(angle), np.cos(angle)]]
+
+	def R_y(self, angle, handedness='r'):
+		if handedness == 'r':
+			return np.c_[[np.cos(angle), 0, np.sin(angle)],[0,1,0],[-np.sin(angle),0,np.cos(angle)]]
+		else:
+			return np.c_[[np.cos(angle), 0, -np.sin(angle)],[0,1,0],[np.sin(angle),0,np.cos(angle)]]
+
+	def R_z(self, angle, handedness='r'):
+		if handedness == 'r':
+			return np.c_[[np.cos(angle), np.sin(angle), 0],[-np.sin(angle),np.cos(angle),0],[0,0,1]]
+		else:
+			return np.c_[[np.cos(angle), -np.sin(angle), 0],[np.sin(angle),np.cos(angle),0],[0,0,1]]
+
+	def R_r(self, angle, r, handedness='r'):
+		if handedness == 'r':
+			angle = angle
+		else:
+			angle = -angle
+
+		rx = r[0]; ry = r[1]; rz = r[2]
+		cv = np.cos(angle); sv = np.sin(angle)
+
+		R = np.empty([3,3])
+		R[0][0] = rx*rx*(1-cv)+cv;		R[0][1] = rx*ry*(1-cv)-rz*sv;	R[0][2] = rx*rz*(1-cv)+ry*sv
+		R[1][0] = rx*ry*(1-cv)+rz*sv;	R[1][1] = ry*ry*(1-cv)+cv;		R[1][2] = ry*rz*(1-cv)-rx*sv
+		R[2][0] = rx*rz*(1-cv)-ry*sv;	R[2][1] = ry*rz*(1-cv)+rx*sv;	R[2][2] = rz*rz*(1-cv)+cv
+
+		return R
+
+	def varian_to_nifti(self, m_varian):
+		m_nifti = m_varian
+		m_nifti = np.dot(self.R_x(np.pi/2, 'l'), m_nifti)
+		m_nifti = np.dot(self.R_y(np.pi/2, 'l'), m_nifti)
+		return m_nifti
+
+class VarianVoxel:
+	def __init__(self, fiddir, size, X_VARIAN, Y_VARIAN, Z_VARIAN, fseimg_ijk, fseimg_xyz_kdt):
+		spec_procpar = Procpar(fiddir + '/procpar'); self.procpar = spec_procpar
+
+		R_vox = np.eye(3)
+		a = np.deg2rad(90 - spec_procpar.vpsi)
+		b = np.deg2rad(spec_procpar.vtheta)
+		v = np.deg2rad(spec_procpar.vphi)
+
+		R_vox = np.eye(3)
+		R_vox = np.dot(self.R_z(-a), R_vox)
+		R_vox = np.dot(self.R_y(-b), R_vox)
+		R_vox = np.dot(self.R_z(v),  R_vox)
+		R_vox = np.dot(self.R_y(b),  R_vox)
+		R_vox = np.dot(self.R_z(a),  R_vox)
+		self.R_vox = R_vox
+
+		vox_size = np.array([spec_procpar.vox1, spec_procpar.vox2, spec_procpar.vox3])
+		self.vox_size = vox_size
+
+		x_vox = np.dot(R_vox, X_VARIAN); self.x_vox = x_vox
+		y_vox = -np.dot(R_vox, Y_VARIAN); self.y_vox = y_vox
+		z_vox = np.dot(R_vox, Z_VARIAN); self.z_vox = z_vox
+
+		p_vox_varian    = np.zeros(3)
+		p_vox_varian[0] = np.dot(10*spec_procpar.pos1*x_vox, X_VARIAN)
+		p_vox_varian[1] = np.dot(10*spec_procpar.pos2*y_vox, Y_VARIAN)
+		p_vox_varian[2] = np.dot(10*spec_procpar.pos3*z_vox, Z_VARIAN)
+		self.p_vox_varian = p_vox_varian
+
+		voximg = np.zeros(size)
+		vox_res = np.array([0.1, 0.1, 0.1]) # arbitrary
+		lims = (np.array(vox_size / vox_res / 2)).astype(int)
+
+		for i in range(-lims[0]+1, lims[0]):
+			for j in range(-lims[1]+1,lims[1]):
+				for k in range(-lims[2]+1,lims[2]):
+					xyz_vox = i*x_vox*vox_res[0] + \
+								j*y_vox*vox_res[1] +\
+								k*z_vox*vox_res[2] + \
+								p_vox_varian
+
+					# Find closest image coordinate
+					dist, idx = fseimg_xyz_kdt.query(xyz_vox)
+
+					vox_i = fseimg_ijk[idx][0]
+					vox_j = fseimg_ijk[idx][1]
+					vox_k = fseimg_ijk[idx][2]
+
+					# Set image intensity to 1
+					voximg[vox_i][vox_j][vox_k] = 1
+
+		self.voximg = voximg
+
+	def R_x(self, angle, handedness='r'):
+		if handedness == 'r':
+			return np.c_[[1, 0, 0], [0, np.cos(angle), np.sin(angle)],[0, -np.sin(angle), np.cos(angle)]]
+		else:
+			return np.c_[[1, 0, 0], [0, np.cos(angle), -np.sin(angle)],[0, np.sin(angle), np.cos(angle)]]
+
+	def R_y(self, angle, handedness='r'):
+		if handedness == 'r':
+			return np.c_[[np.cos(angle), 0, np.sin(angle)],[0,1,0],[-np.sin(angle),0,np.cos(angle)]]
+		else:
+			return np.c_[[np.cos(angle), 0, -np.sin(angle)],[0,1,0],[np.sin(angle),0,np.cos(angle)]]
+
+	def R_z(self, angle, handedness='r'):
+		if handedness == 'r':
+			return np.c_[[np.cos(angle), np.sin(angle), 0],[-np.sin(angle),np.cos(angle),0],[0,0,1]]
+		else:
+			return np.c_[[np.cos(angle), -np.sin(angle), 0],[np.sin(angle),np.cos(angle),0],[0,0,1]]
+
+	def R_r(self, angle, r, handedness='r'):
+		if handedness == 'r':
+			angle = angle
+		else:
+			angle = -angle
+
+		rx = r[0]; ry = r[1]; rz = r[2]
+		cv = np.cos(angle); sv = np.sin(angle)
+
+		R = np.empty([3,3])
+		R[0][0] = rx*rx*(1-cv)+cv;		R[0][1] = rx*ry*(1-cv)-rz*sv;	R[0][2] = rx*rz*(1-cv)+ry*sv
+		R[1][0] = rx*ry*(1-cv)+rz*sv;	R[1][1] = ry*ry*(1-cv)+cv;		R[1][2] = ry*rz*(1-cv)-rx*sv
+		R[2][0] = rx*rz*(1-cv)-ry*sv;	R[2][1] = ry*rz*(1-cv)+rx*sv;	R[2][2] = rz*rz*(1-cv)+cv
+
+		return R
+
+	def varian_to_nifti(self, m_varian):
+		m_nifti = m_varian
+		m_nifti = np.dot(self.R_x(np.pi/2, 'l'), m_nifti)
+		m_nifti = np.dot(self.R_y(np.pi/2, 'l'), m_nifti)
+		return m_nifti
