@@ -1,5 +1,5 @@
 [Shifts]
-SLipMM, -inf, +inf,  lm1, lm2, lm3, lm4, lm5, lm6, lm7, lm8, lm9, lm10, lm11, lm12, lm13, lm14;
+SLipMM, -inf, +inf, lm1, lm2, lm3, lm4, lm5, lm6, lm7, lm8, lm9, lm10, lm11, lm12, lm13, lm14;
 SNAAx, -inf, +inf, naa_acetyl, naa_aspartate, naag_acetyl, naag_aspartyl, naag_glutamate, lactate, aspartate;
 StCr, -inf, +inf, creatine_N(CH3), creatine_X;
 StCho, -inf, +inf, choline_N(CH3)3_a, choline_N(CH3)3_b, choline_1-CH2_2-CH2;
@@ -7,6 +7,7 @@ SMyoX, -inf, +inf, myoinositol, alanine, d-glucose-alpha, glycine, peth, scyllo-
 SGluxGABA, -inf, +inf, glutamate, glutamine, glutathione_cysteine, glutathione_glutamate, glutathione_glycine, gaba;
 
 [Amplitudes]
+AlipMM, -inf, +inf, lm1, lm2, lm3, lm4, lm5, lm6, lm7, lm8, lm9, lm10, lm11, lm12, lm13, lm14;
 ANaag, -inf, +inf, naag_acetyl, naag_aspartyl, naag_glutamate;
 
 [Phases]
@@ -14,5 +15,6 @@ PHNaa, -inf, +inf, naa_acetyl, naa_aspartate, naag_acetyl, naag_aspartyl, naag_g
 PHCho, -inf, +inf, choline_N(CH3)3_a, choline_N(CH3)3_b, choline_1-CH2_2-CH2;
 PHCr, -inf, +inf, creatine_N(CH3), creatine_X;
 PHMyo, -inf, +inf, myoinositol;
-PHGluX, -inf, +inf, glutamate, glutamine, glutathione_cysteine, glutathione_glutamate, glutathione_glycine;
+PHGlu, -inf, +inf, glutamate;
+PHGluX, -inf, +inf, glutamine, glutathione_cysteine, glutathione_glutamate, glutathione_glycine;
 PHLipMM, -inf, +inf, lm1, lm2, lm3, lm4, lm5, lm6, lm7, lm8, lm9, lm10, lm11, lm12, lm13, lm14;
