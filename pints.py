@@ -183,6 +183,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 						    'creatine_X.sys',
 						    'd-glucose-alpha.sys',
 						    'd-glucose-beta.sys',
+						    'eth.sys',
 						    'gaba.sys',
 						    'glutamate.sys',
 						    'glutamine.sys',
@@ -736,6 +737,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			metab.T2 = (87E-3)
 		elif insysfile == 'd-glucose-beta.sys': #
 			metab.A_m = 0.049
+			metab.T2 = (87E-3)
+		elif insysfile == 'eth.sys': #
+			metab.A_m = 0.320
 			metab.T2 = (87E-3)
 		elif insysfile == 'gaba.sys': #
 			metab.A_m = 0.155
@@ -1531,7 +1535,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			else:
 				self.cstInfoErrorLabel.setText('Please specify a .cstinfo file!')
 		except Exception as e:
-			self.cstInfoErrorLabel.setText('ERROR: ' + str(e))
+			self.cstInfoErrorLabel.setText('ERROR: ' + str(e) + '\n' + str(sys.exc_info()[2].tb_lineno))
 
 	def readGroups(self, group_type):
 		if group_type == 'shift':

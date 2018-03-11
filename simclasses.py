@@ -287,6 +287,9 @@ class MetaboliteSimulation(QtCore.QObject):
 		elif insysfile == 'd-glucose-beta.sys': #
 			metab.A_m = 0.049
 			metab.T2 = (87E-3)
+		elif insysfile == 'eth.sys': #
+			metab.A_m = 0.320
+			metab.T2 = (87E-3)
 		elif insysfile == 'gaba.sys': #
 			metab.A_m = 0.155
 			metab.T2 = (82E-3)

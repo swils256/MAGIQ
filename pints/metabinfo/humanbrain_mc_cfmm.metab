@@ -7,6 +7,7 @@ creatine_N(CH3)	0.296	0.125
 creatine_X	0.296	0.096
 d-glucose-alpha	0.049	0.093
 d-glucose-beta	0.049	0.093
+eth	0.320	0.093
 gaba	0.155	0.087
 glutamate	0.898	0.065
 glutamine	0.427	0.065
