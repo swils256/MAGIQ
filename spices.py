@@ -241,10 +241,11 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				tableau10[i] = (r / 255., g / 255., b / 255.)
 
 			# Calculate Summed Spectra
-			fit_spec_sum = []
+			fit_spec_sum = []; fit_fid_sum = []
 			for metabolite in self.fit_out.metabolites_list:
 				fid  = self.fit_out.metabolites[metabolite].getFID(0, b0, t, 0, 1, pfactor, 0, lb)
-				fid  = fid[FT1:]
+				if not(self.extrap0CheckBox.isChecked()):
+					fid  = fid[FT1:]
 				spec = fftw.fftshift(fftw.fft(fid))
 
 				n = sp.size(fid)
@@ -252,15 +253,18 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				fit_f = -f
 
 				# fit_f, spec = self.fit_out.metabolites[metabolite].getSpec(0, b0, t, 0, 1, pfactor, 0, lb, fs)
+				fit_fid_sum.append(fid)
 				fit_spec_sum.append(spec)
+			fit_fid_sum  =         np.sum(np.array(fit_fid_sum), axis=0)
 			fit_spec_sum = np.real(np.sum(np.array(fit_spec_sum), axis=0))
-			fit_spec_sum = fit_spec_sum
-
 
 			# Calculate In-Vivo Spectra
 			invivo_dat_temp        = copy.copy(self.invivo_dat);
 			invivo_dat_temp.signal = invivo_dat_temp.signal[0:np.size(t)] * sp.exp(1j*pfactor) * sp.exp(-sp.pi*lb*t)
-			invivo_dat_temp.signal = invivo_dat_temp.signal[FT1:]
+			if not(self.extrap0CheckBox.isChecked()):
+				invivo_dat_temp.signal = invivo_dat_temp.signal[FT1:]
+			else:
+				invivo_dat_temp.signal = np.hstack((fit_fid_sum[0:FT1], invivo_dat_temp.signal[FT1:]))
 			invivo_f, invivo_spec  = invivo_dat_temp.getSpec()
 			invivo_spec = np.real(invivo_spec)
 
@@ -270,7 +274,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				group_spec = []
 				for member in group.members:
 					fid  = self.fit_out.metabolites[member].getFID(0, b0, t, 0, 1, pfactor, 0, lb)
-					fid  = fid[FT1:]
+					if not(self.extrap0CheckBox.isChecked()):
+						fid  = fid[FT1:]
 					spec = fftw.fftshift(fftw.fft(fid))
 
 					n = sp.size(fid)
@@ -279,7 +284,6 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					# fit_f, spec = self.fit_out.metabolites[member].getSpec(0, b0, t, 0, 1, pfactor, 0, lb, fs)
 					group_spec.append(spec)
 				group_spec = np.real(np.sum(np.array(group_spec), axis=0))
-				group_spec = group_spec
 				fit_spec.append(group_spec)
 				fit_spec_names.append(group.name)
 
