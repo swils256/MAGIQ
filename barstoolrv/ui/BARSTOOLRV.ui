@@ -683,7 +683,7 @@ in the same folder and follow the expected naming convention.</string>
           <item>
            <widget class="QPushButton" name="loadOutputsButton_quant">
             <property name="text">
-             <string>Load Suppressed Output Files</string>
+             <string>Select Mouse Directories</string>
             </property>
            </widget>
           </item>
@@ -706,38 +706,6 @@ in the same folder and follow the expected naming convention.</string>
               <widget class="QPushButton" name="confirmSaveFileButton_quant">
                <property name="text">
                 <string>Confirm Save File Name</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QGroupBox" name="scannerTypeGroupBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="title">
-             <string>Scanner Type</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout">
-             <item>
-              <widget class="QRadioButton" name="siemensScanner">
-               <property name="text">
-                <string>Siemens</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="varianScanner">
-               <property name="text">
-                <string>&amp;Varian</string>
                </property>
               </widget>
              </item>

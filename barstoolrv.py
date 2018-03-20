@@ -101,14 +101,14 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.runSegButton.clicked.connect(self.runSeg)
 			self.runSegButton.setEnabled(False)
 
-		# elif tab == 'Set Parameters':
+		elif tab == 'Set Parameters':
 
-		# 	self.loadMetabParamsButton.clicked.connect(self.loadMetabParams)
+			self.loadMetabParamsButton.clicked.connect(self.loadMetabParams)
 			
-		# 	self.saveMetabParamsButton.clicked.connect(self.saveMetabParams)
-		# 	self.saveMetabParamsButton.setEnabled(False)
+			self.saveMetabParamsButton.clicked.connect(self.saveMetabParams)
+			self.saveMetabParamsButton.setEnabled(False)
 
-		# 	self.confirmParamsButton.clicked.connect(self.verifyParams)
+			self.confirmParamsButton.clicked.connect(self.verifyParams)
 
 	# ---- Methods for 'Sum Amplitudes' Tab ---- #
 	def setWorkingDirectory(self):
@@ -233,7 +233,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 	# ---- Methods for 'Brain Extraction' Tab ---- #
 	def loadMouseDirs(self):
 		
-		self.consoleOutputText.append('===== BRAIN EXTRACTION =====')
+		if self.mainTabWidget.currentIndex() == 1:
+			self.consoleOutputText.append('===== BRAIN EXTRACTION =====')
+		elif self.mainTabWidget.currentIndex() == 3:
+			self.consoleOutputText.append('===== QUANTIFICATION =====')
 
 		file_dialog = QtWidgets.QFileDialog(directory=self.workingDirectory, filter='Image Files (*.img)')
 		file_dialog.setFileMode(QtWidgets.QFileDialog.DirectoryOnly)
@@ -253,21 +256,29 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			self.mouseDirs = paths #QtWidgets.QFileDialog.getOpenFileNames(self, 'Open FDF Image File', self.workingDirectory, 'Image Files (*.img)')[0]
 		
-			self.consoleOutputText.append('The following image files were loaded:')
+			self.consoleOutputText.append('The following files were loaded:')
 			for (i, mouse) in enumerate(self.mouseDirs):
 				self.mouseDirs[i] = str(mouse)
 				self.consoleOutputText.append(' >> ' + str(mouse))
 			self.consoleOutputText.append('')
 
-			self.selectFDFImagesButton.setEnabled(False)
-			self.fdf2niftiButton.setEnabled(True)
-
+			if self.mainTabWidget.currentIndex() == 1:
+				self.selectFDFImagesButton.setEnabled(False)
+				self.fdf2niftiButton.setEnabled(True)
+			elif self.mainTabWidget.currentIndex() == 3:
+				self.loadOutputsButton_quant.setEnabled(False)
+				self.saveFileLineEdit_quant.setText(self.workingDirectory + '/' + '_____.csv')
+				self.confirmSaveFileButton_quant.setEnabled(True)
 		else:
 			
-			self.consoleOutputText.append('No image files selected ... try again.')
-			self.consoleOutputText.append('')
-
+			if self.mainTabWidget.currentIndex() == 1:
+				self.consoleOutputText.append('No image files selected ... try again.')
+				self.consoleOutputText.append('')
 			self.selectFDFImagesButton.setEnabled(True)
+			elif self.mainTabWidget.currentIndex() == 3:
+				self.consoleOutputText.append('No output files selected ... try again.')
+				self.consoleOutputText.append('')
+				self.loadOutputsButton_quant.setEnabled(True)
 
 	def fdf2nifti(self):
 
@@ -400,6 +411,347 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		print ''
 		self.runSegButton.setEnabled(False)
 		self.selectFDFImagesButton.setEnabled(True)
+
+		self.consoleOutputText.append('')
+
+	# ---- Methods for Setting Quantification Parameters ---- #
+	def loadMetabParams(self):
+		prev = str(self.metabParamsFileLineEdit.text())
+		self.metabParamsFileLineEdit.setText(str(QtWidgets.QFileDialog.getOpenFileName(self, 'Open Quantification Information File', os.getcwd() + '/barstoolrv/qinfo', 'Quantification Info Files (*.qinfo)')[0]))
+		self.saveMetabParamsButton.setEnabled(True)
+		if str(self.metabParamsFileLineEdit.text()) == '':
+			self.metabParamsFileLineEdit.setText(str(prev))
+			if str(prev) == '':
+				self.saveMetabParamsButton.setEnabled(False)
+			else:
+				self.populateMetabTable()
+				self.consoleOutputText.append('===== SETTING QUANTIFICATION PARAMETERS ====')
+				self.consoleOutputText.append('Quantification information loaded from: ')
+				self.consoleOutputText.append('>> ' + str(self.metabParamsFileLineEdit.text()))
+				self.consoleOutputText.append('')
+		else:
+			self.populateMetabTable()
+			self.consoleOutputText.append('===== SETTING QUANTIFICATION PARAMETERS ====')
+			self.consoleOutputText.append('Quantification information loaded from: ')
+			self.consoleOutputText.append('>> ' + str(self.metabParamsFileLineEdit.text()))
+			self.consoleOutputText.append('')
+
+	def populateMetabTable(self):
+		in_file = open(str(self.metabParamsFileLineEdit.text()), 'r')
+
+		rows = []
+		for line in in_file:
+			if not('#' in line):
+				params = line.replace('\n','').split('\t')
+				if params[0] == 'water':
+					print params
+					self.protonsLineEdit_water.setText(str(params[1]))
+					self.T1GMLineEdit_water.setText(str(params[2]))
+					self.T2GMLineEdit_water.setText(str(params[3]))
+					self.T1WMLineEdit_water.setText(str(params[4]))
+					self.T2WMLineEdit_water.setText(str(params[5]))
+					self.T1CSFLineEdit_water.setText(str(params[6]))
+					self.T2CSFLineEdit_water.setText(str(params[7]))
+				elif params[0] == 'exp':
+					print params
+					self.TRLineEdit.setText(str(params[1]))
+					self.TELineEdit.setText(str(params[2]))
+					self.waterConcLineEdit.setText(str(params[3]))
+					self.waterConcGMLineEdit.setText(str(params[4]))
+					self.waterConcWMLineEdit.setText(str(params[5]))
+					if bool(params[6]):
+						self.tissueConcButton.checked = True
+						self.voxelConcButton.checked = False
+					else:
+						self.tissueConcButton.checked = False
+						self.voxelConcButton.checked = True
+				else:
+					print params
+					rows.append(params)
+
+		self.metabParamsTableWidget.setRowCount(sp.size(rows,0))
+		self.metabParamsTableWidget.setColumnCount(8)
+
+		for i in range(0, sp.size(rows, 0)):
+			self.metabParamsTableWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(rows[i][0])) # metabolite
+			self.metabParamsTableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem(rows[i][1])) # protons
+			self.metabParamsTableWidget.setItem(i, 2, QtWidgets.QTableWidgetItem(rows[i][2])) # T1 GM
+			self.metabParamsTableWidget.setItem(i, 3, QtWidgets.QTableWidgetItem(rows[i][3])) # T2 GM
+			self.metabParamsTableWidget.setItem(i, 4, QtWidgets.QTableWidgetItem(rows[i][4])) # T1 WM
+			self.metabParamsTableWidget.setItem(i, 5, QtWidgets.QTableWidgetItem(rows[i][5])) # T2 WM
+			self.metabParamsTableWidget.setItem(i, 6, QtWidgets.QTableWidgetItem(rows[i][6])) # first peak
+			self.metabParamsTableWidget.setItem(i, 7, QtWidgets.QTableWidgetItem(rows[i][7])) # last peak
+
+		self.consoleOutputText.append('Quantification information saved to: ')
+		self.consoleOutputText.append('>> ' + str(self.metabParamsFileLineEdit.text()))
+		self.consoleOutputText.append('')
+
+		in_file.close()
+
+	def saveMetabParams(self):
+		prev = str(self.metabParamsFileLineEdit.text())
+		out_filename = str(QtWidgets.QFileDialog.getSaveFileName(self, 'Save Quantification Information File', os.getcwd() + '/barstool/qinfo', 'Quantification Info Files (*.qinfo)')[0])
+
+		self.consoleOutputText.append('Quantification information saved to: ')
+		self.consoleOutputText.append('>> ' + str(self.metabParamsFileLineEdit.text()))
+		self.consoleOutputText.append('')
+
+		if out_filename == '':
+			out_filename = prev
+
+		if out_filename != '':
+			out_file = open(out_filename, 'w')
+			out_file.write('#\n')
+			out_file.write('# Columns:\n')
+			out_file.write('#     1.  Metabolite\n')
+			out_file.write('#     2.  Number of protons for quantifiable singlet or whole signal sum\n')
+			out_file.write('#     3.  T1 values in GM (in sec)\n')
+			out_file.write('#     4.  T2 values in GM (in msec)\n')
+			out_file.write('#     5.  T1 values in WM (in sec)\n')
+			out_file.write('#     6.  T2 values in WM (in msec)\n')
+			out_file.write('#     7.  First Peak\n')
+			out_file.write('#     8.  Last Peak\n')
+			out_file.write('#\n')
+			for i in range(0, self.metabParamsTableWidget.rowCount()):
+				out_file.write(self.metabParamsTableWidget.item(i,0).text() + '\t')
+				out_file.write(self.metabParamsTableWidget.item(i,1).text() + '\t')
+				out_file.write(self.metabParamsTableWidget.item(i,2).text() + '\t')
+				out_file.write(self.metabParamsTableWidget.item(i,3).text() + '\t')
+				out_file.write(self.metabParamsTableWidget.item(i,4).text() + '\t')
+				out_file.write(self.metabParamsTableWidget.item(i,5).text() + '\t')
+				out_file.write(self.metabParamsTableWidget.item(i,6).text() + '\t')
+				out_file.write(self.metabParamsTableWidget.item(i,7).text())
+				out_file.write('\n')
+			out_file.write('#\n')
+			out_file.write('# Water:\n')
+			out_file.write('#\tprotons\tT1_GM\tT2_GM\tT1_WM\tT2_WM\tT1_CSF\tT2_CSF\n')
+			out_file.write('water\t' \
+			+ self.protonsLineEdit_water.text() + '\t' \
+			+ self.T1GMLineEdit_water.text() + '\t' \
+			+ self.T2GMLineEdit_water.text() + '\t' \
+			+ self.T1WMLineEdit_water.text() + '\t' \
+			+ self.T2WMLineEdit_water.text() + '\t' \
+			+ self.T1CSFLineEdit_water.text() + '\t' \
+			+ self.T2CSFLineEdit_water.text() + '\n')
+			out_file.write('#\n')
+			out_file.write('# Experiment:\n')
+			out_file.write('#\tTR\tTE\tConc\tConcGM\tConcWM\tConcVox\n')
+			out_file.write('exp\t' \
+			+ self.TRLineEdit.text() + '\t' \
+			+ self.TELineEdit.text() + '\t' \
+			+ self.waterConcLineEdit.text() + '\t' \
+			+ self.waterConcGMLineEdit.text() + '\t' \
+			+ self.waterConcWMLineEdit.text() + '\t' \
+			+ str(int(self.voxelConcButton.isChecked())) + '\n')
+			out_file.close()
+
+	def verifyParams(self):
+		self.consoleOutputText.append('The following parameters were entered. Please check them carefully:')
+		self.consoleOutputText.append('')
+		self.consoleOutputText.append('\t\tProtons\tT1 (GM) [sec]\tT2 (GM) [ms]\tT1 (WM) [ms]\tT2 (WM) [ms]\tFirst Peak\tLast Peak')
+		for i in range(0, self.metabParamsTableWidget.rowCount()):
+			self.consoleOutputText.append( 
+				self.metabParamsTableWidget.item(i,0).text() + '\t' \
+				+ self.metabParamsTableWidget.item(i,1).text() + '\t' \
+				+ self.metabParamsTableWidget.item(i,2).text() + '\t' \
+				+ self.metabParamsTableWidget.item(i,3).text() + '\t' \
+				+ self.metabParamsTableWidget.item(i,4).text() + '\t' \
+				+ self.metabParamsTableWidget.item(i,5).text() + '\t' \
+				+ self.metabParamsTableWidget.item(i,6).text() + '\t' \
+				+ self.metabParamsTableWidget.item(i,7).text())
+		self.consoleOutputText.append('')
+		self.consoleOutputText.append('water\t' \
+			+ self.protonsLineEdit_water.text() + '\t' \
+			+ self.T1GMLineEdit_water.text() + '\t' \
+			+ self.T2GMLineEdit_water.text() + '\t' \
+			+ self.T1WMLineEdit_water.text() + '\t' \
+			+ self.T2WMLineEdit_water.text() + '\t' \
+			+ self.T1CSFLineEdit_water.text() + '\t' \
+			+ self.T2CSFLineEdit_water.text())
+		self.consoleOutputText.append('')
+		self.consoleOutputText.append('             TR [ms]: ' + self.TRLineEdit.text())
+		self.consoleOutputText.append('             TE [ms]: ' + self.TELineEdit.text())
+		self.consoleOutputText.append('             [water]: ' + self.waterConcLineEdit.text() + ' M')
+		self.consoleOutputText.append('[water] scaling (GM): ' + self.waterConcGMLineEdit.text())
+		self.consoleOutputText.append('[water] scaling (WM): ' + self.waterConcWMLineEdit.text())
+		self.consoleOutputText.append('     voxel conc flag: ' + str(int(self.voxelConcButton.isChecked())))
+		self.consoleOutputText.append('')
+
+	# ---- Methods for Actual Quantification ---- #
+	def setQuantSaveFile(self):
+		self.quantSaveFileName = self.saveFileLineEdit_quant.text()
+		self.runQuantButton.setEnabled(True)
+		self.consoleOutputText.append('Quantification results will be saved to: ' + str(self.quantSaveFileName))
+		self.consoleOutputText.append('')
+
+	def runQuant(self):
+		self.confirmSaveFileButton_quant.setEnabled(False)
+
+		out_file = open(self.quantSaveFileName, 'w')
+
+		# Write header
+		out_file.write('ID,TISSUE,CSF,N_AVG_SUP,N_AVG_UNS,SCALE_SUP,SCALE_UNS,SCANNER,')
+		for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
+			out_file.write(str(self.metabParamsTableWidget.item(metab_index,0).text())+',')
+		out_file.write('\n')
+
+		self.consoleOutputText.append('==== METAB QUANT ====')
+		for i, mouse in enumerate(self.mouseDirs):
+
+			ID = mouse.split('/')[-2]
+			out_file.write(str(ID)+',')
+
+			self.consoleOutputText.append(' >> ' + str(mouse))
+			print 'Processing ', mouse, '...'
+
+			brain = nib.load(mouse + '/fse2d_brain.nii.gz')
+			csf   = nib.load(mouse + '/fse2d_csf_mask.nii.gz')
+			vox   = nib.load(mouse + '/mrsvoxel.nii.gz')
+			sup   = mouse + '/sup.out'
+			uns   = mouse + '/uns.out'
+
+			brain_img = brain.get_data()
+			csf_img   = csf.get_data()
+			vox_img   = vox.get_data()
+
+			vox_img_vec = np.reshape(vox_img, np.size(vox_img)).astype(int)
+			csf_img_vec = np.reshape(csf_img, np.size(csf_img)).astype(int)
+
+			vox_n = np.sum(vox_img_vec)
+			csf_n = np.sum(vox_img_vec[csf_img_vec.astype(bool)])
+
+			tissue_frac = 1-float(csf_n)/float(vox_n)
+			vox_frac = [tissue_frac/2, tissue_frac/2, 1-tissue_frac]
+
+			print "voxfrac:\t", tissue_frac, vox_frac
+			out_file.write(str(tissue_frac) + ',' + str(vox_frac[2]) + ',')
+
+			# Get number of averages
+			procpar_sup = open(mouse + '/sup.fid/procpar', 'r')
+			for line in procpar_sup:
+				if 'acqcycles' in line:
+					n_avg_sup = int(procpar_sup.next().split(' ')[1])/2
+
+			procpar_uns = open(mouse + '/unsup.fid/procpar', 'r')
+			for line in procpar_sup:
+				if 'acqcycles' in line:
+					n_avg_uns = int(procpar_sup.next().split(' ')[1])/2
+
+			# Get scaling factors -- CHECK WITH BARTHA!
+			scale_sup = 1
+			scale_uns = 1
+
+			print 'n_avg_sup:\t', n_avg_sup
+			print 'n_avg_uns:\t', n_avg_uns
+			print 'scale_sup:\t', scale_sup
+			print 'scale_uns:\t', scale_uns
+			print ''
+			out_file.write(str(n_avg_sup) + ',' + str(n_avg_uns) + ',' + str(scale_sup) + ',' + str(scale_uns) + ',')
+
+			# Get metabolite parameters
+			metab_params = self.tree()
+			num_params   = self.metabParamsTableWidget.rowCount(); print 'num_params:\t', num_params
+			for param_index in range(0, num_params):
+				metab_params[param_index][0] = str(self.metabParamsTableWidget.item(param_index,0).text())
+				metab_params[param_index][1] = float(self.metabParamsTableWidget.item(param_index,1).text())
+				metab_params[param_index][2] = float(self.metabParamsTableWidget.item(param_index,2).text())
+				metab_params[param_index][3] = float(self.metabParamsTableWidget.item(param_index,3).text())
+				metab_params[param_index][4] = float(self.metabParamsTableWidget.item(param_index,4).text())
+				metab_params[param_index][5] = float(self.metabParamsTableWidget.item(param_index,5).text())
+				metab_params[param_index][6] = int(self.metabParamsTableWidget.item(param_index,6).text())
+				metab_params[param_index][7] = int(self.metabParamsTableWidget.item(param_index,7).text())
+
+			# Get water parameters
+			water_params = ('water\t' \
+				+ self.protonsLineEdit_water.text() + '\t' \
+				+ self.T1GMLineEdit_water.text() + '\t' \
+				+ self.T2GMLineEdit_water.text() + '\t' \
+				+ self.T1WMLineEdit_water.text() + '\t' \
+				+ self.T2WMLineEdit_water.text() + '\t' \
+				+ self.T1CSFLineEdit_water.text() + '\t' \
+				+ self.T2CSFLineEdit_water.text()).split('\t')
+			water_params[0] = str(water_params[0])
+			water_params[1] = float(water_params[1])
+			water_params[2] = float(water_params[2])
+			water_params[3] = float(water_params[3])
+			water_params[4] = float(water_params[4])
+			water_params[5] = float(water_params[5])
+			water_params[6] = float(water_params[6])
+			water_params[7] = float(water_params[7])
+
+			# Get experimental parameters
+			exp_params = ('exp\t' \
+				+ self.TRLineEdit.text() + '\t' \
+				+ self.TELineEdit.text() + '\t' \
+				+ self.waterConcLineEdit.text() + '\t' \
+				+ self.waterConcGMLineEdit.text() + '\t' \
+				+ self.waterConcWMLineEdit.text() + '\t' \
+				+ str(int(self.voxelConcButton.isChecked()))).split('\t')
+			exp_params[0] = str(exp_params[0])
+			exp_params[1] = float(exp_params[1])
+			exp_params[2] = float(exp_params[2])
+			exp_params[3] = float(exp_params[3])
+			exp_params[4] = float(exp_params[4])
+			exp_params[5] = float(exp_params[5])
+			exp_params[6] = int(exp_params[6])
+
+			# Get scanner type
+			scanner_type = 'varian'
+			out_file.write(str(scanner_type) + ',')
+
+			# Calculate absolute metabolite levels (in mM)
+			f_conc = mc.calc(sup_out, unsup_out, \
+				vox_frac, n_avg_sup, n_avg_uns, scale_sup, scale_uns, \
+				metab_params, num_params, water_params, exp_params, \
+				scanner_type)
+
+			# Figure out centroid of voxel to slice image appropriately
+			vox_indices = np.where(vox_img == 1)
+			vox_centroid = np.round([np.mean(vox_indices[0]), np.mean(vox_indices[1]), np.mean(vox_indices[2])]).astype(int)
+
+			# Create masked array version of vox_img to overal on top of brain_img
+			vox_mas = np.ma.masked_where(vox_img == 0, vox_img * brain_img.max() + 2)
+
+			# Display images of MRS voxel overlay
+			transpose_indices = [0, 1]
+			panes = [0, 1, 2]
+			n_rot90 = [0, 0, 0]
+
+			fig = plt.figure(1)
+			fig.patch.set_facecolor('black')
+
+			ax1 = plt.subplot(1,3,1)
+			ax2 = plt.subplot(1,3,2)
+			ax3 = plt.subplot(1,3,3)
+			fig.axes[panes.index(1)].set_title(ID + "\n", size=12, color='w', family='monospace')
+			fig.axes[panes.index(1)].set_xlabel("\nTISSUE: {:.3f}, CSF: {:.3f}".format(tissue_frac, vox_frac[2]), size=11, color='w', family='monospace')
+
+			palette = cm.Greys_r
+			palette.set_over('g', 0.6)
+
+			asp = brain.header['pixdim'][1]/brain.header['pixdim'][3]
+
+			anat_zoom1, k1 = autozoom(np.transpose(brain_img[vox_centroid[0],:,:].squeeze(), transpose_indices))
+			anat_zoom2, k2 = autozoom(np.transpose(brain_img[:,vox_centroid[1],:].squeeze(), transpose_indices))
+			anat_zoom3, k3 = autozoom(np.transpose(brain_img[:,:,vox_centroid[2]].squeeze(), transpose_indices))
+			                        
+			ax1.imshow(np.rot90(anat_zoom1, n_rot90[0]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
+			ax2.imshow(np.rot90(anat_zoom2, n_rot90[1]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
+			ax3.imshow(np.rot90(anat_zoom3, n_rot90[2]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect='equal')
+
+			ax1.imshow(np.rot90(np.transpose(vox_mas[vox_centroid[0],min(k1[0]):max(k1[0])+1,min(k1[1]):max(k1[1])+1].squeeze(),transpose_indices), n_rot90[0]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
+			ax2.imshow(np.rot90(np.transpose(vox_mas[min(k2[0]):max(k2[0])+1,vox_centroid[1],min(k2[1]):max(k2[1])+1].squeeze(),transpose_indices), n_rot90[1]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
+			ax3.imshow(np.rot90(np.transpose(vox_mas[min(k3[0]):max(k3[0])+1,min(k3[1]):max(k3[1])+1,vox_centroid[2]].squeeze(),transpose_indices), n_rot90[2]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect='equal')
+
+			plt.setp([a.set_xticks([]) for a in fig.axes])
+			plt.setp([a.set_yticks([]) for a in fig.axes])
+			plt.savefig(mouse + "barstool_output.png", facecolor='k', bbox_inches='tight', pad_inches = 0.2)
+
+			for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
+				out_file.write("{:6.6f},".format(f_conc[str(self.metabParamsTableWidget.item(metab_index,0).text())]))
+			out_file.write('\n')
+
+		out_file.close()
 
 # ---- Launch Application ---- #
 if __name__ == "__main__":
