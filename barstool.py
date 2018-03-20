@@ -966,7 +966,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				fig = plt.figure(1)
 				fig.patch.set_facecolor('black')
 				gs = gridspec.GridSpec(1, 4, width_ratios=[1, 1, 1, 1])
-				gs.update(wspace=0.0)
+				gs.update(wspace=0.1)
 				ax1 = plt.subplot(gs[panes[0]])
 				ax2 = plt.subplot(gs[panes[1]])
 				ax3 = plt.subplot(gs[panes[2]])
@@ -1009,7 +1009,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 				plt.setp([a.set_xticks([]) for a in fig.axes])
 				plt.setp([a.set_yticks([]) for a in fig.axes])
-				plt.savefig(self.quantSupFiles[ID_index].replace('_sup.out','') + "_barstool_output.png", facecolor='k', bbox_inches='tight', pad_inches = 0.2)
+				plt.savefig(self.quantSupFiles[ID_index].replace('_sup.out','') + "_barstool_output.png", dpi=300, facecolor='k', bbox_inches='tight', pad_inches = 0.2)
 
 				for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
 					out_file.write("{:6.6f},".format(f_conc[str(self.metabParamsTableWidget.item(metab_index,0).text())]))
