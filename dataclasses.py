@@ -401,6 +401,10 @@ class DatFile:
 				self.fs = 1/float(line.replace(' ', '').replace('\n', ''))
 			elif i == 3:
 				self.b0 = float(line.replace(' ', '').replace('\n', ''))
+			elif i == 7:
+				self.ConvS = float(line.replace('\n','').split(' ')[1].split('=')[1])
+			elif i == 8:
+				self.gain = float(line.replace('\n','').split(' ')[-1].split('=')[1])
 			elif i == 11:
 				pass
 			elif i > 11:
@@ -408,7 +412,8 @@ class DatFile:
 
 		real = sp.array(dat)[0::2]
 		imag = sp.array(dat)[1::2]
-		print 'n', self.n
+		print 'n', self.n, 'fs', self.fs, 'b0', self.b0
+		print 'ConvS', self.ConvS, 'gain', self.gain
 		print 'Real', real, sp.size(real)
 		print 'Imag', imag, sp.size(imag)
 		self.signal = real+1j*imag
@@ -581,6 +586,9 @@ class Procpar:
 				rawproc3[y] = name[0]
 				y = y+1
 
+		self.gain      = float(rawproc3[rawproc3.index("gain")+1])
+		self.acqcycles = float(rawproc3[rawproc3.index("acqcycles")+1]) 
+
 		self.lro     = float(rawproc3[rawproc3.index("lro")+1])
 		self.lpe     = float(rawproc3[rawproc3.index("lpe")+1])
 		self.lpe2    = float(rawproc3[rawproc3.index("lpe2")+1])
@@ -680,6 +688,8 @@ class FDF2D:
 		self.res = res
 
 	def load_imginfo(self):
+		print ''
+		
 		mid = self.mid
 		res = self.res
 		fseimg = self.fseimg
@@ -694,6 +704,7 @@ class FDF2D:
 		a = np.deg2rad(90 - fse2d_procpar.psi)
 		b = np.deg2rad(fse2d_procpar.theta)
 		v = np.deg2rad(fse2d_procpar.phi)
+		print 'a, b, v:', a,b,v
 
 		R_img = np.eye(3)
 		R_img = np.dot(self.R_z(-a), R_img)
@@ -702,6 +713,7 @@ class FDF2D:
 		R_img = np.dot(self.R_y(b),  R_img)
 		R_img = np.dot(self.R_z(a),  R_img)
 		self.R_img = R_img
+		print 'R_img:', R_img
 
 		R_img_scaled = np.array([[res[0],0,0],[0,res[1],0],[0,0,res[2]]])
 		R_img_scaled = np.dot(self.R_z(-a), R_img_scaled)
@@ -852,6 +864,9 @@ class VarianVoxel:
 		p_vox_varian[2] = np.dot(10*spec_procpar.pos3*z_vox, Z_VARIAN)
 		self.p_vox_varian = p_vox_varian
 
+		print 10*spec_procpar.pos1, 10*spec_procpar.pos2, 10*spec_procpar.pos3
+		print 'p_vox_varian', p_vox_varian
+
 		voximg = np.zeros(size)
 		vox_res = np.array([0.1, 0.1, 0.1]) # arbitrary
 		lims = (np.array(vox_size / vox_res / 2)).astype(int)
@@ -875,6 +890,7 @@ class VarianVoxel:
 					voximg[vox_i][vox_j][vox_k] = 1
 
 		self.voximg = voximg
+		print ''
 
 	def R_x(self, angle, handedness='r'):
 		if handedness == 'r':
