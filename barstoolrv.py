@@ -61,6 +61,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.setBindings('Sum Amplitudes')
 		self.setBindings('Brain Extraction and Segmentation')
 		self.setBindings('Set Parameters')
+		self.setBindings('Quantify Metabolites')
 
 	def tree(self): return defaultdict(self.tree)
 
@@ -110,6 +111,23 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			self.confirmParamsButton.clicked.connect(self.verifyParams)
 
+		elif tab == 'Quantify Metabolites':
+
+			self.loadOutputsButton_quant.clicked.connect(self.loadMouseDirs)
+			self.loadOutputsButton_quant.setEnabled(False)
+
+			self.confirmSaveFileButton_quant.clicked.connect(self.setQuantSaveFile)
+			self.confirmSaveFileButton_quant.setEnabled(False)
+
+			self.runQuantButton.clicked.connect(self.runQuant)
+			self.runQuantButton.setEnabled(False)
+
+			# Set Up Plotting Region
+			fig = plt.figure(1)
+			self.canvas = FigureCanvas(fig)
+			self.plotQuant_mplvl.addWidget(self.canvas)
+			self.canvas.draw()
+
 	# ---- Methods for 'Sum Amplitudes' Tab ---- #
 	def setWorkingDirectory(self):
 
@@ -130,23 +148,36 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		self.consoleOutputText.append('===== CALCULATE AMPLITUDES AND CRLBS =====')
 
-		self.fileList = QtWidgets.QFileDialog.getOpenFileNames(self, 'Open Output File', self.workingDirectory, 'fitMAN Suppressed Output Files (*_sup.out)')[0]
 		self.outputs = []
 
-		if len(self.fileList) > 0:
-			
+		file_dialog = QtWidgets.QFileDialog(directory=self.workingDirectory)
+		file_dialog.setFileMode(QtWidgets.QFileDialog.DirectoryOnly)
+		file_dialog.setOption(QtWidgets.QFileDialog.DontUseNativeDialog, True)
+		file_view = file_dialog.findChild(QtWidgets.QListView, 'listView')
+
+		# to make it possible to select multiple directories:
+		if file_view:
+			file_view.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+		f_tree_view = file_dialog.findChild(QtWidgets.QTreeView)
+		
+		if f_tree_view:
+			f_tree_view.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+
+		if file_dialog.exec_():
+			paths = file_dialog.selectedFiles()
+
+			self.fileList = paths
+
 			self.consoleOutputText.append('The following output files were loaded:')
 			for (i, file) in enumerate(self.fileList):
-				self.fileList[i] = str(file)
-				self.consoleOutputText.append(' >> ' + str(file))
+				self.fileList[i] = str(file) + '/sup.out'
+				self.consoleOutputText.append(' >> ' + str(self.fileList[i]))
 				self.studyIDsTextEdit.appendPlainText(str(file).replace('.out','').split('/')[-1])
 			self.consoleOutputText.append('')
 
 			self.loadOutputsButton.setEnabled(False)
 			self.confirmIDsButton.setEnabled(True)
-
 		else:
-			
 			self.consoleOutputText.append('No output files selected ... try again.')
 			self.consoleOutputText.append('')
 			self.loadOutputsButton.setEnabled(True)
@@ -274,7 +305,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			if self.mainTabWidget.currentIndex() == 1:
 				self.consoleOutputText.append('No image files selected ... try again.')
 				self.consoleOutputText.append('')
-			self.selectFDFImagesButton.setEnabled(True)
+				self.selectFDFImagesButton.setEnabled(True)
 			elif self.mainTabWidget.currentIndex() == 3:
 				self.consoleOutputText.append('No output files selected ... try again.')
 				self.consoleOutputText.append('')
@@ -300,11 +331,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		for i, mouse in enumerate(self.mouseDirs):
 			fdf_img = self.fdf_imgs[i]
 			try:
-				voxel = VarianVoxel(mouse + '/sup.fid', fdf_img.size, fdf_img.X_VARIAN, fdf_img.Y_VARIAN, fdf_img.Z_VARIAN, fdf_img.fseimg_ijk, fdf_img.fseimg_xyz_kdt)
-				print 'Loading ', mouse + '/sup.fid ...'
+				print 'Loading ', mouse + '/metab.fid ...'
+				voxel = VarianVoxel(mouse + '/metab.fid', fdf_img.size, fdf_img.X_VARIAN, fdf_img.Y_VARIAN, fdf_img.Z_VARIAN, fdf_img.fseimg_ijk, fdf_img.fseimg_xyz_kdt)
 			except Exception as e:
-				voxel = VarianVoxel(mouse + '/unsup.fid', fdf_img.size, fdf_img.X_VARIAN, fdf_img.Y_VARIAN, fdf_img.Z_VARIAN, fdf_img.fseimg_ijk, fdf_img.fseimg_xyz_kdt)
-				print 'Loading ', mouse + '/unsup.fid ...'
+				print 'Error: ', e
+				print 'Loading ', mouse + '/water.fid ...'
+				voxel = VarianVoxel(mouse + '/water.fid', fdf_img.size, fdf_img.X_VARIAN, fdf_img.Y_VARIAN, fdf_img.Z_VARIAN, fdf_img.fseimg_ijk, fdf_img.fseimg_xyz_kdt)
 			nifti_img = nib.Nifti1Image(voxel.voximg, fdf_img.affine)
 			nifti_img.to_filename(mouse + '/mrsvoxel.nii.gz')
 			self.consoleOutputText.append(' >> ' + str(mouse))
@@ -596,162 +628,204 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		out_file.write('\n')
 
 		self.consoleOutputText.append('==== METAB QUANT ====')
+		failed_mice = []
 		for i, mouse in enumerate(self.mouseDirs):
 
-			ID = mouse.split('/')[-2]
-			out_file.write(str(ID)+',')
+			try:
+				ID = mouse.split('/')[-1]
+				out_file.write(str(ID)+',')
 
-			self.consoleOutputText.append(' >> ' + str(mouse))
-			print 'Processing ', mouse, '...'
+				self.consoleOutputText.append(' >> ' + str(mouse))
+				print 'Processing ', mouse, '...'
 
-			brain = nib.load(mouse + '/fse2d_brain.nii.gz')
-			csf   = nib.load(mouse + '/fse2d_csf_mask.nii.gz')
-			vox   = nib.load(mouse + '/mrsvoxel.nii.gz')
-			sup   = mouse + '/sup.out'
-			uns   = mouse + '/uns.out'
+				brain = nib.load(mouse + '/fse2d_brain.nii.gz')
+				csf   = nib.load(mouse + '/fse2d_csf_mask.nii.gz')
+				vox   = nib.load(mouse + '/mrsvoxel.nii.gz')
+				sup_out     = OutputFile(mouse + '/sup.out')
+				unsup_out   = OutputFile(mouse + '/uns.out')
+				sup_dat   = DatFile(mouse + '/sup.dat')
+				unsup_dat = DatFile(mouse + '/metab_uns.dat')
 
-			brain_img = brain.get_data()
-			csf_img   = csf.get_data()
-			vox_img   = vox.get_data()
+				brain_img = brain.get_data()
+				csf_img   = csf.get_data()
+				vox_img   = vox.get_data()
 
-			vox_img_vec = np.reshape(vox_img, np.size(vox_img)).astype(int)
-			csf_img_vec = np.reshape(csf_img, np.size(csf_img)).astype(int)
+				vox_img_vec = np.reshape(vox_img, np.size(vox_img)).astype(int)
+				csf_img_vec = np.reshape(csf_img, np.size(csf_img)).astype(int)
 
-			vox_n = np.sum(vox_img_vec)
-			csf_n = np.sum(vox_img_vec[csf_img_vec.astype(bool)])
+				vox_n = np.sum(vox_img_vec)
+				csf_n = np.sum(vox_img_vec[csf_img_vec.astype(bool)])
 
-			tissue_frac = 1-float(csf_n)/float(vox_n)
-			vox_frac = [tissue_frac/2, tissue_frac/2, 1-tissue_frac]
+				tissue_frac = 1-float(csf_n)/float(vox_n)
+				vox_frac = [tissue_frac/2, tissue_frac/2, 1-tissue_frac]
 
-			print "voxfrac:\t", tissue_frac, vox_frac
-			out_file.write(str(tissue_frac) + ',' + str(vox_frac[2]) + ',')
+				print "voxfrac:\t", tissue_frac, vox_frac
+				out_file.write(str(tissue_frac) + ',' + str(vox_frac[2]) + ',')
 
-			# Get number of averages
-			procpar_sup = open(mouse + '/sup.fid/procpar', 'r')
-			for line in procpar_sup:
-				if 'acqcycles' in line:
-					n_avg_sup = int(procpar_sup.next().split(' ')[1])/2
+				# Get number of averages
+				procpar_sup = Procpar(mouse + '/metab.fid/procpar')
+				n_avg_sup = int(procpar_sup.acqcycles)/2
 
-			procpar_uns = open(mouse + '/unsup.fid/procpar', 'r')
-			for line in procpar_sup:
-				if 'acqcycles' in line:
-					n_avg_uns = int(procpar_sup.next().split(' ')[1])/2
+				procpar_uns = Procpar(mouse + '/water.fid/procpar')
+				n_avg_uns = int(procpar_uns.acqcycles)/2
 
-			# Get scaling factors -- CHECK WITH BARTHA!
-			scale_sup = 1
-			scale_uns = 1
+				# procpar_sup = open(mouse + '/metab.fid/procpar', 'r')
+				# for line in procpar_sup:
+				# 	if 'acqcycles' in line:
+				# 		n_avg_sup = int(procpar_sup.next().split(' ')[1])/2
 
-			print 'n_avg_sup:\t', n_avg_sup
-			print 'n_avg_uns:\t', n_avg_uns
-			print 'scale_sup:\t', scale_sup
-			print 'scale_uns:\t', scale_uns
-			print ''
-			out_file.write(str(n_avg_sup) + ',' + str(n_avg_uns) + ',' + str(scale_sup) + ',' + str(scale_uns) + ',')
+				# procpar_uns = open(mouse + '/water.fid/procpar', 'r')
+				# for line in procpar_uns:
+				# 	if 'acqcycles' in line:
+				# 		n_avg_uns = int(procpar_uns.next().split(' ')[1])/2
 
-			# Get metabolite parameters
-			metab_params = self.tree()
-			num_params   = self.metabParamsTableWidget.rowCount(); print 'num_params:\t', num_params
-			for param_index in range(0, num_params):
-				metab_params[param_index][0] = str(self.metabParamsTableWidget.item(param_index,0).text())
-				metab_params[param_index][1] = float(self.metabParamsTableWidget.item(param_index,1).text())
-				metab_params[param_index][2] = float(self.metabParamsTableWidget.item(param_index,2).text())
-				metab_params[param_index][3] = float(self.metabParamsTableWidget.item(param_index,3).text())
-				metab_params[param_index][4] = float(self.metabParamsTableWidget.item(param_index,4).text())
-				metab_params[param_index][5] = float(self.metabParamsTableWidget.item(param_index,5).text())
-				metab_params[param_index][6] = int(self.metabParamsTableWidget.item(param_index,6).text())
-				metab_params[param_index][7] = int(self.metabParamsTableWidget.item(param_index,7).text())
+				# Get scaling factors -- CHECK WITH BARTHA!
+				scale_sup = sup_dat.ConvS
+				scale_uns = unsup_dat.ConvS
 
-			# Get water parameters
-			water_params = ('water\t' \
-				+ self.protonsLineEdit_water.text() + '\t' \
-				+ self.T1GMLineEdit_water.text() + '\t' \
-				+ self.T2GMLineEdit_water.text() + '\t' \
-				+ self.T1WMLineEdit_water.text() + '\t' \
-				+ self.T2WMLineEdit_water.text() + '\t' \
-				+ self.T1CSFLineEdit_water.text() + '\t' \
-				+ self.T2CSFLineEdit_water.text()).split('\t')
-			water_params[0] = str(water_params[0])
-			water_params[1] = float(water_params[1])
-			water_params[2] = float(water_params[2])
-			water_params[3] = float(water_params[3])
-			water_params[4] = float(water_params[4])
-			water_params[5] = float(water_params[5])
-			water_params[6] = float(water_params[6])
-			water_params[7] = float(water_params[7])
+				gain_sup = procpar_sup.gain
+				gain_uns = procpar_uns.gain
 
-			# Get experimental parameters
-			exp_params = ('exp\t' \
-				+ self.TRLineEdit.text() + '\t' \
-				+ self.TELineEdit.text() + '\t' \
-				+ self.waterConcLineEdit.text() + '\t' \
-				+ self.waterConcGMLineEdit.text() + '\t' \
-				+ self.waterConcWMLineEdit.text() + '\t' \
-				+ str(int(self.voxelConcButton.isChecked()))).split('\t')
-			exp_params[0] = str(exp_params[0])
-			exp_params[1] = float(exp_params[1])
-			exp_params[2] = float(exp_params[2])
-			exp_params[3] = float(exp_params[3])
-			exp_params[4] = float(exp_params[4])
-			exp_params[5] = float(exp_params[5])
-			exp_params[6] = int(exp_params[6])
+				print 'n_avg_sup:\t', n_avg_sup, '\t',
+				print 'n_avg_uns:\t', n_avg_uns
+				print 'gain_sup:\t', gain_sup, '\t',
+				print 'gain_uns:\t', gain_uns
+				print 'sup_ConvS:\t', sup_dat.ConvS, '\t',
+				print 'uns_ConvS:\t', unsup_dat.ConvS
+				print 'scale_sup:\t', scale_sup, '\t',
+				print 'scale_uns:\t', scale_uns
+				print ''
+				out_file.write(str(n_avg_sup) + ',' + str(n_avg_uns) + ',' + str(scale_sup) + ',' + str(scale_uns) + ',')
 
-			# Get scanner type
-			scanner_type = 'varian'
-			out_file.write(str(scanner_type) + ',')
+				# Get metabolite parameters
+				metab_params = self.tree()
+				num_params   = self.metabParamsTableWidget.rowCount(); print 'num_params:\t', num_params
+				for param_index in range(0, num_params):
+					metab_params[param_index][0] = str(self.metabParamsTableWidget.item(param_index,0).text())
+					metab_params[param_index][1] = float(self.metabParamsTableWidget.item(param_index,1).text())
+					metab_params[param_index][2] = float(self.metabParamsTableWidget.item(param_index,2).text())
+					metab_params[param_index][3] = float(self.metabParamsTableWidget.item(param_index,3).text())
+					metab_params[param_index][4] = float(self.metabParamsTableWidget.item(param_index,4).text())
+					metab_params[param_index][5] = float(self.metabParamsTableWidget.item(param_index,5).text())
+					metab_params[param_index][6] = int(self.metabParamsTableWidget.item(param_index,6).text())
+					metab_params[param_index][7] = int(self.metabParamsTableWidget.item(param_index,7).text())
 
-			# Calculate absolute metabolite levels (in mM)
-			f_conc = mc.calc(sup_out, unsup_out, \
-				vox_frac, n_avg_sup, n_avg_uns, scale_sup, scale_uns, \
-				metab_params, num_params, water_params, exp_params, \
-				scanner_type)
+				# Get water parameters
+				water_params = ('water\t' \
+					+ self.protonsLineEdit_water.text() + '\t' \
+					+ self.T1GMLineEdit_water.text() + '\t' \
+					+ self.T2GMLineEdit_water.text() + '\t' \
+					+ self.T1WMLineEdit_water.text() + '\t' \
+					+ self.T2WMLineEdit_water.text() + '\t' \
+					+ self.T1CSFLineEdit_water.text() + '\t' \
+					+ self.T2CSFLineEdit_water.text()).split('\t')
+				water_params[0] = str(water_params[0])
+				water_params[1] = float(water_params[1])
+				water_params[2] = float(water_params[2])
+				water_params[3] = float(water_params[3])
+				water_params[4] = float(water_params[4])
+				water_params[5] = float(water_params[5])
+				water_params[6] = float(water_params[6])
+				water_params[7] = float(water_params[7])
 
-			# Figure out centroid of voxel to slice image appropriately
-			vox_indices = np.where(vox_img == 1)
-			vox_centroid = np.round([np.mean(vox_indices[0]), np.mean(vox_indices[1]), np.mean(vox_indices[2])]).astype(int)
+				# Get experimental parameters
+				exp_params = ('exp\t' \
+					+ self.TRLineEdit.text() + '\t' \
+					+ self.TELineEdit.text() + '\t' \
+					+ self.waterConcLineEdit.text() + '\t' \
+					+ self.waterConcGMLineEdit.text() + '\t' \
+					+ self.waterConcWMLineEdit.text() + '\t' \
+					+ str(int(self.voxelConcButton.isChecked()))).split('\t')
+				exp_params[0] = str(exp_params[0])
+				exp_params[1] = float(exp_params[1])
+				exp_params[2] = float(exp_params[2])
+				exp_params[3] = float(exp_params[3])
+				exp_params[4] = float(exp_params[4])
+				exp_params[5] = float(exp_params[5])
+				exp_params[6] = int(exp_params[6])
 
-			# Create masked array version of vox_img to overal on top of brain_img
-			vox_mas = np.ma.masked_where(vox_img == 0, vox_img * brain_img.max() + 2)
+				# Get scanner type
+				scanner_type = 'varian'
+				out_file.write(str(scanner_type) + ',')
 
-			# Display images of MRS voxel overlay
-			transpose_indices = [0, 1]
-			panes = [0, 1, 2]
-			n_rot90 = [0, 0, 0]
+				# Calculate absolute metabolite levels (in mM)
+				f_conc = mc.calc(sup_out, unsup_out, \
+					vox_frac, n_avg_sup, n_avg_uns, scale_sup, scale_uns, \
+					gain_sup, gain_uns, \
+					metab_params, num_params, water_params, exp_params, \
+					scanner_type)
 
-			fig = plt.figure(1)
-			fig.patch.set_facecolor('black')
+				# Figure out centroid of voxel to slice image appropriately
+				vox_indices = np.where(vox_img == 1)
+				vox_centroid = np.round([np.mean(vox_indices[0]), np.mean(vox_indices[1]), np.mean(vox_indices[2])]).astype(int)
 
-			ax1 = plt.subplot(1,3,1)
-			ax2 = plt.subplot(1,3,2)
-			ax3 = plt.subplot(1,3,3)
-			fig.axes[panes.index(1)].set_title(ID + "\n", size=12, color='w', family='monospace')
-			fig.axes[panes.index(1)].set_xlabel("\nTISSUE: {:.3f}, CSF: {:.3f}".format(tissue_frac, vox_frac[2]), size=11, color='w', family='monospace')
+				# Create masked array version of vox_img to overal on top of brain_img
+				vox_mas = np.ma.masked_where(vox_img == 0, vox_img * brain_img.max() + 2)
 
-			palette = cm.Greys_r
-			palette.set_over('g', 0.6)
+				# Display images of MRS voxel overlay
+				transpose_indices = [0, 1]
+				panes = [0, 1, 2]
+				n_rot90 = [0, 0, 0]
 
-			asp = brain.header['pixdim'][1]/brain.header['pixdim'][3]
+				fig = plt.figure(1)
+				fig.patch.set_facecolor('black')
 
-			anat_zoom1, k1 = autozoom(np.transpose(brain_img[vox_centroid[0],:,:].squeeze(), transpose_indices))
-			anat_zoom2, k2 = autozoom(np.transpose(brain_img[:,vox_centroid[1],:].squeeze(), transpose_indices))
-			anat_zoom3, k3 = autozoom(np.transpose(brain_img[:,:,vox_centroid[2]].squeeze(), transpose_indices))
-			                        
-			ax1.imshow(np.rot90(anat_zoom1, n_rot90[0]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
-			ax2.imshow(np.rot90(anat_zoom2, n_rot90[1]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
-			ax3.imshow(np.rot90(anat_zoom3, n_rot90[2]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect='equal')
+				ax1 = plt.subplot(1,3,1)
+				ax2 = plt.subplot(1,3,2)
+				ax3 = plt.subplot(1,3,3)
+				fig.axes[panes.index(1)].set_title(ID + "\n", size=12, color='w', family='monospace')
+				fig.axes[panes.index(1)].set_xlabel("\nTISSUE: {:.3f}, CSF: {:.3f}".format(tissue_frac, vox_frac[2]), size=11, color='w', family='monospace')
 
-			ax1.imshow(np.rot90(np.transpose(vox_mas[vox_centroid[0],min(k1[0]):max(k1[0])+1,min(k1[1]):max(k1[1])+1].squeeze(),transpose_indices), n_rot90[0]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
-			ax2.imshow(np.rot90(np.transpose(vox_mas[min(k2[0]):max(k2[0])+1,vox_centroid[1],min(k2[1]):max(k2[1])+1].squeeze(),transpose_indices), n_rot90[1]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
-			ax3.imshow(np.rot90(np.transpose(vox_mas[min(k3[0]):max(k3[0])+1,min(k3[1]):max(k3[1])+1,vox_centroid[2]].squeeze(),transpose_indices), n_rot90[2]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect='equal')
+				palette = cm.Greys_r
+				palette.set_over('g', 0.6)
 
-			plt.setp([a.set_xticks([]) for a in fig.axes])
-			plt.setp([a.set_yticks([]) for a in fig.axes])
-			plt.savefig(mouse + "barstool_output.png", facecolor='k', bbox_inches='tight', pad_inches = 0.2)
+				asp = brain.header['pixdim'][1]/brain.header['pixdim'][3]
+				print 'asp', asp
+				# raw_input()
 
-			for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
-				out_file.write("{:6.6f},".format(f_conc[str(self.metabParamsTableWidget.item(metab_index,0).text())]))
+				print 'brain_img', brain_img[vox_centroid[0],:,:].squeeze()
+				print 'vox_centroid', vox_centroid
+				# raw_input()
+
+				anat_zoom1, k1 = autozoom(np.transpose(brain_img[vox_centroid[0],:,:].squeeze(), transpose_indices))
+				# raw_input()
+
+				anat_zoom2, k2 = autozoom(np.transpose(brain_img[:,vox_centroid[1],:].squeeze(), transpose_indices))
+				# raw_input()
+
+				anat_zoom3, k3 = autozoom(np.transpose(brain_img[:,:,vox_centroid[2]].squeeze(), transpose_indices))
+				# raw_input()
+				
+				ax1.imshow(np.rot90(anat_zoom1, n_rot90[0]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
+				ax2.imshow(np.rot90(anat_zoom2, n_rot90[1]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
+				ax3.imshow(np.rot90(anat_zoom3, n_rot90[2]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect='equal')
+
+				ax1.imshow(np.rot90(np.transpose(vox_mas[vox_centroid[0],min(k1[0]):max(k1[0])+1,min(k1[1]):max(k1[1])+1].squeeze(),transpose_indices), n_rot90[0]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
+				ax2.imshow(np.rot90(np.transpose(vox_mas[min(k2[0]):max(k2[0])+1,vox_centroid[1],min(k2[1]):max(k2[1])+1].squeeze(),transpose_indices), n_rot90[1]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
+				ax3.imshow(np.rot90(np.transpose(vox_mas[min(k3[0]):max(k3[0])+1,min(k3[1]):max(k3[1])+1,vox_centroid[2]].squeeze(),transpose_indices), n_rot90[2]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect='equal')
+
+				plt.setp([a.set_xticks([]) for a in fig.axes])
+				plt.setp([a.set_yticks([]) for a in fig.axes])
+				plt.savefig(mouse + "/barstool_output.png", dpi=300, facecolor='k', bbox_inches='tight', pad_inches = 0.2)
+
+				# raw_input()
+
+				for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
+					out_file.write("{:6.6f},".format(f_conc[str(self.metabParamsTableWidget.item(metab_index,0).text())]))
+			except Exception as e:
+				failed_mice.append(mouse)			
 			out_file.write('\n')
-
+		
 		out_file.close()
+
+		self.consoleOutputText.append('')
+		self.consoleOutputText.append('The following files could not be processed successfully:')
+		for mouse in failed_mice:
+			self.consoleOutputText.append(' >> ' + str(mouse))
+
+		self.loadOutputsButton_quant.setEnabled(True)
+		self.confirmSaveFileButton_quant.setEnabled(False)
+		self.runQuantButton.setEnabled(False)
 
 # ---- Launch Application ---- #
 if __name__ == "__main__":
