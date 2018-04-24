@@ -27,6 +27,7 @@ from pyfftw.interfaces import scipy_fftpack as fftw
 
 def calc(sup_out, unsup_out, \
 			vox_frac, n_avg_sup, n_avg_uns, scale_sup, scale_uns, \
+			gain_sup, gain_uns, \
 			metab_params, num_params, water_params, exp_params, \
 			scanner_type):
 	# sup_out      = suppressed output file (OutputFile object)
@@ -37,8 +38,6 @@ def calc(sup_out, unsup_out, \
 	# exp_params   = experimental parameters (1d array [number of experiment columns])
 
 	quant_result = tree()
-	gain_sup = 1
-	gain_uns = 1
 
 	# Loop through all metabolites
 	for i in range(0, num_params):
