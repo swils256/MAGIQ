@@ -948,8 +948,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				# Calculate absolute metabolite levels (in mM)
 				f_conc = mc.calc(sup_out, unsup_out, \
 					vox_frac, n_avg_sup, n_avg_uns, scale_sup, scale_uns, \
+					1, 1, \
 					metab_params, num_params, water_params, exp_params, \
 					scanner_type)
+				#   | note: gain_sup and gain_uns are set to 1 for Siemens scanners
 
 				# Find image voxel closest to MRS voxel isocenter
 				dist_to_isocenter = np.sqrt(np.sum((img_xyz_lin - np.transpose(np.tile(sup_rda.vox_center,(len(i2), 1)), (1, 0)))**2, 0))
