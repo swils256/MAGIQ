@@ -75,311 +75,14 @@
       <layout class="QGridLayout" name="gridLayout">
        <item row="1" column="0">
         <layout class="QGridLayout" name="simGridLayout">
-         <item row="2" column="0" rowspan="2">
-          <widget class="QGroupBox" name="pulSeqCalParamsGroupBox">
-           <property name="styleSheet">
-            <string notr="true">QGroupBox {
-	font-size: 12px;
-    border: 1px solid gray;
-    border-radius: 9px;
-    margin-top: 0.5em;
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    left: 10px;
-    padding: 0 3px 0 3px;
-}</string>
+         <item row="5" column="0" colspan="2">
+          <widget class="QProgressBar" name="simProgressBar">
+           <property name="value">
+            <number>0</number>
            </property>
-           <property name="title">
-            <string>Pulse Sequence Calibration Parameters</string>
+           <property name="invertedAppearance">
+            <bool>false</bool>
            </property>
-           <layout class="QGridLayout" name="gridLayout_5">
-            <item row="2" column="1">
-             <widget class="QLabel" name="afpAmpMinLabel">
-              <property name="text">
-               <string>Minimum:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="3">
-             <widget class="QLabel" name="label_17">
-              <property name="text">
-               <string>[mT]</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QLineEdit" name="slrAmpMinInput">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="slrAmpLabel">
-              <property name="text">
-               <string>90 Degree SLR Pulse Amplitudes:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="afpAmpLabel">
-              <property name="text">
-               <string>180 Degree AFP Pulse Amplitudes:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="slrAmpMinLabel">
-              <property name="text">
-               <string>Minimum:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QLineEdit" name="slrAmpMaxInput">
-              <property name="text">
-               <string>30</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="3">
-             <widget class="QLabel" name="label_21">
-              <property name="text">
-               <string>[mT]</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLabel" name="slrAmpMaxLabel">
-              <property name="text">
-               <string>Maximum:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLabel" name="afpAmpMaxLabel">
-              <property name="text">
-               <string>Maximum:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="QLineEdit" name="afpAmpMinInput">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="2">
-             <widget class="QLineEdit" name="afpAmpMaxInput">
-              <property name="text">
-               <string>30</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="3">
-             <widget class="QLabel" name="label_24">
-              <property name="text">
-               <string>[mT]</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="3">
-             <widget class="QLabel" name="label_25">
-              <property name="text">
-               <string>[mT]</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QGroupBox" name="pulSeqParamsGroupBox">
-           <property name="styleSheet">
-            <string notr="true">QGroupBox {
-	font-size: 12px;
-    border: 1px solid gray;
-    border-radius: 9px;
-    margin-top: 0.5em;
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    left: 10px;
-    padding: 0 3px 0 3px;
-}</string>
-           </property>
-           <property name="title">
-            <string>Pulse Sequence Parameters</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_4">
-            <item row="3" column="0">
-             <widget class="QLabel" name="rfOffsetLabel">
-              <property name="text">
-               <string>RF Offset:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="rfOffsetInput">
-              <property name="text">
-               <string>4.7</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QLabel" name="label_4">
-              <property name="text">
-               <string>[usec]</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="slrPulseLengthLabel">
-              <property name="text">
-               <string>90 Degree SLR Pulse Length: </string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="slrPulseLengthInput">
-              <property name="text">
-               <string>4000</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="afpPulseLengthInput">
-              <property name="text">
-               <string>8000</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="afpPulseLengthLabel">
-              <property name="text">
-               <string>180 Degree AFP Pulse Length:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="QLabel" name="label_6">
-              <property name="text">
-               <string>[usec]</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="2">
-             <widget class="QLabel" name="label_27">
-              <property name="text">
-               <string>[ppm]</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="fudgeFactorLabel">
-              <property name="text">
-               <string>90 Degree SLR Fudge Factor:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="fudgeFactorInput">
-              <property name="text">
-               <string>0</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="1" column="1" rowspan="3">
-          <widget class="QGroupBox" name="binningParamsGroupBox">
-           <property name="styleSheet">
-            <string notr="true">QGroupBox {
-	font-size: 12px;
-    border: 1px solid gray;
-    border-radius: 9px;
-    margin-top: 0.5em;
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    left: 10px;
-    padding: 0 3px 0 3px;
-}</string>
-           </property>
-           <property name="title">
-            <string>Binning Parameters</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_7">
-            <item row="2" column="1">
-             <widget class="QLabel" name="ppmloLabel">
-              <property name="text">
-               <string>Low (ppmlo):</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="tolppmLabel">
-              <property name="text">
-               <string>PPM Tolerance (tolppm):</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="tolphaLabel">
-              <property name="text">
-               <string>Phase Tolerance (tolpha):</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="ppmSearchRangeLabel">
-              <property name="text">
-               <string>PPM Search Range:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLabel" name="ppmhiLabel">
-              <property name="text">
-               <string>High (ppmhi):</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="QLineEdit" name="ppmloInput">
-              <property name="text">
-               <string>0.0</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1" colspan="2">
-             <widget class="QLineEdit" name="tolphaInput">
-              <property name="text">
-               <string>50.0</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1" colspan="2">
-             <widget class="QLineEdit" name="tolppmInput">
-              <property name="text">
-               <string>0.0015</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="2">
-             <widget class="QLineEdit" name="ppmhiInput">
-              <property name="text">
-               <string>10.0</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
           </widget>
          </item>
          <item row="0" column="0" colspan="2">
@@ -566,16 +269,6 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
-            <item row="6" column="0" colspan="2">
-             <widget class="QRadioButton" name="macroIncludeButton">
-              <property name="text">
-               <string>Include macromolecules in the simulation.</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
             <item row="3" column="1" colspan="2">
              <widget class="QLineEdit" name="echoTimeInput_sim">
               <property name="text">
@@ -597,13 +290,56 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
+            <item row="6" column="0" colspan="4">
+             <widget class="QRadioButton" name="macroIncludeButton">
+              <property name="text">
+               <string>I&amp;nclude macromolecules in the simulation.</string>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0">
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Pulse Sequence:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="1">
+             <widget class="QRadioButton" name="sLASERradioButton">
+              <property name="text">
+               <string>semi-LASER</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">pulseSequence_ButtonGroup</string>
+              </attribute>
+             </widget>
+            </item>
+            <item row="7" column="2">
+             <widget class="QRadioButton" name="LASERradioButton">
+              <property name="text">
+               <string>&amp;LASER</string>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">pulseSequence_ButtonGroup</string>
+              </attribute>
+             </widget>
+            </item>
            </layout>
           </widget>
          </item>
          <item row="6" column="0" colspan="2">
           <widget class="QPushButton" name="runSimulationButton">
            <property name="text">
-            <string>Run semi-LASER Simulation</string>
+            <string>Run Simulation</string>
            </property>
           </widget>
          </item>
@@ -654,21 +390,934 @@ QGroupBox::title {
            </layout>
           </widget>
          </item>
-         <item row="5" column="0" colspan="2">
-          <widget class="QProgressBar" name="simProgressBar">
-           <property name="value">
-            <number>0</number>
-           </property>
-           <property name="invertedAppearance">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
          <item row="4" column="0" colspan="2">
           <widget class="QPushButton" name="confirmSimParamsButton">
            <property name="text">
             <string>Confirm Simulation Parameters</string>
            </property>
+          </widget>
+         </item>
+         <item row="1" column="1" rowspan="3">
+          <widget class="QGroupBox" name="binningParamsGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Binning Parameters</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_7">
+            <item row="2" column="1">
+             <widget class="QLabel" name="ppmloLabel">
+              <property name="text">
+               <string>Low (ppmlo):</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="tolppmLabel">
+              <property name="text">
+               <string>PPM Tolerance (tolppm):</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="tolphaLabel">
+              <property name="text">
+               <string>Phase Tolerance (tolpha):</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="ppmSearchRangeLabel">
+              <property name="text">
+               <string>PPM Search Range:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLabel" name="ppmhiLabel">
+              <property name="text">
+               <string>High (ppmhi):</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QLineEdit" name="ppmloInput">
+              <property name="text">
+               <string>0.0</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1" colspan="2">
+             <widget class="QLineEdit" name="tolphaInput">
+              <property name="text">
+               <string>50.0</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" colspan="2">
+             <widget class="QLineEdit" name="tolppmInput">
+              <property name="text">
+               <string>0.0015</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QLineEdit" name="ppmhiInput">
+              <property name="text">
+               <string>10.0</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="0" rowspan="3">
+          <widget class="QTabWidget" name="pulseSequenceTabWidget">
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <widget class="QWidget" name="slaserTab">
+            <attribute name="title">
+             <string>semi-LASER</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout_10">
+             <item row="0" column="0">
+              <widget class="QGroupBox" name="pulSeqParamsGroupBox">
+               <property name="styleSheet">
+                <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+               </property>
+               <property name="title">
+                <string>Pulse Sequence Parameters</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_4">
+                <item row="3" column="0">
+                 <widget class="QLabel" name="rfOffsetLabel">
+                  <property name="text">
+                   <string>RF Offset:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QLineEdit" name="rfOffsetInput">
+                  <property name="text">
+                   <string>4.7</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QLabel" name="label_4">
+                  <property name="text">
+                   <string>[usec]</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="slrPulseLengthLabel">
+                  <property name="text">
+                   <string>90 Degree SLR Pulse Length: </string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="slrPulseLengthInput">
+                  <property name="text">
+                   <string>4000</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLineEdit" name="afpPulseLengthInput">
+                  <property name="text">
+                   <string>8000</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="afpPulseLengthLabel">
+                  <property name="text">
+                   <string>180 Degree AFP Pulse Length:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="2">
+                 <widget class="QLabel" name="label_6">
+                  <property name="text">
+                   <string>[usec]</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="2">
+                 <widget class="QLabel" name="label_27">
+                  <property name="text">
+                   <string>[ppm]</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="fudgeFactorLabel">
+                  <property name="text">
+                   <string>90 Degree SLR Fudge Factor:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLineEdit" name="fudgeFactorInput">
+                  <property name="text">
+                   <string>0</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QGroupBox" name="pulSeqCalParamsGroupBox">
+               <property name="styleSheet">
+                <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+               </property>
+               <property name="title">
+                <string>Pulse Sequence Calibration Parameters</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_5">
+                <item row="2" column="1">
+                 <widget class="QLabel" name="afpAmpMinLabel">
+                  <property name="text">
+                   <string>Minimum:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="3">
+                 <widget class="QLabel" name="label_17">
+                  <property name="text">
+                   <string>[mT]</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QLineEdit" name="slrAmpMinInput">
+                  <property name="text">
+                   <string>0</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="slrAmpLabel">
+                  <property name="text">
+                   <string>90 Degree SLR Pulse Amplitudes:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="afpAmpLabel">
+                  <property name="text">
+                   <string>180 Degree AFP Pulse Amplitudes:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLabel" name="slrAmpMinLabel">
+                  <property name="text">
+                   <string>Minimum:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="2">
+                 <widget class="QLineEdit" name="slrAmpMaxInput">
+                  <property name="text">
+                   <string>30</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="3">
+                 <widget class="QLabel" name="label_21">
+                  <property name="text">
+                   <string>[mT]</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLabel" name="slrAmpMaxLabel">
+                  <property name="text">
+                   <string>Maximum:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QLabel" name="afpAmpMaxLabel">
+                  <property name="text">
+                   <string>Maximum:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="2">
+                 <widget class="QLineEdit" name="afpAmpMinInput">
+                  <property name="text">
+                   <string>0</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="2">
+                 <widget class="QLineEdit" name="afpAmpMaxInput">
+                  <property name="text">
+                   <string>30</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="3">
+                 <widget class="QLabel" name="label_24">
+                  <property name="text">
+                   <string>[mT]</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="3">
+                 <widget class="QLabel" name="label_25">
+                  <property name="text">
+                   <string>[mT]</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="calibrationMetaboliteLabel">
+                  <property name="text">
+                   <string>Calibration Metabolite:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="1" colspan="3">
+                 <widget class="QComboBox" name="calibrationMetaboliteComboBox">
+                  <property name="currentText">
+                   <string>alanine</string>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>alanine</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>aspartate</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>choline_N(CH3)3_a</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>choline_N(CH3)3_b</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>creatine_N(CH3)</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>creatine_X</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>d-glucose-alpha</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>d-glucose-beta</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>eth</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>gaba</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>glutamate</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>glutamine</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>glutathione_cysteine</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>glutathione_glutamate</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>glutathione_glycine</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>glycine</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>gpc_7-CH2_8-CH2</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>gpc_glycerol</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>gpc_N(CH3)3_a</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>gpc_N(CH3)3_b</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>lactate</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>myoinositol</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>naa_acetyl</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>naa_aspartate</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>naag_acetyl</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>naag_aspartyl</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>naag_glutamate</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>pcho_N(CH3)3_a</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>pcho_N(CH3)3_b</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>pcho_X</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>pcr_N(CH3)</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>pcr_X</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>peth</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>scyllo-inositol</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>taurine</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>water</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="laserTab">
+            <attribute name="title">
+             <string>LASER</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout_13">
+             <item row="0" column="0">
+              <widget class="QGroupBox" name="pulSeqParamsGroupBox_laser">
+               <property name="styleSheet">
+                <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+               </property>
+               <property name="title">
+                <string>Pulse Sequence Parameters</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_11">
+                <item row="1" column="2">
+                 <widget class="QLabel" name="label_7">
+                  <property name="text">
+                   <string>[usec]</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="rfOffsetLabel_laser">
+                  <property name="text">
+                   <string>RF Offset:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLineEdit" name="rfOffsetInput_laser">
+                  <property name="text">
+                   <string>4.7</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QLabel" name="label_5">
+                  <property name="text">
+                   <string>[usec]</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="ahpPulseLengthLabel_laser">
+                  <property name="text">
+                   <string>AHP Pulse Length:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="ahpPulseLengthInput_laser">
+                  <property name="text">
+                   <string>2000</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="afpPulseLengthLabel_laser">
+                  <property name="text">
+                   <string>AFP Pulse Length:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLineEdit" name="afpPulseLengthInput_laser">
+                  <property name="text">
+                   <string>1000</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="2">
+                 <widget class="QLabel" name="label_28">
+                  <property name="text">
+                   <string>[ppm]</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QGroupBox" name="pulSeqCalParamsGroupBox_laser">
+               <property name="styleSheet">
+                <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+               </property>
+               <property name="title">
+                <string>Pulse Sequence Calibration Parameters</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_12">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="ahpAmpLabel_laser">
+                  <property name="text">
+                   <string>AHP Pulse Amplitudes:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLabel" name="ahpAmpMinLabel_laser">
+                  <property name="text">
+                   <string>Minimum:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QLineEdit" name="ahpAmpMinInput_laser">
+                  <property name="text">
+                   <string>0</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="3">
+                 <widget class="QLabel" name="label_18">
+                  <property name="text">
+                   <string>[mT]</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLabel" name="ahpAmpMaxLabel_laser">
+                  <property name="text">
+                   <string>Maximum:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="2">
+                 <widget class="QLineEdit" name="ahpAmpMaxInput_laser">
+                  <property name="text">
+                   <string>200</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="3">
+                 <widget class="QLabel" name="label_22">
+                  <property name="text">
+                   <string>[mT]</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="afpAmpLabel_laser">
+                  <property name="text">
+                   <string>AFP Pulse Amplitudes:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLabel" name="afpAmpMinLabel_laser">
+                  <property name="text">
+                   <string>Minimum:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="2">
+                 <widget class="QLineEdit" name="afpAmpMinInput_laser">
+                  <property name="text">
+                   <string>70</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="3">
+                 <widget class="QLabel" name="label_26">
+                  <property name="text">
+                   <string>[mT]</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QLabel" name="afpAmpMaxLabel_laser">
+                  <property name="text">
+                   <string>Maximum:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="2">
+                 <widget class="QLineEdit" name="afpAmpMaxInput_laser">
+                  <property name="text">
+                   <string>200</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="3">
+                 <widget class="QLabel" name="label_29">
+                  <property name="text">
+                   <string>[mT]</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="1" colspan="3">
+                 <widget class="QComboBox" name="calibrationMetaboliteComboBox_laser">
+                  <property name="currentText">
+                   <string>alanine</string>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>alanine</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>aspartate</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>choline_N(CH3)3_a</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>choline_N(CH3)3_b</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>creatine_N(CH3)</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>creatine_X</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>d-glucose-alpha</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>d-glucose-beta</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>eth</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>gaba</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>glutamate</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>glutamine</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>glutathione_cysteine</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>glutathione_glutamate</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>glutathione_glycine</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>glycine</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>gpc_7-CH2_8-CH2</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>gpc_glycerol</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>gpc_N(CH3)3_a</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>gpc_N(CH3)3_b</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>lactate</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>myoinositol</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>naa_acetyl</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>naa_aspartate</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>naag_acetyl</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>naag_aspartyl</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>naag_glutamate</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>pcho_N(CH3)3_a</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>pcho_N(CH3)3_b</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>pcho_X</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>pcr_N(CH3)</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>pcr_X</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>peth</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>scyllo-inositol</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>taurine</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>water</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="label_9">
+                  <property name="text">
+                   <string>Calibration Metabolite:</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </widget>
          </item>
         </layout>
@@ -1074,6 +1723,20 @@ QGroupBox::title {
               </item>
               <item row="2" column="1">
                <widget class="QLineEdit" name="shiftInput">
+                <property name="text">
+                 <string>0</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="phaseLabel">
+                <property name="text">
+                 <string>Phase [deg]:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="phaseInput">
                 <property name="text">
                  <string>0</string>
                 </property>
@@ -1486,7 +2149,7 @@ QGroupBox::title {
             <string>Linewidths</string>
            </property>
            <layout class="QGridLayout" name="gridLayout_6">
-            <item row="1" column="1" colspan="2">
+            <item row="4" column="1" colspan="2">
              <widget class="QCheckBox" name="linkAllCheckBox">
               <property name="text">
                <string>Link all linewidths</string>
@@ -1496,14 +2159,8 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
-            <item row="0" column="0" rowspan="2">
+            <item row="3" column="0" rowspan="2">
              <widget class="QLabel" name="lwInstructionsLabel">
-              <property name="minimumSize">
-               <size>
-                <width>400</width>
-                <height>0</height>
-               </size>
-              </property>
               <property name="text">
                <string>By default, all linewidths of a single metabolite are linked.
 This cannot be changed! You can set the maximum linewidth
@@ -1511,31 +2168,69 @@ for all metabolites here. Type '0' if you don't want a limit.</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
+            <item row="3" column="1">
              <widget class="QLabel" name="maxLWLabel">
               <property name="text">
                <string>Max Linewidth (Hz): </string>
               </property>
              </widget>
             </item>
-            <item row="1" column="4">
-             <widget class="QCheckBox" name="splitNAACheckBox">
+            <item row="4" column="3">
+             <widget class="QCheckBox" name="linkLipidsCheckBox">
               <property name="text">
-               <string>Fit NAA Multiplets Separately</string>
+               <string>Link lipid linewidths</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
-            <item row="0" column="2" colspan="4">
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="maxPPMInput">
+              <property name="text">
+               <string>5</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3" alignment="Qt::AlignRight">
+             <widget class="QLabel" name="minWaterPPMLabel">
+              <property name="text">
+               <string>Min Water PPM:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2" colspan="5">
              <widget class="QLineEdit" name="maxLWInput">
               <property name="text">
                <string>50</string>
               </property>
              </widget>
             </item>
-            <item row="1" column="3">
-             <widget class="QCheckBox" name="linkLipidsCheckBox">
+            <item row="4" column="4" colspan="3">
+             <widget class="QCheckBox" name="splitNAACheckBox">
               <property name="text">
-               <string>Link lipid linewidths</string>
+               <string>Fit NAA Multiplets Separately</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" alignment="Qt::AlignRight">
+             <widget class="QLabel" name="maxPPMLabel">
+              <property name="text">
+               <string>Max Metabolite PPM:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4" colspan="3">
+             <widget class="QLineEdit" name="minWaterPPMInput">
+              <property name="text">
+               <string>4</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3" colspan="4">
+             <widget class="QCheckBox" name="linkWaterRemovalAmpsCheckBox">
+              <property name="text">
+               <string>Link amplitudes in water removal region</string>
               </property>
               <property name="checked">
                <bool>true</bool>
@@ -2037,6 +2732,7 @@ p, li { white-space: pre-wrap; }
  <resources/>
  <connections/>
  <buttongroups>
+  <buttongroup name="pulseSequence_ButtonGroup"/>
   <buttongroup name="fieldStrength_sim_ButtonGroup"/>
  </buttongroups>
 </ui>
