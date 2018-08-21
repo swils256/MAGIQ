@@ -21,6 +21,7 @@ from itertools import groupby
 import scipy as sp
 import scipy.signal as spsg
 
+
 import numpy as np
 import math
 from pyfftw.interfaces import scipy_fftpack as fftw
@@ -70,6 +71,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			self.confirmSimParamsButton.clicked.connect(self.confirmSimParams)
 			
+			self.calibrationMetaboliteComboBox.setCurrentIndex(35)
+			self.calibrationMetaboliteComboBox_laser.setCurrentIndex(35)
+
 			self.runSimulationButton.setEnabled(False)
 			self.runSimulationButton.clicked.connect(self.runSimulation)
 
@@ -165,51 +169,61 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.addmpl(2, fig, self.plotGES_mplvl)
 
 	# ---- Methods for Simulate Tab ---- #
-	def confirmSimParams(self):
-		self.sim_experiment = Experiment()
+	def sine_func(self, x, a, b, s):
+		return a * np.sin(b * (x-s))
 
-		self.sim_experiment.name = 'semi-LASER'
+	def logs_func(self, x, A, B, K, s):
+		return A + (K - A)/(1 + np.exp(-B*(x-s)))
+
+	def confirmSimParams(self):
+		if self.sLASERradioButton.isChecked():
+			self.sim_experiment = Experiment()
+			self.sim_experiment.name = 'semi-LASER'
+		elif self.LASERradioButton.isChecked():
+			self.sim_experiment = Experiment('laser')
+			self.sim_experiment.name = 'LASER'
+		
 		self.sim_experiment.author = platform.node()
 		self.sim_experiment.date = datetime.datetime.now().strftime("%Y_%m_%d")
 		self.sim_experiment.description = 'Density-matrix simulations of metabolites using PyGAMMA and metabolite parameters from V. Govindaraju et. al, NMR Biomed. 2000;13:129-153'
 		self.sim_experiment.type = 'PINTS'
 
 		self.insysfiles = [ 'alanine.sys',
-						    'aspartate.sys',
-						    'choline_1-CH2_2-CH2.sys',
-						    'choline_N(CH3)3_a.sys',
-						    'choline_N(CH3)3_b.sys',
-						    'creatine_N(CH3).sys',
-						    'creatine_X.sys',
-						    'd-glucose-alpha.sys',
-						    'd-glucose-beta.sys',
-						    'eth.sys',
-						    'gaba.sys',
-						    'glutamate.sys',
-						    'glutamine.sys',
-						    'glutathione_cysteine.sys',
-						    'glutathione_glutamate.sys',
-						    'glutathione_glycine.sys',
-						    'glycine.sys',
-						    'gpc_7-CH2_8-CH2.sys',
-						    'gpc_glycerol.sys',
-						    'gpc_N(CH3)3_a.sys',
-						    'gpc_N(CH3)3_b.sys',
-						    'lactate.sys',
-						    'myoinositol.sys',
-						    'naa_acetyl.sys',
-						    'naa_aspartate.sys',
-						    'naag_acetyl.sys',
-						    'naag_aspartyl.sys',
-						    'naag_glutamate.sys',
-						    'pcho_N(CH3)3_a.sys',
-						    'pcho_N(CH3)3_b.sys',
-						    'pcho_X.sys',
-						    'pcr_N(CH3).sys',
-						    'pcr_X.sys',
-						    'peth.sys',
-						    'scyllo-inositol.sys',
-						    'taurine.sys' ]
+							'aspartate.sys',
+							'choline_1-CH2_2-CH2.sys',
+							'choline_N(CH3)3_a.sys',
+							'choline_N(CH3)3_b.sys',
+							'creatine_N(CH3).sys',
+							'creatine_X.sys',
+							'd-glucose-alpha.sys',
+							'd-glucose-beta.sys',
+							'eth.sys',
+							'gaba.sys',
+							'glutamate.sys',
+							'glutamine.sys',
+							'glutathione_cysteine.sys',
+							'glutathione_glutamate.sys',
+							'glutathione_glycine.sys',
+							'glycine.sys',
+							'gpc_7-CH2_8-CH2.sys',
+							'gpc_glycerol.sys',
+							'gpc_N(CH3)3_a.sys',
+							'gpc_N(CH3)3_b.sys',
+							'lactate.sys',
+							'myoinositol.sys',
+							'naa_acetyl.sys',
+							'naa_aspartate.sys',
+							'naag_acetyl.sys',
+							'naag_aspartyl.sys',
+							'naag_glutamate.sys',
+							'pcho_N(CH3)3_a.sys',
+							'pcho_N(CH3)3_b.sys',
+							'pcho_X.sys',
+							'pcr_N(CH3).sys',
+							'pcr_X.sys',
+							'peth.sys',
+							'scyllo-inositol.sys',
+							'taurine.sys' ]
 
 		self.macromolecules = ['lm1', 
 								'lm2', 
@@ -276,19 +290,30 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.sim_experiment.dwell_time = float(self.dwellTimeInput_sim.text())
 			self.sim_experiment.TE = float(self.echoTimeInput_sim.text())
 
-			self.sim_experiment.PULSE_90_LENGTH = float(self.slrPulseLengthInput.text())*10**(-6)
-			self.sim_experiment.fudge_factor = int(self.fudgeFactorInput.text())
-			self.sim_experiment.PULSE_180_LENGTH = float(self.afpPulseLengthInput.text())*10**(-6)
-			self.sim_experiment.RF_OFFSET = float(self.rfOffsetInput.text())
-			
-			self.sim_experiment.A_90s  = sp.linspace(int(self.slrAmpMinInput.text()), int(self.slrAmpMaxInput.text()), (int(self.slrAmpMaxInput.text())-int(self.slrAmpMinInput.text()))*10 + 1)
-			self.sim_experiment.A_180s = sp.linspace(int(self.afpAmpMinInput.text()), int(self.afpAmpMaxInput.text()), (int(self.afpAmpMaxInput.text())-int(self.afpAmpMinInput.text()))*10 + 1)
+			if self.sLASERradioButton.isChecked():
+				self.sim_experiment.PULSE_90_LENGTH = float(self.slrPulseLengthInput.text())*10**(-6)
+				self.sim_experiment.fudge_factor = int(self.fudgeFactorInput.text())
+				self.sim_experiment.PULSE_180_LENGTH = float(self.afpPulseLengthInput.text())*10**(-6)
+				self.sim_experiment.RF_OFFSET = float(self.rfOffsetInput.text())
+				
+				self.sim_experiment.A_90s  = sp.linspace(int(self.slrAmpMinInput.text()), int(self.slrAmpMaxInput.text()), (int(self.slrAmpMaxInput.text())-int(self.slrAmpMinInput.text()))*10 + 1)
+				self.sim_experiment.A_180s = sp.linspace(int(self.afpAmpMinInput.text()), int(self.afpAmpMaxInput.text()), (int(self.afpAmpMaxInput.text())-int(self.afpAmpMinInput.text()))*10 + 1)
+
+			elif self.LASERradioButton.isChecked():
+				self.sim_experiment.PULSE_90_LENGTH = float(self.ahpPulseLengthInput_laser.text())*10**(-6)
+				self.sim_experiment.PULSE_180_LENGTH = float(self.afpPulseLengthInput_laser.text())*10**(-6)
+				self.sim_experiment.RF_OFFSET = float(self.rfOffsetInput_laser.text())
+
+				self.sim_experiment.A_90s = sp.linspace(int(self.ahpAmpMinInput_laser.text()), int(self.ahpAmpMaxInput_laser.text()), (int(self.ahpAmpMaxInput_laser.text())-int(self.ahpAmpMinInput_laser.text()))*10 + 1)
+				self.sim_experiment.A_180s = sp.linspace(int(self.afpAmpMinInput_laser.text()), int(self.afpAmpMaxInput_laser.text()), (int(self.afpAmpMaxInput_laser.text())-int(self.afpAmpMinInput_laser.text()))*10 + 1)
+
 
 			self.sim_experiment.tolppm = float(self.tolppmInput.text())
 			self.sim_experiment.tolpha = float(self.tolphaInput.text())
 			self.sim_experiment.ppmlo = float(self.ppmloInput.text()) - self.sim_experiment.RF_OFFSET
 			self.sim_experiment.ppmhi = float(self.ppmhiInput.text()) - self.sim_experiment.RF_OFFSET
 
+			self.simConsole.clear()
 			self.simConsole.append('Confirming simulation experiment parameters ...')
 			self.simConsole.append(' | b0:               ' + str(self.sim_experiment.b0) + ' MHz')
 			self.simConsole.append(' | observed species: ' + str(self.sim_experiment.obs_iso))
@@ -296,9 +321,15 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.simConsole.append(' | dwell time:       ' + str(self.sim_experiment.dwell_time) + ' sec')
 			self.simConsole.append(' | acqusition time:  ' + str(self.sim_experiment.acq_time) + ' sec')
 			self.simConsole.append(' | TE:               ' + str(self.sim_experiment.TE) + ' msec')
-			self.simConsole.append(' | A_90:             ' + str(np.array(self.sim_experiment.A_90s)))
-			self.simConsole.append(' | A_180:            ' + str(np.array(self.sim_experiment.A_180s)))
-			self.simConsole.append(' | rf_offset:        ' + str(self.sim_experiment.RF_OFFSET) + ' ppm')
+
+			if self.sLASERradioButton.isChecked():
+				self.simConsole.append(' | A_90:             ' + str(np.array(self.sim_experiment.A_90s)))
+				self.simConsole.append(' | A_180:            ' + str(np.array(self.sim_experiment.A_180s)))
+				self.simConsole.append(' | rf_offset:        ' + str(self.sim_experiment.RF_OFFSET) + ' ppm')
+			elif self.LASERradioButton.isChecked():
+				self.simConsole.append(' | A_90s:           ' + str(np.array(self.sim_experiment.A_90s)))
+				self.simConsole.append(' | A_180s:           ' + str(np.array(self.sim_experiment.A_180s)))
+				self.simConsole.append(' | rf_offset:        ' + str(self.sim_experiment.RF_OFFSET) + ' ppm')
 
 			self.confirmSimParamsButton.setEnabled(False)
 			self.runSimulationButton.setEnabled(True)
@@ -312,227 +343,630 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.simProgressBar.setMaximum(int(sp.size(self.insysfiles)) + 2)
 		self.simProgressBar.setValue(0)
 
-		# Create a new simulations results file
-		self.save_dir_sim = 'pints/experiments/sLASER_sim_' + datetime.datetime.now().strftime("%Y_%m_%d_%s") + '_TE' + str(self.sim_experiment.TE) + '/'
-		if not os.path.exists(self.save_dir_sim):
-			os.makedirs(self.save_dir_sim)
-		self.sim_results = open(self.save_dir_sim + 'sLASER_sim_results.txt', 'w')
+		if self.sLASERradioButton.isChecked():
+			
+			# Create a new simulations results file
+			self.save_dir_sim = 'pints/experiments/sLASER_sim_' + datetime.datetime.now().strftime("%Y_%m_%d_%s") + '_TE' + str(self.sim_experiment.TE) + '/'
+			if not os.path.exists(self.save_dir_sim):
+				os.makedirs(self.save_dir_sim)
+			self.sim_results = open(self.save_dir_sim + 'sLASER_sim_results.txt', 'w')
 
-		# Write parameters in file
-		self.sim_results.write(';PINTS for FITMAN Simulation Output\n')
-		self.sim_results.write(';Experiment Information\n')
-		self.sim_results.write(';---------------------------------------------------------------------------\n')
-		self.sim_results.write(';Name: ' + self.sim_experiment.name + '\n')
-		self.sim_results.write(';Created: ' + self.sim_experiment.date + '\n')
-		self.sim_results.write(';Comment: ' + self.sim_experiment.description + '\n')
-		self.sim_results.write(';PI: ' + self.sim_experiment.author + '\n')
-		self.sim_results.write(';b0: ' + str(self.sim_experiment.b0) + '\n')
-		self.sim_results.write(';' + str(int(sp.size(self.insysfiles)+int(sp.size(self.macromolecules)))) + ' Metabolites: ' + str(self.insysfiles).replace('[','').replace(']','').replace('\'','').replace('.sys',''))
-		if self.macroIncludeButton.isChecked(): self.sim_results.write(', ' + str(self.macromolecules).replace('[','').replace(']','').replace('\'',''))
-		self.sim_results.write('\n')
+			# Write parameters in file
+			self.sim_results.write(';PINTS for FITMAN Simulation Output\n')
+			self.sim_results.write(';Experiment Information\n')
+			self.sim_results.write(';---------------------------------------------------------------------------\n')
+			self.sim_results.write(';Name: ' + self.sim_experiment.name + '\n')
+			self.sim_results.write(';Created: ' + self.sim_experiment.date + '\n')
+			self.sim_results.write(';Comment: ' + self.sim_experiment.description + '\n')
+			self.sim_results.write(';PI: ' + self.sim_experiment.author + '\n')
+			self.sim_results.write(';b0: ' + str(self.sim_experiment.b0) + '\n')
+			self.sim_results.write(';' + str(int(sp.size(self.insysfiles)+int(sp.size(self.macromolecules)))) + ' Metabolites: ' + str(self.insysfiles).replace('[','').replace(']','').replace('\'','').replace('.sys',''))
+			if self.macroIncludeButton.isChecked(): self.sim_results.write(', ' + str(self.macromolecules).replace('[','').replace(']','').replace('\'',''))
+			self.sim_results.write('\n')
 
-		self.sim_results.write(';Simulation Results\n')
-		self.sim_results.write(';---------------------------------------------------------------------------\n')
+			self.sim_results.write(';Simulation Results\n')
+			self.sim_results.write(';---------------------------------------------------------------------------\n')
 
-		# Set up for calibration experiments
-		insysfile = 'naa_acetyl.sys'
-		insysfile = 'pints/metabolites/3T_' + insysfile if self.sim_experiment.b0 == 123.3 else 'pints/metabolites/7T_' + insysfile
+			# Set up for calibration experiments
+			insysfile = str(self.calibrationMetaboliteComboBox.currentText()) + '.sys'
+			if self.sim_experiment.b0 == 123.3:
+				insysfile = 'pints/metabolites/3T_' + insysfile
+			elif self.sim_experiment.b0 == 297.2:
+				insysfile = 'pints/metabolites/7T_' + insysfile
+			elif self.sim_experiment.b0 == 400.2:
+				insysfile = 'pints/metabolites/9.4T_' + insysfile
 
-		spin_system = pg.spin_system()
-		spin_system.read(insysfile)
-		for i in range(spin_system.spins()):
-			spin_system.PPM(i, spin_system.PPM(i) - self.sim_experiment.RF_OFFSET)
+			spin_system = pg.spin_system()
+			spin_system.read(insysfile)
+			for i in range(spin_system.spins()):
+				spin_system.PPM(i, spin_system.PPM(i) - self.sim_experiment.RF_OFFSET)
 
-		# Run the 180 calibration
-		self.simConsole.append('\n1. 180-degree calibration sLASER (w/ ideal 90, naa_acetyl) experiment')
-		A180_calibration_data = []
+			# Run the 180 calibration
+			self.simConsole.append('\n1. 180-degree calibration sLASER (w/ ideal 90, ' + str(self.calibrationMetaboliteComboBox.currentText()) + ') experiment')
+			A180_calibration_data = []
 
-		for A_180 in self.sim_experiment.A_180s:
+			for A_180 in self.sim_experiment.A_180s:
 
-			TE = self.sim_experiment.TE
-			TE1 = float((TE * 0.31) / 1000.0)
-			TE3 = float((TE * 0.31) / 1000.0)
-			TE2 = float(TE/1000.0 - TE1 - TE3)
-			TE_fill = TE/1000.0 - TE1 - TE2 - TE3
+				TE = self.sim_experiment.TE
+				TE1 = float((TE * 0.31) / 1000.0)
+				TE3 = float((TE * 0.31) / 1000.0)
+				TE2 = float(TE/1000.0 - TE1 - TE3)
+				TE_fill = TE/1000.0 - TE1 - TE2 - TE3
 
-			# build 90 degree pulse
-			peak_to_end_90 = 0
+				# build 90 degree pulse
+				peak_to_end_90 = 0
 
-			# build 180 degree pulse
-			A_180, pulse180, pulse_dur_180, Ureal180 = self.slaser_build180(self.sim_experiment.inpulse180file, A_180, self.sim_experiment.PULSE_180_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
+				# build 180 degree pulse
+				A_180, pulse180, pulse_dur_180, Ureal180 = self.slaser_build180(self.sim_experiment.inpulse180file, A_180, self.sim_experiment.PULSE_180_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
 
-			H = pg.Hcs(spin_system) + pg.HJ(spin_system)
-			D = pg.Fm(spin_system, self.sim_experiment.obs_iso)
-			ac = pg.acquire1D(pg.gen_op(D), H, self.sim_experiment.dwell_time)
-			ACQ = ac
+				H = pg.Hcs(spin_system) + pg.HJ(spin_system)
+				D = pg.Fm(spin_system, self.sim_experiment.obs_iso)
+				ac = pg.acquire1D(pg.gen_op(D), H, self.sim_experiment.dwell_time)
+				ACQ = ac
 
-			delay1 = TE1/2.0 + TE_fill/8.0                         - pulse_dur_180/2.0 - peak_to_end_90
-			delay2 = TE1/2.0 + TE_fill/8.0 + TE2/4.0 + TE_fill/8.0 - pulse_dur_180
-			delay3 = TE2/4.0 + TE_fill/8.0 + TE2/4.0 + TE_fill/8.0 - pulse_dur_180
-			delay4 = TE2/4.0 + TE_fill/8.0 + TE3/2.0 + TE_fill/8.0 - pulse_dur_180
-			delay5 = TE3/2.0 + TE_fill/8.0                         - pulse_dur_180/2.0
+				delay1 = TE1/2.0 + TE_fill/8.0                         - pulse_dur_180/2.0 - peak_to_end_90
+				delay2 = TE1/2.0 + TE_fill/8.0 + TE2/4.0 + TE_fill/8.0 - pulse_dur_180
+				delay3 = TE2/4.0 + TE_fill/8.0 + TE2/4.0 + TE_fill/8.0 - pulse_dur_180
+				delay4 = TE2/4.0 + TE_fill/8.0 + TE3/2.0 + TE_fill/8.0 - pulse_dur_180
+				delay5 = TE3/2.0 + TE_fill/8.0                         - pulse_dur_180/2.0
 
-			Udelay1 = pg.prop(H, delay1)
-			Udelay2 = pg.prop(H, delay2)
-			Udelay3 = pg.prop(H, delay3)
-			Udelay4 = pg.prop(H, delay4)
-			Udelay5 = pg.prop(H, delay5)
+				Udelay1 = pg.prop(H, delay1)
+				Udelay2 = pg.prop(H, delay2)
+				Udelay3 = pg.prop(H, delay3)
+				Udelay4 = pg.prop(H, delay4)
+				Udelay5 = pg.prop(H, delay5)
 
-			sigma0 = pg.sigma_eq(spin_system)	# init
-			sigma1 = pg.Ixpuls(spin_system, sigma0, self.sim_experiment.obs_iso, 90.0)		# apply ideal 90-degree pulse
-			sigma0 = pg.evolve(sigma1, Udelay1)
-			sigma1 = Ureal180.evolve(sigma0)	# apply AFP1
-			sigma0 = pg.evolve(sigma1, Udelay2)
-			sigma1 = Ureal180.evolve(sigma0)	# apply AFP2
-			sigma0 = pg.evolve(sigma1, Udelay3)
-			sigma1 = Ureal180.evolve(sigma0) 	# apply AFP3
-			sigma0 = pg.evolve(sigma1, Udelay4)
-			sigma1 = Ureal180.evolve(sigma0) 	# apply AFP4
-			sigma0 = pg.evolve(sigma1, Udelay5)
+				sigma0 = pg.sigma_eq(spin_system)	# init
+				sigma1 = pg.Ixpuls(spin_system, sigma0, self.sim_experiment.obs_iso, 90.0)		# apply ideal 90-degree pulse
+				sigma0 = pg.evolve(sigma1, Udelay1)
+				sigma1 = Ureal180.evolve(sigma0)	# apply AFP1
+				sigma0 = pg.evolve(sigma1, Udelay2)
+				sigma1 = Ureal180.evolve(sigma0)	# apply AFP2
+				sigma0 = pg.evolve(sigma1, Udelay3)
+				sigma1 = Ureal180.evolve(sigma0) 	# apply AFP3
+				sigma0 = pg.evolve(sigma1, Udelay4)
+				sigma1 = Ureal180.evolve(sigma0) 	# apply AFP4
+				sigma0 = pg.evolve(sigma1, Udelay5)
 
-			# acquire
-			mx = pg.TTable1D(ACQ.table(sigma0))
+				# acquire
+				mx = pg.TTable1D(ACQ.table(sigma0))
 
-			# binning to remove degenerate peaks
-			outf, outa, outp = self.binning_code(mx, self.sim_experiment.b0, spin_system, self.sim_experiment.obs_iso, self.sim_experiment.tolppm, self.sim_experiment.tolpha, self.sim_experiment.ppmlo, self.sim_experiment.ppmhi, self.sim_experiment.RF_OFFSET)
+				# binning to remove degenerate peaks
+				outf, outa, outp = self.binning_code(mx, self.sim_experiment.b0, spin_system, self.sim_experiment.obs_iso, self.sim_experiment.tolppm, self.sim_experiment.tolpha, self.sim_experiment.ppmlo, self.sim_experiment.ppmhi, self.sim_experiment.RF_OFFSET)
 
-			metab_calib180 = self.apply_metab_properties('naa_acetyl', A_180, outf, outa, outp, insysfile)
-			lb = 15 if (self.sim_experiment.b0 == 297.2 or self.sim_experiment.b0 == 400.2) else 6
-			f, spectra = metab_calib180.getSpec(TE, self.sim_experiment.b0, self.sim_experiment.getTime(), 0, 1, 0, 0, lb, self.sim_experiment.getFs())
+				metab_calib180 = self.apply_metab_properties(str(self.calibrationMetaboliteComboBox.currentText()), A_180, outf, outa, outp, insysfile)
+				lb = 15 if (self.sim_experiment.b0 == 297.2 or self.sim_experiment.b0 == 400.2) else 6
+				f, spectra = metab_calib180.getSpec(TE, self.sim_experiment.b0, self.sim_experiment.getTime(), 0, 1, 0, 0, lb, self.sim_experiment.getFs())
 
-			A180_calibration_data.append(np.real(spectra)[np.argmax(np.abs(spectra))])
+				A180_calibration_data.append(np.real(spectra)[np.argmax(np.abs(spectra))])
 
-		# low pass filter to smooth results
-		N = 2
-		Wn = 0.5
-		B, A = spsg.butter(N, Wn, output='ba')
+			# low pass filter to smooth results
+			# N = 2
+			# Wn = 0.5
+			# B, A = spsg.butter(N, Wn, output='ba')
 
-		A180_calibration_data_smoothed = spsg.filtfilt(B, A, A180_calibration_data)
+			# A180_calibration_data_smoothed = spsg.filtfilt(B, A, A180_calibration_data)
 
-		# save results
-		plt.figure()
-		plt.plot(self.sim_experiment.A_180s, A180_calibration_data, '.', color='blue')
-		plt.plot(self.sim_experiment.A_180s, A180_calibration_data_smoothed, color='red')
+			# save results
+			# plt.figure()
+			# plt.plot(self.sim_experiment.A_180s, A180_calibration_data, '.', color='blue')
+			# plt.plot(self.sim_experiment.A_180s, A180_calibration_data_smoothed, color='red')
 
-		A180_calibration_results_A_180 = []
-		A180_calibration_results_signal_intensity_180 = []
-		for index in spsg.argrelextrema(A180_calibration_data_smoothed, np.greater)[0]:
-			plt.plot(self.sim_experiment.A_180s[index], A180_calibration_data_smoothed[index], 'x', color='black')
-			A, pulse180, pulse_dur_180, Ureal180 = self.slaser_build180(self.sim_experiment.inpulse180file, self.sim_experiment.A_180s[index], self.sim_experiment.PULSE_180_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
-			self.simConsole.append('       | Result (A_180): ' + str(A) + ' ' + str(A180_calibration_data_smoothed[index]))
-			A180_calibration_results_A_180.append(self.sim_experiment.A_180s[index])
-			A180_calibration_results_signal_intensity_180.append(A180_calibration_data_smoothed[index])
+			# A180_calibration_results_A_180 = []
+			# A180_calibration_results_signal_intensity_180 = []
+			# for index in spsg.argrelextrema(A180_calibration_data_smoothed, np.greater)[0]:
+			# 	plt.plot(self.sim_experiment.A_180s[index], A180_calibration_data_smoothed[index], 'x', color='black')
+			# 	plt.text(self.sim_experiment.A_180s[index], A180_calibration_data_smoothed[index]*1.25, str(self.sim_experiment.A_180s[index]), rotation='vertical', color='black')
+			# 	A, pulse180, pulse_dur_180, Ureal180 = self.slaser_build180(self.sim_experiment.inpulse180file, self.sim_experiment.A_180s[index], self.sim_experiment.PULSE_180_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
+			# 	self.simConsole.append('       | Result (A_180): ' + str(A) + ' ' + str(A180_calibration_data_smoothed[index]))
+			# 	A180_calibration_results_A_180.append(self.sim_experiment.A_180s[index])
+			# 	A180_calibration_results_signal_intensity_180.append(A180_calibration_data_smoothed[index])
 
-		plt.title('180-degree calibration sLASER (w/ ideal 90, naa_acetyl) experiment')
-		plt.xlabel('A_180 [mT]')
-		plt.ylabel('Signal Intensity'); plt.ylim([np.amin(A180_calibration_data) + 0.25*np.amin(A180_calibration_data),np.amax(A180_calibration_data) + 0.25*np.amax(A180_calibration_data)])
-		plt.savefig(self.save_dir_sim + '180-DEGREE-CALIBRATION' + '_' + str(self.sim_experiment.PULSE_180_LENGTH) + 'secAFP.pdf')
-		plt.close()
+			# plt.title('180-degree calibration sLASER (w/ ideal 90, ' + str(self.calibrationMetaboliteComboBox.currentText()) + ') experiment')
+			# plt.xlabel('A_180 [mT]')
+			# plt.ylabel('Signal Intensity'); plt.ylim([np.amin(A180_calibration_data) + 0.25*np.amin(A180_calibration_data),np.amax(A180_calibration_data) + 0.25*np.amax(A180_calibration_data)])
+			# plt.savefig(self.save_dir_sim + '180-DEGREE-CALIBRATION' + '_' + str(self.sim_experiment.PULSE_180_LENGTH) + 'secAFP.pdf')
+			# plt.close()
 
-		self.simProgressBar.setValue(1)
+			# self.simProgressBar.setValue(1)
 
-		try:
-			self.sim_experiment.A_180 = A180_calibration_results_A_180[np.argmax(A180_calibration_results_signal_intensity_180)+1] # results_A_180[-1] # 
-		except IndexError, e:
-			self.sim_experiment.A_180 = self.sim_experiment.A_180s[-1]
+			# try:
+			# 	self.sim_experiment.A_180 = A180_calibration_results_A_180[np.argmax(A180_calibration_results_signal_intensity_180)+1] # results_A_180[-1] # 
+			# except IndexError, e:
+			# 	self.sim_experiment.A_180 = self.sim_experiment.A_180s[-1]
 
-		self.simConsole.append('       | CALIBRATED 180 AFP AMPLITUDE: ' + str(self.sim_experiment.A_180))
+			# Fit a logistic function
+			initial_guess_A = np.amin(A180_calibration_data)
+			initial_guess_B = np.abs(np.amax(A180_calibration_data)-np.amin(A180_calibration_data))/np.abs(A180_calibration_data[np.argmax(A180_calibration_data)]-A180_calibration_data[np.argmin(A180_calibration_data)])
+			initial_guess_K = np.amax(A180_calibration_data)
+			initial_guess_s = self.sim_experiment.A_180s[np.argmin(A180_calibration_data)]
+			fit_x = self.sim_experiment.A_180s
+			fit_y = np.pad(A180_calibration_data[np.argmin(A180_calibration_data):], (np.size(A180_calibration_data[:np.argmin(A180_calibration_data)]), 0), 'constant', constant_values=(np.amin(A180_calibration_data),0))
+			params, params_covariance = sp.optimize.curve_fit(self.logs_func, fit_x, fit_y, p0=[initial_guess_A,initial_guess_B,initial_guess_K, initial_guess_s], bounds=([-np.inf, 0, 0, 0], [0, np.inf, np.inf, self.sim_experiment.A_180s[-1]]))
+			self.simConsole.append('       | A + (K - A)/(1 + np.exp(-B*x)): ')
+			self.simConsole.append('       | A0 = ' + str(initial_guess_A) + ', B0 = ' + str(initial_guess_B) + ', K0 = ' + str(initial_guess_K) + ', s0 = ' + str(initial_guess_s))
+			self.simConsole.append('       | A = ' + str(params[0]) + ', B = ' + str(params[1]) + ', K = ' + str(params[2]) + ', s = ' + str(params[3]))
+			A180_calibration_data_init   = self.logs_func(self.sim_experiment.A_180s, initial_guess_A, initial_guess_B, initial_guess_K, initial_guess_s)
+			A180_calibration_data_fitted = self.logs_func(self.sim_experiment.A_180s, params[0], params[1], params[2], params[3])
 
-		self.slaser_build180(self.sim_experiment.inpulse180file, self.sim_experiment.A_180, self.sim_experiment.PULSE_180_LENGTH, self.sim_experiment.getGyratio(), spin_system, True)
+			# save results
+			if self.sim_experiment.A_180s[(np.abs(np.asarray(fit_y)-params[2])).argmin()] + int(self.sim_experiment.A_180s[-1]/6) < self.sim_experiment.A_180s[-1]:
+				self.sim_experiment.A_180 = self.sim_experiment.A_180s[(np.abs(np.asarray(fit_y)-params[2])).argmin()] + int(self.sim_experiment.A_180s[-1]/6) # pad to be sure of adiabicity
+			else:
+				self.sim_experiment.A_180 = self.sim_experiment.A_180s[(np.abs(np.asarray(fit_y)-params[2])).argmin()]
+			plt.figure()
+			plt.plot(self.sim_experiment.A_180s, A180_calibration_data, '.', color='blue')
+			plt.plot(self.sim_experiment.A_180s, A180_calibration_data_init, color='green')
+			plt.plot(self.sim_experiment.A_180s, A180_calibration_data_fitted, color='red')
+			plt.plot(self.sim_experiment.A_180, A180_calibration_data[(np.abs(np.asarray(self.sim_experiment.A_180s)-self.sim_experiment.A_180)).argmin()], 'x', color='black')
+			plt.text(self.sim_experiment.A_180, A180_calibration_data[(np.abs(np.asarray(self.sim_experiment.A_180s)-self.sim_experiment.A_180)).argmin()]*1.2, str(self.sim_experiment.A_180), rotation='vertical', color='black')
+			plt.title('180-degree calibration sLASER (w/ ideal 90, ' + str(self.calibrationMetaboliteComboBox.currentText()) + ') experiment')
+			plt.xlabel('A_180 [mT]')
+			plt.ylabel('Signal Intensity'); plt.ylim([np.amin(A180_calibration_data) + 0.25*np.amin(A180_calibration_data),np.amax(A180_calibration_data) + 0.25*np.amax(A180_calibration_data)])
+			plt.savefig(self.save_dir_sim + '180-DEGREE-CALIBRATION' + '_' + str(self.sim_experiment.PULSE_180_LENGTH) + 'secAFP.pdf')
+			plt.close()
 
-		# Run the 90 calibration
-		self.simConsole.append('\n2. 90-degree calibration sLASER (w/ AFP 180, naa_acetyl) experiment')
-		A90_calibration_data = []
+			# update progress bar
+			self.simProgressBar.setValue(1)
 
-		for A_90 in self.sim_experiment.A_90s:
-			TE = self.sim_experiment.TE
-			TE1 = float((TE * 0.31) / 1000.0)
-			TE3 = float((TE * 0.31) / 1000.0)
-			TE2 = float(TE/1000.0 - TE1 - TE3)
-			TE_fill = TE/1000.0 - TE1 - TE2 - TE3
+			self.simConsole.append('       | CALIBRATED 180 AFP AMPLITUDE: ' + str(self.sim_experiment.A_180))
 
-			# build 90 degree pulse
-			A_90, pulse90, pulse_dur_90, peak_to_end_90, Ureal90 = self.slaser_build90(self.sim_experiment.inpulse90file, A_90, self.sim_experiment.PULSE_90_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
+			self.slaser_build180(self.sim_experiment.inpulse180file, self.sim_experiment.A_180, self.sim_experiment.PULSE_180_LENGTH, self.sim_experiment.getGyratio(), spin_system, True)
 
-			# build 180 degree pulse
-			A_180, pulse180, pulse_dur_180, Ureal180 = self.slaser_build180(self.sim_experiment.inpulse180file, self.sim_experiment.A_180, self.sim_experiment.PULSE_180_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
+			# Run the 90 calibration
+			self.simConsole.append('\n2. 90-degree calibration sLASER (w/ AFP 180, ' + str(self.calibrationMetaboliteComboBox.currentText()) + ') experiment')
+			A90_calibration_data = []
 
-			H = pg.Hcs(spin_system) + pg.HJ(spin_system)
-			D = pg.Fm(spin_system, self.sim_experiment.obs_iso)
-			ac = pg.acquire1D(pg.gen_op(D), H, self.sim_experiment.dwell_time)
-			ACQ = ac
+			for A_90 in self.sim_experiment.A_90s:
+				TE = self.sim_experiment.TE
+				TE1 = float((TE * 0.31) / 1000.0)
+				TE3 = float((TE * 0.31) / 1000.0)
+				TE2 = float(TE/1000.0 - TE1 - TE3)
+				TE_fill = TE/1000.0 - TE1 - TE2 - TE3
 
-			delay1 = TE1/2.0 + TE_fill/8.0                         - pulse_dur_180/2.0 - peak_to_end_90
-			delay2 = TE1/2.0 + TE_fill/8.0 + TE2/4.0 + TE_fill/8.0 - pulse_dur_180
-			delay3 = TE2/4.0 + TE_fill/8.0 + TE2/4.0 + TE_fill/8.0 - pulse_dur_180
-			delay4 = TE2/4.0 + TE_fill/8.0 + TE3/2.0 + TE_fill/8.0 - pulse_dur_180
-			delay5 = TE3/2.0 + TE_fill/8.0                         - pulse_dur_180/2.0
+				# build 90 degree pulse
+				A_90, pulse90, pulse_dur_90, peak_to_end_90, Ureal90 = self.slaser_build90(self.sim_experiment.inpulse90file, A_90, self.sim_experiment.PULSE_90_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
 
-			Udelay1 = pg.prop(H, delay1)
-			Udelay2 = pg.prop(H, delay2)
-			Udelay3 = pg.prop(H, delay3)
-			Udelay4 = pg.prop(H, delay4)
-			Udelay5 = pg.prop(H, delay5)
+				# build 180 degree pulse
+				A_180, pulse180, pulse_dur_180, Ureal180 = self.slaser_build180(self.sim_experiment.inpulse180file, self.sim_experiment.A_180, self.sim_experiment.PULSE_180_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
 
-			sigma0 = pg.sigma_eq(spin_system)							# init
-			sigma1 = Ureal90.evolve(sigma0)								# apply 90-degree pulse
-			sigma0 = pg.evolve(sigma1, Udelay1)
-			sigma1 = Ureal180.evolve(sigma0)	# apply AFP1
-			sigma0 = pg.evolve(sigma1, Udelay2)
-			sigma1 = Ureal180.evolve(sigma0)	# apply AFP2
-			sigma0 = pg.evolve(sigma1, Udelay3)
-			sigma1 = Ureal180.evolve(sigma0) 	# apply AFP3
-			sigma0 = pg.evolve(sigma1, Udelay4)
-			sigma1 = Ureal180.evolve(sigma0) 	# apply AFP4
-			sigma0 = pg.evolve(sigma1, Udelay5)
+				H = pg.Hcs(spin_system) + pg.HJ(spin_system)
+				D = pg.Fm(spin_system, self.sim_experiment.obs_iso)
+				ac = pg.acquire1D(pg.gen_op(D), H, self.sim_experiment.dwell_time)
+				ACQ = ac
 
-			# acquire
-			mx = pg.TTable1D(ACQ.table(sigma0))
+				delay1 = TE1/2.0 + TE_fill/8.0                         - pulse_dur_180/2.0 - peak_to_end_90
+				delay2 = TE1/2.0 + TE_fill/8.0 + TE2/4.0 + TE_fill/8.0 - pulse_dur_180
+				delay3 = TE2/4.0 + TE_fill/8.0 + TE2/4.0 + TE_fill/8.0 - pulse_dur_180
+				delay4 = TE2/4.0 + TE_fill/8.0 + TE3/2.0 + TE_fill/8.0 - pulse_dur_180
+				delay5 = TE3/2.0 + TE_fill/8.0                         - pulse_dur_180/2.0
 
-			# binning to remove degenerate peaks
-			outf, outa, outp = self.binning_code(mx, self.sim_experiment.b0, spin_system, self.sim_experiment.obs_iso, self.sim_experiment.tolppm, self.sim_experiment.tolpha, self.sim_experiment.ppmlo, self.sim_experiment.ppmhi, self.sim_experiment.RF_OFFSET)
+				Udelay1 = pg.prop(H, delay1)
+				Udelay2 = pg.prop(H, delay2)
+				Udelay3 = pg.prop(H, delay3)
+				Udelay4 = pg.prop(H, delay4)
+				Udelay5 = pg.prop(H, delay5)
 
-			metab_calib90 = self.apply_metab_properties('naa_acetyl', A_90, outf, outa, outp, insysfile)
-			lb = 15 if (self.sim_experiment.b0 == 297.2 or self.sim_experiment.b0 == 400.2) else 6
-			f, spectra = metab_calib90.getSpec(TE, self.sim_experiment.b0, self.sim_experiment.getTime(), 0, 1, 0, 0, lb, self.sim_experiment.getFs())
+				sigma0 = pg.sigma_eq(spin_system)							# init
+				sigma1 = Ureal90.evolve(sigma0)								# apply 90-degree pulse
+				sigma0 = pg.evolve(sigma1, Udelay1)
+				sigma1 = Ureal180.evolve(sigma0)	# apply AFP1
+				sigma0 = pg.evolve(sigma1, Udelay2)
+				sigma1 = Ureal180.evolve(sigma0)	# apply AFP2
+				sigma0 = pg.evolve(sigma1, Udelay3)
+				sigma1 = Ureal180.evolve(sigma0) 	# apply AFP3
+				sigma0 = pg.evolve(sigma1, Udelay4)
+				sigma1 = Ureal180.evolve(sigma0) 	# apply AFP4
+				sigma0 = pg.evolve(sigma1, Udelay5)
 
-			A90_calibration_data.append(np.real(spectra)[np.argmax(np.abs(spectra))])
+				# acquire
+				mx = pg.TTable1D(ACQ.table(sigma0))
 
-		# low pass filter to smooth results
-		N = 2
-		Wn = 0.5
-		B, A = spsg.butter(N, Wn, output='ba')
+				# binning to remove degenerate peaks
+				outf, outa, outp = self.binning_code(mx, self.sim_experiment.b0, spin_system, self.sim_experiment.obs_iso, self.sim_experiment.tolppm, self.sim_experiment.tolpha, self.sim_experiment.ppmlo, self.sim_experiment.ppmhi, self.sim_experiment.RF_OFFSET)
 
-		A90_calibration_data_smoothed = spsg.filtfilt(B, A, A90_calibration_data)
+				metab_calib90 = self.apply_metab_properties(str(self.calibrationMetaboliteComboBox.currentText()), A_90, outf, outa, outp, insysfile)
+				lb = 15 if (self.sim_experiment.b0 == 297.2 or self.sim_experiment.b0 == 400.2) else 6
+				f, spectra = metab_calib90.getSpec(TE, self.sim_experiment.b0, self.sim_experiment.getTime(), 0, 1, 0, 0, lb, self.sim_experiment.getFs())
 
-		# save results
-		plt.figure()
-		plt.plot(self.sim_experiment.A_90s, A90_calibration_data, '.', color='blue')
-		plt.plot(self.sim_experiment.A_90s, A90_calibration_data_smoothed, color='red')
+				A90_calibration_data.append(np.real(spectra)[np.argmax(np.abs(spectra))])
 
-		A90_calibration_results_A_90 = []
-		A90_calibration_results_signal_intensity_90 = []
-		for index in spsg.argrelextrema(A90_calibration_data_smoothed, np.greater)[0]:
-			plt.plot(self.sim_experiment.A_90s[index], A90_calibration_data_smoothed[index], 'x', color='black')
-			A, pulse90, pulse_dur_90, peak_to_end_90, Ureal90 = self.slaser_build90(self.sim_experiment.inpulse90file, self.sim_experiment.A_90s[index], self.sim_experiment.PULSE_90_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
-			self.simConsole.append('       | Result (A_90): ' + str(A) + ' ' + str(A90_calibration_data_smoothed[index]))
-			A90_calibration_results_A_90.append(self.sim_experiment.A_90s[index])
-			A90_calibration_results_signal_intensity_90.append(A90_calibration_data_smoothed[index])
+			# # low pass filter to smooth results
+			# N = 2
+			# Wn = 0.5
+			# B, A = spsg.butter(N, Wn, output='ba')
 
-		plt.title('90-degree calibration sLASER (w/ AFP 180, naa_acetyl) experiment')
-		plt.xlabel('A_90 [mT]')
-		plt.ylabel('Signal Intensity'); plt.ylim([np.amin(A90_calibration_data) + 0.25*np.amin(A90_calibration_data),np.amax(A90_calibration_data) + 0.25*np.amax(A90_calibration_data)])
-		plt.savefig(self.save_dir_sim + '90-DEGREE-CALIBRATION' + '_' + str(self.sim_experiment.PULSE_180_LENGTH) + 'secAFP.pdf')
-		plt.close()
+			# A90_calibration_data_smoothed = spsg.filtfilt(B, A, A90_calibration_data)
 
-		try:
-			self.sim_experiment.A_90 = A90_calibration_results_A_90[np.argmax(A90_calibration_results_signal_intensity_90)] # results_A_180[-1] # 
-		except IndexError, e:
-			self.sim_experiment.A_90 = self.sim_experiment.A_90s[-1]
+			# save results
+			# plt.figure()
+			# plt.plot(self.sim_experiment.A_90s, A90_calibration_data, '.', color='blue')
+			# plt.plot(self.sim_experiment.A_90s, A90_calibration_data_smoothed, color='red')
 
-		self.simConsole.append('       | CALIBRATED 90 SLR AMPLITUDE: ' + str(self.sim_experiment.A_90))
+			# A90_calibration_results_A_90 = []
+			# A90_calibration_results_signal_intensity_90 = []
+			# for index in spsg.argrelextrema(A90_calibration_data_smoothed, np.greater)[0]:
+			# 	plt.plot(self.sim_experiment.A_90s[index], A90_calibration_data_smoothed[index], 'x', color='black')
+			# 	plt.text(self.sim_experiment.A_90s[index], A90_calibration_data_smoothed[index]*1.25, str(self.sim_experiment.A_90s[index]), rotation='vertical', color='black')
+			# 	A, pulse90, pulse_dur_90, peak_to_end_90, Ureal90 = self.slaser_build90(self.sim_experiment.inpulse90file, self.sim_experiment.A_90s[index], self.sim_experiment.PULSE_90_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
+			# 	self.simConsole.append('       | Result (A_90): ' + str(A) + ' ' + str(A90_calibration_data_smoothed[index]))
+			# 	A90_calibration_results_A_90.append(self.sim_experiment.A_90s[index])
+			# 	A90_calibration_results_signal_intensity_90.append(A90_calibration_data_smoothed[index])
 
-		self.slaser_build90(self.sim_experiment.inpulse90file, self.sim_experiment.A_90s[index], self.sim_experiment.PULSE_90_LENGTH, self.sim_experiment.getGyratio(), spin_system, True)
+			# plt.title('90-degree calibration sLASER (w/ AFP 180, ' + str(self.calibrationMetaboliteComboBox.currentText()) + ') experiment')
+			# plt.xlabel('A_90 [mT]')
+			# plt.ylabel('Signal Intensity'); plt.ylim([np.amin(A90_calibration_data) + 0.25*np.amin(A90_calibration_data),np.amax(A90_calibration_data) + 0.25*np.amax(A90_calibration_data)])
+			# plt.savefig(self.save_dir_sim + '90-DEGREE-CALIBRATION' + '_' + str(self.sim_experiment.PULSE_180_LENGTH) + 'secAFP.pdf')
+			# plt.close()
+
+			# try:
+			# 	self.sim_experiment.A_90 = A90_calibration_results_A_90[np.argmax(A90_calibration_results_signal_intensity_90)] # results_A_180[-1] # 
+			# except IndexError, e:
+			# 	self.sim_experiment.A_90 = self.sim_experiment.A_90s[-1]
+
+			# Fit a sine function
+			initial_guess_a = np.amax(np.abs(A90_calibration_data))
+			initial_guess_b = (np.pi/2)/self.sim_experiment.A_90s[np.argmax(A90_calibration_data)]
+			initial_guess_s = 0
+			params, params_covariance = sp.optimize.curve_fit(self.sine_func, self.sim_experiment.A_90s, A90_calibration_data, p0=[initial_guess_a,initial_guess_b,initial_guess_s])
+			self.simConsole.append('       | a * np.sin(b * x):')
+			self.simConsole.append('       | a0 = ' + str(initial_guess_a) + ', b0 = ' + str(initial_guess_b) + ', ' + str(initial_guess_s))
+			self.simConsole.append('       | a = ' + str(params[0]) + ', b = ' + str(params[1]) + ', s = ' + str(params[2]))
+			A90_calibration_data_init   = self.sine_func(self.sim_experiment.A_90s, initial_guess_a, initial_guess_b, initial_guess_s)
+			A90_calibration_data_fitted = self.sine_func(self.sim_experiment.A_90s, params[0], params[1], params[2])
+
+			# save results
+			self.sim_experiment.A_90 = self.sim_experiment.A_90s[np.argmax(A90_calibration_data_fitted)]
+			plt.figure()
+			plt.plot(self.sim_experiment.A_90s, A90_calibration_data, '.', color='blue')
+			plt.plot(self.sim_experiment.A_90s, A90_calibration_data_init, color='green')
+			plt.plot(self.sim_experiment.A_90s, A90_calibration_data_fitted, color='red')
+			plt.plot(self.sim_experiment.A_90, A90_calibration_data[(np.abs(np.asarray(self.sim_experiment.A_90s)-self.sim_experiment.A_90)).argmin()], 'x', color='black')
+			plt.text(self.sim_experiment.A_90, A90_calibration_data[(np.abs(np.asarray(self.sim_experiment.A_90s)-self.sim_experiment.A_90)).argmin()]*1.2, str(self.sim_experiment.A_90), rotation='vertical', color='black')
+			plt.title('90-degree calibration sLASER (w/ AFP 180, ' + str(self.calibrationMetaboliteComboBox.currentText()) + ') experiment')
+			plt.xlabel('A_90 [mT]')
+			plt.ylabel('Signal Intensity'); plt.ylim([np.amin(A90_calibration_data) + 0.25*np.amin(A90_calibration_data),np.amax(A90_calibration_data) + 0.25*np.amax(A90_calibration_data)])
+			plt.savefig(self.save_dir_sim + '90-DEGREE-CALIBRATION' + '_' + str(self.sim_experiment.PULSE_180_LENGTH) + 'secAFP.pdf')
+			plt.close()
+
+			self.simConsole.append('       | CALIBRATED 90 SLR AMPLITUDE: ' + str(self.sim_experiment.A_90))
+
+			self.slaser_build90(self.sim_experiment.inpulse90file, self.sim_experiment.A_90, self.sim_experiment.PULSE_90_LENGTH, self.sim_experiment.getGyratio(), spin_system, True)
+
+		elif self.LASERradioButton.isChecked():
+			
+			# Create a new simulations results file
+			self.save_dir_sim = 'pints/experiments/LASER_sim_' + datetime.datetime.now().strftime("%Y_%m_%d_%s") + '_TE' + str(self.sim_experiment.TE) + '/'
+			if not os.path.exists(self.save_dir_sim):
+				os.makedirs(self.save_dir_sim)
+			self.sim_results = open(self.save_dir_sim + 'LASER_sim_results.txt', 'w')
+
+			# Write parameters in file
+			self.sim_results.write(';PINTS for FITMAN Simulation Output\n')
+			self.sim_results.write(';Experiment Information\n')
+			self.sim_results.write(';---------------------------------------------------------------------------\n')
+			self.sim_results.write(';Name: ' + self.sim_experiment.name + '\n')
+			self.sim_results.write(';Created: ' + self.sim_experiment.date + '\n')
+			self.sim_results.write(';Comment: ' + self.sim_experiment.description + '\n')
+			self.sim_results.write(';PI: ' + self.sim_experiment.author + '\n')
+			self.sim_results.write(';b0: ' + str(self.sim_experiment.b0) + '\n')
+			self.sim_results.write(';' + str(int(sp.size(self.insysfiles)+int(sp.size(self.macromolecules)))) + ' Metabolites: ' + str(self.insysfiles).replace('[','').replace(']','').replace('\'','').replace('.sys',''))
+			if self.macroIncludeButton.isChecked(): self.sim_results.write(', ' + str(self.macromolecules).replace('[','').replace(']','').replace('\'',''))
+			self.sim_results.write('\n')
+
+			self.sim_results.write(';Simulation Results\n')
+			self.sim_results.write(';---------------------------------------------------------------------------\n')
+
+			# Set up for calibration experiments
+			insysfile = str(self.calibrationMetaboliteComboBox_laser.currentText()) + '.sys'
+			if self.sim_experiment.b0 == 123.3:
+				insysfile = 'pints/metabolites/3T_' + insysfile
+			elif self.sim_experiment.b0 == 297.2:
+				insysfile = 'pints/metabolites/7T_' + insysfile
+			elif self.sim_experiment.b0 == 400.2:
+				insysfile = 'pints/metabolites/9.4T_' + insysfile
+
+			spin_system = pg.spin_system()
+			spin_system.read(insysfile)
+			for i in range(spin_system.spins()):
+				spin_system.PPM(i, spin_system.PPM(i) - self.sim_experiment.RF_OFFSET)
+
+			# Run the 180 calibration
+			self.simConsole.append('\n1. 180-degree calibration LASER (w/ ideal 90, ' + str(self.calibrationMetaboliteComboBox_laser.currentText())  + ') experiment')
+			A180_calibration_data = []
+
+			for A_180 in self.sim_experiment.A_180s:
+
+				# build 90 degree pulse
+				pulse_dur_90 = 0
+
+				# build 180 degree pulse
+				A_180, pulse180, pulse_dur_180, Ureal180 = self.laser_buildafp(self.sim_experiment.inpulse180file, A_180, self.sim_experiment.PULSE_180_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
+
+				# calculate pulse timings
+				ROF1 = 100E-6   #sec
+				ROF2 = 10E-6    #sec
+				TCRUSH1 = 0.0008 #sec
+				TCRUSH2 = 0.0008 #sec
+
+				ss_grad_rfDelayFront = TCRUSH1 - ROF1
+				ss_grad_rfDelayBack  = TCRUSH2 - ROF2
+				ro_grad_atDelayFront = 0
+				ro_grad_atDelayBack  = 0
+
+				TE  = self.sim_experiment.TE / 1000.
+				ipd = (TE - pulse_dur_90 \
+						  - 6*(ss_grad_rfDelayFront + pulse_dur_180 + ss_grad_rfDelayBack) \
+						  - ro_grad_atDelayFront) / 12
+
+				# initialize acquisition
+				H = pg.Hcs(spin_system) + pg.HJ(spin_system)
+				D = pg.Fm(spin_system, self.sim_experiment.obs_iso)
+				ac = pg.acquire1D(pg.gen_op(D), H, self.sim_experiment.dwell_time)
+				ACQ = ac
+
+				delay1 = ipd + ss_grad_rfDelayFront
+				delay2 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+				delay3 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+				delay4 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+				delay5 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+				delay6 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+				delay7 = ss_grad_rfDelayBack + ipd + ro_grad_atDelayFront
+
+				Udelay1 = pg.prop(H, delay1)
+				Udelay2 = pg.prop(H, delay2)
+				Udelay3 = pg.prop(H, delay3)
+				Udelay4 = pg.prop(H, delay4)
+				Udelay5 = pg.prop(H, delay5)
+				Udelay6 = pg.prop(H, delay6)
+				Udelay7 = pg.prop(H, delay7)
+
+				sigma0 = pg.sigma_eq(spin_system)	# init
+				sigma1 = pg.Ixpuls(spin_system, sigma0, self.sim_experiment.obs_iso, 90.0)		# apply ideal 90-degree pulse
+				sigma0 = pg.evolve(sigma1, Udelay1)
+				sigma1 = Ureal180.evolve(sigma0)	# apply AFP1
+				sigma0 = pg.evolve(sigma1, Udelay2)
+				sigma1 = Ureal180.evolve(sigma0)	# apply AFP2
+				sigma0 = pg.evolve(sigma1, Udelay3)
+				sigma1 = Ureal180.evolve(sigma0) 	# apply AFP3
+				sigma0 = pg.evolve(sigma1, Udelay4)
+				sigma1 = Ureal180.evolve(sigma0) 	# apply AFP4
+				sigma0 = pg.evolve(sigma1, Udelay5)
+				sigma1 = Ureal180.evolve(sigma0) 	# apply AFP5
+				sigma0 = pg.evolve(sigma1, Udelay6)
+				sigma1 = Ureal180.evolve(sigma0) 	# apply AFP6
+				sigma0 = pg.evolve(sigma1, Udelay7)
+
+				# acquire
+				mx = pg.TTable1D(ACQ.table(sigma0))
+
+				# binning to remove degenerate peaks
+				outf, outa, outp = self.binning_code(mx, self.sim_experiment.b0, spin_system, self.sim_experiment.obs_iso, self.sim_experiment.tolppm, self.sim_experiment.tolpha, self.sim_experiment.ppmlo, self.sim_experiment.ppmhi, self.sim_experiment.RF_OFFSET)
+
+				metab_calib180 = self.apply_metab_properties(str(self.calibrationMetaboliteComboBox_laser.currentText()), A_180, outf, outa, outp, insysfile)
+				lb = 15 if (self.sim_experiment.b0 == 297.2 or self.sim_experiment.b0 == 400.2) else 6
+				f, spectra = metab_calib180.getSpec(TE, self.sim_experiment.b0, self.sim_experiment.getTime(), 0, 1, 0, 0, lb, self.sim_experiment.getFs())
+
+				A180_calibration_data.append(np.real(spectra)[np.argmax(np.abs(spectra))])
+
+			# # low pass filter to smooth results
+			# N = 2
+			# Wn = 0.5
+			# B, A = spsg.butter(N, Wn, output='ba')
+
+			# A180_calibration_data_smoothed = spsg.filtfilt(B, A, A180_calibration_data)
+
+			# # save results
+			# plt.figure()
+			# plt.plot(self.sim_experiment.A_180s, A180_calibration_data, '.', color='blue')
+			# plt.plot(self.sim_experiment.A_180s, A180_calibration_data_smoothed, color='red')
+
+			# A180_calibration_results_A_180 = []
+			# A180_calibration_results_signal_intensity_180 = []
+			# for index in spsg.argrelextrema(A180_calibration_data_smoothed, np.greater)[0]:
+			# 	plt.plot(self.sim_experiment.A_180s[index], A180_calibration_data_smoothed[index], 'x', color='black')
+			# 	plt.text(self.sim_experiment.A_180s[index], A180_calibration_data_smoothed[index]*1.25, str(self.sim_experiment.A_180s[index]), rotation='vertical', color='black')
+			# 	A, pulse180, pulse_dur_180, Ureal180 = self.laser_buildafp(self.sim_experiment.inpulse180file, self.sim_experiment.A_180s[index], self.sim_experiment.PULSE_180_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
+			# 	self.simConsole.append('       | Result (A_180): ' + str(A) + ' ' + str(A180_calibration_data_smoothed[index]))
+			# 	A180_calibration_results_A_180.append(self.sim_experiment.A_180s[index])
+			# 	A180_calibration_results_signal_intensity_180.append(A180_calibration_data_smoothed[index])
+
+			# plt.title('180-degree calibration LASER (w/ ideal 90, ' + str(self.calibrationMetaboliteComboBox_laser.currentText()) + ') experiment')
+			# plt.xlabel('A_180 [mT]')
+			# plt.ylabel('Signal Intensity'); plt.ylim([np.amin(A180_calibration_data) + 0.25*np.amin(A180_calibration_data),np.amax(A180_calibration_data) + 0.25*np.amax(A180_calibration_data)])
+			# plt.savefig(self.save_dir_sim + '180-DEGREE-CALIBRATION' + '_' + str(self.sim_experiment.PULSE_180_LENGTH) + 'secAFP.pdf')
+			# plt.close()
+
+			# self.simProgressBar.setValue(1)
+
+			# try:
+			# 	self.sim_experiment.A_180 = A180_calibration_results_A_180[np.argmax(A180_calibration_results_signal_intensity_180)+1] # results_A_180[-1] # 
+			# except IndexError, e:
+			# 	self.sim_experiment.A_180 = self.sim_experiment.A_180s[-1]
+
+			# Fit a logistic function
+			initial_guess_A = np.amin(A180_calibration_data)
+			initial_guess_B = np.abs(np.amax(A180_calibration_data)-np.amin(A180_calibration_data))/np.abs(A180_calibration_data[np.argmax(A180_calibration_data)]-A180_calibration_data[np.argmin(A180_calibration_data)])
+			initial_guess_K = np.amax(A180_calibration_data)
+			initial_guess_s = self.sim_experiment.A_180s[np.argmin(A180_calibration_data)]
+			fit_x = self.sim_experiment.A_180s
+			fit_y = np.pad(A180_calibration_data[np.argmin(A180_calibration_data):], (np.size(A180_calibration_data[:np.argmin(A180_calibration_data)]), 0), 'constant', constant_values=(np.amin(A180_calibration_data),0))
+			params, params_covariance = sp.optimize.curve_fit(self.logs_func, fit_x, fit_y, p0=[initial_guess_A,initial_guess_B,initial_guess_K, initial_guess_s], bounds=([-np.inf, 0, 0, 0], [0, np.inf, np.inf, self.sim_experiment.A_180s[-1]]))
+			self.simConsole.append('       | A + (K - A)/(1 + np.exp(-B*x)): ')
+			self.simConsole.append('       | A0 = ' + str(initial_guess_A) + ', B0 = ' + str(initial_guess_B) + ', K0 = ' + str(initial_guess_K) + ', s0 = ' + str(initial_guess_s))
+			self.simConsole.append('       | A = ' + str(params[0]) + ', B = ' + str(params[1]) + ', K = ' + str(params[2]) + ', s = ' + str(params[3]))
+			A180_calibration_data_init   = self.logs_func(self.sim_experiment.A_180s, initial_guess_A, initial_guess_B, initial_guess_K, initial_guess_s)
+			A180_calibration_data_fitted = self.logs_func(self.sim_experiment.A_180s, params[0], params[1], params[2], params[3])
+
+			# save results
+			if self.sim_experiment.A_180s[(np.abs(np.asarray(fit_y)-params[2])).argmin()] + int(self.sim_experiment.A_180s[-1]/6) < self.sim_experiment.A_180s[-1]:
+				self.sim_experiment.A_180 = self.sim_experiment.A_180s[(np.abs(np.asarray(fit_y)-params[2])).argmin()] + int(self.sim_experiment.A_180s[-1]/6) # pad to be sure of adiabicity
+			else:
+				self.sim_experiment.A_180 = self.sim_experiment.A_180s[(np.abs(np.asarray(fit_y)-params[2])).argmin()]
+			plt.figure()
+			plt.plot(self.sim_experiment.A_180s, A180_calibration_data, '.', color='blue')
+			plt.plot(self.sim_experiment.A_180s, A180_calibration_data_init, color='green')
+			plt.plot(self.sim_experiment.A_180s, A180_calibration_data_fitted, color='red')
+			plt.plot(self.sim_experiment.A_180, A180_calibration_data[(np.abs(np.asarray(self.sim_experiment.A_180s)-self.sim_experiment.A_180)).argmin()], 'x', color='black')
+			plt.text(self.sim_experiment.A_180, A180_calibration_data[(np.abs(np.asarray(self.sim_experiment.A_180s)-self.sim_experiment.A_180)).argmin()]*1.2, str(self.sim_experiment.A_180), rotation='vertical', color='black')
+			plt.title('180-degree calibration sLASER (w/ ideal 90, ' + str(self.calibrationMetaboliteComboBox_laser.currentText()) + ') experiment')
+			plt.xlabel('A_180 [mT]')
+			plt.ylabel('Signal Intensity'); plt.ylim([np.amin(A180_calibration_data) + 0.25*np.amin(A180_calibration_data),np.amax(A180_calibration_data) + 0.25*np.amax(A180_calibration_data)])
+			plt.savefig(self.save_dir_sim + '180-DEGREE-CALIBRATION' + '_' + str(self.sim_experiment.PULSE_180_LENGTH) + 'secAFP.pdf')
+			plt.close()
+
+			# update progress bar
+			self.simProgressBar.setValue(1)
+
+			self.simConsole.append('       | CALIBRATED 180 AFP AMPLITUDE: ' + str(self.sim_experiment.A_180))
+
+			self.laser_buildafp(self.sim_experiment.inpulse180file, self.sim_experiment.A_180, self.sim_experiment.PULSE_180_LENGTH, self.sim_experiment.getGyratio(), spin_system, True)
+
+			# Run the 90 calibration
+			self.simConsole.append('\n2. 90-degree calibration LASER (w/ AFP 180, ' + str(self.calibrationMetaboliteComboBox_laser.currentText()) + ') experiment')
+			A90_calibration_data = []
+
+			for A_90 in self.sim_experiment.A_90s:
+
+				# build 90 degree pulse
+				A_90, pulse90, pulse_dur_90, Ureal90 = self.laser_buildahp(self.sim_experiment.inpulse90file, A_90, self.sim_experiment.PULSE_90_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
+
+				# build 180 degree pulse
+				A_180, pulse180, pulse_dur_180, Ureal180 = self.laser_buildafp(self.sim_experiment.inpulse180file, self.sim_experiment.A_180, self.sim_experiment.PULSE_180_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
+
+				# calculate pulse timings
+				ROF1 = 100E-6   #sec
+				ROF2 = 10E-6    #sec
+				TCRUSH1 = 0.0008 #sec
+				TCRUSH2 = 0.0008 #sec
+
+				ss_grad_rfDelayFront = TCRUSH1 - ROF1
+				ss_grad_rfDelayBack  = TCRUSH2 - ROF2
+				ro_grad_atDelayFront = 0
+				ro_grad_atDelayBack  = 0
+
+				TE  = self.sim_experiment.TE / 1000.
+				ipd = (TE - pulse_dur_90 \
+						  - 6*(ss_grad_rfDelayFront + pulse_dur_180 + ss_grad_rfDelayBack) \
+						  - ro_grad_atDelayFront) / 12
+
+				# initialize acquisition
+				H = pg.Hcs(spin_system) + pg.HJ(spin_system)
+				D = pg.Fm(spin_system, self.sim_experiment.obs_iso)
+				ac = pg.acquire1D(pg.gen_op(D), H, self.sim_experiment.dwell_time)
+				ACQ = ac
+
+				delay1 = ipd + ss_grad_rfDelayFront
+				delay2 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+				delay3 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+				delay4 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+				delay5 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+				delay6 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+				delay7 = ss_grad_rfDelayBack + ipd + ro_grad_atDelayFront
+
+				Udelay1 = pg.prop(H, delay1)
+				Udelay2 = pg.prop(H, delay2)
+				Udelay3 = pg.prop(H, delay3)
+				Udelay4 = pg.prop(H, delay4)
+				Udelay5 = pg.prop(H, delay5)
+				Udelay6 = pg.prop(H, delay6)
+				Udelay7 = pg.prop(H, delay7)
+
+				sigma0 = pg.sigma_eq(spin_system)	# init
+				sigma1 = Ureal90.evolve(sigma0)		# apply 90-degree pulse
+				sigma0 = pg.evolve(sigma1, Udelay1)
+				sigma1 = Ureal180.evolve(sigma0)	# apply AFP1
+				sigma0 = pg.evolve(sigma1, Udelay2)
+				sigma1 = Ureal180.evolve(sigma0)	# apply AFP2
+				sigma0 = pg.evolve(sigma1, Udelay3)
+				sigma1 = Ureal180.evolve(sigma0) 	# apply AFP3
+				sigma0 = pg.evolve(sigma1, Udelay4)
+				sigma1 = Ureal180.evolve(sigma0) 	# apply AFP4
+				sigma0 = pg.evolve(sigma1, Udelay5)
+				sigma1 = Ureal180.evolve(sigma0) 	# apply AFP5
+				sigma0 = pg.evolve(sigma1, Udelay6)
+				sigma1 = Ureal180.evolve(sigma0) 	# apply AFP6
+				sigma0 = pg.evolve(sigma1, Udelay7)
+
+				# acquire
+				mx = pg.TTable1D(ACQ.table(sigma0))
+
+				# binning to remove degenerate peaks
+				outf, outa, outp = self.binning_code(mx, self.sim_experiment.b0, spin_system, self.sim_experiment.obs_iso, self.sim_experiment.tolppm, self.sim_experiment.tolpha, self.sim_experiment.ppmlo, self.sim_experiment.ppmhi, self.sim_experiment.RF_OFFSET)
+
+				metab_calib90 = self.apply_metab_properties(str(self.calibrationMetaboliteComboBox_laser.currentText()), A_90, outf, outa, outp, insysfile)
+				lb = 15 if (self.sim_experiment.b0 == 297.2 or self.sim_experiment.b0 == 400.2) else 6
+				f, spectra = metab_calib90.getSpec(TE, self.sim_experiment.b0, self.sim_experiment.getTime(), 0, 1, 0, 0, lb, self.sim_experiment.getFs())
+
+				A90_calibration_data.append(np.real(spectra)[np.argmax(np.abs(spectra))])
+
+			# # low pass filter to smooth results
+			# N = 2
+			# Wn = 0.5
+			# B, A = spsg.butter(N, Wn, output='ba')
+
+			# A90_calibration_data_smoothed = spsg.filtfilt(B, A, A90_calibration_data)
+
+			# # save results
+			# plt.figure()
+			# plt.plot(self.sim_experiment.A_90s, A90_calibration_data, '.', color='blue')
+			# plt.plot(self.sim_experiment.A_90s, A90_calibration_data_smoothed, color='red')
+
+			# A90_calibration_results_A_90 = []
+			# A90_calibration_results_signal_intensity_90 = []
+			# for index in spsg.argrelextrema(A90_calibration_data_smoothed, np.greater)[0]:
+			# 	plt.plot(self.sim_experiment.A_90s[index], A90_calibration_data_smoothed[index], 'x', color='black')
+			# 	plt.text(self.sim_experiment.A_90s[index], A90_calibration_data_smoothed[index]*1.25, str(self.sim_experiment.A_90s[index]), rotation='vertical', color='black')
+			# 	A, pulse90, pulse_dur_90, Ureal90 = self.laser_buildahp(self.sim_experiment.inpulse90file, self.sim_experiment.A_90s[index], self.sim_experiment.PULSE_90_LENGTH, self.sim_experiment.getGyratio(), spin_system, False)
+			# 	self.simConsole.append('       | Result (A_90): ' + str(A) + ' ' + str(A90_calibration_data_smoothed[index]))
+			# 	A90_calibration_results_A_90.append(self.sim_experiment.A_90s[index])
+			# 	A90_calibration_results_signal_intensity_90.append(A90_calibration_data_smoothed[index])
+
+			# plt.title('90-degree calibration LASER (w/ AFP 180, ' + str(self.calibrationMetaboliteComboBox_laser.currentText()) + ') experiment')
+			# plt.xlabel('A_90 [mT]')
+			# plt.ylabel('Signal Intensity'); plt.ylim([np.amin(A90_calibration_data) + 0.25*np.amin(A90_calibration_data),np.amax(A90_calibration_data) + 0.25*np.amax(A90_calibration_data)])
+			# plt.savefig(self.save_dir_sim + '90-DEGREE-CALIBRATION' + '_' + str(self.sim_experiment.PULSE_180_LENGTH) + 'secAFP.pdf')
+			# plt.close()
+
+			# try:
+			# 	self.sim_experiment.A_90 = A90_calibration_results_A_90[np.argmax(A90_calibration_results_signal_intensity_90)] # results_A_180[-1] # 
+			# except IndexError, e:
+			# 	self.sim_experiment.A_90 = self.sim_experiment.A_90s[-1]
+
+			# Fit a logistic function
+			initial_guess_A = 0 # np.amin(A90_calibration_data)
+			initial_guess_B = np.abs(np.amax(A90_calibration_data)-np.amin(A90_calibration_data))/np.abs(A90_calibration_data[np.argmax(A90_calibration_data)]-A90_calibration_data[np.argmin(A90_calibration_data)])
+			initial_guess_K = np.amax(A90_calibration_data)
+			initial_guess_s = self.sim_experiment.A_90s[np.argmin(A90_calibration_data)]
+			fit_x = self.sim_experiment.A_90s
+			fit_y = np.pad(A90_calibration_data[np.argmin(A90_calibration_data):], (np.size(A90_calibration_data[:np.argmin(A90_calibration_data)]), 0), 'constant', constant_values=(np.amin(A90_calibration_data),0))
+			params, params_covariance = sp.optimize.curve_fit(self.logs_func, fit_x, fit_y, p0=[initial_guess_A,initial_guess_B,initial_guess_K, initial_guess_s], bounds=([-np.inf, 0, 0, 0], [0, np.inf, np.inf, self.sim_experiment.A_90s[-1]]))
+			self.simConsole.append('       | A + (K - A)/(1 + np.exp(-B*x)): ')
+			self.simConsole.append('       | A0 = ' + str(initial_guess_A) + ', B0 = ' + str(initial_guess_B) + ', K0 = ' + str(initial_guess_K) + ', s0 = ' + str(initial_guess_s))
+			self.simConsole.append('       | A = ' + str(params[0]) + ', B = ' + str(params[1]) + ', K = ' + str(params[2]) + ', s = ' + str(params[3]))
+			A90_calibration_data_init   = self.logs_func(self.sim_experiment.A_90s, initial_guess_A, initial_guess_B, initial_guess_K, initial_guess_s)
+			A90_calibration_data_fitted = self.logs_func(self.sim_experiment.A_90s, params[0], params[1], params[2], params[3])
+
+			# save results
+			if self.sim_experiment.A_90s[(np.abs(np.asarray(fit_y)-params[2])).argmin()] + int(self.sim_experiment.A_90s[-1]/6) < self.sim_experiment.A_90s[-1]:
+				self.sim_experiment.A_90 = self.sim_experiment.A_90s[(np.abs(np.asarray(fit_y)-params[2])).argmin()] + int(self.sim_experiment.A_90s[-1]/6) # pad to be sure of adiabicity
+			else:
+				self.sim_experiment.A_90 = self.sim_experiment.A_90s[(np.abs(np.asarray(fit_y)-params[2])).argmin()]
+			plt.figure()
+			plt.plot(self.sim_experiment.A_90s, A90_calibration_data, '.', color='blue')
+			plt.plot(self.sim_experiment.A_90s, A90_calibration_data_init, color='green')
+			plt.plot(self.sim_experiment.A_90s, A90_calibration_data_fitted, color='red')
+			plt.plot(self.sim_experiment.A_90, A90_calibration_data[(np.abs(np.asarray(self.sim_experiment.A_90s)-self.sim_experiment.A_90)).argmin()], 'x', color='black')
+			plt.text(self.sim_experiment.A_90, A90_calibration_data[(np.abs(np.asarray(self.sim_experiment.A_90s)-self.sim_experiment.A_90)).argmin()]*1.2, str(self.sim_experiment.A_90), rotation='vertical', color='black')
+			plt.title('90-degree calibration LASER (w/ AFP 180, ' + str(self.calibrationMetaboliteComboBox_laser.currentText()) + ') experiment')
+			plt.xlabel('A_90 [mT]')
+			plt.ylabel('Signal Intensity'); plt.ylim([np.amin(A90_calibration_data) + 0.25*np.amin(A90_calibration_data),np.amax(A90_calibration_data) + 0.25*np.amax(A90_calibration_data)])
+			plt.savefig(self.save_dir_sim + '90-DEGREE-CALIBRATION' + '_' + str(self.sim_experiment.PULSE_180_LENGTH) + 'secAFP.pdf')
+			plt.close()
+
+			self.simConsole.append('       | CALIBRATED 90 AHP AMPLITUDE: ' + str(self.sim_experiment.A_90))
+
+			self.laser_buildahp(self.sim_experiment.inpulse90file, self.sim_experiment.A_90, self.sim_experiment.PULSE_90_LENGTH, self.sim_experiment.getGyratio(), spin_system, True)
 
 		self.simProgressBar.setValue(2)
 
@@ -602,6 +1036,11 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			time.sleep(2)
 			self.sim_results.close()
 			self.simConsole.append('  | Simulation finished.')
+
+			# save console output to text file
+			with open(self.save_dir_sim + 'console.txt', 'w') as console_output_file:
+				console_output_file.write(str(self.simConsole.toPlainText()))
+
 			self.confirmSimParamsButton.setEnabled(True)
 			self.runSimulationButton.setEnabled(False)
 		else:
@@ -713,6 +1152,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		insysfile = insysfile.replace('pints/metabolites/3T_', '')
 		insysfile = insysfile.replace('pints/metabolites/7T_', '')
+		insysfile = insysfile.replace('pints/metabolites/9.4T_', '')
 
 		if insysfile == 'alanine.sys': #
 			metab.A_m = 0.078
@@ -819,6 +1259,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		elif insysfile == 'taurine.sys':
 			metab.A_m = 0.117
 			metab.T2 = (85E-3)
+		elif insysfile == 'water.sys':
+			metab.A_m = 1.000
+			metab.T2 = (43.60E-3)
 
 		return metab
 
@@ -832,6 +1275,47 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse180.waveform)*A_180)(n_new)
 		waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse180.waveform)*A_180)(n_new)
+		pulse180.waveform = waveform_real + 1j*(waveform_imag)
+
+		ampl_arr = np.abs(pulse180.waveform)*gyratio
+		phas_arr = np.unwrap(np.angle(pulse180.waveform))*180.0/math.pi
+		freq_arr = np.gradient(phas_arr)
+
+		if plot_flag:
+			plt.figure()
+			plt.subplot(3,1,1)
+			plt.plot(n_new, waveform_real)
+			plt.plot(n_new, waveform_imag)
+			plt.subplot(3,1,2)
+			plt.plot(n_new, ampl_arr)
+			plt.subplot(3,1,3)
+			plt.plot(n_new, freq_arr)
+			plt.savefig(self.save_dir_sim + '180AFP' + '_' + str(PULSE_180_LENGTH) + 'sec.png')
+			plt.close()
+
+		pulse = pg.row_vector(len(pulse180.waveform))
+		ptime = pg.row_vector(len(pulse180.waveform))
+		for j, val in enumerate(zip(ampl_arr, phas_arr)):
+			pulse.put(pg.complex(val[0],val[1]), j)
+			ptime.put(pg.complex(n_new[1],0), j)
+
+		pulse_dur_180 = pulse.size() * pulse180.pulsestep
+		pwf_180 = pg.PulWaveform(pulse, ptime, "180afp")
+		pulc_180 = pg.PulComposite(pwf_180, spin_system, self.sim_experiment.obs_iso)
+
+		Ureal180 = pulc_180.GetUsum(-1)
+
+		return A_180, pulse180, pulse_dur_180, Ureal180
+
+	def laser_buildafp(self, inpulse180file, A_180, PULSE_180_LENGTH, gyratio, spin_system, plot_flag):
+		# A: amplitude in milliTesla
+
+		pulse180 = Pulse(inpulse180file, PULSE_180_LENGTH, 'varian')
+
+		n_new = np.linspace(0, PULSE_180_LENGTH, 512)
+
+		waveform_real = np.real(pulse180.waveform)*A_180
+		waveform_imag = np.imag(pulse180.waveform)*A_180
 		pulse180.waveform = waveform_real + 1j*(waveform_imag)
 
 		ampl_arr = np.abs(pulse180.waveform)*gyratio
@@ -903,6 +1387,45 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		Ureal90 = pulc_90.GetUsum(-1)
 
 		return A_90, pulse90, pulse_dur_90, peak_to_end_90, Ureal90
+
+	def laser_buildahp(self, inpulse90file, A_90, PULSE_90_LENGTH, gyratio, spin_system, plot_flag):
+		pulse90 = Pulse(inpulse90file, PULSE_90_LENGTH, 'varian')
+
+		n_old = np.linspace(0, PULSE_90_LENGTH, 255)
+		n_new = np.linspace(0, PULSE_90_LENGTH, 256)
+
+		waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse90.waveform)*A_90)(n_new)
+		waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse90.waveform)*A_90)(n_new)
+		pulse90.waveform = waveform_real + 1j*(waveform_imag)
+
+		ampl_arr = np.abs(pulse90.waveform)*gyratio
+		phas_arr = np.unwrap(np.angle(pulse90.waveform))*180.0/math.pi
+		
+		if plot_flag:
+			plt.figure()
+			plt.subplot(3,1,1)
+			plt.plot(n_new, waveform_real)
+			plt.plot(n_new, waveform_imag)
+			plt.subplot(3,1,2)
+			plt.plot(n_new, ampl_arr)
+			plt.subplot(3,1,3)
+			plt.plot(n_new, phas_arr)
+			plt.savefig(self.save_dir_sim + '90AHP' + '_' + str(PULSE_90_LENGTH) + 'sec.png')
+			plt.close()
+
+		pulse = pg.row_vector(len(pulse90.waveform))
+		ptime = pg.row_vector(len(pulse90.waveform))
+		for j, val in enumerate(zip(ampl_arr, phas_arr)):
+			pulse.put(pg.complex(val[0],val[1]), j)
+			ptime.put(pg.complex(pulse90.pulsestep,0), j)
+
+		pulse_dur_90 = pulse.size() * pulse90.pulsestep
+		pwf_90 = pg.PulWaveform(pulse, ptime, "90excite")
+		pulc_90 = pg.PulComposite(pwf_90, spin_system, self.sim_experiment.obs_iso)
+
+		Ureal90 = pulc_90.GetUsum(-1)
+
+		return A_90, pulse90, pulse_dur_90, Ureal90
 
 	# ---- Methods for Plotting in the GUI ---- #
 	def addmpl(self, canvas_index, fig, vertical_layout):
@@ -1171,7 +1694,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					self.metabTableWidget.setItem(i, 2, QtWidgets.QTableWidgetItem(str(T2_params[i])))
 				self.loadMetabInfoLabel.setText("Parameter file loaded successfully!")
 			else:
-				self.loadMetabInfoLabel.setText("Error in parameter file! >> num of parameters != num of metabolites")
+				self.loadMetabInfoLabel.setText("Error in parameter file! >> num of parameters " + str((sp.size(A_m_params), sp.size(T2_params))) + " != num of metabolites " + " " + str(sp.size(metabolites)))
 		except Exception as e:
 			self.loadMetabInfoLabel.setText("ERROR: " + str(e) + " >> Please try another parameter file.")
 
@@ -1197,7 +1720,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			print metabolites
 
 			w0 =   0
-			phi0 = 0
+			phi0 = np.deg2rad(float(self.phaseInput.text()))
 			lb =   float(self.lbInput.text())        
 			shift = float(self.shiftInput.text())
 
@@ -1278,7 +1801,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			print metabolites
 
 			w0 =   0
-			phi0 = 0
+			phi0 = np.deg2rad(float(self.phaseInput.text()))
 			lb =   float(self.lbInput.text())
 			shift = float(self.shiftInput.text())
 
@@ -1299,7 +1822,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			print metabolites
 
 			w0 =   0
-			phi0 = 0
+			phi0 = np.deg2rad(float(self.phaseInput.text()))
 			lb =   float(self.lbInput.text()) 
 			shift = float(self.shiftInput.text())
 
@@ -1354,7 +1877,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			print metabolites
 
 			w0 =   0
-			phi0 = 0
+			phi0 = np.deg2rad(float(self.phaseInput.text()))
 			lb =   float(self.lbInput.text()) 
 			shift = float(self.shiftInput.text())
 
@@ -1768,12 +2291,15 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			print str(ref_amp)+ ',',
 			print str(ref_phase)				
 
+			# set flag to group metabolite peaks > minWaterPPMInput with a separate amplitude param
+			minWaterPPMInput_FLAG = False
+
 			# output metabolite into constraint file
 			for j in range(0, sp.size(metab.area)):
 				pk_count = pk_count + 1
 
-				# don't use any peaks > 5 ppm
-				if metab.ppm[j] > 5:
+				# don't use any peaks > 5 ppm (or whatever is specified in the input field)
+				if metab.ppm[j] > float(self.maxPPMInput.text()):
 					output.append(';')
 
 				output.append(str(pk_count) + '\t')
@@ -1855,7 +2381,28 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					if max_amp != sp.inf:
 						output.append(" < {0:.6f}".format(float(max_amp)))
 				else:
-					if metab.name == 'NAA' and experiment.splitNAA == True:
+					if metab.ppm[j] > float(self.minWaterPPMInput.text()):
+						if self.linkWaterRemovalAmpsCheckBox.isChecked():
+							# Let all peaks greater than 4.1 ppm have their own amplitude. This is because HSVD water removal will affect these peaks.
+							if minWaterPPMInput_FLAG == False:
+								ref_amp_new = metab.area[j]
+								group_name_amp_new = group_name_amp + '_' + str(pk_count)
+								output.append("{" + str(group_name_amp_new) + "}" + " >" + "{0:.6f}".format(float(0)))
+								if min_amp != -sp.inf:
+									output.append(" > {0:.6f}".format(float(min_amp)) if float(min_amp) > 0 else " ")
+								if max_amp != sp.inf:
+									output.append(" < {0:.6f}".format(float(max_amp)))
+								minWaterPPMInput_FLAG = True
+							else:
+								output.append("{" + str(group_name_amp_new) + "}*" + "{0:.6f}".format(float(metab.area[j]/ref_amp_new)) + " >" + "{0:.6f}".format(float(0)))
+						else:
+							group_name_amp_new = group_name_amp + '_' + str(pk_count)
+							output.append("{" + str(group_name_amp_new) + "}" + " >" + "{0:.6f}".format(float(0)))
+							if min_amp != -sp.inf:
+								output.append(" > {0:.6f}".format(float(min_amp)) if float(min_amp) > 0 else " ")
+							if max_amp != sp.inf:
+								output.append(" < {0:.6f}".format(float(max_amp)))
+					elif metab.name == 'NAA' and experiment.splitNAA == True:
 						if float(metab.ppm[j]) > 2.1 and float(metab.ppm[j]) < 2.6:
 							ref_amp_new = metab.area[[index for index,value in enumerate(metab.ppm) if value > 2.1 and value < 2.6][0]]*metab.A_m
 							rel_amp = float(metab.area[j] * metab.A_m)/ref_amp_new
@@ -2156,12 +2703,15 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			print str(ref_amp)+ ',',
 			print str(ref_phase)+ ',',
 
+			# set flag to group metabolite peaks > minWaterPPMInput with a separate amplitude param
+			minWaterPPMInput_FLAG = False
+
 			# output metabolite into guess file
 			for j in range(0, sp.size(metab.area)):
 				pk_count = pk_count + 1
 
-				# don't use any peaks > 5 ppm
-				if metab.ppm[j] > 5:
+				# don't use any peaks > 5 ppm (or whatever is specified in the input field)
+				if metab.ppm[j] > float(self.maxPPMInput.text()):
 					output.append(';')
 
 				output.append(str(pk_count) + '\t')
@@ -2209,7 +2759,18 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				if rel_amp == 1:
 					output.append("{0:.6f}".format(float(metab.area[j] * metab.A_m)) + '*afactor')
 				else:
-					output.append("0")
+					if metab.ppm[j] > float(self.minWaterPPMInput.text()):
+						if self.linkWaterRemovalAmpsCheckBox.isChecked():
+							# Let all peaks greater than 4.1 ppm have their own amplitude. This is because HSVD water removal will affect these peaks.
+							if minWaterPPMInput_FLAG == False:
+								output.append("{0:.6f}".format(float(metab.area[j] * metab.A_m)) + '*afactor')
+								minWaterPPMInput_FLAG = True
+							else:
+								output.append("0")
+						else:
+							output.append("{0:.6f}".format(float(metab.area[j] * metab.A_m)) + '*afactor')
+					else:
+						output.append("0")
 				output.append('\t')
 
 				if rel_phase > 0:
