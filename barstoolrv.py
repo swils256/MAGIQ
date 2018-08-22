@@ -580,7 +580,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 	def verifyParams(self):
 		self.consoleOutputText.append('The following parameters were entered. Please check them carefully:')
 		self.consoleOutputText.append('')
-		self.consoleOutputText.append('\t\tProtons\tT1 (GM) [sec]\tT2 (GM) [ms]\tT1 (WM) [ms]\tT2 (WM) [ms]\tFirst Peak\tLast Peak')
+		self.consoleOutputText.append('\tProtons\tT1 (GM) [sec]\tT2 (GM) [ms]\tT1 (WM) [ms]\tT2 (WM) [ms]\tFirst Peak\tLast Peak')
 		for i in range(0, self.metabParamsTableWidget.rowCount()):
 			self.consoleOutputText.append( 
 				self.metabParamsTableWidget.item(i,0).text() + '\t' \
@@ -813,6 +813,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
 					out_file.write("{:6.6f},".format(f_conc[str(self.metabParamsTableWidget.item(metab_index,0).text())]))
 			except Exception as e:
+				print e
 				failed_mice.append(mouse)			
 			out_file.write('\n')
 		
