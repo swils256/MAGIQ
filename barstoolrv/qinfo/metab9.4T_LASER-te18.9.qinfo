@@ -1,0 +1,67 @@
+#
+# Columns:
+#     1.  Metabolite
+#     2.  Number of protons for quantifiable singlet or whole signal sum
+#     3.  T1 values in GM (in sec)
+#     4.  T2 values in GM (in msec)
+#     5.  T1 values in WM (in sec)
+#     6.  T2 values in WM (in msec)
+#     7.  First Peak
+#     8.  Last Peak
+#
+naa	03	1.674	294.3	1.674	294.3	1	1
+naag	03	1.674	294.3	1.674	294.3	17	17
+ala	04	1.3701	148.0	1.3701	148.0	53	58
+gaba	06	1.3701	105.0	1.3701	105.0	185	209
+asp	03	1.3701	148.0	1.3701	148.0	35	46
+cho	09	1.3483	441.3	1.3483	441.3	221	236
+gpc	09	1.3483	441.3	1.3483	441.3	298	312
+pcho	09	1.3483	441.3	1.3483	441.3	437	448
+cre	03	1.0397	127.8	1.0397	127.8	210	210
+glc	06	1.3701	104.0	1.3701	104.0	502	531
+glu	05	1.4975	89.00	1.4975	89.00	59	90
+gln	05	1.4975	116.0	1.4975	116.0	91	135
+gsh	07	1.3701	106.0	1.3701	106.0	148	184
+gly	02	1.3701	148.0	1.3701	148.0	532	532
+myo	05	1.3701	148.0	1.3701	148.0	488	498
+scy	06	1.3701	148.0	1.3701	148.0	487	487
+lac	03	1.3701	148.0	1.3701	148.0	47	48
+eth	04	1.3701	148.0	1.3701	148.0	533	567
+tau	04	2.3289	93.00	2.3289	93.00	212	220
+#
+# Water:
+#	protons	T1_GM	T2_GM	T1_WM	T2_WM	T1_CSF	T2_CSF
+water	02	2.1583	43.60	2.1583	43.60	4.2867	111.3
+#
+# Experiment:
+#	TR	TE	Conc	ConcGM	ConcWM	ConcVox
+exp	3250	18.9	55.12	0.81	0.71	0
+#
+# Notes:
+#     - only peaks less than 4.0 ppm were used to QUANTIFY metabolites,
+#       but ALL peaks less than 5 ppm were used to FIT metabolites.
+#     - tissue concentrations are calculated at 9.4T 
+#       so we set the same T1 and T2 for WM and GM
+#
+# Specific choices for metabolites:
+#     - naa:  using only the naa_acetyl moeity
+#     - naag: using only the naag_acetyl moeity
+#     - ala:  using the entire molecule
+#     - gaba: using the entire molecule
+#     - asp:  using the entire molecule
+#     - cho:  using only the N(CH3)3 group
+#     - gpc:  using only the N(CH3)3 group
+#     - pcho: using only the N(CH3)3 group
+#     - cre:  using only the N(CH3) peak 
+#             (the other peak is affected by water suppression)
+#     - glc:  using glucose-alpha (glucose-beta is removed by water suppression)
+#             using only the carbons 2-6, 6'
+#     - glu:  using the entire molecule
+#     - gln:  using the entire molecule
+#     - gsh:  using only the glycine and glutamate moeities
+#     - gly:  using the entire molecule
+#     - myo:  using carbons 1, 3, 4, 5, 6
+#     - scy:  using the entire molecule
+#     - lac:  using only 3-CH3 group
+#     - eth: using the entire molecule
+#     - tau:  using the entire molecule
