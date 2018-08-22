@@ -5,13 +5,15 @@ number_peaks     1
 shift_units      ppm
 
 [Variables]
-  
+sfactor 0.000000
+afactor 8.2
+dfactor 0.0
+wfactor 6.7
+pfactor 0.000000
+
 [Peaks]
-
-
-
-;Peak#	Shift	WL	Amp	0+d	  Phase	 dt	 WG
-;Water
-  1      0       6.7      8.2 	0          0     0	
+;PEAK#	SHIFT	LORENTZIAN WIDTH	AMPLITUDE	PHASE	DELAY	GAUSSIAN WIDTH
+;water
+1	sfactor	wfactor	afactor	pfactor	 dfactor	0
 
 ****_Guess_File_Ends_****  <--- Do not remove this line

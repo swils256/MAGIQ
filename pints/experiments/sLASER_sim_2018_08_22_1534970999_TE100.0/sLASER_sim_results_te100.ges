@@ -1,21 +1,21 @@
 ****_Guess_File_Begins_**** <--- Do not remove this line
 [Parameters]
-number_peaks		474
+number_peaks		466
 shift_units		ppm
 
 [Variables]
 sfactor 4.650000
-afactor 0.250000
-dfactor -0.000598
+afactor 1.000000
+dfactor -0.000498
 wfactor 15.000000
 pfactor 0.000000
 
 [Peaks]
 ;PEAK#	SHIFT	LORENTZIAN WIDTH	AMPLITUDE	PHASE	DELAY	GAUSSIAN WIDTH
 ;naa_acetyl
-1	-2.008000+sfactor	0+wfactor	1.791688*afactor	0.680371+-0.1+pfactor 	 0+dfactor	0	
+1	-2.008000+sfactor	0+wfactor	1.376163*afactor	0.999251+pfactor 	 0+dfactor	0	
 ;naa_aspartate
-2	0	0+wfactor	0.281416*afactor	0 	 0	0	
+2	0	0+wfactor	0.283012*afactor	0 	 0	0	
 3	0	0+wfactor	0	0 	 0	0	
 4	0	0+wfactor	0	0 	 0	0	
 5	0	0+wfactor	0	0 	 0	0	
@@ -23,7 +23,7 @@ pfactor 0.000000
 7	0	0+wfactor	0	0 	 0	0	
 8	0	0+wfactor	0	0 	 0	0	
 9	0	0+wfactor	0	0 	 0	0	
-10	0	0+wfactor	0	0 	 0	0	
+10	0	0+wfactor	0.136350*afactor	0 	 0	0	
 11	0	0+wfactor	0	0 	 0	0	
 12	0	0+wfactor	0	0 	 0	0	
 13	0	0+wfactor	0	0 	 0	0	
@@ -32,7 +32,7 @@ pfactor 0.000000
 16	0	0+wfactor	0	0 	 0	0	
 17	0	0+wfactor	0	0 	 0	0	
 ;naag_acetyl
-18	0	0+wfactor	0.336667*afactor	0 	 0	0	
+18	0	0+wfactor	0.247207*afactor	0 	 0	0	
 ;naag_aspartyl
 19	0	0+wfactor	0	0 	 0	0	
 20	0	0+wfactor	0	0 	 0	0	
@@ -42,7 +42,7 @@ pfactor 0.000000
 24	0	0+wfactor	0	0 	 0	0	
 25	0	0+wfactor	0	0 	 0	0	
 26	0	0+wfactor	0	0 	 0	0	
-27	0	0+wfactor	0	0 	 0	0	
+27	0	0+wfactor	0.042430*afactor	0 	 0	0	
 28	0	0+wfactor	0	0 	 0	0	
 29	0	0+wfactor	0	0 	 0	0	
 30	0	0+wfactor	0	0 	 0	0	
@@ -51,16 +51,16 @@ pfactor 0.000000
 32	0	0+wfactor	0	0 	 0	0	
 33	0	0+wfactor	0	0 	 0	0	
 34	0	0+wfactor	0	0 	 0	0	
-35	0	0+wfactor	0	0 	 0	0	
+35	0	0+wfactor	0.157768*afactor	0 	 0	0	
 ;lactate
-36	0	0+wfactor	0.009261*afactor	0 	 0	0	
+36	0	0+wfactor	0.008331*afactor	0 	 0	0	
 37	0	0+wfactor	0	0 	 0	0	
-38	0	0+wfactor	0	0 	 0	0	
+38	0	0+wfactor	0.004819*afactor	0 	 0	0	
 39	0	0+wfactor	0	0 	 0	0	
 40	0	0+wfactor	0	0 	 0	0	
 41	0	0+wfactor	0	0 	 0	0	
 ;aspartate
-42	0	0+wfactor	0.029634*afactor	0 	 0	0	
+42	0	0+wfactor	0.029933*afactor	0 	 0	0	
 43	0	0+wfactor	0	0 	 0	0	
 44	0	0+wfactor	0	0 	 0	0	
 45	0	0+wfactor	0	0 	 0	0	
@@ -73,11 +73,11 @@ pfactor 0.000000
 52	0	0+wfactor	0	0 	 0	0	
 53	0	0+wfactor	0	0 	 0	0	
 ;creatine_N(CH3)
-54	-3.027000+sfactor	0+wfactor	0.886860*afactor	-0.031376+pfactor 	 0+dfactor	0	
+54	-3.027000+sfactor	0+wfactor	0.887781*afactor	0.036751+pfactor 	 0+dfactor	0	
 ;creatine_X
-55	0	0+wfactor	0.583947*afactor	0 	 0	0	
+55	0	0+wfactor	0.591567*afactor	0 	 0	0	
 ;choline_N(CH3)3_a
-56	-3.183082+-0.03+sfactor	0+wfactor	0.219426*afactor	-0.097176+pfactor 	 0+dfactor	0	
+56	-3.183082+-0.03+sfactor	0+wfactor	0.219417*afactor	-0.037733+pfactor 	 0+dfactor	0	
 57	0	0+wfactor	0	0 	 0	0	
 58	0	0+wfactor	0	0 	 0	0	
 59	0	0+wfactor	0	0 	 0	0	
@@ -102,10 +102,10 @@ pfactor 0.000000
 77	0	0+wfactor	0	0 	 0	0	
 78	0	0+wfactor	0	0 	 0	0	
 79	0	0+wfactor	0	0 	 0	0	
+;choline_1-CH2_2-CH2
 80	0	0+wfactor	0	0 	 0	0	
 81	0	0+wfactor	0	0 	 0	0	
 82	0	0+wfactor	0	0 	 0	0	
-;choline_1-CH2_2-CH2
 83	0	0+wfactor	0	0 	 0	0	
 84	0	0+wfactor	0	0 	 0	0	
 85	0	0+wfactor	0	0 	 0	0	
@@ -114,7 +114,7 @@ pfactor 0.000000
 88	0	0+wfactor	0	0 	 0	0	
 89	0	0+wfactor	0	0 	 0	0	
 90	0	0+wfactor	0	0 	 0	0	
-91	0	0+wfactor	0	0 	 0	0	
+91	0	0+wfactor	0.029865*afactor	0 	 0	0	
 92	0	0+wfactor	0	0 	 0	0	
 93	0	0+wfactor	0	0 	 0	0	
 94	0	0+wfactor	0	0 	 0	0	
@@ -133,14 +133,14 @@ pfactor 0.000000
 107	0	0+wfactor	0	0 	 0	0	
 108	0	0+wfactor	0	0 	 0	0	
 109	0	0+wfactor	0	0 	 0	0	
-110	0	0+wfactor	0	0 	 0	0	
+;myoinositol
+110	-3.148304+sfactor	0+wfactor	0.000621*afactor	-0.149762+pfactor 	 0+dfactor	0	
 111	0	0+wfactor	0	0 	 0	0	
 112	0	0+wfactor	0	0 	 0	0	
 113	0	0+wfactor	0	0 	 0	0	
 114	0	0+wfactor	0	0 	 0	0	
 115	0	0+wfactor	0	0 	 0	0	
-;myoinositol
-116	-3.148304+sfactor	0+wfactor	0.000615*afactor	-0.207182+pfactor 	 0+dfactor	0	
+116	0	0+wfactor	0	0 	 0	0	
 117	0	0+wfactor	0	0 	 0	0	
 118	0	0+wfactor	0	0 	 0	0	
 119	0	0+wfactor	0	0 	 0	0	
@@ -169,26 +169,26 @@ pfactor 0.000000
 142	0	0+wfactor	0	0 	 0	0	
 143	0	0+wfactor	0	0 	 0	0	
 144	0	0+wfactor	0	0 	 0	0	
-145	0	0+wfactor	0	0 	 0	0	
+145	0	0+wfactor	0.124781*afactor	0 	 0	0	
 146	0	0+wfactor	0	0 	 0	0	
 147	0	0+wfactor	0	0 	 0	0	
 148	0	0+wfactor	0	0 	 0	0	
 149	0	0+wfactor	0	0 	 0	0	
 150	0	0+wfactor	0	0 	 0	0	
 151	0	0+wfactor	0	0 	 0	0	
-152	0	0+wfactor	0	0 	 0	0	
+;alanine
+152	0	0+wfactor	0.027465*afactor	0 	 0	0	
 153	0	0+wfactor	0	0 	 0	0	
 154	0	0+wfactor	0	0 	 0	0	
 155	0	0+wfactor	0	0 	 0	0	
-;alanine
-156	0	0+wfactor	0.037910*afactor	0 	 0	0	
+156	0	0+wfactor	0	0 	 0	0	
 157	0	0+wfactor	0	0 	 0	0	
-158	0	0+wfactor	0	0 	 0	0	
+;d-glucose-alpha
+158	0	0+wfactor	0.000099*afactor	0 	 0	0	
 159	0	0+wfactor	0	0 	 0	0	
 160	0	0+wfactor	0	0 	 0	0	
 161	0	0+wfactor	0	0 	 0	0	
-;d-glucose-alpha
-162	0	0+wfactor	0.000103*afactor	0 	 0	0	
+162	0	0+wfactor	0	0 	 0	0	
 163	0	0+wfactor	0	0 	 0	0	
 164	0	0+wfactor	0	0 	 0	0	
 165	0	0+wfactor	0	0 	 0	0	
@@ -239,14 +239,14 @@ pfactor 0.000000
 210	0	0+wfactor	0	0 	 0	0	
 211	0	0+wfactor	0	0 	 0	0	
 212	0	0+wfactor	0	0 	 0	0	
-213	0	0+wfactor	0	0 	 0	0	
-214	0	0+wfactor	0	0 	 0	0	
+;glycine
+213	0	0+wfactor	0.135914*afactor	0 	 0	0	
+;peth
+214	0	0+wfactor	0.000076*afactor	0 	 0	0	
 215	0	0+wfactor	0	0 	 0	0	
 216	0	0+wfactor	0	0 	 0	0	
-;glycine
-217	0	0+wfactor	0.135113*afactor	0 	 0	0	
-;peth
-218	0	0+wfactor	0.000161*afactor	0 	 0	0	
+217	0	0+wfactor	0	0 	 0	0	
+218	0	0+wfactor	0	0 	 0	0	
 219	0	0+wfactor	0	0 	 0	0	
 220	0	0+wfactor	0	0 	 0	0	
 221	0	0+wfactor	0	0 	 0	0	
@@ -281,37 +281,37 @@ pfactor 0.000000
 250	0	0+wfactor	0	0 	 0	0	
 251	0	0+wfactor	0	0 	 0	0	
 252	0	0+wfactor	0	0 	 0	0	
-253	0	0+wfactor	0	0 	 0	0	
+253	0	0+wfactor	0.001213*afactor	0 	 0	0	
 254	0	0+wfactor	0	0 	 0	0	
 255	0	0+wfactor	0	0 	 0	0	
 256	0	0+wfactor	0	0 	 0	0	
 257	0	0+wfactor	0	0 	 0	0	
-258	0	0+wfactor	0	0 	 0	0	
-259	0	0+wfactor	0	0 	 0	0	
+;scyllo-inositol
+258	0	0+wfactor	0.263501*afactor	0 	 0	0	
+;taurine
+259	0	0+wfactor	0.025194*afactor	0 	 0	0	
 260	0	0+wfactor	0	0 	 0	0	
 261	0	0+wfactor	0	0 	 0	0	
 262	0	0+wfactor	0	0 	 0	0	
 263	0	0+wfactor	0	0 	 0	0	
 264	0	0+wfactor	0	0 	 0	0	
-;scyllo-inositol
-265	0	0+wfactor	0.263665*afactor	0 	 0	0	
-;taurine
-266	0	0+wfactor	0.025198*afactor	0 	 0	0	
+265	0	0+wfactor	0	0 	 0	0	
+266	0	0+wfactor	0	0 	 0	0	
 267	0	0+wfactor	0	0 	 0	0	
 268	0	0+wfactor	0	0 	 0	0	
 269	0	0+wfactor	0	0 	 0	0	
 270	0	0+wfactor	0	0 	 0	0	
 271	0	0+wfactor	0	0 	 0	0	
 272	0	0+wfactor	0	0 	 0	0	
-273	0	0+wfactor	0	0 	 0	0	
+;glutamate
+273	-1.967068+sfactor	0+wfactor	0.015923*afactor	4.538799+pfactor 	 0+dfactor	0	
 274	0	0+wfactor	0	0 	 0	0	
 275	0	0+wfactor	0	0 	 0	0	
 276	0	0+wfactor	0	0 	 0	0	
 277	0	0+wfactor	0	0 	 0	0	
 278	0	0+wfactor	0	0 	 0	0	
 279	0	0+wfactor	0	0 	 0	0	
-;glutamate
-280	-1.967068+sfactor	0+wfactor	0.018900*afactor	4.280826+pfactor 	 0+dfactor	0	
+280	0	0+wfactor	0	0 	 0	0	
 281	0	0+wfactor	0	0 	 0	0	
 282	0	0+wfactor	0	0 	 0	0	
 283	0	0+wfactor	0	0 	 0	0	
@@ -347,7 +347,8 @@ pfactor 0.000000
 313	0	0+wfactor	0	0 	 0	0	
 314	0	0+wfactor	0	0 	 0	0	
 315	0	0+wfactor	0	0 	 0	0	
-316	0	0+wfactor	0	0 	 0	0	
+;glutamine
+316	0	0+wfactor	0.002604*afactor	0 	 0	0	
 317	0	0+wfactor	0	0 	 0	0	
 318	0	0+wfactor	0	0 	 0	0	
 319	0	0+wfactor	0	0 	 0	0	
@@ -356,8 +357,7 @@ pfactor 0.000000
 322	0	0+wfactor	0	0 	 0	0	
 323	0	0+wfactor	0	0 	 0	0	
 324	0	0+wfactor	0	0 	 0	0	
-;glutamine
-325	0	0+wfactor	0.001798*afactor	0 	 0	0	
+325	0	0+wfactor	0	0 	 0	0	
 326	0	0+wfactor	0	0 	 0	0	
 327	0	0+wfactor	0	0 	 0	0	
 328	0	0+wfactor	0	0 	 0	0	
@@ -410,7 +410,8 @@ pfactor 0.000000
 375	0	0+wfactor	0	0 	 0	0	
 376	0	0+wfactor	0	0 	 0	0	
 377	0	0+wfactor	0	0 	 0	0	
-378	0	0+wfactor	0	0 	 0	0	
+;glutathione_cysteine
+378	0	0+wfactor	0.017152*afactor	0 	 0	0	
 379	0	0+wfactor	0	0 	 0	0	
 380	0	0+wfactor	0	0 	 0	0	
 381	0	0+wfactor	0	0 	 0	0	
@@ -418,11 +419,11 @@ pfactor 0.000000
 383	0	0+wfactor	0	0 	 0	0	
 384	0	0+wfactor	0	0 	 0	0	
 385	0	0+wfactor	0	0 	 0	0	
-386	0	0+wfactor	0	0 	 0	0	
-;glutathione_cysteine
-387	0	0+wfactor	0.015950*afactor	0 	 0	0	
+386	0	0+wfactor	0.049301*afactor	0 	 0	0	
+387	0	0+wfactor	0	0 	 0	0	
 388	0	0+wfactor	0	0 	 0	0	
 389	0	0+wfactor	0	0 	 0	0	
+;glutathione_glutamate
 390	0	0+wfactor	0	0 	 0	0	
 391	0	0+wfactor	0	0 	 0	0	
 392	0	0+wfactor	0	0 	 0	0	
@@ -432,7 +433,6 @@ pfactor 0.000000
 396	0	0+wfactor	0	0 	 0	0	
 397	0	0+wfactor	0	0 	 0	0	
 398	0	0+wfactor	0	0 	 0	0	
-;glutathione_glutamate
 399	0	0+wfactor	0	0 	 0	0	
 400	0	0+wfactor	0	0 	 0	0	
 401	0	0+wfactor	0	0 	 0	0	
@@ -465,18 +465,18 @@ pfactor 0.000000
 428	0	0+wfactor	0	0 	 0	0	
 429	0	0+wfactor	0	0 	 0	0	
 430	0	0+wfactor	0	0 	 0	0	
+;glutathione_glycine
 431	0	0+wfactor	0	0 	 0	0	
-432	0	0+wfactor	0	0 	 0	0	
+;gaba
+432	0	0+wfactor	0.003586*afactor	0 	 0	0	
 433	0	0+wfactor	0	0 	 0	0	
 434	0	0+wfactor	0	0 	 0	0	
 435	0	0+wfactor	0	0 	 0	0	
 436	0	0+wfactor	0	0 	 0	0	
 437	0	0+wfactor	0	0 	 0	0	
 438	0	0+wfactor	0	0 	 0	0	
-;glutathione_glycine
 439	0	0+wfactor	0	0 	 0	0	
-;gaba
-440	0	0+wfactor	0.004226*afactor	0 	 0	0	
+440	0	0+wfactor	0	0 	 0	0	
 441	0	0+wfactor	0	0 	 0	0	
 442	0	0+wfactor	0	0 	 0	0	
 443	0	0+wfactor	0	0 	 0	0	
@@ -503,12 +503,4 @@ pfactor 0.000000
 464	0	0+wfactor	0	0 	 0	0	
 465	0	0+wfactor	0	0 	 0	0	
 466	0	0+wfactor	0	0 	 0	0	
-467	0	0+wfactor	0	0 	 0	0	
-468	0	0+wfactor	0	0 	 0	0	
-469	0	0+wfactor	0	0 	 0	0	
-470	0	0+wfactor	0	0 	 0	0	
-471	0	0+wfactor	0	0 	 0	0	
-472	0	0+wfactor	0	0 	 0	0	
-473	0	0+wfactor	0	0 	 0	0	
-474	0	0+wfactor	0	0 	 0	0	
 ****_Guess_File_Ends_****  <--- Do not remove this line

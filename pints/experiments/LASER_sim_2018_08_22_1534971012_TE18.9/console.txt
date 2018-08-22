@@ -1,0 +1,99 @@
+Confirming simulation experiment parameters ...
+ | b0:               400.2 MHz
+ | observed species: 1H
+ | gyratio:          42576.0 MHz/mT
+ | dwell time:       0.000166 sec
+ | acqusition time:  0.341 sec
+ | TE:               18.9 msec
+ | A_90s:           [  0.00000000e+00   1.00000000e-01   2.00000000e-01 ...,   1.99800000e+02
+   1.99900000e+02   2.00000000e+02]
+ | A_180s:           [  70.    70.1   70.2 ...,  199.8  199.9  200. ]
+ | rf_offset:        4.7 ppm
+
+1. 180-degree calibration LASER (w/ ideal 90, water) experiment
+       | A + (K - A)/(1 + np.exp(-B*x)): 
+       | A0 = -103.024795269, B0 = 1.0, K0 = 171.596378267, s0 = 71.8
+       | A = -121.916862074, B = 0.236645319199, K = 168.804139621, s = 83.1578802807
+       | CALIBRATED 180 AFP AMPLITUDE: 141.7
+
+2. 90-degree calibration LASER (w/ AFP 180, water) experiment
+       | A + (K - A)/(1 + np.exp(-B*x)): 
+       | A0 = 0, B0 = 1.0, K0 = 117.542581327, s0 = 3.7
+       | A = -2.44883669305e-14, B = 0.194132104182, K = 113.138200294, s = 9.69513633516
+       | CALIBRATED 90 AHP AMPLITUDE: 169.0
+
+3. Density Matrix Simulations of Metabolites
+   | Simulating ... alanine.sys
+   | Simulating ... aspartate.sys
+   | Simulating ... choline_1-CH2_2-CH2.sys
+   | Simulating ... choline_N(CH3)3_a.sys
+        | Simulation completed for ... pints/metabolites/9.4T_aspartate.sys
+        | Simulation completed for ... pints/metabolites/9.4T_alanine.sys
+        | Simulation completed for ... pints/metabolites/9.4T_choline_N(CH3)3_a.sys
+        | Simulation completed for ... pints/metabolites/9.4T_choline_1-CH2_2-CH2.sys
+   | Simulating ... choline_N(CH3)3_b.sys
+   | Simulating ... creatine_X.sys
+   | Simulating ... creatine_N(CH3).sys
+   | Simulating ... d-glucose-alpha.sys
+        | Simulation completed for ... pints/metabolites/9.4T_creatine_N(CH3).sys
+        | Simulation completed for ... pints/metabolites/9.4T_creatine_X.sys
+        | Simulation completed for ... pints/metabolites/9.4T_choline_N(CH3)3_b.sys
+        | Simulation completed for ... pints/metabolites/9.4T_d-glucose-alpha.sys
+   | Simulating ... glutamate.sys
+   | Simulating ... gaba.sys
+   | Simulating ... eth.sys
+   | Simulating ... d-glucose-beta.sys
+        | Simulation completed for ... pints/metabolites/9.4T_glutamate.sys
+        | Simulation completed for ... pints/metabolites/9.4T_gaba.sys
+        | Simulation completed for ... pints/metabolites/9.4T_d-glucose-beta.sys
+        | Simulation completed for ... pints/metabolites/9.4T_eth.sys
+   | Simulating ... glutamine.sys
+   | Simulating ... glutathione_glutamate.sys
+   | Simulating ... glutathione_cysteine.sys
+   | Simulating ... glutathione_glycine.sys
+        | Simulation completed for ... pints/metabolites/9.4T_glutathione_glycine.sys
+        | Simulation completed for ... pints/metabolites/9.4T_glutamine.sys
+        | Simulation completed for ... pints/metabolites/9.4T_glutathione_glutamate.sys
+        | Simulation completed for ... pints/metabolites/9.4T_glutathione_cysteine.sys
+   | Simulating ... gpc_N(CH3)3_a.sys
+   | Simulating ... gpc_glycerol.sys
+   | Simulating ... gpc_7-CH2_8-CH2.sys
+   | Simulating ... glycine.sys
+        | Simulation completed for ... pints/metabolites/9.4T_glycine.sys
+        | Simulation completed for ... pints/metabolites/9.4T_gpc_7-CH2_8-CH2.sys
+        | Simulation completed for ... pints/metabolites/9.4T_gpc_glycerol.sys
+        | Simulation completed for ... pints/metabolites/9.4T_gpc_N(CH3)3_a.sys
+   | Simulating ... naa_acetyl.sys
+   | Simulating ... lactate.sys
+   | Simulating ... gpc_N(CH3)3_b.sys
+   | Simulating ... myoinositol.sys
+        | Simulation completed for ... pints/metabolites/9.4T_gpc_N(CH3)3_b.sys
+        | Simulation completed for ... pints/metabolites/9.4T_naa_acetyl.sys
+        | Simulation completed for ... pints/metabolites/9.4T_myoinositol.sys
+        | Simulation completed for ... pints/metabolites/9.4T_lactate.sys
+   | Simulating ... naag_glutamate.sys
+   | Simulating ... naag_aspartyl.sys
+   | Simulating ... naa_aspartate.sys
+   | Simulating ... naag_acetyl.sys
+        | Simulation completed for ... pints/metabolites/9.4T_naag_glutamate.sys
+        | Simulation completed for ... pints/metabolites/9.4T_naa_aspartate.sys
+        | Simulation completed for ... pints/metabolites/9.4T_naag_aspartyl.sys
+        | Simulation completed for ... pints/metabolites/9.4T_naag_acetyl.sys
+   | Simulating ... pcho_N(CH3)3_a.sys
+   | Simulating ... pcho_N(CH3)3_b.sys
+   | Simulating ... pcho_X.sys
+   | Simulating ... pcr_N(CH3).sys
+        | Simulation completed for ... pints/metabolites/9.4T_pcr_N(CH3).sys
+        | Simulation completed for ... pints/metabolites/9.4T_pcho_N(CH3)3_a.sys
+        | Simulation completed for ... pints/metabolites/9.4T_pcho_N(CH3)3_b.sys
+        | Simulation completed for ... pints/metabolites/9.4T_pcho_X.sys
+   | Simulating ... taurine.sys
+   | Simulating ... peth.sys
+   | Simulating ... scyllo-inositol.sys
+   | Simulating ... pcr_X.sys
+        | Simulation completed for ... pints/metabolites/9.4T_scyllo-inositol.sys
+        | Simulation completed for ... pints/metabolites/9.4T_pcr_X.sys
+        | Simulation completed for ... pints/metabolites/9.4T_taurine.sys
+        | Simulation completed for ... pints/metabolites/9.4T_peth.sys
+  | Saving simulation data ...
+  | Simulation finished.
