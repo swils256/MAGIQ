@@ -56,7 +56,7 @@ def calc(sup_out, unsup_out, \
 			print '     | ', peak, sup_out.output[peak][3]
 			sum_alpha_M = sum_alpha_M + float(sup_out.output[peak][3])
 
-		print '     | ', sum_alpha_M, n_avg_sup, metab_params[i][1], scale_sup, 10**(gain_sup/20.0), R_M(vox_frac[0], \
+		print '     | M:', sum_alpha_M, n_avg_sup, metab_params[i][1], scale_sup, gain_sup, 10**(gain_sup/20.0), R_M(vox_frac[0], \
 										vox_frac[1], \
 										metab_params[i][2], \
 										metab_params[i][3], \
@@ -64,6 +64,14 @@ def calc(sup_out, unsup_out, \
 										metab_params[i][5], \
 										exp_params[1], \
 										exp_params[2])
+		print '         ', vox_frac[0], \
+										vox_frac[1], \
+										metab_params[i][2], \
+										metab_params[i][3], \
+										metab_params[i][4], \
+										metab_params[i][5], \
+										exp_params[1], \
+										exp_params[2]
 
 		# Correct metabolite signal
 		sum_alpha_M = sum_alpha_M / n_avg_sup				# correct for number of averages
@@ -78,11 +86,23 @@ def calc(sup_out, unsup_out, \
 										metab_params[i][5], \
 										exp_params[1], \
 										exp_params[2])		# correct for relaxation
+		print '         ', sum_alpha_M
 
 		# Get water signal
 		sum_alpha_W = float(unsup_out.output[1][3])
 
-		print '     | ', sum_alpha_W, n_avg_uns, water_params[1], scale_uns, 10**(gain_uns/20.0), R_W(vox_frac[0], \
+		print '     | W:', sum_alpha_W, n_avg_uns, water_params[1], scale_uns, gain_uns, 10**(gain_uns/20.0)#, R_W(vox_frac[0], \
+		# 								vox_frac[1], \
+		# 								vox_frac[2], \
+		# 								water_params[2], \
+		# 								water_params[3], \
+		# 								water_params[4], \
+		# 								water_params[5], \
+		# 								water_params[6], \
+		# 								water_params[7], \
+		# 								exp_params[1], \
+		# 								exp_params[2])
+		print '         ', vox_frac[0], \
 										vox_frac[1], \
 										vox_frac[2], \
 										water_params[2], \
@@ -92,7 +112,7 @@ def calc(sup_out, unsup_out, \
 										water_params[6], \
 										water_params[7], \
 										exp_params[1], \
-										exp_params[2])
+										exp_params[2]
 
 		# Correct water signal
 		sum_alpha_W = sum_alpha_W / n_avg_uns				# correct for number of averages
@@ -111,22 +131,27 @@ def calc(sup_out, unsup_out, \
 										exp_params[1], \
 										exp_params[2])		# correct for relaxation
 
+		print '         ', sum_alpha_W
+
 		# Apply water signal correction for tissue concentration
 		if exp_params[6] == 0:
 			# Voxel concetration flag is off ... so we want tissue concentration
 			C_tissue = vox_frac[0] + vox_frac[1]
 			sum_alpha_W = sum_alpha_W * C_tissue
+			print '         ', sum_alpha_W
 
 		# Get water concentration
 		if exp_params[6] == 0:
 			# Voxel concentration flag is off ... so we want tissue water concentration
 			water_conc =   vox_frac[0] * exp_params[3] * exp_params[4] \
 						 + vox_frac[1] * exp_params[3] * exp_params[5]
+			print '         ', water_conc
 		else:
 			# Voxel concentration flag is on ... so we want voxel water concentration
 			water_conc =   vox_frac[0] * exp_params[3] * exp_params[4] \
 						 + vox_frac[1] * exp_params[3] * exp_params[5] \
 						 + vox_frac[2] * exp_params[3] * 1
+			print '         ', water_conc
 
 		# Calculate final concentration
 		final_conc = (sum_alpha_M / sum_alpha_W) * water_conc
@@ -168,6 +193,10 @@ def R_W(f_GM, f_WM, f_CSF, T1_GM, T2_GM, T1_WM, T2_WM, T1_CSF, T2_CSF, TR, TE):
 	# T2_WM = T2 of white matter (msec)
 	# T1_CSF = T1 of CSF (sec)
 	# T2_CSF = T2 of CSF (msec)
+	print '              | ', f_GM, f_WM, f_CSF, T1_GM, T2_GM, T1_WM, T2_WM, T1_CSF, T2_CSF, TR, TE
+	print '              | ', f_GM  * (1 - sp.exp(-(TR*1E-3)/T1_GM))  * sp.exp(-(TE*1E-3)/(T2_GM *1E-3))
+	print '              | ', f_WM  * (1 - sp.exp(-(TR*1E-3)/T1_WM))  * sp.exp(-(TE*1E-3)/(T2_WM *1E-3))
+	print '              | ', f_CSF * (1 - sp.exp(-(TR*1E-3)/T1_CSF)) * sp.exp(-(TE*1E-3)/(T2_CSF*1E-3))
 	return f_GM  * (1 - sp.exp(-(TR*1E-3)/T1_GM))  * sp.exp(-(TE*1E-3)/(T2_GM *1E-3)) + \
 		   f_WM  * (1 - sp.exp(-(TR*1E-3)/T1_WM))  * sp.exp(-(TE*1E-3)/(T2_WM *1E-3)) + \
 		   f_CSF * (1 - sp.exp(-(TR*1E-3)/T1_CSF)) * sp.exp(-(TE*1E-3)/(T2_CSF*1E-3))
