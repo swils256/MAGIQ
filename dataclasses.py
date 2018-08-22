@@ -28,7 +28,7 @@ from pyfftw.interfaces import scipy_fftpack as fftw
 
 # ---- Data Classes ---- #
 class Experiment:
-	def __init__(self):
+	def __init__(self, pulseseq='slaser'):
 
 		# General Experiment Information
 		self.name = ''
@@ -49,17 +49,30 @@ class Experiment:
 		self.TE = 0					# echo time
 
 		# Experimental Parameters for Simulation
-		self.A_90s = []										# amplitudes for pulse calibration
-		self.A_180s = []
-		self.RF_OFFSET = 4.7								# default is 4.7 ppm (center frequency of excitation pulse)
-		self.inpulse90file = 'pints/pulses/P10.P10NORM.pta'		# RF pulse files
-		self.inpulse180file = 'pints/pulses/HS4_R25.HS4_R25.pta'
-		self.PULSE_90_LENGTH = 0							# RF pulse lengths
-		self.PULSE_180_LENGTH = 0
-		self.A_180 = 1.0									# To store calibrated RF amplitudes
-		self.A_90 = 1.0
-		self.fudge_factor = 0								# SLR fudge factor
-		self.tolppm = 0.0015								# binning parameters
+		if pulseseq == 'slaser':
+			self.A_90s = []										# amplitudes for pulse calibration
+			self.A_180s = []
+			self.RF_OFFSET = 4.7								# default is 4.7 ppm (center frequency of excitation pulse)
+			self.inpulse90file = 'pints/pulses/P10.P10NORM.pta'	# RF pulse files
+			self.inpulse180file = 'pints/pulses/HS4_R25.HS4_R25.pta'
+			self.PULSE_90_LENGTH = 0							# RF pulse lengths
+			self.PULSE_180_LENGTH = 0
+			self.A_180 = 1.0									# To store calibrated RF amplitudes
+			self.A_90 = 1.0
+			self.fudge_factor = 0								# SLR fudge factor
+		elif pulseseq == 'laser':
+			self.A_90s = []										# amplitudes for pulse calibration
+			self.A_180s = []
+			self.RF_OFFSET = 4.7								# default is 4.7 ppm (center frequency of excitation pulse)
+			self.inpulse90file = 'pints/pulses/at60.n29.RF'		# RF pulse files
+			# self.inpulse90file = 'pints/pulses/HS2_R15_512_AHP.RF'
+			self.inpulse180file = 'pints/pulses/HS2_R15_512.RF'
+			self.PULSE_90_LENGTH = 0							# RF pulse lengths
+			self.PULSE_180_LENGTH = 0
+			self.A_180 = 1.0									# To store calibrated RF amplitudes
+			self.A_90 = 1.0
+
+		self.tolppm = 0.0015	# binning parameters
 		self.tolpha = 50.0
 		self.ppmlo = 0.0
 		self.ppmhi = 10.0
@@ -103,29 +116,63 @@ class Experiment:
 		return 1/self.dwell_time
 
 class Pulse:
-	def __init__(self, inpulsefile, pulse_length):
+	def __init__(self, inpulsefile, pulse_length, scanner='siemens'):
 
-		self.waveform = []
+		if scanner == 'siemens':
+			self.waveform = []
 
-		# read pulse (magnitude of pulse is in mT)
-		siemens_file = open(inpulsefile, 'r')
-		for line in siemens_file:
-			if "AMPINT" in line:
-				self.AMPINT = float(line.split('\t')[1])
-			elif "POWERINT" in line:
-				self.POWERINT = float(line.split('\t')[1])
-			elif "ABSINT" in line:
-				self.ABSINT = float(line.split('\t')[1])
-			elif ";" in line:
-				mag = float(line.split('\t')[0]) * 1E-3
-				phase = float(line.split('\t')[1])
+			# read pulse (magnitude of pulse is in mT)
+			siemens_file = open(inpulsefile, 'r')
+			for line in siemens_file:
+				if "AMPINT" in line:
+					self.AMPINT = float(line.split('\t')[1])
+				elif "POWERINT" in line:
+					self.POWERINT = float(line.split('\t')[1])
+				elif "ABSINT" in line:
+					self.ABSINT = float(line.split('\t')[1])
+				elif ";" in line:
+					mag = float(line.split('\t')[0]) * 1E-3
+					phase = float(line.split('\t')[1])
+					self.waveform.append(mag * np.exp(1j * phase))
+			self.waveform.pop(-1) # delete last element
+			self.waveform = np.array(self.waveform)
+			siemens_file.close()
+
+			# define paramaters
+			self.pulsestep = pulse_length / len(self.waveform)
+
+		elif scanner == 'varian':
+			self.waveform = []
+			phases = []
+			mags   = []
+
+			# read pulse
+			varian_file = open(inpulsefile, 'r')
+			for line in varian_file:
+				if "#" in line:
+					if "TYPE" in line:
+						self.TYPE = line.split(' ')[-1]
+					elif "MODULATION" in line:
+						self.MODULATION = line.split(' ')[-1]
+					elif "EXCITEWIDTH" in line:
+						self.EXCITEWIDTH = float(line.split(' ')[-1])
+					elif "INVERTWIDTH" in line:
+						self.INVERTWIDTH = float(line.split(' ')[-1])
+					elif "INTEGRAL" in line:
+						self.INTEGRAL = float(line.split(' ')[-1])
+				else:
+					phases.append(np.deg2rad(float(filter(None,line.replace('\t', ' ').split(' '))[0])))
+					mags.append(float(filter(None,line.replace('\t', ' ').split(' '))[1]))
+
+			# create waveform
+			for (i, phase) in enumerate(phases):
+				mag   = (mags[i] / np.max(mags))*1E-3
 				self.waveform.append(mag * np.exp(1j * phase))
-		self.waveform.pop(-1) # delete last element
-		self.waveform = np.array(self.waveform)
-		siemens_file.close()
+			self.waveform = np.array(self.waveform)
+			varian_file.close()
 
-		# define paramaters
-		self.pulsestep = pulse_length / len(self.waveform)
+			#define parameters
+			self.pulsestep = pulse_length / len(self.waveform)
 
 class RefSignal:
 	def __init__(self, signal, n, fs, t, b0):
@@ -556,9 +603,9 @@ class RDAFile:
 		self.vox_affine = R_fid
 
 	def fid_to_spec(self, fid_data, time):
-	    spec = sp.fftpack.fftshift(sp.fftpack.fft(fid_data)) 
-	    freq = sp.fftpack.fftshift(sp.fftpack.fftfreq(fid_data.size, time[1] - time[0])) 
-	    return spec, freq
+		spec = sp.fftpack.fftshift(sp.fftpack.fft(fid_data)) 
+		freq = sp.fftpack.fftshift(sp.fftpack.fftfreq(fid_data.size, time[1] - time[0])) 
+		return spec, freq
 
 class Procpar:
 	def __init__(self, filename):
@@ -683,7 +730,7 @@ class FDF2D:
 
 		# signed resolution
 		res = np.array([10*(self.header[mid]['span'][0]) / (self.header[mid]['matrix'][0]) , 
-			  		    10*(self.header[mid]['span'][1]) / (self.header[mid]['matrix'][1]) ,
+						10*(self.header[mid]['span'][1]) / (self.header[mid]['matrix'][1]) ,
 						10*(self.header[mid]['roi'][2])])
 		self.res = res
 
