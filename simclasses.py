@@ -53,110 +53,234 @@ class MetaboliteSimulation(QtCore.QObject):
 			self.insysfile = 'pints/metabolites/3T_' + self.insysfile
 		elif self.sim_experiment.b0 == 297.2:
 			self.insysfile = 'pints/metabolites/7T_' + self.insysfile
-		else:
+		elif self.sim_experiment.b0 == 400.2:
 			self.insysfile = 'pints/metabolites/9.4T_' + self.insysfile
 
-		spin_system = pg.spin_system()
-		spin_system.read(self.insysfile)
-		for i in range(spin_system.spins()):
-			spin_system.PPM(i, spin_system.PPM(i) - self.sim_experiment.RF_OFFSET)
+		if self.sim_experiment.name == "semi-LASER":
+			spin_system = pg.spin_system()
+			spin_system.read(self.insysfile)
+			for i in range(spin_system.spins()):
+				spin_system.PPM(i, spin_system.PPM(i) - self.sim_experiment.RF_OFFSET)
 
-		TE = self.sim_experiment.TE
-		TE1 = float((TE * 0.31) / 1000.0)
-		TE3 = float((TE * 0.31) / 1000.0)
-		TE2 = float(TE/1000.0 - TE1 - TE3)
-		TE_fill = TE/1000.0 - TE1 - TE2 - TE3
+			TE = self.sim_experiment.TE
+			TE1 = float((TE * 0.31) / 1000.0)
+			TE3 = float((TE * 0.31) / 1000.0)
+			TE2 = float(TE/1000.0 - TE1 - TE3)
+			TE_fill = TE/1000.0 - TE1 - TE2 - TE3
 
-		# build 90 degree pulse
-		inpulse90file = self.sim_experiment.inpulse90file
-		A_90 = self.sim_experiment.A_90
-		PULSE_90_LENGTH = self.sim_experiment.PULSE_90_LENGTH
-		gyratio = self.sim_experiment.getGyratio()
+			# build 90 degree pulse
+			inpulse90file = self.sim_experiment.inpulse90file
+			A_90 = self.sim_experiment.A_90
+			PULSE_90_LENGTH = self.sim_experiment.PULSE_90_LENGTH
+			gyratio = self.sim_experiment.getGyratio()
 
-		pulse90 = Pulse(inpulse90file, PULSE_90_LENGTH)
+			pulse90 = Pulse(inpulse90file, PULSE_90_LENGTH)
 
-		n_old = np.linspace(0, PULSE_90_LENGTH, 255)
-		n_new = np.linspace(0, PULSE_90_LENGTH, 256)
+			n_old = np.linspace(0, PULSE_90_LENGTH, 255)
+			n_new = np.linspace(0, PULSE_90_LENGTH, 256)
 
-		waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse90.waveform)*A_90)(n_new)
-		waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse90.waveform)*A_90)(n_new)
-		pulse90.waveform = waveform_real + 1j*(waveform_imag)
+			waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse90.waveform)*A_90)(n_new)
+			waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse90.waveform)*A_90)(n_new)
+			pulse90.waveform = waveform_real + 1j*(waveform_imag)
 
-		ampl_arr = np.abs(pulse90.waveform)*gyratio
-		phas_arr = np.unwrap(np.angle(pulse90.waveform))*180.0/math.pi
-		
-		pulse = pg.row_vector(len(pulse90.waveform))
-		ptime = pg.row_vector(len(pulse90.waveform))
-		for j, val in enumerate(zip(ampl_arr, phas_arr)):
-			pulse.put(pg.complex(val[0],val[1]), j)
-			ptime.put(pg.complex(pulse90.pulsestep,0), j)
+			ampl_arr = np.abs(pulse90.waveform)*gyratio
+			phas_arr = np.unwrap(np.angle(pulse90.waveform))*180.0/math.pi
+			
+			pulse = pg.row_vector(len(pulse90.waveform))
+			ptime = pg.row_vector(len(pulse90.waveform))
+			for j, val in enumerate(zip(ampl_arr, phas_arr)):
+				pulse.put(pg.complex(val[0],val[1]), j)
+				ptime.put(pg.complex(pulse90.pulsestep,0), j)
 
-		pulse_dur_90 = pulse.size() * pulse90.pulsestep
-		peak_to_end_90 = pulse_dur_90 - (209 + self.sim_experiment.fudge_factor) * pulse90.pulsestep
-		pwf_90 = pg.PulWaveform(pulse, ptime, "90excite")
-		pulc_90 = pg.PulComposite(pwf_90, spin_system, self.sim_experiment.obs_iso)
+			pulse_dur_90 = pulse.size() * pulse90.pulsestep
+			peak_to_end_90 = pulse_dur_90 - (209 + self.sim_experiment.fudge_factor) * pulse90.pulsestep
+			pwf_90 = pg.PulWaveform(pulse, ptime, "90excite")
+			pulc_90 = pg.PulComposite(pwf_90, spin_system, self.sim_experiment.obs_iso)
 
-		Ureal90 = pulc_90.GetUsum(-1)
+			Ureal90 = pulc_90.GetUsum(-1)
 
-		# build 180 degree pulse
-		inpulse180file = self.sim_experiment.inpulse180file
-		A_180 = self.sim_experiment.A_180
-		PULSE_180_LENGTH = self.sim_experiment.PULSE_180_LENGTH
-		gyratio = self.sim_experiment.getGyratio()
+			# build 180 degree pulse
+			inpulse180file = self.sim_experiment.inpulse180file
+			A_180 = self.sim_experiment.A_180
+			PULSE_180_LENGTH = self.sim_experiment.PULSE_180_LENGTH
+			gyratio = self.sim_experiment.getGyratio()
 
-		pulse180 = Pulse(inpulse180file, PULSE_180_LENGTH)
+			pulse180 = Pulse(inpulse180file, PULSE_180_LENGTH)
 
-		n_old = np.linspace(0, PULSE_180_LENGTH, 511)
-		n_new = np.linspace(0, PULSE_180_LENGTH, 512)
+			n_old = np.linspace(0, PULSE_180_LENGTH, 511)
+			n_new = np.linspace(0, PULSE_180_LENGTH, 512)
 
-		waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse180.waveform)*A_180)(n_new)
-		waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse180.waveform)*A_180)(n_new)
-		pulse180.waveform = waveform_real + 1j*(waveform_imag)
+			waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse180.waveform)*A_180)(n_new)
+			waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse180.waveform)*A_180)(n_new)
+			pulse180.waveform = waveform_real + 1j*(waveform_imag)
 
-		ampl_arr = np.abs(pulse180.waveform)*gyratio
-		phas_arr = np.unwrap(np.angle(pulse180.waveform))*180.0/math.pi
-		freq_arr = np.gradient(phas_arr)
+			ampl_arr = np.abs(pulse180.waveform)*gyratio
+			phas_arr = np.unwrap(np.angle(pulse180.waveform))*180.0/math.pi
+			freq_arr = np.gradient(phas_arr)
 
-		pulse = pg.row_vector(len(pulse180.waveform))
-		ptime = pg.row_vector(len(pulse180.waveform))
-		for j, val in enumerate(zip(ampl_arr, phas_arr)):
-			pulse.put(pg.complex(val[0],val[1]), j)
-			ptime.put(pg.complex(n_new[1],0), j)
+			pulse = pg.row_vector(len(pulse180.waveform))
+			ptime = pg.row_vector(len(pulse180.waveform))
+			for j, val in enumerate(zip(ampl_arr, phas_arr)):
+				pulse.put(pg.complex(val[0],val[1]), j)
+				ptime.put(pg.complex(n_new[1],0), j)
 
-		pulse_dur_180 = pulse.size() * pulse180.pulsestep
-		pwf_180 = pg.PulWaveform(pulse, ptime, "180afp")
-		pulc_180 = pg.PulComposite(pwf_180, spin_system, self.sim_experiment.obs_iso)
+			pulse_dur_180 = pulse.size() * pulse180.pulsestep
+			pwf_180 = pg.PulWaveform(pulse, ptime, "180afp")
+			pulc_180 = pg.PulComposite(pwf_180, spin_system, self.sim_experiment.obs_iso)
 
-		Ureal180 = pulc_180.GetUsum(-1)
+			Ureal180 = pulc_180.GetUsum(-1)
 
-		H = pg.Hcs(spin_system) + pg.HJ(spin_system)
-		D = pg.Fm(spin_system, self.sim_experiment.obs_iso)
-		ac = pg.acquire1D(pg.gen_op(D), H, self.sim_experiment.dwell_time)
-		ACQ = ac
+			H = pg.Hcs(spin_system) + pg.HJ(spin_system)
+			D = pg.Fm(spin_system, self.sim_experiment.obs_iso)
+			ac = pg.acquire1D(pg.gen_op(D), H, self.sim_experiment.dwell_time)
+			ACQ = ac
 
-		delay1 = TE1/2.0 + TE_fill/8.0                         - pulse_dur_180/2.0 - peak_to_end_90
-		delay2 = TE1/2.0 + TE_fill/8.0 + TE2/4.0 + TE_fill/8.0 - pulse_dur_180
-		delay3 = TE2/4.0 + TE_fill/8.0 + TE2/4.0 + TE_fill/8.0 - pulse_dur_180
-		delay4 = TE2/4.0 + TE_fill/8.0 + TE3/2.0 + TE_fill/8.0 - pulse_dur_180
-		delay5 = TE3/2.0 + TE_fill/8.0                         - pulse_dur_180/2.0
+			delay1 = TE1/2.0 + TE_fill/8.0                         - pulse_dur_180/2.0 - peak_to_end_90
+			delay2 = TE1/2.0 + TE_fill/8.0 + TE2/4.0 + TE_fill/8.0 - pulse_dur_180
+			delay3 = TE2/4.0 + TE_fill/8.0 + TE2/4.0 + TE_fill/8.0 - pulse_dur_180
+			delay4 = TE2/4.0 + TE_fill/8.0 + TE3/2.0 + TE_fill/8.0 - pulse_dur_180
+			delay5 = TE3/2.0 + TE_fill/8.0                         - pulse_dur_180/2.0
 
-		Udelay1 = pg.prop(H, delay1)
-		Udelay2 = pg.prop(H, delay2)
-		Udelay3 = pg.prop(H, delay3)
-		Udelay4 = pg.prop(H, delay4)
-		Udelay5 = pg.prop(H, delay5)
+			Udelay1 = pg.prop(H, delay1)
+			Udelay2 = pg.prop(H, delay2)
+			Udelay3 = pg.prop(H, delay3)
+			Udelay4 = pg.prop(H, delay4)
+			Udelay5 = pg.prop(H, delay5)
 
-		sigma0 = pg.sigma_eq(spin_system)							# init
-		sigma1 = Ureal90.evolve(sigma0)								# apply 90-degree pulse
-		sigma0 = pg.evolve(sigma1, Udelay1)
-		sigma1 = Ureal180.evolve(sigma0)	# apply AFP1
-		sigma0 = pg.evolve(sigma1, Udelay2)
-		sigma1 = Ureal180.evolve(sigma0)	# apply AFP2
-		sigma0 = pg.evolve(sigma1, Udelay3)
-		sigma1 = Ureal180.evolve(sigma0) 	# apply AFP3
-		sigma0 = pg.evolve(sigma1, Udelay4)
-		sigma1 = Ureal180.evolve(sigma0) 	# apply AFP4
-		sigma0 = pg.evolve(sigma1, Udelay5)
+			sigma0 = pg.sigma_eq(spin_system)	# init
+			sigma1 = Ureal90.evolve(sigma0)		# apply 90-degree pulse
+			sigma0 = pg.evolve(sigma1, Udelay1)
+			sigma1 = Ureal180.evolve(sigma0)	# apply AFP1
+			sigma0 = pg.evolve(sigma1, Udelay2)
+			sigma1 = Ureal180.evolve(sigma0)	# apply AFP2
+			sigma0 = pg.evolve(sigma1, Udelay3)
+			sigma1 = Ureal180.evolve(sigma0) 	# apply AFP3
+			sigma0 = pg.evolve(sigma1, Udelay4)
+			sigma1 = Ureal180.evolve(sigma0) 	# apply AFP4
+			sigma0 = pg.evolve(sigma1, Udelay5)
+
+		elif self.sim_experiment.name == "LASER":
+			spin_system = pg.spin_system()
+			spin_system.read(self.insysfile)
+			for i in range(spin_system.spins()):
+				spin_system.PPM(i, spin_system.PPM(i) - self.sim_experiment.RF_OFFSET)
+
+			# build 90 degree AHP pulse
+			inpulse90file = self.sim_experiment.inpulse90file
+			A_90 = self.sim_experiment.A_90
+			PULSE_90_LENGTH = self.sim_experiment.PULSE_90_LENGTH
+			gyratio = self.sim_experiment.getGyratio()
+
+			pulse90 = Pulse(inpulse90file, PULSE_90_LENGTH, 'varian')
+
+			n_new = np.linspace(0, PULSE_90_LENGTH, 256)
+
+			waveform_real = np.real(pulse90.waveform)*A_90
+			waveform_imag = np.imag(pulse90.waveform)*A_90
+			pulse90.waveform = waveform_real + 1j*(waveform_imag)
+
+			ampl_arr = np.abs(pulse90.waveform)*gyratio
+			phas_arr = np.unwrap(np.angle(pulse90.waveform))*180.0/math.pi
+			
+			pulse = pg.row_vector(len(pulse90.waveform))
+			ptime = pg.row_vector(len(pulse90.waveform))
+			for j, val in enumerate(zip(ampl_arr, phas_arr)):
+				pulse.put(pg.complex(val[0],val[1]), j)
+				ptime.put(pg.complex(pulse90.pulsestep,0), j)
+
+			pulse_dur_90 = pulse.size() * pulse90.pulsestep
+			pwf_90 = pg.PulWaveform(pulse, ptime, "90excite")
+			pulc_90 = pg.PulComposite(pwf_90, spin_system, self.sim_experiment.obs_iso)
+
+			Ureal90 = pulc_90.GetUsum(-1)
+
+			# build 180 degree pulse
+			inpulse180file = self.sim_experiment.inpulse180file
+			A_180 = self.sim_experiment.A_180
+			PULSE_180_LENGTH = self.sim_experiment.PULSE_180_LENGTH
+			gyratio = self.sim_experiment.getGyratio()
+
+			pulse180 = Pulse(inpulse180file, PULSE_180_LENGTH, 'varian')
+
+			n_new = np.linspace(0, PULSE_180_LENGTH, 512)
+
+			waveform_real = np.real(pulse180.waveform)*A_180
+			waveform_imag = np.imag(pulse180.waveform)*A_180
+			pulse180.waveform = waveform_real + 1j*(waveform_imag)
+
+			ampl_arr = np.abs(pulse180.waveform)*gyratio
+			phas_arr = np.unwrap(np.angle(pulse180.waveform))*180.0/math.pi
+			freq_arr = np.gradient(phas_arr)
+
+			pulse = pg.row_vector(len(pulse180.waveform))
+			ptime = pg.row_vector(len(pulse180.waveform))
+			for j, val in enumerate(zip(ampl_arr, phas_arr)):
+				pulse.put(pg.complex(val[0],val[1]), j)
+				ptime.put(pg.complex(n_new[1],0), j)
+
+			pulse_dur_180 = pulse.size() * pulse180.pulsestep
+			pwf_180 = pg.PulWaveform(pulse, ptime, "180afp")
+			pulc_180 = pg.PulComposite(pwf_180, spin_system, self.sim_experiment.obs_iso)
+
+			Ureal180 = pulc_180.GetUsum(-1)
+
+			# calculate pulse timings
+			ROF1 = 100E-6    #sec
+			ROF2 = 10E-6     #sec
+			TCRUSH1 = 0.0008 #sec
+			TCRUSH2 = 0.0008 #sec
+
+			ss_grad_rfDelayFront = 0#TCRUSH1 - ROF1
+			ss_grad_rfDelayBack  = 0#TCRUSH2 - ROF2
+			ro_grad_atDelayFront = 0
+			ro_grad_atDelayBack  = 0
+
+			TE  = self.sim_experiment.TE / 1000.
+			ipd = (TE - pulse_dur_90 \
+					  - 6*(ss_grad_rfDelayFront + pulse_dur_180 + ss_grad_rfDelayBack) \
+					  - ro_grad_atDelayFront) / 12
+
+			delay1 = ipd + ss_grad_rfDelayFront
+			delay2 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+			delay3 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+			delay4 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+			delay5 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+			delay6 = ss_grad_rfDelayBack + 2*ipd + ss_grad_rfDelayFront
+			delay7 = ss_grad_rfDelayBack + ipd + ro_grad_atDelayFront
+
+			# print A_90, A_180, pulse_dur_90, pulse_dur_180
+			# print TE, ipd, pulse_dur_90+6*pulse_dur_180, delay1+delay2+delay3+delay4+delay5+delay6+delay7, pulse_dur_90+6*pulse_dur_180+delay1+delay2+delay3+delay4+delay5+delay6+delay7
+			# print ''
+
+			# initialize acquisition
+			H = pg.Hcs(spin_system) + pg.HJ(spin_system)
+			D = pg.Fm(spin_system, self.sim_experiment.obs_iso)
+			ac = pg.acquire1D(pg.gen_op(D), H, self.sim_experiment.dwell_time)
+			ACQ = ac
+
+			Udelay1 = pg.prop(H, delay1)
+			Udelay2 = pg.prop(H, delay2)
+			Udelay3 = pg.prop(H, delay3)
+			Udelay4 = pg.prop(H, delay4)
+			Udelay5 = pg.prop(H, delay5)
+			Udelay6 = pg.prop(H, delay6)
+			Udelay7 = pg.prop(H, delay7)
+
+			sigma0 = pg.sigma_eq(spin_system)	# init
+			sigma1 = Ureal90.evolve(sigma0)		# apply 90-degree pulse
+			sigma0 = pg.evolve(sigma1, Udelay1)
+			sigma1 = Ureal180.evolve(sigma0)	# apply AFP1
+			sigma0 = pg.evolve(sigma1, Udelay2)
+			sigma1 = Ureal180.evolve(sigma0)	# apply AFP2
+			sigma0 = pg.evolve(sigma1, Udelay3)
+			sigma1 = Ureal180.evolve(sigma0) 	# apply AFP3
+			sigma0 = pg.evolve(sigma1, Udelay4)
+			sigma1 = Ureal180.evolve(sigma0) 	# apply AFP4
+			sigma0 = pg.evolve(sigma1, Udelay5)
+			sigma1 = Ureal180.evolve(sigma0) 	# apply AFP5
+			sigma0 = pg.evolve(sigma1, Udelay6)
+			sigma1 = Ureal180.evolve(sigma0) 	# apply AFP6
+			sigma0 = pg.evolve(sigma1, Udelay7)
 
 		# acquire
 		mx = pg.TTable1D(ACQ.table(sigma0))
@@ -368,6 +492,9 @@ class MetaboliteSimulation(QtCore.QObject):
 		elif insysfile == 'taurine.sys':
 			metab.A_m = 0.117
 			metab.T2 = (85E-3)
+		elif insysfile == 'water.sys':
+			metab.A_m = 1.000
+			metab.T2 = (43.60E-3)
 
 		# Send save data signal
 		self.outputResults.emit(metab)
