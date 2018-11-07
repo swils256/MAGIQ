@@ -194,7 +194,6 @@ class Metabolite:
 		self.width_L = []
 		self.area = []		# i.e. amplitude
 		self.phase = []
-		self.phase = []
 		self.delay = []
 		self.width_G = []
 		
@@ -452,6 +451,7 @@ class DatFile:
 				self.ConvS = float(line.replace('\n','').split(' ')[1].split('=')[1])
 			elif i == 8:
 				self.gain = float(line.replace('\n','').split(' ')[-1].split('=')[1])
+				self.TE   = float(line.replace('\n','').split(' ')[0].split('=')[1])
 			elif i == 11:
 				pass
 			elif i > 11:
