@@ -49,7 +49,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		Ui_MainWindow.__init__(self)
 		self.setupUi(self)
 
-		self.workingDirectory = os.path.expanduser('~')
+		self.workingDirectory_wr  = os.path.expanduser('~')
+		self.workingDirectory_mmr = os.path.expanduser('~')
 		
 		# Setup for plotting
 		self.canvas = [None]*2
@@ -61,7 +62,16 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	def setBindings(self, tab):
 		if tab == 'Water Removal':
-			self.setPlot(tab)
+			self.filenameBrowseButton_dat.clicked.connect(self.chooseDatFile_wr)
+			self.filenameConfirmButton_dat.clicked.connect(self.loadDatFile_wr)
+			self.filenameConfirmButton_dat.setEnabled(False)
+
+			self.runWaterRemovalButton.clicked.connect(self.runWaterRemoval)
+			self.runWaterRemovalButton.setEnabled(False)
+
+			self.saveWaterRemovalButton.clicked.connect(self.saveWaterRemoval)
+			self.saveWaterRemovalButton.setEnabled(False)
+
 		elif tab == 'Macromolecule Removal':
 			self.filenameBrowseButton_fulldat_mmr.clicked.connect(self.chooseFullDatFile_mmr)
 			self.filenameConfirmButton_fulldat_mmr.clicked.connect(self.loadFullDatFile_mmr)
@@ -77,14 +87,103 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.saveMMRemovalButton.clicked.connect(self.saveMMRemoval)
 			self.saveMMRemovalButton.setEnabled(False)
 
-			self.setPlot(tab)
+		self.setPlot(tab)
 	
+	# ---- Water Removal ---- #
+	def runWaterRemoval(self):
+		#1. Fit specturm with HSVD.
+		peak, width_L, ppm, area, phase = self.hsvd(self.dat,int(self.hsvdPointsLineEdit_wr.text()),float(self.hsvdRatioLineEdit_wr.text()),int(self.hsvdComponentsLineEdit_wr.text()),'water')
+		hsvd_fit = Metabolite()
+
+		# take only the peaks within the specified frequency range
+		for (i, comp) in enumerate(peak):
+			if (ppm[i]/self.dat.b0) >= float(self.XminLineEdit.text()) and (ppm[i]/self.dat.b0) <= float(self.XmaxLineEdit.text()):
+				hsvd_fit.peak.append(peak[i])
+				hsvd_fit.width_L.append(width_L[i])
+				hsvd_fit.ppm.append(ppm[i]/self.dat.b0)
+				hsvd_fit.area.append(area[i])
+				hsvd_fit.phase.append(phase[i])
+
+		hsvd_fid = hsvd_fit.getFID(self.dat.TE, self.dat.b0, self.dat.t, 0, 1, 0, 0, 0)
+
+		self.dat_hsvd = copy.deepcopy(self.dat)
+		self.dat_hsvd.signal = hsvd_fid
+
+		ax = plt.subplot(211)
+		ax.clear()
+		ax.spines["top"].set_visible(False)    
+		ax.spines["bottom"].set_visible(True)    
+		ax.spines["right"].set_visible(False)    
+		ax.spines["left"].set_visible(False)
+		ax.get_xaxis().tick_bottom()
+
+		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
+			labelbottom="on", left="off", right="off", labelleft="off")
+
+		# plot raw spectrum
+		f_dat, spec_dat = self.dat.getSpec()
+		plt.plot(f_dat[0:self.dat.n], np.real(spec_dat[0:self.dat.n]), label='Data')
+
+		# plot fitted spectrum
+		f_hsvd, spec_hsvd = self.dat_hsvd.getSpec()
+		plt.plot(f_hsvd, np.real(spec_hsvd), label='Fit')
+
+		# plot residual
+		VSHIFT = 0.25
+		plt.plot(f_hsvd, np.real(spec_dat[0:self.dat.n]) - np.real(spec_hsvd) + VSHIFT*np.amax(np.real(spec_hsvd)), label='Residual')
+
+		# legend and title
+		ax.legend(loc="upper left")
+		plt.title('Original Spectrum')
+
+		# 2. Subtract from original spectrum.
+		scale = 1.0
+		self.dat_wr = copy.deepcopy(self.dat)
+		self.dat_wr.n = np.min([np.size(self.dat.signal,0), np.size(self.dat_hsvd.signal, 0)])
+		self.dat_wr.signal = self.dat.signal[0:self.dat_wr.n] - scale*self.dat_hsvd.signal[0:self.dat_wr.n]
+
+		ax = plt.subplot(212)
+		ax.clear()
+		ax.spines["top"].set_visible(False)    
+		ax.spines["bottom"].set_visible(True)    
+		ax.spines["right"].set_visible(False)    
+		ax.spines["left"].set_visible(False)
+		ax.get_xaxis().tick_bottom()
+
+		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
+			labelbottom="on", left="off", right="off", labelleft="off")
+
+		f_wr, spec_wr = self.dat_wr.getSpec()
+		plt.plot(f_wr, np.real(spec_wr))
+		plt.title('Water Removed Spectrum')
+
+		self.canvas[0].draw()
+
+		self.saveWaterRemovalButton.setEnabled(True)
+
+	def saveWaterRemoval(self):
+		self.dat_wr.filename = self.dat.filename.replace('.dat', '_wr.dat')
+
+		out_file = open(self.dat_wr.filename, 'w')
+		in_file  = open(self.dat.filename, 'r')
+
+		for (i, line) in enumerate(in_file):
+			if i > 11:
+				for element in self.dat_wr.signal:
+					out_file.write("{0:.6f}".format(float(np.real(element))) + '\n')
+					out_file.write("{0:.6f}".format(float(np.imag(element))) + '\n')
+				break
+			else:
+				out_file.write(line)
+
+		out_file.close()
+		in_file.close()
+
 	# ---- Macromolecule Removal ---- #
 	def runMMRemoval(self):
 		# 1. Fit macromolecule spectrum with HSVD.
 		peak, width_L, ppm, area, phase = self.hsvd(self.MMDat_mmr,int(self.hsvdPointsLineEdit_mmr.text()),float(self.hsvdRatioLineEdit_mmr.text()),int(self.hsvdComponentsLineEdit_mmr.text()),'mm')
 		hsvd_fit = Metabolite()
-		hsvd_fit.peak = peak
 		hsvd_fit.peak = peak
 		hsvd_fit.width_L = width_L
 		hsvd_fit.ppm = ppm / self.MMDat_mmr.b0
@@ -185,10 +284,57 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		in_file.close()
 
 	# ---- Methods to Load Files ---- #
+	def chooseDatFile_wr(self):
+		self.filenameConfirmButton_dat.setEnabled(False)
+		prev = str(self.filenameInput_dat.text())
+		self.filenameInput_dat.setText(str(QtWidgets.QFileDialog.getOpenFileName(self, 'Open Dat File', self.workingDirectory_wr, 'Dat files (*.dat)')[0]))
+		self.filenameConfirmButton_dat.setEnabled(True)
+		if str(self.filenameInput_dat.text()) == '':
+			self.filenameInput_dat.setText(str(prev))
+			if str(prev) == '':
+				self.filenameConfirmButton_dat.setEnabled(False)
+
+	def loadDatFile_wr(self):
+		try:
+			# load dat file
+			datFile  = str(self.filenameInput_dat.text())
+			self.dat = DatFile(datFile)
+			self.filenameInfoLabel_dat.setText(datFile.split('/')[-1] + " successfully loaded.")
+
+			# plot
+			plt.figure(1)
+
+			ax = plt.subplot(211)
+			ax.clear()
+			ax.spines["top"].set_visible(False)    
+			ax.spines["bottom"].set_visible(True)    
+			ax.spines["right"].set_visible(False)    
+			ax.spines["left"].set_visible(False)
+			ax.get_xaxis().tick_bottom()
+
+			plt.tick_params(axis="both", which="both", bottom="on", top="off",    
+				labelbottom="on", left="off", right="off", labelleft="off")
+
+			f_dat, spec_dat = self.dat.getSpec()
+			plt.plot(f_dat[0:self.dat.n], np.real(spec_dat[0:self.dat.n]))
+			plt.title('Original Spectrum')
+			plt.tight_layout()
+			self.canvas[0].draw()
+
+			# reset buttons
+			self.filenameBrowseButton_dat.setEnabled(True)
+			self.filenameConfirmButton_dat.setEnabled(False)
+
+			self.runWaterRemovalButton.setEnabled(True)
+
+		except:
+			self.filenameInfoLabel_dat.setText("ERROR: " + str(e) + " >> Please try again.")
+
+
 	def chooseFullDatFile_mmr(self):
 		self.filenameConfirmButton_fulldat_mmr.setEnabled(False)
 		prev = str(self.filenameInput_fulldat_mmr.text())
-		self.filenameInput_fulldat_mmr.setText(str(QtWidgets.QFileDialog.getOpenFileName(self, 'Open Dat File', self.workingDirectory, 'Dat files (*.dat)')[0]))
+		self.filenameInput_fulldat_mmr.setText(str(QtWidgets.QFileDialog.getOpenFileName(self, 'Open Dat File', self.workingDirectory_mmr, 'Dat files (*.dat)')[0]))
 		self.filenameConfirmButton_fulldat_mmr.setEnabled(True)
 		if str(self.filenameInput_fulldat_mmr.text()) == '':
 			self.filenameInput_fulldat_mmr.setText(str(prev))
@@ -196,14 +342,14 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				self.filenameConfirmButton_fulldat_mmr.setEnabled(False)
 
 		fullDatFile_mmr     = str(self.filenameInput_fulldat_mmr.text())
-		self.workingDirectory = fullDatFile_mmr.replace(fullDatFile_mmr.split('/')[-1], '')
+		self.workingDirectory_mmr = fullDatFile_mmr.replace(fullDatFile_mmr.split('/')[-1], '')
 
 	def loadFullDatFile_mmr(self):
 		try:
 			# load dat file
 			fullDatFile_mmr     = str(self.filenameInput_fulldat_mmr.text())
 			self.fullDat_mmr = DatFile(fullDatFile_mmr)
-			self.filenameInfoLabel_fulldat_mmr.setText(fullDatFile_mmr.split('/')[-1] + "\nsuccessfully loaded.")
+			self.filenameInfoLabel_fulldat_mmr.setText(fullDatFile_mmr.split('/')[-1] + " successfully loaded.")
 
 			# plot
 			plt.figure(2)
@@ -230,12 +376,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.filenameConfirmButton_fulldat_mmr.setEnabled(False)
 
 		except Exception as e:
-			self.filenameInfoLabel_fulldat_mmr.setText("ERROR: " + str(e) + "\n>> Please try again.")
+			self.filenameInfoLabel_fulldat_mmr.setText("ERROR: " + str(e) + " >> Please try again.")
 
 	def chooseMMDatFile_mmr(self):
 		self.filenameConfirmButton_mmdat_mmr.setEnabled(False)
 		prev = str(self.filenameInput_mmdat_mmr.text())
-		self.filenameInput_mmdat_mmr.setText(str(QtWidgets.QFileDialog.getOpenFileName(self, 'Open Dat File', self.workingDirectory, 'Dat files (*.dat)')[0]))
+		self.filenameInput_mmdat_mmr.setText(str(QtWidgets.QFileDialog.getOpenFileName(self, 'Open Dat File', self.workingDirectory_mmr, 'Dat files (*.dat)')[0]))
 		self.filenameConfirmButton_mmdat_mmr.setEnabled(True)
 		if str(self.filenameInput_mmdat_mmr.text()) == '':
 			self.filenameInput_mmdat_mmr.setText(str(prev))
@@ -243,14 +389,14 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				self.filenameConfirmButton_mmdat_mmr.setEnabled(False)
 
 		MMDatFile_mmr     = str(self.filenameInput_mmdat_mmr.text())
-		self.workingDirectory = MMDatFile_mmr.replace(MMDatFile_mmr.split('/')[-1], '')
+		self.workingDirectory_mmr = MMDatFile_mmr.replace(MMDatFile_mmr.split('/')[-1], '')
 
 	def loadMMDatFile_mmr(self):
 		try:
 			# load dat file
 			MMDatFile_mmr     = str(self.filenameInput_mmdat_mmr.text())
 			self.MMDat_mmr = DatFile(MMDatFile_mmr)
-			self.filenameInfoLabel_mmdat_mmr.setText(MMDatFile_mmr.split('/')[-1] + "\nsuccessfully loaded.")
+			self.filenameInfoLabel_mmdat_mmr.setText(MMDatFile_mmr.split('/')[-1] + " successfully loaded.")
 
 			# plot
 			plt.figure(2)
@@ -278,7 +424,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.runMMRemovalButton.setEnabled(True)
 
 		except Exception as e:
-			self.filenameInfoLabel_mmdat_mmr.setText("ERROR: " + str(e) + "\n>> Please try again.")
+			self.filenameInfoLabel_mmdat_mmr.setText("ERROR: " + str(e) + " >> Please try again.")
 
 	def setPlot(self, tab):
 		if tab == 'Water Removal':

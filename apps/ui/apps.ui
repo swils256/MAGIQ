@@ -66,7 +66,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="waterRemovalTab">
       <attribute name="title">
@@ -131,7 +131,7 @@ QGroupBox::title {
           <item row="2" column="1">
            <widget class="QLineEdit" name="hsvdComponentsLineEdit_wr">
             <property name="text">
-             <string>20</string>
+             <string>35</string>
             </property>
            </widget>
           </item>
@@ -151,14 +151,14 @@ QGroupBox::title {
              <item row="3" column="1">
               <widget class="QLineEdit" name="XmaxLineEdit">
                <property name="text">
-                <string>1.5</string>
+                <string>0.5</string>
                </property>
               </widget>
              </item>
              <item row="2" column="1">
               <widget class="QLineEdit" name="XminLineEdit">
                <property name="text">
-                <string>-0.5</string>
+                <string>-1.5</string>
                </property>
               </widget>
              </item>
