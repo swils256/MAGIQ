@@ -9,6 +9,8 @@ import glob
 import platform
 import copy
 
+import traceback
+
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import subprocess as subproc
 
@@ -327,7 +329,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			self.runWaterRemovalButton.setEnabled(True)
 
-		except:
+		except Exception as e:
+			traceback.print_exc()
 			self.filenameInfoLabel_dat.setText("ERROR: " + str(e) + " >> Please try again.")
 
 
@@ -376,6 +379,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.filenameConfirmButton_fulldat_mmr.setEnabled(False)
 
 		except Exception as e:
+			traceback.print_exc()
 			self.filenameInfoLabel_fulldat_mmr.setText("ERROR: " + str(e) + " >> Please try again.")
 
 	def chooseMMDatFile_mmr(self):
@@ -424,6 +428,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.runMMRemovalButton.setEnabled(True)
 
 		except Exception as e:
+			traceback.print_exc()
 			self.filenameInfoLabel_mmdat_mmr.setText("ERROR: " + str(e) + " >> Please try again.")
 
 	def setPlot(self, tab):
