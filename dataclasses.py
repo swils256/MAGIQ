@@ -1002,26 +1002,26 @@ class BrukerFID:
 				# print i, line,
 				if '##$PVM_EchoTime=' in line:
 					self.EchoTime = float(line.replace('\n','').split('=')[-1])
-				elif '##$PVM_RepetitionTime' in line:
+				elif '##$PVM_RepetitionTime=' in line:
 					self.RepetitionTime = float(line.replace('\n','').split('=')[-1])
-				elif '##$PVM_NAverages' in line:
+				elif '##$PVM_NAverages=' in line:
 					self.NAverages = int(line.replace('\n','').split('=')[-1])
-				elif '##$PVM_FrqRef' in line:
+				elif '##$PVM_FrqRef=' in line:
 					self.FrqRef = float(lines[i+1].replace('\n','').split(' ')[0])
-				elif '##$PVM_DigDw' in line:
+				elif '##$PVM_DigDw=' in line:
 					self.DigDw = float(line.replace('\n','').split('=')[-1])
-				elif '##$PVM_DigShift' in line:
+				elif '##$PVM_DigShift=' in line:
 					self.DigShift = int(line.replace('\n','').split('=')[-1])
-				elif '##$PVM_VoxArrSize' in line:
+				elif '##$PVM_VoxArrSize=' in line:
 					self.VoxArrSize = []
 					for el in lines[i+1].replace('\n','').split(' '): self.VoxArrSize.append(float(el))
-				elif '##$PVM_VoxArrPosition' in line:
+				elif '##$PVM_VoxArrPosition=' in line:
 					self.VoxArrPosition = []
 					for el in lines[i+1].replace('\n','').split(' '): self.VoxArrPosition.append(float(el))
-				elif '##$PVM_VoxArrPositionRPS' in line:
+				elif '##$PVM_VoxArrPositionRPS=' in line:
 					self.VoxArrPositionRPS = []
 					for el in lines[i+1].replace('\n','').split(' '): self.VoxArrPositionRPS.append(float(el))
-				elif '##$PVM_EncChanScaling' in line:
+				elif '##$PVM_EncChanScaling=' in line:
 					self.EncChanScaling = float(lines[i+1].replace('\n', ''))
 
 
@@ -1030,10 +1030,30 @@ class BrukerFID:
 		self.signal = self.signal[self.DigShift:]
 		self.n = np.size(self.signal, 0)
 
+		# SCLAE SIGNAL SUCH THAT FID STARTS BETWEEN 0 and 1
 		self.ConvS = 1
 		while not((np.real(self.signal)[0] > 0 and np.real(self.signal)[0] < 1) or (np.real(self.signal)[0] < 0 and np.real(self.signal)[0] > -1)):
 			self.ConvS = self.ConvS / 10.0
 			self.signal = self.signal * self.ConvS
 
-		self.fs = 1/self.DigDw
+		self.fs = 1/(self.DigDw/1000)
 		self.t = sp.arange(0, self.n, 1) * (1/self.fs)
+
+		self.print_params()
+
+	def print_params(self):
+		print ' | file_dir', self.file_dir
+		print ' | EchoTime', self.EchoTime
+		print ' | RepetitionTime', self.RepetitionTime
+		print ' | NAverages', self.NAverages
+		print ' | FrqRef', self.FrqRef
+		print ' | DigDw', self.DigDw
+		print ' | DigShift', self.DigShift
+		print ' | VoxArrSize', self.VoxArrSize
+		print ' | VoxArrPosition', self.VoxArrPosition
+		print ' | VoxArrPositionRPS', self.VoxArrPositionRPS
+		print ' | EncChanScaling', self.EncChanScaling
+		print ' | n', self.n
+		print ' | ConvS', self.ConvS
+		print ' | fs', self.fs
+		print ' | t', self.t
