@@ -1,4 +1,4 @@
-# PINTS for FITMAN version 0.4
+# SPICeS for FITMAN version 0.4
 
 # ---- System Libraries ---- #
 import sys
