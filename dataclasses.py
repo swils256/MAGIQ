@@ -978,3 +978,62 @@ class VarianVoxel:
 		m_nifti = np.dot(self.R_x(np.pi/2, 'l'), m_nifti)
 		m_nifti = np.dot(self.R_y(np.pi/2, 'l'), m_nifti)
 		return m_nifti
+
+class BrukerFID:
+	def __init__(self, file_dir):
+		self.file_dir = file_dir
+
+		# READ DATA
+		f = open(file_dir + '/fid', 'r')
+		data = np.fromfile(f, np.int32)
+		data_real = []
+		data_imag = []
+		for (i, num) in enumerate(data):
+			if i % 2 == 0:
+				data_real.append(num)
+			else:
+				data_imag.append(num)
+
+		# READ ACQUISITION PARAMS
+		with open(file_dir + '/method', 'r') as f:
+			lines = f.readlines()
+			for i in range(0, len(lines)):
+				line = lines[i]
+				# print i, line,
+				if '##$PVM_EchoTime=' in line:
+					self.EchoTime = float(line.replace('\n','').split('=')[-1])
+				elif '##$PVM_RepetitionTime' in line:
+					self.RepetitionTime = float(line.replace('\n','').split('=')[-1])
+				elif '##$PVM_NAverages' in line:
+					self.NAverages = int(line.replace('\n','').split('=')[-1])
+				elif '##$PVM_FrqRef' in line:
+					self.FrqRef = float(lines[i+1].replace('\n','').split(' ')[0])
+				elif '##$PVM_DigDw' in line:
+					self.DigDw = float(line.replace('\n','').split('=')[-1])
+				elif '##$PVM_DigShift' in line:
+					self.DigShift = int(line.replace('\n','').split('=')[-1])
+				elif '##$PVM_VoxArrSize' in line:
+					self.VoxArrSize = []
+					for el in lines[i+1].replace('\n','').split(' '): self.VoxArrSize.append(float(el))
+				elif '##$PVM_VoxArrPosition' in line:
+					self.VoxArrPosition = []
+					for el in lines[i+1].replace('\n','').split(' '): self.VoxArrPosition.append(float(el))
+				elif '##$PVM_VoxArrPositionRPS' in line:
+					self.VoxArrPositionRPS = []
+					for el in lines[i+1].replace('\n','').split(' '): self.VoxArrPositionRPS.append(float(el))
+				elif '##$PVM_EncChanScaling' in line:
+					self.EncChanScaling = float(lines[i+1].replace('\n', ''))
+
+
+		# CHOP OFF ADC DELAY
+		self.signal = np.array(data_real) + 1j*np.array(data_imag)
+		self.signal = self.signal[self.DigShift:]
+		self.n = np.size(self.signal, 0)
+
+		self.ConvS = 1
+		while not((np.real(self.signal)[0] > 0 and np.real(self.signal)[0] < 1) or (np.real(self.signal)[0] < 0 and np.real(self.signal)[0] > -1)):
+			self.ConvS = self.ConvS / 10.0
+			self.signal = self.signal * self.ConvS
+
+		self.fs = 1/self.DigDw
+		self.t = sp.arange(0, self.n, 1) * (1/self.fs)
