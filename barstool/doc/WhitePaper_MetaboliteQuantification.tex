@@ -10,6 +10,8 @@
 \usepackage{comment}
 \usepackage{palatino}
 
+\usepackage{draftwatermark}
+
 \begin{document}
 
 \title{\textbf{\textit{In-vivo} $^1$H-MRS in the Brain:} \\ Absolute Metabolite Quantification Using an Internal Water Reference}
@@ -25,9 +27,9 @@
 
 \newpage
 \section{Overview}
-BARSTOOL calculates absolute metabolite concentrations of a metabolite by using an internal water reference. This internal water reference is the unsuppressed water signal collected at the same time as the water-suppressed spectra. In other words, instead of looking at a ratio of each metabolite signal over the signal of a reference metabolite (e.g. creatine), we are taking a ratio over the signal of water. This is advantageous because we know the concentration of water in brain tissue, whereas we don't necessarily know the concentration of the reference metabolite \textit{in-vivo}. 
+BARSTOOL calculates absolute metabolite concentrations of a metabolite by using an internal water reference. This internal water reference is the unsuppressed water signal collected at the same time as the water-suppressed spectra. Instead of using a ratio of each metabolite signal over the signal of a reference metabolite (e.g. creatine), a ratio over the signal of water is used. This is advantageous because the water signal from brain tissue is consistent between participants, whereas a reference \textit{in vivo} metabolite signal can vary between participants because its concentration varies. 
 
-In mathematics, using an internal reference to determine metabolite concentration is written as follows:
+Using an internal reference to determine metabolite concentration is written as follows:
 \begin{align}
 	\boxed{[M] = \frac{\hat{S}_m}{\hat{S}_W}[W]}
 	\label{eq:basic_eq}
@@ -65,7 +67,7 @@ $M_{0,GM}$, $M_{0,WM}$, and $M_{0,CSF}$ may be expressed in terms of $M_0$. Cons
 where $f_{GM}$ is the volume fraction of GM in the spectroscopic voxel, and $\alpha_{GM}$ is the relative proton density in GM.
 
 
-To explain why $M_{0,GM} = f_{GM} \alpha_{GM} M_0$, it is important to remember that $M_0$ is proportional to the total number of protons in the spectroscopic voxel. Since proton density is the number of protons in a volume, multiplying the volume fraction by the relative proton density allows us to determine the fraction of the total number of protons contributed by the GM. This fraction can then be properly attribute the proportion of $M_0$ to GM. Using the same reasoning,
+To explain why $M_{0,GM} = f_{GM} \alpha_{GM} M_0$, it is important to remember that $M_0$ is proportional to the total number of protons in the spectroscopic voxel. Since proton density is the number of protons in a volume, multiplying the volume fraction by the relative proton density allows us to determine the fraction of the total number of protons contributed by the GM. This fraction can then be used to properly attribute the proportion of $M_0$ to GM. Using the same reasoning,
 \begin{align*}
 	M_{0,GM} &= f_{WM} \alpha_{WM} M_0 \\
 	M_{0,CSF} &= f_{CSF} \alpha_{CSF} M_0
@@ -107,7 +109,7 @@ where
 and $R_{GM}^{W}$, $R_{WM}^{W}$, and $R_{CSF}^{W}$ are the corresponding relaxation terms of Equation \eqref{eq:relax_corr} using the tissue specific $T_1$ and $T_2$ relaxation rates of water. $\boxed{S_W = A_W}$, the amplitude of the fitted water peak.
 
 \subsection{$T_1$ and $T_2$ Correction for the Measured Metabolite Signal ($S_m$)}
-Unlike the measured water signal, Equation \eqref{eq:relax_corr} cannot be directly applied to correct the measured metabolite signal, because of a couple of reasons. First, it is assumed that the CSF contribution to the metabolite signal is negligible because there are little to no metabolites in the CSF. No part of the metabolite signal should be attributed to the CSF compartment and any metabolite signal should be equally attributed to the WM and GM compartment. Secondly, the relative proton density in GM, WM, and CSF for metabolites are not known. Because of this, $\alpha_{GM}$, $\alpha_{WM}$, and $\alpha_{CSF}$ are assumed to be $1.00$ for metabolites. The equation to correct the measured metabolite signal for $T_1$ and $T_2$ is then:
+Unlike the measured water signal, Equation \eqref{eq:relax_corr} cannot be directly applied to correct the measured metabolite signal because of a couple of reasons. First, it is assumed that the CSF contribution to the metabolite signal is negligible because there are little to no metabolites in the CSF. No part of the metabolite signal should be attributed to the CSF compartment and any metabolite signal should be equally attributed to the WM and GM compartment. Secondly, the relative proton density in GM, WM, and CSF for metabolites are not known. Because of this, $\alpha_{GM}$, $\alpha_{WM}$, and $\alpha_{CSF}$ are assumed to be $1.00$ for metabolites. The equation to correct the measured metabolite signal for $T_1$ and $T_2$ is then:
 \begin{align}
 	\boxed{\hat{S}_m = \frac{S_m}{\frac{f_{GM}}{f_{GM}+f_{WM}} R_{WM}^{m} + \frac{f_{GM}}{f_{GM}+f_{WM}}  R_{WM}^{m}}}
 	\label{eq:relax_corr_metab}
@@ -151,14 +153,14 @@ Combining Equations \eqref{eq:relax_corr_metab} and \eqref{eq:other_corr_metab},
 The equation to calculate the concentration of a metabolite with respect to the entire of the spectroscopic voxel volume is obtained by substituting Equations \eqref{eq:water_corrected} and \eqref{eq:metab_corrected} into Equation \eqref{eq:basic_eq}:
 \begin{empheq}[box=\fbox]{align}
 	\label{eq:voxel_conc}
-	[M] = & ~ \left(\frac{\sum_k^K A_k^m}{N_\text{avg}^{m} ~ \rho^m ~ G^m \left(\frac{f_{GM}}{f_{GM}+f_{WM}} R_{WM}^{m} + \frac{f_{GM}}{f_{GM}+f_{WM}}  R_{WM}^{m}\right)}\right) \nonumber \\
+	[M]_\text{voxel} = & ~ \left(\frac{\sum_k^K A_k^m}{N_\text{avg}^{m} ~ \rho^m ~ G^m \left(\frac{f_{GM}}{f_{GM}+f_{WM}} R_{WM}^{m} + \frac{f_{GM}}{f_{GM}+f_{WM}}  R_{WM}^{m}\right)}\right) \nonumber \\
 	      & \times \left(\frac{A_W}{N_\text{avg}^W ~ \rho^W ~ G^W \left(f_{GM} \alpha_{GM}^{W} R_{GM}^{W} + f_{WM} \alpha_{WM}^{W} R_{WM}^{W} + f_{CSF} \alpha_{CSF}^{W}  R_{CSF}^{W}\right)}\right)^{-1} \\
 	      & \times 55.14 \text{ M} \nonumber
 \end{empheq}
 Equation \eqref{eq:voxel_conc} may be simplified into:
 \begin{empheq}[box=\fbox]{align}
 	\label{eq:voxel_conc_simplified}
-	[M] = & ~ \underbrace{\left(\frac{\sum_k^K A_k^m}{A_W}\right)}_{\mathclap{\substack{\textbf{ratio of} \\ \textbf{ measured signals}}}}
+	[M]_\text{voxel} = & ~ \underbrace{\left(\frac{\sum_k^K A_k^m}{A_W}\right)}_{\mathclap{\substack{\textbf{ratio of} \\ \textbf{ measured signals}}}}
 		  \times \underbrace{\left(\frac{f_{GM} \alpha_{GM}^{W} R_{GM}^{W} + f_{WM} \alpha_{WM}^{W} R_{WM}^{W} + f_{CSF} \alpha_{CSF}^{W}  R_{CSF}^{W}}{\frac{f_{GM}}{f_{GM}+f_{WM}} R_{WM}^{m} + \frac{f_{GM}}{f_{GM}+f_{WM}}  R_{WM}^{m}}\right)}_{\mathclap{\textbf{relaxation correction}}} \\
 		  & \times \underbrace{\left(\frac{N_\text{avg}^{W}}{N_\text{avg}^{m}} \times \frac{\rho^W}{\rho^m} \times \frac{G^W}{G^m}\right)}_{\mathclap{\substack{\textbf{correction for number of averages,} \\ \textbf{number of nuclei, and gain}}}} \times \underbrace{\left(55.14 \text{ M}\right)}_{\mathclap{\substack{\textbf{concentration } \\ \textbf{of pure water}}}} \nonumber
 \end{empheq}
@@ -173,9 +175,15 @@ With Equation \eqref{eq:voxel_conc_simplified}, a metabolite concentration with 
 Thus, the metabolite concentration in brain tissue is:
 \begin{empheq}[box=\fbox]{align}
 	\label{eq:tissue_conc_simplified}
-	[M] = & ~ \underbrace{\left(\frac{\sum_k^K A_k^m}{A_W}\right)}_{\mathclap{\substack{\textbf{ratio of} \\ \textbf{ measured signals}}}}
+	[M]_\text{tissue} = & ~ \underbrace{\left(\frac{\sum_k^K A_k^m}{A_W}\right)}_{\mathclap{\substack{\textbf{ratio of} \\ \textbf{ measured signals}}}}
 		  \times \underbrace{\left(\frac{f_{GM} \alpha_{GM}^{W} R_{GM}^{W} + f_{WM} \alpha_{WM}^{W} R_{WM}^{W} + f_{CSF} \alpha_{CSF}^{W}  R_{CSF}^{W}}{\frac{f_{GM}}{f_{GM}+f_{WM}} R_{WM}^{m} + \frac{f_{GM}}{f_{GM}+f_{WM}}  R_{WM}^{m}}\right)}_{\mathclap{\textbf{relaxation correction}}} \\
 		  & \times \underbrace{\left(\frac{N_\text{avg}^{W}}{N_\text{avg}^{m}} \times \frac{\rho^W}{\rho^m} \times \frac{G^W}{G^m}\right)}_{\mathclap{\substack{\textbf{correction for number of averages,} \\ \textbf{number of nuclei, and gain}}}} \times \underbrace{\left(55.14 \text{ M}\right)}_{\mathclap{\substack{\textbf{concentration } \\ \textbf{of pure water}}}} \times \underbrace{\left(\frac{1}{f_{GM} + f_{WM}}\right)}_{\mathclap{\substack{\textbf{dilution volume } \\ \textbf{correction}}}} \nonumber
+\end{empheq}
+
+Equation \eqref{eq:tissue_conc_simplified} can be simplified by multiplying the dilution volume correction through the relaxation correction term for the metabolite signal:
+\begin{empheq}[box=\fbox]{align}
+	[M]_\text{tissue} = & ~ \left(\frac{\sum_k^K A_k^m}{A_W}\right) \times \left(\frac{f_{GM} \alpha_{GM}^{W} R_{GM}^{W} + f_{WM} \alpha_{WM}^{W} R_{WM}^{W} + f_{CSF} \alpha_{CSF}^{W}  R_{CSF}^{W}}{{f_{GM}} R_{WM}^{m} + {f_{GM}}  R_{WM}^{m}}\right) \nonumber \\
+	      & \times \left(\frac{N_\text{avg}^{W}}{N_\text{avg}^{m}} \times \frac{\rho^W}{\rho^m} \times \frac{G^W}{G^m}\right) \times \left(55.14 \text{ M}\right)
 \end{empheq}
 
 \section{Implementation in Barstool}
