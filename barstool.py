@@ -940,6 +940,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				exp_params[4] = float(exp_params[4])
 				exp_params[5] = float(exp_params[5])
 				exp_params[6] = int(exp_params[6])
+				exp_params.append(float(self.waterConcCSFLineEdit.text()))
 
 				# Get scanner type
 				scanner_type = 'siemens' if self.siemensScanner.isChecked() else 'varian'

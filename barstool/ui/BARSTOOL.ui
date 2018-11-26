@@ -503,7 +503,7 @@
           <item row="1" column="3">
            <widget class="QLabel" name="waterConcGMLabel">
             <property name="text">
-             <string>GM Scaling Factor for Water:</string>
+             <string>GM Proton Density Factor for Water:</string>
             </property>
            </widget>
           </item>
@@ -552,6 +552,9 @@
             </property>
            </widget>
           </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="TELineEdit"/>
+          </item>
           <item row="0" column="3">
            <widget class="QLabel" name="waterConcLabel">
             <property name="text">
@@ -566,13 +569,27 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="TELineEdit"/>
-          </item>
           <item row="2" column="3">
            <widget class="QLabel" name="waterConcWMLabel">
             <property name="text">
-             <string>WM Scaling Factor for Water:</string>
+             <string>WM Proton Density Factor for Water:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QLabel" name="waterConcCSFLabel">
+            <property name="text">
+             <string>CSF Proton Density Factor for Water:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="4">
+           <widget class="QLineEdit" name="waterConcCSFLineEdit">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>1.00</string>
             </property>
            </widget>
           </item>
@@ -839,7 +856,7 @@ p, li { white-space: pre-wrap; }
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Barstool v4.0&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Barstool v4.1&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
