@@ -761,9 +761,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				# 		- ID_VISIT_std.nii.gz = result after fslreorient2std
 				# 		- ID_VISIT_std_brain.nii.gz = result after fsl BET
 				#		- ID_VISIT_std_brain_seg.nii.gz = result after fsl FAST
-				brain     = str(str(file).split('/')[0:-1]).replace('[','').replace(']','').replace(',','/').replace("'",'').replace(' ','') \
+				brain     = str(str(file).split('/')[0:-1]).replace('[','').replace(']','').replace(',','/').replace("'",'').replace('/ ','/') \
 				            + '/' + ID.split('_')[0] + '_' + ID.split('_')[1] + '_std_brain.nii.gz'; self.quantBrainFiles.append(brain)
-				brainseg  = str(str(file).split('/')[0:-1]).replace('[','').replace(']','').replace(',','/').replace("'",'').replace(' ','') \
+				brainseg  = str(str(file).split('/')[0:-1]).replace('[','').replace(']','').replace(',','/').replace("'",'').replace('/ ','/') \
 						    + '/' + ID.split('_')[0] + '_' + ID.split('_')[1] + '_std_brain_seg.nii.gz'; self.quantBrainSegFiles.append(brainseg)
 
 				self.consoleOutputText.append(str(i+1) + '.' + self.quantIDs[-1])
