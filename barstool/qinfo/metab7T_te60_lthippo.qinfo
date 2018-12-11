@@ -1,5 +1,4 @@
 #
-#
 # Columns:
 #     1.  Metabolite
 #     2.  Number of protons for quantifiable singlet or whole signal sum
@@ -10,89 +9,28 @@
 #     7.  First Peak
 #     8.  Last Peak
 #
-naa	03	1.830	191.0	1.900	168.0	15	15
-naag	03	1.210	191.0	0.940	168.0	32	32
-ala	04	1.280	160.0	1.190	100.0	349	354
-gaba	06	1.334	160.0	1.334	100.0	211	247
-asp	03	1.280	160.0	1.190	100.0	57	68
-cho	09	1.510	200.0	1.320	139.0	250	273
-cre	03	1.740	131.0	1.780	113.0	248	248
-glc	06	1.280	160.0	1.190	100.0	355	397
-glu	05	1.610	139.0	1.750	98.00	69	113
-gln	05	1.640	139.0	1.740	98.00	114	162
-gsh	07	1.140	80.00	1.060	97.00	175	210
-gly	02	1.280	160.0	1.190	100.0	404	404
-myo	05	1.280	160.0	1.190	100.0	304	345
-scy	06	1.310	130.0	1.230	112.0	452	452
-lac	03	1.280	160.0	1.190	100.0	50	52
-peth	04	1.310	160.0	1.320	100.0	405	451
-tau	04	2.150	120.0	2.090	90.00	453	468
+naa	03	1.830	224.0	1.900	143.0	15	15
+naag	03	1.210	224.0	0.940	143.0	32	32
+ala	04	1.280	201.0	1.190	71.0	349	354
+gaba	06	1.334	87.0	1.334	87.0	211	247
+asp	03	1.280	201.0	1.190	71.0	57	68
+cho	09	1.510	248.0	1.320	102.0	250	273
+cre	03	1.740	148.0	1.780	119.0	248	248
+glc	06	1.280	201.0	1.190	71.0	355	397
+glu	05	1.610	176.0	1.750	57.00	69	113
+gln	05	1.640	176.0	1.740	57.00	114	162
+gsh	07	1.140	86.00	1.060	89.00	175	210
+gly	02	1.280	201.0	1.190	71.0	404	404
+myo	05	1.280	201.0	1.190	71.0	304	345
+scy	06	1.310	148.0	1.230	115.0	452	452
+lac	03	1.280	201.0	1.190	71.0	50	52
+peth	04	1.310	201.0	1.320	71.0	405	446
+tau	04	2.150	142.0	2.090	86.00	453	468
 #
 # Water:
 #	protons	T1_GM	T2_GM	T1_WM	T2_WM	T1_CSF	T2_CSF
-#
-# T2 values based on Rob's work:
-water	02	2.000	50.00	1.550	55.00	4.082	141.0
-#
-# Values based on literature (T2 Marjanska, T1 Xin):
-# water	02	2.000	47.00	1.550	48.00	4.082	2200
+water	02	2.132	47.00	1.220	45.00	4.425	66.0
 #
 # Experiment:
 #	TR	TE	Conc	ConcGM	ConcWM	ConcVox
-exp	7500	60.0	55.12	0.81	0.71	0
-#
-# Notes:
-#     - only peaks less than 4.1 ppm were used to QUANTIFY metabolites,
-#       but ALL peaks less than 5 ppm were used to FIT metabolites.
-#     - this file is specific to the left hippocampus cst file
-#       (order of metabolite peaks are different due to constraints)
-#
-# Specific choices for metabolites:
-#     - naa:  using only the naa_acetyl moeity
-#     - naag: using only the naag_acetyl moeity
-#     - ala:  using the entire molecule
-#     - gaba: using the entire molecule
-#     - asp:  using the entire molecule
-#     - cho:  using only the N(CH3)3 group
-#     - cre:  using only the N(CH3) peak 
-#             (the other peak is affected by water suppression)
-#     - glc:  using glucose-alpha (glucose-beta is removed by water suppression)
-#             using only the carbons 2-6, 6'
-#     - glu:  using the entire molecule
-#     - gln:  using the entire molecule
-#     - gsh:  using only the glycine and glutamate moeities
-#     - gly:  using the entire molecule
-#     - myo:  using carbons 1, 3, 4, 5, 6
-#     - scy:  using the entire molecule
-#     - lac:  using only 3-CH3 group
-#     - peth: using the entire molecule
-#     - tau:  using the entire molecule
-#
-# Unless otherwise stated: T1 values from Xin; T2 values from Marjanska (GM = Cerebellum, WM = Motor Cortex)
-#     naag = T2 values assumed to be the same as naa_acetyl, per Marjanska
-#     lac  = no literature values, set to be same as myo-inositol, per Kreis
-#     ala  = no literature values, set to be same as myo-inositol, per Kreis
-#     glc  = no literature values, set to be same as myo-inositol, per Kreis
-#     gly  = no literature values, set to be same as myo-inositol, per Kreis
-#     peth = T2 values assumed to be same as myoinsoitol, per Kreis
-#     gln  = T2 values assumed to be same as glutamate, per Marjanska
-#     gaba = no seperate T1 and T2 values for gray/white matter (from Andreychenko)
-#
-# References
-#
-#   Marjanska et Al., 'Localized 1H NMR spectroscopy in different regions of human brain in vivo at 7T:
-#     T2 relaxation times and concentrations of cerebral metabolites', NMR in Biomedicine, Vol 25:332-339, 2012
-#
-#   Xin et Al., 'Proton T1 Relaxation Times of Metabolites in Human Occipital White and Gray Matter at 7 T',
-#     Magnetic Resonance in Medicine, Vol. 69:931-936, 2013
-#
-#   Andreychenko et Al., 'In vivo GABA T2 determination with J-refocused echo time extension at 7 T',
-#     NMR in Biomedicine, Vol 26:1596-1601, 2013
-#
-#   Kreis et Al., 'Integrated Data Acquisition and Processing to Determine Metabolite Contents, Relaxation Times,
-#     and Macromolecule Baseline in Single Examinations of Individual Subjects', Magnetic Resonance in Medicine,
-#     Vol 54:761-768, 2005
-#
-#   Bartha, R., Michaeli, S., Merkle, H., Adriany, G., Andersen, P., Chen, W., … Garwood, M. (2002). In vivo1H2O 
-#     T2†measurement in the human occipital lobe at 4T and 7T by Carr-Purcell MRI: Detection of microscopic 
-#     susceptibility contrast. Magnetic Resonance in Medicine, 47(4), 742–750. https://doi.org/10.1002/mrm.10112
+exp	7500	60.0	55.14	0.82	0.73	0
