@@ -39,6 +39,9 @@ import matplotlib.pyplot as plt
 # ---- Data Classes ---- #
 from dataclasses import *
 
+# ---- Pre-Processing Functions ---- #
+from preproc import *
+
 qtCreatorFile = "apps/ui/apps.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
@@ -51,16 +54,18 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		Ui_MainWindow.__init__(self)
 		self.setupUi(self)
 
+		self.workingDirectory_bruker = os.path.expanduser('~')
 		self.workingDirectory_wr  = os.path.expanduser('~')
 		self.workingDirectory_mmr = os.path.expanduser('~')
 		
 		# Setup for plotting
-		self.canvas = [None]*2
-		self.toolbar = [None]*2
+		self.canvas = [None]*3
+		self.toolbar = [None]*3
 
 		# Bind buttons to methods in each tab
 		self.setBindings('Water Removal')
 		self.setBindings('Macromolecule Removal')
+		self.setBindings('Bruker File Conversion')
 
 	def setBindings(self, tab):
 		if tab == 'Water Removal':
@@ -89,8 +94,136 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.saveMMRemovalButton.clicked.connect(self.saveMMRemoval)
 			self.saveMMRemovalButton.setEnabled(False)
 
+		elif tab == 'Bruker File Conversion':
+			self.inputFilenameButton_bruker.clicked.connect(self.chooseInputFile_bruker)
+			self.referenceFilenameButton_bruker.clicked.connect(self.chooseRefFile_bruker)
+
+			self.runConversionButton_bruker.clicked.connect(self.runConversion_bruker)
+			self.runConversionButton_bruker.setEnabled(False)
+
 		self.setPlot(tab)
 	
+	# ---- Bruker File Conversion ---- #
+	def chooseInputFile_bruker(self):
+		prev = str(self.inputFilenameInput_bruker.text())
+		self.inputFilenameInput_bruker.setText(str(QtWidgets.QFileDialog.getExistingDirectory(self, 'Open Bruker Data Directory', self.workingDirectory_bruker)))
+		if str(self.inputFilenameInput_bruker.text()) == '':
+			if str(prev) == '':
+				self.inputFilenameInput_bruker.setText(str(prev))
+				self.runConversionButton_bruker.setEnabled(False)
+		else:
+ 			if str(self.outputFilenameInput_bruker.text()) == '' or  str(self.referenceFilenameInput_bruker.text()) == '':
+				self.runConversionButton_bruker.setEnabled(False)
+			else:
+				self.runConversionButton_bruker.setEnabled(True)
+			self.outputFilenameInput_bruker.setText(self.inputFilenameInput_bruker.text() + '/converted/')
+			os.mkdir(str(self.outputFilenameInput_bruker.text()))
+			self.workingDirectory_bruker = os.path.abspath(os.path.join(os.path.expanduser(str(prev)), os.pardir))
+
+	def chooseRefFile_bruker(self):
+		prev = str(self.referenceFilenameInput_bruker.text())
+		self.referenceFilenameInput_bruker.setText(str(QtWidgets.QFileDialog.getExistingDirectory(self, 'Open Bruker Data Directory', self.workingDirectory_bruker)))
+		if str(self.referenceFilenameInput_bruker.text()) == '':
+			if str(prev) == '':
+				self.referenceFilenameInput_bruker.setText(str(prev))
+				self.runConversionButton_bruker.setEnabled(False)
+		else:
+ 			if str(self.outputFilenameInput_bruker.text()) == '' or  str(self.inputFilenameInput_bruker.text()) == '':
+				self.runConversionButton_bruker.setEnabled(False)
+			else:
+				self.runConversionButton_bruker.setEnabled(True)
+			
+	def runConversion_bruker(self):
+
+		self.conversionConsole_bruker.clear()
+
+		out_name   = str(self.outputFilenameInput_bruker.text())
+		sup_file   = BrukerFID(str(self.inputFilenameInput_bruker.text()))
+		self.conversionConsole_bruker.append('sup_file: ' + sup_file.file_dir)
+		sup_file.print_params(self.conversionConsole_bruker)
+		self.conversionConsole_bruker.append('')
+		self.scaleFactorInput_bruker.setText(str(sup_file.ConvS))
+		self.timeDelayInput_bruker.setText(str(sup_file.DigShift * 1/sup_file.fs))
+
+		unsup_file = BrukerFID(str(self.referenceFilenameInput_bruker.text()))
+		self.conversionConsole_bruker.append('unsup_file: ' + unsup_file.file_dir)
+		unsup_file.print_params(self.conversionConsole_bruker)
+		self.conversionConsole_bruker.append('')
+
+		# Write files as fitMAN dat files.
+		sup_file.writeDAT(out_name + 'raw', '')
+		unsup_file.writeDAT(out_name + 'uns', '')
+
+		# Plot Suppressed File
+		plt.figure(3)
+
+		ax = plt.subplot(411)
+		ax.clear()
+		ax.spines["top"].set_visible(False)    
+		ax.spines["bottom"].set_visible(True)    
+		ax.spines["right"].set_visible(False)    
+		ax.spines["left"].set_visible(False)
+		ax.get_xaxis().tick_bottom()
+		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
+			labelbottom="on", left="off", right="off", labelleft="off")
+
+		plt.title('Raw Signal')
+		plt.plot(sup_file.t, np.real(sup_file.signal))
+
+		ax = plt.subplot(412)
+		ax.clear()
+		ax.spines["top"].set_visible(False)    
+		ax.spines["bottom"].set_visible(True)    
+		ax.spines["right"].set_visible(False)    
+		ax.spines["left"].set_visible(False)
+		ax.get_xaxis().tick_bottom()
+		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
+			labelbottom="on", left="off", right="off", labelleft="off")
+
+		f_sup, spec_sup = sup_file.getSpec()
+		plt.plot(f_sup[0:sup_file.n], np.real(spec_sup[0:sup_file.n]))
+
+		# Run post processing
+		out_file = copy.deepcopy(sup_file)
+		if self.queccRadioButton_bruker.isChecked():
+			quecc_points = int(self.qualityPointsInput_bruker.text())
+			out_file.signal = quecc(sup_file.signal, unsup_file.signal, getWaterLW(unsup_file.signal, unsup_file.t), sup_file.t, quecc_points)
+			out_file.writeDAT(out_name + 'corr', 'quecc'+str(quecc_points))
+		elif self.qualityRadioButton_bruker.isChecked():
+			out_file.signal = quality(sup_file.signal, unsup_file.signal, getWaterLW(unsup_file.signal, unsup_file.t), sup_file.t)
+			out_file.writeDAT(out_name + 'corr', 'quality')
+		elif self.eccRadioButton_bruker.isChecked():
+			out_file.signal = ecc(sup_file.signal, unsup_file.signal)
+			out_file.writeDAT(out_name + 'corr', 'ecc')
+
+		ax = plt.subplot(413)
+		ax.clear()
+		ax.spines["top"].set_visible(False)    
+		ax.spines["bottom"].set_visible(True)    
+		ax.spines["right"].set_visible(False)    
+		ax.spines["left"].set_visible(False)
+		ax.get_xaxis().tick_bottom()
+		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
+			labelbottom="on", left="off", right="off", labelleft="off")
+
+		plt.title('Corrected Signal')
+		plt.plot(out_file.t, np.real(out_file.signal))
+
+		ax = plt.subplot(414)
+		ax.clear()
+		ax.spines["top"].set_visible(False)    
+		ax.spines["bottom"].set_visible(True)    
+		ax.spines["right"].set_visible(False)    
+		ax.spines["left"].set_visible(False)
+		ax.get_xaxis().tick_bottom()
+		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
+			labelbottom="on", left="off", right="off", labelleft="off")
+		
+		f_out, spec_out = out_file.getSpec()
+		plt.plot(f_out[0:out_file.n], np.real(spec_out[0:out_file.n]))
+
+		self.canvas[2].draw()
+
 	# ---- Water Removal ---- #
 	def runWaterRemoval(self):
 		#1. Fit specturm with HSVD.
@@ -333,7 +466,6 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			traceback.print_exc()
 			self.filenameInfoLabel_dat.setText("ERROR: " + str(e) + " >> Please try again.")
 
-
 	def chooseFullDatFile_mmr(self):
 		self.filenameConfirmButton_fulldat_mmr.setEnabled(False)
 		prev = str(self.filenameInput_fulldat_mmr.text())
@@ -431,6 +563,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			traceback.print_exc()
 			self.filenameInfoLabel_mmdat_mmr.setText("ERROR: " + str(e) + " >> Please try again.")
 
+	# ---- Methods for Plotting ---- #
 	def setPlot(self, tab):
 		if tab == 'Water Removal':
 			fig = plt.figure(1)
@@ -438,6 +571,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		elif tab == 'Macromolecule Removal':
 			fig = plt.figure(2)
 			self.addmpl(1, fig, self.plotResult_mplvl_mmr)
+		elif tab == 'Bruker File Conversion':
+			fig = plt.figure(3)
+			self.addmpl(2, fig, self.plotResult_mplvl_bruker)
 
 	def addmpl(self, canvas_index, fig, vertical_layout):
 		self.canvas[canvas_index] = FigureCanvas(fig)

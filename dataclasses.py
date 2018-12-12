@@ -1039,21 +1039,56 @@ class BrukerFID:
 		self.fs = 1/(self.DigDw/1000)
 		self.t = sp.arange(0, self.n, 1) * (1/self.fs)
 
-		self.print_params()
+	def print_params(self, console):
+		console.append(' | file_dir ' + str(self.file_dir))
+		console.append(' | EchoTime ' + str(self.EchoTime))
+		console.append(' | RepetitionTime ' + str(self.RepetitionTime))
+		console.append(' | NAverages ' + str(self.NAverages))
+		console.append(' | FrqRef ' + str(self.FrqRef))
+		console.append(' | DigDw ' + str(self.DigDw))
+		console.append(' | DigShift ' + str(self.DigShift))
+		console.append(' | VoxArrSize ' + str(self.VoxArrSize))
+		console.append(' | VoxArrPosition ' + str(self.VoxArrPosition))
+		console.append(' | VoxArrPositionRPS ' + str(self.VoxArrPositionRPS))
+		console.append(' | EncChanScaling ' + str(self.EncChanScaling))
+		console.append(' | n ' + str(self.n))
+		console.append(' | ConvS ' + str(self.ConvS))
+		console.append(' | fs ' + str(self.fs))
+		console.append(' | t' + str(self.t))
 
-	def print_params(self):
-		print ' | file_dir', self.file_dir
-		print ' | EchoTime', self.EchoTime
-		print ' | RepetitionTime', self.RepetitionTime
-		print ' | NAverages', self.NAverages
-		print ' | FrqRef', self.FrqRef
-		print ' | DigDw', self.DigDw
-		print ' | DigShift', self.DigShift
-		print ' | VoxArrSize', self.VoxArrSize
-		print ' | VoxArrPosition', self.VoxArrPosition
-		print ' | VoxArrPositionRPS', self.VoxArrPositionRPS
-		print ' | EncChanScaling', self.EncChanScaling
-		print ' | n', self.n
-		print ' | ConvS', self.ConvS
-		print ' | fs', self.fs
-		print ' | t', self.t
+	def writeDAT(self, out_name, suffix=''):
+		if not(suffix is ''):
+			out_name = out_name + '_' + suffix + '.dat'
+		else:
+			out_name = out_name + '.dat'
+
+		now = dt.datetime.now()
+		
+		data_real = np.real(self.signal)
+		data_imag = -np.imag(self.signal)
+
+		o = open(out_name, 'w')
+		o.write(str(np.size(data_real) + np.size(data_imag)) + '\n')
+		o.write('1\n')
+		o.write(str(self.DigDw/1000.) + '\n')
+		o.write(str(self.FrqRef) + '\n')
+		o.write('1\n')
+		o.write(self.file_dir + '/fid\n')
+		o.write(now.strftime("%Y %m %d") + '\n')
+		o.write('MachS=0 ConvS=' + str(self.ConvS) + ' ')
+		o.write('V1=' + str(self.VoxArrSize[0]) + ' ' + 'V2=' + str(self.VoxArrSize[1]) + ' ' + 'V3=' + str(self.VoxArrSize[2]) + '\n')
+		o.write('TE=' + str(self.EchoTime / 1000.) + ' s ')
+		o.write('TR=' + str(self.RepetitionTime / 1000.) + ' s ')
+		o.write('P1=' + str(self.VoxArrPosition[0]) + ' P2=' + str(self.VoxArrPosition[1]) + ' P3=' + str(self.VoxArrPosition[2]) + ' Gain=' + str(self.EncChanScaling) + '\n')
+		o.write('SIMULTANEOUS\n0.0\n')
+		o.write('EMPTY\n')
+
+		for i, p in enumerate(self.signal):
+			o.write(str(data_real[i]) + '\n')
+			o.write(str(data_imag[i]) + '\n')
+		o.close()
+
+	def getSpec(self):
+		n = sp.size(self.signal)
+		f = sp.arange(-n/2,+n/2, 1)*(self.fs/n)*(1/self.FrqRef)
+		return (-f, fftw.fftshift(fftw.fft(self.signal)))
