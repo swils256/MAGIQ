@@ -111,7 +111,7 @@ and $R_{GM}^{W}$, $R_{WM}^{W}$, and $R_{CSF}^{W}$ are the corresponding relaxati
 \subsection{$T_1$ and $T_2$ Correction for the Measured Metabolite Signal ($S_m$)}
 Unlike the measured water signal, Equation \eqref{eq:relax_corr} cannot be directly applied to correct the measured metabolite signal because of a couple of reasons. First, it is assumed that the CSF contribution to the metabolite signal is negligible because there are little to no metabolites in the CSF. No part of the metabolite signal should be attributed to the CSF compartment and any metabolite signal should be equally attributed to the WM and GM compartment. Secondly, the relative proton density in GM, WM, and CSF for metabolites are not known. Because of this, $\alpha_{GM}$, $\alpha_{WM}$, and $\alpha_{CSF}$ are assumed to be $1.00$ for metabolites. The equation to correct the measured metabolite signal for $T_1$ and $T_2$ is then:
 \begin{align}
-	\boxed{\hat{S}_m = \frac{S_m}{\frac{f_{GM}}{f_{GM}+f_{WM}} R_{WM}^{m} + \frac{f_{GM}}{f_{GM}+f_{WM}}  R_{WM}^{m}}}
+	\boxed{\hat{S}_m = \frac{S_m}{\frac{f_{GM}}{f_{GM}+f_{WM}} R_{GM}^{m} + \frac{f_{WM}}{f_{GM}+f_{WM}}  R_{WM}^{m}}}
 	\label{eq:relax_corr_metab}
 \end{align}
 where $R_{GM}^{m}$ and $R_{WM}^{m}$ are the corresponding relaxation terms of Equation \eqref{eq:relax_corr} using the tissue specific $T_1$ and $T_2$ relaxation rates of metabolite $m$. $\boxed{S_m = \sum_k^K A_k^m}$, the sum of the amplitudes of the metabolite as determined by the fitted prior-knowledge model.
@@ -144,7 +144,7 @@ Combining Equations \eqref{eq:relax_corr_water} and \eqref{eq:other_corr_water},
 \section{Summary of Corrections for the Measured Metabolite Signal}
 Combining Equations \eqref{eq:relax_corr_metab} and \eqref{eq:other_corr_metab}, the final equation for the corrected metabolite signal is:
 \begin{align}
-	\boxed{\hat{S}_m = \frac{\sum_k^K A_k^m}{N_\text{avg}^{m} ~ \rho^m ~ G^m \left(\frac{f_{GM}}{f_{GM}+f_{WM}} R_{WM}^{m} + \frac{f_{GM}}{f_{GM}+f_{WM}}  R_{WM}^{m}\right)}}
+	\boxed{\hat{S}_m = \frac{\sum_k^K A_k^m}{N_\text{avg}^{m} ~ \rho^m ~ G^m \left(\frac{f_{GM}}{f_{GM}+f_{WM}} R_{GM}^{m} + \frac{f_{WM}}{f_{GM}+f_{WM}}  R_{WM}^{m}\right)}}
 	\label{eq:metab_corrected}
 \end{align}
 
@@ -153,7 +153,7 @@ Combining Equations \eqref{eq:relax_corr_metab} and \eqref{eq:other_corr_metab},
 The equation to calculate the concentration of a metabolite with respect to the entire of the spectroscopic voxel volume is obtained by substituting Equations \eqref{eq:water_corrected} and \eqref{eq:metab_corrected} into Equation \eqref{eq:basic_eq}:
 \begin{empheq}[box=\fbox]{align}
 	\label{eq:voxel_conc}
-	[M]_\text{voxel} = & ~ \left(\frac{\sum_k^K A_k^m}{N_\text{avg}^{m} ~ \rho^m ~ G^m \left(\frac{f_{GM}}{f_{GM}+f_{WM}} R_{WM}^{m} + \frac{f_{GM}}{f_{GM}+f_{WM}}  R_{WM}^{m}\right)}\right) \nonumber \\
+	[M]_\text{voxel} = & ~ \left(\frac{\sum_k^K A_k^m}{N_\text{avg}^{m} ~ \rho^m ~ G^m \left(\frac{f_{GM}}{f_{GM}+f_{WM}} R_{GM}^{m} + \frac{f_{WM}}{f_{GM}+f_{WM}}  R_{WM}^{m}\right)}\right) \nonumber \\
 	      & \times \left(\frac{A_W}{N_\text{avg}^W ~ \rho^W ~ G^W \left(f_{GM} \alpha_{GM}^{W} R_{GM}^{W} + f_{WM} \alpha_{WM}^{W} R_{WM}^{W} + f_{CSF} \alpha_{CSF}^{W}  R_{CSF}^{W}\right)}\right)^{-1} \\
 	      & \times 55.14 \text{ M} \nonumber
 \end{empheq}
@@ -161,7 +161,7 @@ Equation \eqref{eq:voxel_conc} may be simplified into:
 \begin{empheq}[box=\fbox]{align}
 	\label{eq:voxel_conc_simplified}
 	[M]_\text{voxel} = & ~ \underbrace{\left(\frac{\sum_k^K A_k^m}{A_W}\right)}_{\mathclap{\substack{\textbf{ratio of} \\ \textbf{ measured signals}}}}
-		  \times \underbrace{\left(\frac{f_{GM} \alpha_{GM}^{W} R_{GM}^{W} + f_{WM} \alpha_{WM}^{W} R_{WM}^{W} + f_{CSF} \alpha_{CSF}^{W}  R_{CSF}^{W}}{\frac{f_{GM}}{f_{GM}+f_{WM}} R_{WM}^{m} + \frac{f_{GM}}{f_{GM}+f_{WM}}  R_{WM}^{m}}\right)}_{\mathclap{\textbf{relaxation correction}}} \\
+		  \times \underbrace{\left(\frac{f_{GM} \alpha_{GM}^{W} R_{GM}^{W} + f_{WM} \alpha_{WM}^{W} R_{WM}^{W} + f_{CSF} \alpha_{CSF}^{W}  R_{CSF}^{W}}{\frac{f_{GM}}{f_{GM}+f_{WM}} R_{GM}^{m} + \frac{f_{WM}}{f_{GM}+f_{WM}}  R_{WM}^{m}}\right)}_{\mathclap{\textbf{relaxation correction}}} \\
 		  & \times \underbrace{\left(\frac{N_\text{avg}^{W}}{N_\text{avg}^{m}} \times \frac{\rho^W}{\rho^m} \times \frac{G^W}{G^m}\right)}_{\mathclap{\substack{\textbf{correction for number of averages,} \\ \textbf{number of nuclei, and gain}}}} \times \underbrace{\left(55.14 \text{ M}\right)}_{\mathclap{\substack{\textbf{concentration } \\ \textbf{of pure water}}}} \nonumber
 \end{empheq}
 
@@ -176,13 +176,13 @@ Thus, the metabolite concentration in brain tissue is:
 \begin{empheq}[box=\fbox]{align}
 	\label{eq:tissue_conc_simplified}
 	[M]_\text{tissue} = & ~ \underbrace{\left(\frac{\sum_k^K A_k^m}{A_W}\right)}_{\mathclap{\substack{\textbf{ratio of} \\ \textbf{ measured signals}}}}
-		  \times \underbrace{\left(\frac{f_{GM} \alpha_{GM}^{W} R_{GM}^{W} + f_{WM} \alpha_{WM}^{W} R_{WM}^{W} + f_{CSF} \alpha_{CSF}^{W}  R_{CSF}^{W}}{\frac{f_{GM}}{f_{GM}+f_{WM}} R_{WM}^{m} + \frac{f_{GM}}{f_{GM}+f_{WM}}  R_{WM}^{m}}\right)}_{\mathclap{\textbf{relaxation correction}}} \\
+		  \times \underbrace{\left(\frac{f_{GM} \alpha_{GM}^{W} R_{GM}^{W} + f_{WM} \alpha_{WM}^{W} R_{WM}^{W} + f_{CSF} \alpha_{CSF}^{W}  R_{CSF}^{W}}{\frac{f_{GM}}{f_{GM}+f_{WM}} R_{GM}^{m} + \frac{f_{WM}}{f_{GM}+f_{WM}}  R_{WM}^{m}}\right)}_{\mathclap{\textbf{relaxation correction}}} \\
 		  & \times \underbrace{\left(\frac{N_\text{avg}^{W}}{N_\text{avg}^{m}} \times \frac{\rho^W}{\rho^m} \times \frac{G^W}{G^m}\right)}_{\mathclap{\substack{\textbf{correction for number of averages,} \\ \textbf{number of nuclei, and gain}}}} \times \underbrace{\left(55.14 \text{ M}\right)}_{\mathclap{\substack{\textbf{concentration } \\ \textbf{of pure water}}}} \times \underbrace{\left(\frac{1}{f_{GM} + f_{WM}}\right)}_{\mathclap{\substack{\textbf{dilution volume } \\ \textbf{correction}}}} \nonumber
 \end{empheq}
 
 Equation \eqref{eq:tissue_conc_simplified} can be simplified by multiplying the dilution volume correction through the relaxation correction term for the metabolite signal:
 \begin{empheq}[box=\fbox]{align}
-	[M]_\text{tissue} = & ~ \left(\frac{\sum_k^K A_k^m}{A_W}\right) \times \left(\frac{f_{GM} \alpha_{GM}^{W} R_{GM}^{W} + f_{WM} \alpha_{WM}^{W} R_{WM}^{W} + f_{CSF} \alpha_{CSF}^{W}  R_{CSF}^{W}}{{f_{GM}} R_{WM}^{m} + {f_{GM}}  R_{WM}^{m}}\right) \nonumber \\
+	[M]_\text{tissue} = & ~ \left(\frac{\sum_k^K A_k^m}{A_W}\right) \times \left(\frac{f_{GM} \alpha_{GM}^{W} R_{GM}^{W} + f_{WM} \alpha_{WM}^{W} R_{WM}^{W} + f_{CSF} \alpha_{CSF}^{W}  R_{CSF}^{W}}{{f_{GM}} R_{GM}^{m} + {f_{WM}}  R_{WM}^{m}}\right) \nonumber \\
 	      & \times \left(\frac{N_\text{avg}^{W}}{N_\text{avg}^{m}} \times \frac{\rho^W}{\rho^m} \times \frac{G^W}{G^m}\right) \times \left(55.14 \text{ M}\right)
 \end{empheq}
 
