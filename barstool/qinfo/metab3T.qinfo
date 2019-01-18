@@ -9,18 +9,54 @@
 #     7.  First Peak
 #     8.  Last Peak
 #
-naa	3	1.432	240.0	1.389	277.2	6	6
-cho	9	1.305	212.0	1.189	195.0	11	11
-cre	3	1.377	150.3	1.322	157.0	18	18
-gln	5	1.200	200.8	0.960	209.8	22	31
-glu	5	1.270	200.8	1.170	209.8	32	46
-myo	6	1.100	200.8	1.020	209.8	47	59
-glc	6	1.281	200.8	1.175	209.8	60	78
+naa	3	1.4175	262.83	1.462	299.67	6	6
+cho	9	1.21	245.67	1.262	209.0	11	11
+cre	3	1.3425	157.5	1.36	158.83	18	18
+gln	5	1.1725	133.5	0.9783	133.67	22	31
+glu	5	1.27	167.0	1.170	143.0	32	46
+myo	6	1.1725	220.5	0.9783	195.3	47	59
+glc	6	1.1725	117.0	0.9783	121.5	60	78
 #
 # Water:
 #	protons	T1_GM	T2_GM	T1_WM	T2_WM	T1_CSF	T2_CSF
-water	2	1.447	85.00	0.970	65.00	4.082	2200
+water	2	1.47	83.00	1.132	83.00	4.082	2200
 #
 # Experiment:
 #	TR	TE	Conc	ConcGM	ConcWM	ConcVox
 exp	2000	135.0	55.12	0.81	0.71	0
+#
+# NOTES ON REFERENCES:
+#
+# Water T1 and T2 CSF Values are in agreement with de Graaf 2007 but it is unknown where these values came from (originally from Todd Stevens)
+#
+# NAA, Cho, Cr, Myo (GM T1s)= average of Mlynarik 2001, Ether 2003, Traber 2004
+# NAA, Cho, Cr, Myo (WM T1s)= average of Mlynarik 2001, Ether 2003
+# NAA, Cho, Cr (GM T2s)= average of Mlynarik 2001, Ganji 2012, Wyss 2018,Zhang 2016, Traber 2004
+# NAA, Cho, Cr (WM T2s)= average of Mlynarik 2001, Ganji 2012, Wyss 2018,Zhang 2016, Traber 2004
+#
+# Myo (GM and WM T2s)= average of Ganji 2012 and Wyss 2018, 
+#
+# Gln, Glc (GM and WM T1s)= Used Myo values from literature as per Marjanska 2012 and Kreis 2005 
+# Gln, Glc (GM and WM T2s)= average of Wyss 2018 and Zhang 2016
+#
+# Glu (GM and WM T1s)= Mlynarik 2001
+# Glu (GM and WM T2s)= average of Ganji 2012, Wyss 2018, Zhang 2016
+#
+# REFERENCES:
+#
+# Mlynarik et al. Proton T1 and T2 relaxation times of human brain metabolites at 3 Tesla. NMR Biomed 2001;14:325-331
+#
+# Ethofer et al. Comparison of Longitudinal Metabolite Relaxation Times in Differet Regions of the Human Brain at 1.5 and 3 Tesla. MRM 2003;50:1296-1301
+#
+# Wyss et al. In Vivo Estimation of Transverse Relaxation Time Constant (T2) of 17 Human Brain Metabolites at 3T. MRM 2018 80:452-461  
+#
+# Ganji et al. T2 Measurement of J-coupled metabolites in the human brain at 3T. NMR Biomed 2012;25(4)
+#
+# Zhang et al. Simultaneous quantification of glutamate and glutamine by J-modulated spectroscopy at 3 Tesla. MRM 2016 76:725-732
+#
+# Traber et al. 1H Metabolite Relaxation Tims at 3 Tesla: Measurements of T1 and T2 Values in Normal Brain and Determination of Regional Differences in Transverse Relaxation. J MR Imaging 2004 19:537-545
+#
+# Marjanska et al. Localized 1H NMR spectroscopy in different regions of human brain in vivo at 7 T: T2 relaxation times and concentrations of cerebral metabolites. NMR Biomed. 2012
+#
+# Kreis R, Slotboom J, Hofmann L, Boesch C. Integrated data acquisition and processing to determine metabolite contents, relaxation times, and macromolecule baseline in single examinations of individual subjects. Magn Reson Med. 2005; 54(4):761–768. 
+#
