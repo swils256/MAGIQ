@@ -112,12 +112,17 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				self.inputFilenameInput_bruker.setText(str(prev))
 				self.runConversionButton_bruker.setEnabled(False)
 		else:
- 			if str(self.outputFilenameInput_bruker.text()) == '' or  str(self.referenceFilenameInput_bruker.text()) == '':
+			if str(self.outputFilenameInput_bruker.text()) == '' or  str(self.referenceFilenameInput_bruker.text()) == '':
 				self.runConversionButton_bruker.setEnabled(False)
 			else:
 				self.runConversionButton_bruker.setEnabled(True)
 			self.outputFilenameInput_bruker.setText(self.inputFilenameInput_bruker.text() + '/converted/')
-			os.mkdir(str(self.outputFilenameInput_bruker.text()))
+			try:
+				os.mkdir(str(self.outputFilenameInput_bruker.text()))
+			except OSError as exc:
+				if exc.errno != errno.EEXIST:
+					raise
+				pass
 			self.workingDirectory_bruker = os.path.abspath(os.path.join(os.path.expanduser(str(prev)), os.pardir))
 
 	def chooseRefFile_bruker(self):
@@ -128,7 +133,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				self.referenceFilenameInput_bruker.setText(str(prev))
 				self.runConversionButton_bruker.setEnabled(False)
 		else:
- 			if str(self.outputFilenameInput_bruker.text()) == '' or  str(self.inputFilenameInput_bruker.text()) == '':
+			if str(self.outputFilenameInput_bruker.text()) == '' or  str(self.inputFilenameInput_bruker.text()) == '':
 				self.runConversionButton_bruker.setEnabled(False)
 			else:
 				self.runConversionButton_bruker.setEnabled(True)
@@ -662,9 +667,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		# TODO this should use the singlet fitting module to make the basis
 		for i in range(comp):
 			X[:, i] = self.lorentzian(dat.t,
-								      frequency_coeffs[i],
-								      0,
-								      damping_coeffs[i]) * dat.n
+									  frequency_coeffs[i],
+									  0,
+									  damping_coeffs[i]) * dat.n
 
 		# we use the linear non-iterative least squares again
 		U2, s2, V2 = np.linalg.svd(np.matrix(X), full_matrices=False)
