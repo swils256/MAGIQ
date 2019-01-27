@@ -1030,11 +1030,21 @@ class BrukerFID:
 		self.signal = self.signal[self.DigShift:]
 		self.n = np.size(self.signal, 0)
 
-		# SCLAE SIGNAL SUCH THAT FID STARTS BETWEEN 0 and 1
+		# SCALE SIGNAL SUCH THAT MAGNITUDE OF FID IS BETWEEN 1 AND 10
 		self.ConvS = 1
-		while not((np.real(self.signal)[0] > 0 and np.real(self.signal)[0] < 1) or (np.real(self.signal)[0] < 0 and np.real(self.signal)[0] > -1)):
-			self.ConvS = self.ConvS / 10.0
-			self.signal = self.signal * self.ConvS
+		# | Find the maximum value of the first 100 points of the time domain signal
+		scaled_point = np.max(np.abs(self.signal[0:100]))
+		# | Scale the maximum value such that it is between 1 and 10
+		if scaled_point < 1:
+			while (scaled_point < 1):
+				scaled_point = scaled_point * 10.
+				self.ConvS = self.ConvS * 10.
+		elif scaled_point > 10:
+			while scaled_point > 10:
+				scaled_point = scaled_point / 10.
+				self.ConvS = self.ConvS / 10.
+		# | Apply scaling factor to signal
+		self.signal = np.real(self.signal) * self.ConvS + 1j*np.imag(self.signal) * self.ConvS
 
 		self.fs = 1/(self.DigDw/1000)
 		self.t = sp.arange(0, self.n, 1) * (1/self.fs)
