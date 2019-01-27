@@ -143,7 +143,11 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		self.conversionConsole_bruker.clear()
 
-		out_name   = str(self.outputFilenameInput_bruker.text())
+		out_name = str(self.outputFilenameInput_bruker.text())
+		out_name_sup = out_name + 'corr_sup'
+		out_name_uns = out_name + 'corr_uns'
+
+		# Read suppressed file
 		sup_file   = BrukerFID(str(self.inputFilenameInput_bruker.text()))
 		self.conversionConsole_bruker.append('sup_file: ' + sup_file.file_dir)
 		sup_file.print_params(self.conversionConsole_bruker)
@@ -151,14 +155,15 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.scaleFactorInput_bruker.setText(str(sup_file.ConvS))
 		self.timeDelayInput_bruker.setText(str(sup_file.DigShift * 1/sup_file.fs))
 
-		unsup_file = BrukerFID(str(self.referenceFilenameInput_bruker.text()))
-		self.conversionConsole_bruker.append('unsup_file: ' + unsup_file.file_dir)
-		unsup_file.print_params(self.conversionConsole_bruker)
+		# Read unsuppressed file
+		uns_file = BrukerFID(str(self.referenceFilenameInput_bruker.text()))
+		self.conversionConsole_bruker.append('uns_file: ' + uns_file.file_dir)
+		uns_file.print_params(self.conversionConsole_bruker)
 		self.conversionConsole_bruker.append('')
 
 		# Write files as fitMAN dat files.
-		sup_file.writeDAT(out_name + 'raw', '')
-		unsup_file.writeDAT(out_name + 'uns', '')
+		sup_file.writeDAT(out_name + 'raw_sup', '')
+		uns_file.writeDAT(out_name + 'raw_uns', '')
 
 		# Plot Suppressed File
 		plt.figure(3)
@@ -189,18 +194,36 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		f_sup, spec_sup = sup_file.getSpec()
 		plt.plot(f_sup[0:sup_file.n], np.real(spec_sup[0:sup_file.n]))
 
-		# Run post processing
-		out_file = copy.deepcopy(sup_file)
+
+		# Run baseline correction.
+		if self.baselineCorrectionButton1_bruker.isChecked():
+			sup_file.signal = baseline_corr(sup_file.signal)
+			uns_file.signal = baseline_corr(uns_file.signal)
+			out_name_sup = out_name_sup + '_bc'
+			out_name_uns = out_name_uns + '_bc'
+
+		# Run post-processing.
+		out_file_sup = copy.deepcopy(sup_file)
+		out_file_uns = copy.deepcopy(uns_file)
 		if self.queccRadioButton_bruker.isChecked():
+			# QUECC
 			quecc_points = int(self.qualityPointsInput_bruker.text())
-			out_file.signal = quecc(sup_file.signal, unsup_file.signal, getWaterLW(unsup_file.signal, unsup_file.t), sup_file.t, quecc_points)
-			out_file.writeDAT(out_name + 'corr', 'quecc'+str(quecc_points))
+			out_file_sup.signal = np.array(quecc(sup_file.signal, uns_file.signal, quecc_points, sup_file.t))
+			out_file_uns.signal = np.array(quecc(uns_file.signal, uns_file.signal, quecc_points, uns_file.t))
+			out_file_sup.writeDAT(out_name_sup, 'quecc' + str(quecc_points))
+			out_file_uns.writeDAT(out_name_uns, 'quecc' + str(quecc_points))
 		elif self.qualityRadioButton_bruker.isChecked():
-			out_file.signal = quality(sup_file.signal, unsup_file.signal, getWaterLW(unsup_file.signal, unsup_file.t), sup_file.t)
-			out_file.writeDAT(out_name + 'corr', 'quality')
+			# QUALITY
+			out_file_sup.signal = np.array(quality(sup_file.signal, uns_file.signal))
+			out_file_uns.signal = np.array(quality(uns_file.signal, uns_file.signal))
+			out_file_sup.writeDAT(out_name_sup, 'quality')
+			out_file_uns.writeDAT(out_name_uns, 'quality')
 		elif self.eccRadioButton_bruker.isChecked():
-			out_file.signal = ecc(sup_file.signal, unsup_file.signal)
-			out_file.writeDAT(out_name + 'corr', 'ecc')
+			# ECC
+			out_file_sup.signal = np.array(ecc(sup_file.signal, uns_file.signal))
+			out_file_uns.signal = np.array(ecc(uns_file.signal, uns_file.signal))
+			out_file_sup.writeDAT(out_name_sup, 'ecc')
+			out_file_uns.writeDAT(out_name_uns, 'ecc')
 
 		ax = plt.subplot(413)
 		ax.clear()
@@ -213,7 +236,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			labelbottom="on", left="off", right="off", labelleft="off")
 
 		plt.title('Corrected Signal')
-		plt.plot(out_file.t, np.real(out_file.signal))
+		plt.plot(out_file_sup.t, np.real(out_file_sup.signal))
 
 		ax = plt.subplot(414)
 		ax.clear()
@@ -225,8 +248,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
 			labelbottom="on", left="off", right="off", labelleft="off")
 		
-		f_out, spec_out = out_file.getSpec()
-		plt.plot(f_out[0:out_file.n], np.real(spec_out[0:out_file.n]))
+		f_out, spec_out = out_file_sup.getSpec()
+		plt.plot(f_out[0:out_file_sup.n], np.real(spec_out[0:out_file_sup.n]))
 
 		self.canvas[2].draw()
 
