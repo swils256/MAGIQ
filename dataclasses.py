@@ -1023,7 +1023,7 @@ class BrukerFID:
 					for el in lines[i+1].replace('\n','').split(' '): self.VoxArrPositionRPS.append(float(el))
 				elif '##$PVM_EncChanScaling=' in line:
 					self.EncChanScaling = []
-					for el in lines[i+].replace('\n','').split(' '): self.EncChanScaling.append(float(el))
+					for el in lines[i+1].replace('\n','').split(' '): self.EncChanScaling.append(float(el))
 
 
 		# CHOP OFF ADC DELAY
