@@ -8,6 +8,9 @@ SGluxGABA, -inf, +inf, glutamate, glutamine, glutathione_cysteine, glutathione_g
 
 [Amplitudes]
 ANaag, -inf, +inf, naag_acetyl, naag_aspartyl, naag_glutamate;
+AlipMM1, -inf, +inf, lm1, lm3, lm4, lm5, lm6, lm7, lm8, lm9, lm10, lm12, lm13, lm14;
+AlipMM2, -inf, +inf, lm2;
+AlipMM11, -inf, +inf, lm11;
 
 [Phases]
 PHNaa, -inf, +inf, naa_acetyl, naa_aspartate, naag_acetyl, naag_aspartyl, naag_glutamate, peth, scyllo-inositol, taurine, alanine, d-glucose-alpha, gaba, glycine, lactate, aspartate;
