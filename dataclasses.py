@@ -1090,7 +1090,7 @@ class BrukerFID:
 		o.write('V1=' + str(self.VoxArrSize[0]) + ' ' + 'V2=' + str(self.VoxArrSize[1]) + ' ' + 'V3=' + str(self.VoxArrSize[2]) + '\n')
 		o.write('TE=' + str(self.EchoTime / 1000.) + ' s ')
 		o.write('TR=' + str(self.RepetitionTime / 1000.) + ' s ')
-		o.write('P1=' + str(self.VoxArrPosition[0]) + ' P2=' + str(self.VoxArrPosition[1]) + ' P3=' + str(self.VoxArrPosition[2]) + ' Gain=' + str(self.EncChanScaling) + '\n')
+		o.write('P1=' + str(self.VoxArrPosition[0]) + ' P2=' + str(self.VoxArrPosition[1]) + ' P3=' + str(self.VoxArrPosition[2]) + ' Gain=' + str(self.EncChanScaling[0]) + '\n')
 		o.write('SIMULTANEOUS\n0.0\n')
 		o.write('EMPTY\n')
 
