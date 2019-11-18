@@ -55,6 +55,7 @@ def calc(sup_out, unsup_out, \
 	#	exp	TR	TE	Conc	ConcGM (alpha_GM)	ConcWM (alpha_WM)	ConcVox	ConcCSF (alpha_CSF)
 
 	quant_result = tree()
+	crlb_result  = tree()
 
 	# Loop through all metabolites
 	for i in range(0, num_params):
@@ -69,9 +70,15 @@ def calc(sup_out, unsup_out, \
 
 		# Get metabolite signal
 		sum_alpha_M = 0
+		crlbs       = []
 		for peak in range(metab_params[i][6], metab_params[i][7]+1):
-			print '     | ', peak, sup_out.output[peak][3]
+			if float(sup_out.output[peak][3]) == 0:
+				crlbs.append(np.nan)
+			else:
+				crlbs.append((float(sup_out.crlbs[peak][3])/float(sup_out.output[peak][3])) * 100)
+			print '     | ', peak, sup_out.output[peak][3], crlbs[-1]
 			sum_alpha_M = sum_alpha_M + float(sup_out.output[peak][3])
+		final_crlb = np.nanmean(crlbs)
 		print ' | ', sum_alpha_M
 
 		# Get water signal
@@ -134,11 +141,13 @@ def calc(sup_out, unsup_out, \
 		final_conc = final_conc * 1E3
 
 		print name + ':\t', final_conc, 'mM'
+		print name + ':\t', final_crlb, '%'
 		print ''
 
 		quant_result[name] = final_conc
+		crlb_result[name]  = final_crlb
 
-	return quant_result
+	return quant_result, crlb_result
 
 def R_M(f_GM, f_WM, T1_GM, T2_GM, T1_WM, T2_WM, TR, TE):
 	# f_GM = fraction of gray matter
