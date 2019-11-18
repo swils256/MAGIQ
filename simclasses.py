@@ -76,8 +76,8 @@ class MetaboliteSimulation(QtCore.QObject):
 
 			pulse90 = Pulse(inpulse90file, PULSE_90_LENGTH)
 
-			n_old = np.linspace(0, PULSE_90_LENGTH, 255)
-			n_new = np.linspace(0, PULSE_90_LENGTH, 256)
+			n_old = np.linspace(0, PULSE_90_LENGTH, sp.size(pulse90.waveform))
+			n_new = np.linspace(0, PULSE_90_LENGTH, sp.size(pulse90.waveform)+1)
 
 			waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse90.waveform)*A_90)(n_new)
 			waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse90.waveform)*A_90)(n_new)
@@ -107,8 +107,8 @@ class MetaboliteSimulation(QtCore.QObject):
 
 			pulse180 = Pulse(inpulse180file, PULSE_180_LENGTH)
 
-			n_old = np.linspace(0, PULSE_180_LENGTH, 511)
-			n_new = np.linspace(0, PULSE_180_LENGTH, 512)
+			n_old = np.linspace(0, PULSE_180_LENGTH, sp.size(pulse180.waveform))
+			n_new = np.linspace(0, PULSE_180_LENGTH, sp.size(pulse180.waveform)+1)
 
 			waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse180.waveform)*A_180)(n_new)
 			waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse180.waveform)*A_180)(n_new)

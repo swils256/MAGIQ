@@ -223,8 +223,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			# For each metabolite calculate crlbs
 			crlbs = []
 			for metab in metabs: 
-				print metab, np.mean(self.outputs[i].metabolites[metab].crlb)
-				crlbs.append(np.mean(self.outputs[i].metabolites[metab].crlb))
+				crlb_result = np.nanmean(self.outputs[i].metabolites[metab].crlb)
+				print metab, np.nanmean(self.outputs[i].metabolites[metab].crlb)
+				crlbs.append(crlb_result)
 
 			# Write heading to file if we're at the first line
 			if i == 0:
@@ -625,6 +626,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		out_file.write('ID,TISSUE,CSF,N_AVG_SUP,N_AVG_UNS,SCALE_SUP,SCALE_UNS,SCANNER,')
 		for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
 			out_file.write(str(self.metabParamsTableWidget.item(metab_index,0).text())+',')
+		for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
+			out_file.write(str(self.metabParamsTableWidget.item(metab_index,0).text())+'_CRLB,')
 		out_file.write('\n')
 
 		self.consoleOutputText.append('==== METAB QUANT ====')
@@ -750,11 +753,11 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				out_file.write(str(scanner_type) + ',')
 
 				# Calculate absolute metabolite levels (in mM)
-				f_conc = mc.calc(sup_out, unsup_out, \
-					vox_frac, n_avg_sup, n_avg_uns, scale_sup, scale_uns, \
-					gain_sup, gain_uns, \
-					metab_params, num_params, water_params, exp_params, \
-					scanner_type)
+				f_conc, f_crlb = mc.calc(sup_out, unsup_out, \
+							 vox_frac, n_avg_sup, n_avg_uns, scale_sup, scale_uns, \
+							 gain_sup, gain_uns, \
+							 metab_params, num_params, water_params, exp_params, \
+							 scanner_type)
 
 				# Figure out centroid of voxel to slice image appropriately
 				vox_indices = np.where(vox_img == 1)
@@ -813,6 +816,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 				for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
 					out_file.write("{:6.6f},".format(f_conc[str(self.metabParamsTableWidget.item(metab_index,0).text())]))
+				for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
+					out_file.write("{:6.6f},".format(f_crlb[str(self.metabParamsTableWidget.item(metab_index,0).text())]))
 			except Exception as e:
 				print e
 				failed_mice.append(mouse)			
