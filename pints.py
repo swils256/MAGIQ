@@ -177,10 +177,20 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	def confirmSimParams(self):
 		if self.sLASERradioButton.isChecked():
-			self.sim_experiment = Experiment()
+			if self.T7Button.isChecked():
+				self.sim_experiment = Experiment('slaser', 297.2)
+			elif self.T3Button.isChecked():
+				self.sim_experiment = Experiment('slaser', 123.3)
+			elif self.T9Button.isChecked():
+				self.sim_experiment = Experiment('slaser', 400.2)
 			self.sim_experiment.name = 'semi-LASER'
 		elif self.LASERradioButton.isChecked():
-			self.sim_experiment = Experiment('laser')
+			if self.T7Button.isChecked():
+				self.sim_experiment = Experiment('laser', 297.2)
+			elif self.T3Button.isChecked():
+				self.sim_experiment = Experiment('laser', 123.3)
+			elif self.T9Button.isChecked():
+				self.sim_experiment = Experiment('laser', 400.2)
 			self.sim_experiment.name = 'LASER'
 		
 		self.sim_experiment.author = platform.node()
@@ -188,73 +198,104 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.sim_experiment.description = 'Density-matrix simulations of metabolites using PyGAMMA and metabolite parameters from V. Govindaraju et. al, NMR Biomed. 2000;13:129-153'
 		self.sim_experiment.type = 'PINTS'
 
-		self.insysfiles = [ 'alanine.sys',
-							'aspartate.sys',
-							'choline_1-CH2_2-CH2.sys',
-							'choline_N(CH3)3_a.sys',
-							'choline_N(CH3)3_b.sys',
-							'creatine_N(CH3).sys',
-							'creatine_X.sys',
-							'd-glucose-alpha.sys',
-							'd-glucose-beta.sys',
-							'eth.sys',
-							'gaba.sys',
-							'glutamate.sys',
-							'glutamine.sys',
-							'glutathione_cysteine.sys',
-							'glutathione_glutamate.sys',
-							'glutathione_glycine.sys',
-							'glycine.sys',
-							'gpc_7-CH2_8-CH2.sys',
-							'gpc_glycerol.sys',
-							'gpc_N(CH3)3_a.sys',
-							'gpc_N(CH3)3_b.sys',
-							'lactate.sys',
-							'myoinositol.sys',
-							'naa_acetyl.sys',
-							'naa_aspartate.sys',
-							'naag_acetyl.sys',
-							'naag_aspartyl.sys',
-							'naag_glutamate.sys',
-							'pcho_N(CH3)3_a.sys',
-							'pcho_N(CH3)3_b.sys',
-							'pcho_X.sys',
-							'pcr_N(CH3).sys',
-							'pcr_X.sys',
-							'peth.sys',
-							'scyllo-inositol.sys',
-							'taurine.sys' ]
+		self.insysfiles = [     'alanine.sys',
+					'aspartate.sys',
+					'choline_1-CH2_2-CH2.sys',
+					'choline_N(CH3)3_a.sys',
+					'choline_N(CH3)3_b.sys',
+					'creatine_N(CH3).sys',
+					'creatine_X.sys',
+					'd-glucose-alpha.sys',
+					'd-glucose-beta.sys',
+					'eth.sys',
+					'gaba.sys',
+					'glutamate.sys',
+					'glutamine.sys',
+					'glutathione_cysteine.sys',
+					'glutathione_glutamate.sys',
+					'glutathione_glycine.sys',
+					'glycine.sys',
+					'gpc_7-CH2_8-CH2.sys',
+					'gpc_glycerol.sys',
+					'gpc_N(CH3)3_a.sys',
+					'gpc_N(CH3)3_b.sys',
+					'lactate.sys',
+					'myoinositol.sys',
+					'naa_acetyl.sys',
+					'naa_aspartate.sys',
+					'naag_acetyl.sys',
+					'naag_aspartyl.sys',
+					'naag_glutamate.sys',
+					'pcho_N(CH3)3_a.sys',
+					'pcho_N(CH3)3_b.sys',
+					'pcho_X.sys',
+					'pcr_N(CH3).sys',
+					'pcr_X.sys',
+					'peth.sys',
+					'scyllo-inositol.sys',
+					'taurine.sys'     ]
 
-		self.macromolecules = ['lm1', 
-								'lm2', 
-								'lm3', 
-								'lm4', 
-								'lm5', 
-								'lm6', 
-								'lm7', 
-								'lm8', 
-								'lm9', 
-								'lm10', 
-								'lm11', 
-								'lm12', 
-								'lm13', 
-								'lm14']
+		if self.sim_experiment.b0 == 123.3:
+			self.macromolecules = [ 'MM09', 
+						'MM12', 
+						'MM14', 
+						'MM16', 
+						'MM20', 
+						'MM21', 
+						'MM23', 
+						'MM26', 
+						'MM30', 
+						'MM31', 
+						'MM37', 
+						'MM38', 
+						'MM40' ]
 
-		self.macromolecules_data = self.tree()
-		self.macromolecules_data['lm1']  = Macromolecule('lm1',  0.9457810, 'L', 50.72009, 3.5501260, -1.13820100)
-		self.macromolecules_data['lm2']  = Macromolecule('lm2',  1.4757810, 'L', 54.12614, 2.8557010, 0.054570260)
-		self.macromolecules_data['lm3']  = Macromolecule('lm3',  1.7057810, 'L', 68.32043, 3.9072800, -0.06015777)
-		self.macromolecules_data['lm4']  = Macromolecule('lm4',  2.1157810, 'L', 96.43580, 4.7191390, -0.09620739)
-		self.macromolecules_data['lm5']  = Macromolecule('lm5',  2.3157810, 'L', 69.70896, 2.7845620, -0.57759460)
-		self.macromolecules_data['lm6']  = Macromolecule('lm6',  3.0157810, 'L', 42.72932, 1.0176800, -0.65827850)
-		self.macromolecules_data['lm7']  = Macromolecule('lm7',  3.9854041, 'L', 29.64625, 1.2094070, 0.288971500)
-		self.macromolecules_data['lm8']  = Macromolecule('lm8',  7.1257810, 'L', 274.4760, 4.0466410, 0.302700400)
-		self.macromolecules_data['lm9']  = Macromolecule('lm9',  7.8557810, 'L', 37.37627, 1.3135740, 0.020221810)
-		self.macromolecules_data['lm10'] = Macromolecule('lm10', 2.6557810, 'L', 121.4557, 2.3499680, -0.58261020)
-		self.macromolecules_data['lm11'] = Macromolecule('lm11', 1.2357810, 'L', 30.68139, 0.7444791, -1.13820100)
-		self.macromolecules_data['lm12'] = Macromolecule('lm12', -0.628240, 'L', 1789.202, 21.518780, -3.65296700)
-		self.macromolecules_data['lm13'] = Macromolecule('lm13', 3.2957810, 'L', 109.4958, 1.6655390, 0.163575600)
-		self.macromolecules_data['lm14'] = Macromolecule('lm14', 3.7057810, 'L', 169.6304, 4.8735330, -1.35431900)
+			# From https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5215417/
+			self.macromolecules_data = self.tree()
+			self.macromolecules_data['MM09'] = Macromolecule('MM09',  0.90, 'L', 21.20, 0.72, 0)
+			self.macromolecules_data['MM12'] = Macromolecule('MM12',  1.21, 'L', 19.16, 0.28, 0)
+			self.macromolecules_data['MM14'] = Macromolecule('MM14',  1.38, 'L', 15.90, 0.38, 0)
+			self.macromolecules_data['MM16'] = Macromolecule('MM16',  1.63, 'L', 07.50, 0.05, 0)
+			self.macromolecules_data['MM20'] = Macromolecule('MM20',  2.01, 'L', 29.03, 0.45, 0)
+			self.macromolecules_data['MM21'] = Macromolecule('MM21',  2.09, 'L', 20.53, 0.36, 0)
+			self.macromolecules_data['MM23'] = Macromolecule('MM23',  2.25, 'L', 17.89, 0.36, 0)
+			self.macromolecules_data['MM26'] = Macromolecule('MM26',  2.61, 'L', 05.30, 0.04, 0)
+			self.macromolecules_data['MM30'] = Macromolecule('MM30',  2.96, 'L', 14.02, 0.20, 0)
+			self.macromolecules_data['MM31'] = Macromolecule('MM31',  3.11, 'L', 17.89, 0.11, 0)
+			self.macromolecules_data['MM37'] = Macromolecule('MM37',  3.67, 'L', 33.52, 0.64, 0)
+			self.macromolecules_data['MM38'] = Macromolecule('MM38',  3.80, 'L', 11.85, 0.07, 0)
+			self.macromolecules_data['MM40'] = Macromolecule('MM40',  3.96, 'L', 37.48, 1.00, 0)
+		else:
+			self.macromolecules = [ 'lm1', 
+						'lm2', 
+						'lm3', 
+						'lm4', 
+						'lm5', 
+						'lm6', 
+						'lm7', 
+						'lm8', 
+						'lm9', 
+						'lm10', 
+						'lm11', 
+						'lm12', 
+						'lm13', 
+						'lm14' ]
+
+			self.macromolecules_data = self.tree()
+			self.macromolecules_data['lm1']  = Macromolecule('lm1',  0.9457810, 'L', 50.72009, 3.5501260, -1.13820100)
+			self.macromolecules_data['lm2']  = Macromolecule('lm2',  1.4757810, 'L', 54.12614, 2.8557010, 0.054570260)
+			self.macromolecules_data['lm3']  = Macromolecule('lm3',  1.7057810, 'L', 68.32043, 3.9072800, -0.06015777)
+			self.macromolecules_data['lm4']  = Macromolecule('lm4',  2.1157810, 'L', 96.43580, 4.7191390, -0.09620739)
+			self.macromolecules_data['lm5']  = Macromolecule('lm5',  2.3157810, 'L', 69.70896, 2.7845620, -0.57759460)
+			self.macromolecules_data['lm6']  = Macromolecule('lm6',  3.0157810, 'L', 42.72932, 1.0176800, -0.65827850)
+			self.macromolecules_data['lm7']  = Macromolecule('lm7',  3.9854041, 'L', 29.64625, 1.2094070, 0.288971500)
+			self.macromolecules_data['lm8']  = Macromolecule('lm8',  7.1257810, 'L', 274.4760, 4.0466410, 0.302700400)
+			self.macromolecules_data['lm9']  = Macromolecule('lm9',  7.8557810, 'L', 37.37627, 1.3135740, 0.020221810)
+			self.macromolecules_data['lm10'] = Macromolecule('lm10', 2.6557810, 'L', 121.4557, 2.3499680, -0.58261020)
+			self.macromolecules_data['lm11'] = Macromolecule('lm11', 1.2357810, 'L', 30.68139, 0.7444791, -1.13820100)
+			self.macromolecules_data['lm12'] = Macromolecule('lm12', -0.628240, 'L', 1789.202, 21.518780, -3.65296700)
+			self.macromolecules_data['lm13'] = Macromolecule('lm13', 3.2957810, 'L', 109.4958, 1.6655390, 0.163575600)
+			self.macromolecules_data['lm14'] = Macromolecule('lm14', 3.7057810, 'L', 169.6304, 4.8735330, -1.35431900)
 		
 
 		# --- OLD MACROMOLECULE MODEL --- #
@@ -279,13 +320,6 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.sim_experiment.obs_iso = '1H'
 
 		try:
-			if self.T7Button.isChecked():
-				self.sim_experiment.b0 = 297.2
-			elif self.T3Button.isChecked():
-				self.sim_experiment.b0 = 123.3
-			elif self.T9Button.isChecked():
-				self.sim_experiment.b0 = 400.2
-
 			self.sim_experiment.acq_time = float(self.acqLengthInput_sim.text())
 			self.sim_experiment.dwell_time = float(self.dwellTimeInput_sim.text())
 			self.sim_experiment.TE = float(self.echoTimeInput_sim.text())
@@ -1270,8 +1304,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		pulse180 = Pulse(inpulse180file, PULSE_180_LENGTH)
 
-		n_old = np.linspace(0, PULSE_180_LENGTH, 511)
-		n_new = np.linspace(0, PULSE_180_LENGTH, 512)
+		n_old = np.linspace(0, PULSE_180_LENGTH, sp.size(pulse180.waveform))
+		n_new = np.linspace(0, PULSE_180_LENGTH, sp.size(pulse180.waveform)+1)
 
 		waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse180.waveform)*A_180)(n_new)
 		waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse180.waveform)*A_180)(n_new)
@@ -1351,8 +1385,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 	def slaser_build90(self, inpulse90file, A_90, PULSE_90_LENGTH, gyratio, spin_system, plot_flag):
 		pulse90 = Pulse(inpulse90file, PULSE_90_LENGTH)
 
-		n_old = np.linspace(0, PULSE_90_LENGTH, 255)
-		n_new = np.linspace(0, PULSE_90_LENGTH, 256)
+		n_old = np.linspace(0, PULSE_90_LENGTH, sp.size(pulse90.waveform))
+		n_new = np.linspace(0, PULSE_90_LENGTH, sp.size(pulse90.waveform)+1)
 
 		waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse90.waveform)*A_90)(n_new)
 		waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse90.waveform)*A_90)(n_new)
@@ -1391,8 +1425,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 	def laser_buildahp(self, inpulse90file, A_90, PULSE_90_LENGTH, gyratio, spin_system, plot_flag):
 		pulse90 = Pulse(inpulse90file, PULSE_90_LENGTH, 'varian')
 
-		n_old = np.linspace(0, PULSE_90_LENGTH, 255)
-		n_new = np.linspace(0, PULSE_90_LENGTH, 256)
+		n_old = np.linspace(0, PULSE_90_LENGTH, sp.size(pulse90.waveform))
+		n_new = np.linspace(0, PULSE_90_LENGTH, sp.size(pulse90.waveform)+1)
 
 		waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse90.waveform)*A_90)(n_new)
 		waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse90.waveform)*A_90)(n_new)
@@ -1584,7 +1618,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				name = currline[0]
 				experiment.TE = float(currline[1])
 
-				if name in ['lm1', 'lm2', 'lm3', 'lm4', 'lm5', 'lm6', 'lm7', 'lm8', 'lm9', 'lm10', 'lm11', 'lm12', 'lm13', 'lm14']:
+				if name in ['lm1', 'lm2', 'lm3', 'lm4', 'lm5', 'lm6', 'lm7', 'lm8', 'lm9', 'lm10', 'lm11', 'lm12', 'lm13', 'lm14', 'MM09', 'MM12', 'MM14', 'MM16', 'MM20', 'MM21', 'MM23', 'MM26', 'MM30', 'MM31', 'MM37', 'MM38', 'MM40']:
 					# name, TE, A_m, shift, line_type, lw, area, phase
 					experiment.data[name] = Macromolecule(name, float(currline[3]), str(currline[4]), float(currline[5]), float(currline[6]), float(currline[7]))
 					# if metabolite name is not already recorded, append to list of available metabolties
@@ -2068,7 +2102,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		elif group_type == 'phase':
 			source = self.phasesTextEdit.toPlainText()
 		elif group_type == 'lipid_LWs':
-			source = 'LWlmX, -inf, +inf, lm1, lm2, lm3, lm4, lm5, lm6, lm7, lm8, lm9, lm10, lm11, lm12, lm13, lm14;'
+			if self.experiment.b0 == 123.3:
+				source = 'LWlipMM, -inf, +inf, MM09, MM12, MM14, MM16, MM20, MM21, MM23, MM26, MM30, MM31, MM37, MM38, MM40;'
+			else:
+				source = 'LWlmX, -inf, +inf, lm1, lm2, lm3, lm4, lm5, lm6, lm7, lm8, lm9, lm10, lm11, lm12, lm13, lm14;'
 			# (using new macromolecule model)
 			# source = 'LWlipX, 10, 200, lip2, lipmm1;'
 		# elif group_type == 'lipid_WLs':

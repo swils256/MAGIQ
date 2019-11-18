@@ -28,7 +28,7 @@ from pyfftw.interfaces import scipy_fftpack as fftw
 
 # ---- Data Classes ---- #
 class Experiment:
-	def __init__(self, pulseseq='slaser'):
+	def __init__(self, pulseseq='slaser', b0=297.2):
 
 		# General Experiment Information
 		self.name = ''
@@ -42,7 +42,7 @@ class Experiment:
 		self.metabolites = []
 
 		# Experimental Parameters Information
-		self.b0 = 297.2				# default b0 is 7T
+		self.b0 = b0				# default b0 is 7T
 		self.obs_iso = '1H'			# proton spectroscopy by default
 		self.acq_time = 341E-3		# default acq_time is 341 msec
 		self.dwell_time = 0.000166 	# default dwell_time is 0.000166
@@ -50,18 +50,22 @@ class Experiment:
 
 		# Experimental Parameters for Simulation
 		if pulseseq == 'slaser':
-			self.A_90s = []										# amplitudes for pulse calibration
+			self.A_90s = []									# amplitudes for pulse calibration
 			self.A_180s = []
 			self.RF_OFFSET = 4.7								# default is 4.7 ppm (center frequency of excitation pulse)
-			self.inpulse90file = 'pints/pulses/P10.P10NORM.pta'	# RF pulse files
-			self.inpulse180file = 'pints/pulses/HS4_R25.HS4_R25.pta'
+			if self.b0 == 123.3:
+				self.inpulse90file  = 'pints/pulses/hsinc_400_8750.pta'
+				self.inpulse180file = 'pints/pulses/HS1_R20.pta'
+			else:
+				self.inpulse90file  = 'pints/pulses/P10.P10NORM.pta'			# RF pulse files
+				self.inpulse180file = 'pints/pulses/HS4_R25.HS4_R25.pta'
 			self.PULSE_90_LENGTH = 0							# RF pulse lengths
 			self.PULSE_180_LENGTH = 0
-			self.A_180 = 1.0									# To store calibrated RF amplitudes
+			self.A_180 = 1.0								# To store calibrated RF amplitudes
 			self.A_90 = 1.0
 			self.fudge_factor = 0								# SLR fudge factor
 		elif pulseseq == 'laser':
-			self.A_90s = []										# amplitudes for pulse calibration
+			self.A_90s = []									# amplitudes for pulse calibration
 			self.A_180s = []
 			self.RF_OFFSET = 4.7								# default is 4.7 ppm (center frequency of excitation pulse)
 			self.inpulse90file = 'pints/pulses/at60.n29.RF'		# RF pulse files
@@ -69,7 +73,7 @@ class Experiment:
 			self.inpulse180file = 'pints/pulses/HS2_R15_512.RF'
 			self.PULSE_90_LENGTH = 0							# RF pulse lengths
 			self.PULSE_180_LENGTH = 0
-			self.A_180 = 1.0									# To store calibrated RF amplitudes
+			self.A_180 = 1.0								# To store calibrated RF amplitudes
 			self.A_90 = 1.0
 
 		self.tolppm = 0.0015	# binning parameters
@@ -421,6 +425,7 @@ class OutputFile:
 		# this attribute allows user to reference output data structure directly via peak number 
 		# (instead of indexing by metabolite)
 		self.output = output
+		self.crlbs  = crlb
 
 	def tree(self): return defaultdict(self.tree)
 
@@ -528,7 +533,7 @@ class RDAFile:
 		# Some acquisition parameters from header
 		larmor = float(fid_hdr['MRFrequency'])
 		fid_date = dt.datetime.strptime(fid_hdr['StudyDate'], '%Y%m%d').strftime('%d%b%y')
-		fid_nt = int(fid_hdr["NumberOfAverages"].rstrip('.0'))
+		fid_nt = int(fid_hdr["NumberOfAverages"])#.rstrip('.0')) <-- if number of averages end with "0", this will be a problem
 		fid_dt = float(fid_hdr["DwellTime"]) / 1e6
 		# fid_time = np.arange(fid_dt, (len(fid_data) + 1) * fid_dt, fid_dt)
 
