@@ -51,7 +51,7 @@ echo ""
 
 echo " | Installing FSL dependencies ..."
 # fsleyes
-sudo apt install libgtk3-dev libgtk2.0-dev libasound2 libcaca0
+sudo apt install libgtk-3-dev libgtk2.0-dev libasound2 libcaca0
 sudo pip install pathlib2
 sudo pip install wxPython
 echo ""
