@@ -77,6 +77,12 @@
         <layout class="QGridLayout" name="simGridLayout">
          <item row="5" column="0" colspan="2">
           <widget class="QProgressBar" name="simProgressBar">
+           <property name="maximumSize">
+            <size>
+             <width>1000</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="value">
             <number>0</number>
            </property>
@@ -87,6 +93,12 @@
          </item>
          <item row="0" column="0" colspan="2">
           <widget class="QGroupBox" name="simOptionsGroupBox">
+           <property name="maximumSize">
+            <size>
+             <width>1000</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="styleSheet">
             <string notr="true">QGroupBox {
 	font-size: 12px;
@@ -338,60 +350,25 @@ QGroupBox::title {
          </item>
          <item row="6" column="0" colspan="2">
           <widget class="QPushButton" name="runSimulationButton">
+           <property name="maximumSize">
+            <size>
+             <width>1000</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Run Simulation</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="2" rowspan="7">
-          <widget class="QGroupBox" name="simProgressGroupBox">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>800</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QGroupBox {
-	font-size: 12px;
-    border: 1px solid gray;
-    border-radius: 9px;
-    margin-top: 0.5em;
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    left: 10px;
-    padding: 0 3px 0 3px;
-}</string>
-           </property>
-           <property name="title">
-            <string>Simulation Progress</string>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <widget class="QTextBrowser" name="simConsole">
-              <property name="font">
-               <font>
-                <family>Monospace</family>
-               </font>
-              </property>
-              <property name="lineWrapMode">
-               <enum>QTextEdit::NoWrap</enum>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
          <item row="4" column="0" colspan="2">
           <widget class="QPushButton" name="confirmSimParamsButton">
+           <property name="maximumSize">
+            <size>
+             <width>1000</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Confirm Simulation Parameters</string>
            </property>
@@ -399,6 +376,12 @@ QGroupBox::title {
          </item>
          <item row="1" column="1" rowspan="3">
           <widget class="QGroupBox" name="binningParamsGroupBox">
+           <property name="maximumSize">
+            <size>
+             <width>400</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="styleSheet">
             <string notr="true">QGroupBox {
 	font-size: 12px;
@@ -417,6 +400,13 @@ QGroupBox::title {
             <string>Binning Parameters</string>
            </property>
            <layout class="QGridLayout" name="gridLayout_7">
+            <item row="2" column="0">
+             <widget class="QLabel" name="ppmSearchRangeLabel">
+              <property name="text">
+               <string>PPM Search Range:</string>
+              </property>
+             </widget>
+            </item>
             <item row="2" column="1">
              <widget class="QLabel" name="ppmloLabel">
               <property name="text">
@@ -424,10 +414,17 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="tolppmLabel">
+            <item row="3" column="1">
+             <widget class="QLabel" name="ppmhiLabel">
               <property name="text">
-               <string>PPM Tolerance (tolppm):</string>
+               <string>High (ppmhi):</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QLineEdit" name="ppmhiInput">
+              <property name="text">
+               <string>10.0</string>
               </property>
              </widget>
             </item>
@@ -438,17 +435,17 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="ppmSearchRangeLabel">
+            <item row="0" column="1" colspan="2">
+             <widget class="QLineEdit" name="tolppmInput">
               <property name="text">
-               <string>PPM Search Range:</string>
+               <string>0.0015</string>
               </property>
              </widget>
             </item>
-            <item row="3" column="1">
-             <widget class="QLabel" name="ppmhiLabel">
+            <item row="0" column="0">
+             <widget class="QLabel" name="tolppmLabel">
               <property name="text">
-               <string>High (ppmhi):</string>
+               <string>PPM Tolerance (tolppm):</string>
               </property>
              </widget>
             </item>
@@ -466,25 +463,17 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
-            <item row="0" column="1" colspan="2">
-             <widget class="QLineEdit" name="tolppmInput">
-              <property name="text">
-               <string>0.0015</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="2">
-             <widget class="QLineEdit" name="ppmhiInput">
-              <property name="text">
-               <string>10.0</string>
-              </property>
-             </widget>
-            </item>
            </layout>
           </widget>
          </item>
          <item row="1" column="0" rowspan="3">
           <widget class="QTabWidget" name="pulseSequenceTabWidget">
+           <property name="maximumSize">
+            <size>
+             <width>500</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="currentIndex">
             <number>0</number>
            </property>
@@ -1320,6 +1309,41 @@ QGroupBox::title {
            </widget>
           </widget>
          </item>
+         <item row="0" column="2" rowspan="7">
+          <widget class="QGroupBox" name="simProgressGroupBox">
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+	font-size: 12px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    margin-top: 0.5em;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Simulation Progress</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QTextBrowser" name="simConsole">
+              <property name="font">
+               <font>
+                <family>Monospace</family>
+               </font>
+              </property>
+              <property name="lineWrapMode">
+               <enum>QTextEdit::NoWrap</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
         </layout>
        </item>
       </layout>
@@ -1858,7 +1882,7 @@ QGroupBox::title {
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt;&quot;&gt;This exports the raw time domain data for each metabolite selected in the &amp;quot;Plot Metabolites&amp;quot; tab.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
@@ -1926,7 +1950,7 @@ QGroupBox::title {
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt;&quot;&gt;This exports the raw frequency domain data for each metabolite selected int he &amp;quot;Plot Metabolites&amp;quot; tab.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
@@ -2032,7 +2056,7 @@ QGroupBox::title {
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt;&quot;&gt;This exports the sum of the metabolites selected in the &amp;quot;Plot Metabolites&amp;quot; tab in one FITMAN compatible .dat file.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
@@ -2269,7 +2293,7 @@ QGroupBox::title {
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;In each column type in your constraints according to the following formatting rules.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;1. An semi-colon (;) indicates the end of the definition of a group of linked metabolites. A comma (,) separates each parameter of the definition. &lt;/span&gt;&lt;/p&gt;
@@ -2379,7 +2403,7 @@ QGroupBox::title {
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt;&quot;&gt;This will generate a FITMAN compatiable constraint file using the metabolites selected in the &amp;quot;Plot Metabolites&amp;quot; tab.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
@@ -2574,7 +2598,7 @@ QGroupBox::title {
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt;&quot;&gt;This will generate a FITMAN compatiable guess file using the metabolites selected in the &amp;quot;Plot Metabolites&amp;quot; tab.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
@@ -2700,14 +2724,14 @@ QGroupBox::title {
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-weight:600;&quot;&gt;PINTS v0.4&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-weight:600;&quot;&gt;Prior Information Templates for FITMAN&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Noto Sans'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;Dickson Wong&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;MD/PhD Candidate&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;dwong263@uwo.ca&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Noto Sans'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-style:italic;&quot;&gt;Last modified: Jun 16, 2017&lt;/span&gt;&lt;span style=&quot; font-family:'Sans Serif'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; font-weight:600; text-decoration: underline;&quot;&gt;About PINTS&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;A program to generate simulated semi-LASER &lt;/span&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt; vertical-align:super;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Cantarell'; font-size:9pt;&quot;&gt;H-MRS prior information templates (basis sets) for FITMAN. With this program, you can simulate metabolites, visualize the basis sets, and generate FITMAN compatible *.CST, *.GES, and *.DAT files. You may also simulate other basis sets with VeSPA, import them here, and generate FITMAN compatible files.&lt;/span&gt;&lt;/p&gt;
@@ -2729,10 +2753,112 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>mainTabWidget</tabstop>
+  <tabstop>T7Button</tabstop>
+  <tabstop>T3Button</tabstop>
+  <tabstop>T9Button</tabstop>
+  <tabstop>dwellTimeInput_sim</tabstop>
+  <tabstop>acqLengthInput_sim</tabstop>
+  <tabstop>echoTimeInput_sim</tabstop>
+  <tabstop>ppmMinInput</tabstop>
+  <tabstop>ppmMaxInput</tabstop>
+  <tabstop>macroIncludeButton</tabstop>
+  <tabstop>sLASERradioButton</tabstop>
+  <tabstop>LASERradioButton</tabstop>
+  <tabstop>pulseSequenceTabWidget</tabstop>
+  <tabstop>slrPulseLengthInput</tabstop>
+  <tabstop>fudgeFactorInput</tabstop>
+  <tabstop>afpPulseLengthInput</tabstop>
+  <tabstop>rfOffsetInput</tabstop>
+  <tabstop>slrAmpMinInput</tabstop>
+  <tabstop>slrAmpMaxInput</tabstop>
+  <tabstop>afpAmpMinInput</tabstop>
+  <tabstop>afpAmpMaxInput</tabstop>
+  <tabstop>calibrationMetaboliteComboBox</tabstop>
+  <tabstop>tolppmInput</tabstop>
+  <tabstop>tolphaInput</tabstop>
+  <tabstop>ppmloInput</tabstop>
+  <tabstop>ppmhiInput</tabstop>
+  <tabstop>confirmSimParamsButton</tabstop>
+  <tabstop>runSimulationButton</tabstop>
+  <tabstop>ahpPulseLengthInput_laser</tabstop>
+  <tabstop>afpPulseLengthInput_laser</tabstop>
+  <tabstop>rfOffsetInput_laser</tabstop>
+  <tabstop>ahpAmpMinInput_laser</tabstop>
+  <tabstop>ahpAmpMaxInput_laser</tabstop>
+  <tabstop>afpAmpMinInput_laser</tabstop>
+  <tabstop>afpAmpMaxInput_laser</tabstop>
+  <tabstop>calibrationMetaboliteComboBox_laser</tabstop>
+  <tabstop>simConsole</tabstop>
+  <tabstop>filenameInput</tabstop>
+  <tabstop>filenameConfirmButton</tabstop>
+  <tabstop>filenameBrowseButton</tabstop>
+  <tabstop>dwellTimeInput</tabstop>
+  <tabstop>acqLengthInput</tabstop>
+  <tabstop>specExpButton</tabstop>
+  <tabstop>metabTableWidget</tabstop>
+  <tabstop>loadMetabFileInput</tabstop>
+  <tabstop>loadMetabConfirmButton</tabstop>
+  <tabstop>loadMetabBrowseButton</tabstop>
+  <tabstop>editMetabOKButton</tabstop>
+  <tabstop>loop1Input</tabstop>
+  <tabstop>lbInput</tabstop>
+  <tabstop>shiftInput</tabstop>
+  <tabstop>phaseInput</tabstop>
+  <tabstop>metabListWidget</tabstop>
+  <tabstop>plotButton</tabstop>
+  <tabstop>outputFilenameInfoLabel_rawTime</tabstop>
+  <tabstop>outputFilenameInput_rawTime</tabstop>
+  <tabstop>exportButton_rawTime</tabstop>
+  <tabstop>outputFilenameConfirmButton_rawTime</tabstop>
+  <tabstop>outputFilenameInfoLabel_rawFreq</tabstop>
+  <tabstop>exportButton_rawFreq</tabstop>
+  <tabstop>outputFilenameConfirmButton_rawFreq</tabstop>
+  <tabstop>outputFilenameInput_rawFreq</tabstop>
+  <tabstop>exportButton_dat</tabstop>
+  <tabstop>outputTEInput</tabstop>
+  <tabstop>outputFilenameInput_dat</tabstop>
+  <tabstop>outputFilenameConfirmButton_dat</tabstop>
+  <tabstop>outputFilenameInfoLabel_dat</tabstop>
+  <tabstop>phasesTextEdit</tabstop>
+  <tabstop>metabTextBrowser</tabstop>
+  <tabstop>ampsTextEdit</tabstop>
+  <tabstop>linkAllCheckBox</tabstop>
+  <tabstop>linkLipidsCheckBox</tabstop>
+  <tabstop>maxPPMInput</tabstop>
+  <tabstop>maxLWInput</tabstop>
+  <tabstop>splitNAACheckBox</tabstop>
+  <tabstop>minWaterPPMInput</tabstop>
+  <tabstop>linkWaterRemovalAmpsCheckBox</tabstop>
+  <tabstop>cstFilenameLineEdit</tabstop>
+  <tabstop>instrTextBrowser</tabstop>
+  <tabstop>shiftsTextEdit</tabstop>
+  <tabstop>cstOKButton</tabstop>
+  <tabstop>cstLoadButton</tabstop>
+  <tabstop>cstFilenameInfoLabel</tabstop>
+  <tabstop>genCSTButton</tabstop>
+  <tabstop>cstFilenameInput</tabstop>
+  <tabstop>cstFilenameConfirmButton</tabstop>
+  <tabstop>wFactorLineEdit</tabstop>
+  <tabstop>sFactorLineEdit</tabstop>
+  <tabstop>pFactorLineEdit</tabstop>
+  <tabstop>plotGESButton</tabstop>
+  <tabstop>aFactorLineEdit</tabstop>
+  <tabstop>dFactorLineEdit</tabstop>
+  <tabstop>genGESButton</tabstop>
+  <tabstop>gesFilenameInput</tabstop>
+  <tabstop>gesFilenameConfirmButton</tabstop>
+  <tabstop>gesFilenameInfoLabel</tabstop>
+  <tabstop>filenameInput_dat</tabstop>
+  <tabstop>filenameConfirmButton_dat</tabstop>
+  <tabstop>filenameBrowseButton_dat</tabstop>
+  <tabstop>aboutText</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="pulseSequence_ButtonGroup"/>
   <buttongroup name="fieldStrength_sim_ButtonGroup"/>
+  <buttongroup name="pulseSequence_ButtonGroup"/>
  </buttongroups>
 </ui>

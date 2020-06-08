@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>314</height>
+    <height>333</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -39,7 +39,7 @@
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;MRS Analysis, Generation, and &lt;span style=&quot; font-style:italic;&quot;&gt;In-Vivo&lt;/span&gt; Quantification&lt;br/&gt;(MAGIQ)&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Software Suite&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;MRS Analysis, Generation, &lt;br/&gt;and &lt;span style=&quot; font-style:italic;&quot;&gt;In-Vivo&lt;/span&gt; Quantification&lt;br/&gt;(MAGIQ)&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Software Suite&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
