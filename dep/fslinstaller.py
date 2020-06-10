@@ -9,6 +9,7 @@ import itertools
 import locale
 import os
 import platform
+import distro
 import threading
 import time
 import shlex
@@ -42,11 +43,16 @@ fsli_C_WARN = 3
 CURRENT = 0
 UPDATE = 1
 UPGRADE = 2
+BOURNE_SHELLS = ('sh', 'bash', 'zsh', 'ksh', 'dash', )
+C_SHELLS = ('csh', 'tcsh', )
 
 
 class Version(object):
     def __init__(self, version_string):
+        if ':' in version_string:
+            version_string = version_string.split(':')[0]
         v_vals = version_string.split('.')
+
         for v in v_vals:
             if not v.isdigit():
                 raise ValueError('Bad version string')
@@ -167,7 +173,7 @@ class Version(object):
         return True
 
 
-version = Version('3.0.12')
+version = Version('3.0.18')
 
 
 def memoize(f):
@@ -731,6 +737,8 @@ class CreateFileError(Exception):
 
 def create_file(fname, lines, requires_root):
     '''Create a new file containing lines given'''
+    if isinstance(lines, basestring):
+        lines = lines.split('\n')
     try:
         (tmpfile, tmpfname) = temp_file_name(mode='w')
 
@@ -770,7 +778,7 @@ class Host(object):
     elif o_s == 'linux':
         if hasattr(platform, 'linux_distribution'):
             # We have a modern python (>2.4)
-            (vendor, version, _) = platform.linux_distribution(
+            (vendor, version, _) = distro.linux_distribution(
                                                 full_distribution_name=0)
         else:
             (vendor, version, _) = platform.dist()
@@ -919,7 +927,11 @@ def open_url(url, start=0, timeout=20):
     except urllib2.URLError, e:
         if type(e.reason) != str:
             errno = e.reason.args[0]
-            message = e.reason.args[1]
+            if len(e.reason.args) > 1:
+                message = e.reason.args[1]
+            # give up on trying to identify both the errno and message
+            else:
+                message = e.reason.args
             if errno == 8:
                 # Bad host name
                 MsgUser.debug("%s %s" % (url,
@@ -929,7 +941,7 @@ def open_url(url, start=0, timeout=20):
                 # Other error
                 MsgUser.debug("%s %s" % (url, message))
         else:
-            message = e.reason
+            message = str(e.reason)
         raise OpenUrlError(
             "Cannot find %s (%s). Try again later." % (url, message))
     except socket.timeout, e:
@@ -1031,8 +1043,8 @@ def fastest_mirror(main_mirrors, mirrors_file, timeout=20):
                 MsgUser.debug("Time out trying %s" % (m_url))
                 raise SiteNotResponding(m)
             else:
-                MsgUser.debug(e.reason.args[1])
-                raise SiteNotResponding(e.reason.args[1])
+                MsgUser.debug(str(e.reason))
+                raise SiteNotResponding(str(e.reason))
         except socket.timeout, e:
             MsgUser.debug(e)
             raise SiteNotResponding(str(e))
@@ -1874,7 +1886,8 @@ class DownloadError(Exception):
 def shell_config(shell, fsldir, skip_root=False):
     MsgUser.debug("Building environment for %s" % (shell))
     env_lines = ''
-    if shell == 'sh' or shell == 'bash':
+
+    if shell in BOURNE_SHELLS:
         if skip_root:
             env_lines += '''if [ -x /usr/bin/id ]; then
   if [ -z "$EUID" ]; then
@@ -1895,7 +1908,7 @@ export FSLDIR PATH
             env_lines += '''fi'''
         match = "FSLDIR="
         replace = "FSLDIR=%s"
-    elif shell == 'csh' or shell == 'tcsh':
+    elif shell in C_SHELLS:
         if skip_root:
             env_lines += '''if ( $uid != 0 ) then
 '''
@@ -1912,7 +1925,7 @@ endif'''
         replace = "setenv FSLDIR %s"
     elif shell == 'matlab':
         env_lines = '''
-% FSL Setup
+%% FSL Setup
 setenv( 'FSLDIR', '%s' );
 fsldir = getenv('FSLDIR');
 fsldirmpath = sprintf('%%s/etc/matlab',fsldir);
@@ -1934,6 +1947,9 @@ def get_profile(shell):
         profile = os.path.join(home, '.bash_profile')
         if not os.path.isfile(profile) and os.path.isfile(dotprofile):
             profile = dotprofile
+    elif shell == 'zsh':
+        profile = os.path.join(home, '.zprofile')
+        # ZSH will never source .profile
     elif shell == 'sh':
         profile = dotprofile
     else:
@@ -2080,7 +2096,7 @@ def setup_system_environment(fsldir):
             else:
                 # Create the file
                 try:
-                    create_file(profile, lines, sudo)
+                    create_file(this_profile, lines, sudo)
                 except CreateFileError, e:
                     exceptions.append(str(e))
 
@@ -2103,7 +2119,7 @@ def setup_environment(fsldir=None, system=False, with_matlab=False):
     user_shell = which_shell()
     MsgUser.debug("User's shell is %s" % (user_shell))
     try:
-        profile_lines = shell_config(user_shell, fsldir)
+        (profile_lines, _, _) = shell_config(user_shell, fsldir)
         profile = get_profile(user_shell)
     except ValueError, e:
         raise SetupEnvironmentError(str(e))
@@ -2579,10 +2595,10 @@ def do_install(options, settings):
                     MsgUser.debug(str(e))
                     MsgUser.failed(
                         "Failed to configure system-wide profiles "
-                        "with FSL settings: " % (str(e)))
+                        "with FSL settings: %s" % (str(e)))
                 except SetupEnvironmentSkip, e:
                     MsgUser.skipped(
-                        "Some shells already configured: " % (str(e)))
+                        "Some shells already configured: %s" % (str(e)))
                 else:
                     MsgUser.debug("System-wide profiles setup.")
                     MsgUser.ok("System-wide FSL configuration complete.")
@@ -2592,7 +2608,7 @@ def do_install(options, settings):
         elif my_uid != 0:
             # Setup the environment for the current user
             try:
-                setup_environment(fsldir, matlab)
+                setup_environment(fsldir, with_matlab=matlab)
             except SetupEnvironmentError, e:
                 MsgUser.debug(str(e))
                 MsgUser.failed(str(e))
@@ -2734,42 +2750,43 @@ FSL in.'''
             return
 
         fsldir = get_fsldir(specified_dir=options.d_dir, install=True)
+        reinstall = True
         if os.path.exists(fsldir):
             inst_version = get_installed_version(fsldir)
             if inst_version == version:
                 reinstall = Settings.inst_qus.ask_question('version_match')
-                if not reinstall:
-                    return
-        (fname, version, details) = download_release(
-            to_temp=True,
-            request_version=options.requestversion,
-            skip_verify=options.skipchecksum)
-        if not details['supported']:
+        if reinstall:
+            (fname, version, details) = download_release(
+                to_temp=True,
+                request_version=options.requestversion,
+                skip_verify=options.skipchecksum)
+            if not details['supported']:
+                MsgUser.debug(
+                    "This OS is not officially supported -"
+                    " you may experience issues"
+                )
             MsgUser.debug(
-                "This OS is not officially supported -"
-                " you may experience issues"
-            )
-        MsgUser.debug(
-            "Installing %s from %s (details: %s)" % (fname, version, details))
-        MsgUser.message(
-            "Installing FSL software version %s..." % (version))
-        install_archive(
-            archive=fname, fsldir=fsldir)
-        try:
-            safe_delete(fname)
-        except SafeDeleteError, e:
-            MsgUser.debug(
-                "Unable to delete downloaded package %s ; %s" % (
-                    fname, str(e)))
-        if details['notes']:
-            MsgUser.message(details['notes'])
-        try:
-            post_install(
-                fsldir=fsldir, settings=settings,
-                quiet=options.quiet, x11=x11,
-                app_links=application_links)
-        except PostInstallError, e:
-            raise InstallError(str(e))
+                "Installing %s from %s (details: %s)" % (
+                    fname, version, details))
+            MsgUser.message(
+                "Installing FSL software version %s..." % (version))
+            install_archive(
+                archive=fname, fsldir=fsldir)
+            try:
+                safe_delete(fname)
+            except SafeDeleteError, e:
+                MsgUser.debug(
+                    "Unable to delete downloaded package %s ; %s" % (
+                        fname, str(e)))
+            if details['notes']:
+                MsgUser.message(details['notes'])
+            try:
+                post_install(
+                    fsldir=fsldir, settings=settings,
+                    quiet=options.quiet, x11=x11,
+                    app_links=application_links)
+            except PostInstallError, e:
+                raise InstallError(str(e))
 
     except DownloadError, e:
         MsgUser.debug("Unable to download FSL %s" % (str(e)))
