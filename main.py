@@ -1,5 +1,5 @@
+from __future__ import print_function
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
-import subprocess
 import os
 import sys
 from threading import Thread
@@ -22,38 +22,38 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.appsButton.clicked.connect(self.launchAPPS)
 
 	def launchPINTS(self):
-		print 'Launching PINTS'
+		print('Launching PINTS')
 		command = 'python pints.py'
-		print command
+		print(command)
 		t = Thread(target = lambda: os.system(command))
 		t.start()
 		
 
 	def launchFITMAN(self):
-		print 'Launching FITMAN'
+		print('Launching FITMAN')
 		command = 'python fitman.py'
-		print command
+		print(command)
 		t = Thread(target = lambda: os.system(command))
 		t.start()
 
 	def launchSPICeS(self):
-		print 'Launching SPICeS'
+		print('Launching SPICeS')
 		command = 'python spices.py'
-		print command
+		print(command)
 		t = Thread(target = lambda: os.system(command))
 		t.start()
 
 	def launchBARSTOOL(self):
-		print 'Launching BARSTOOL'
+		print('Launching BARSTOOL')
 		command = 'python barstool.py'
-		print command
+		print(command)
 		t = Thread(target = lambda: os.system(command))
 		t.start()
 
 	def launchAPPS(self):
-		print 'Launch APPS'
+		print('Launch APPS')
 		command = 'python apps.py'
-		print command
+		print(command)
 		t = Thread(target = lambda: os.system(command))
 		t.start()
 

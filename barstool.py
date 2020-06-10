@@ -1,18 +1,13 @@
-# BARSTOOL v3.1
+from __future__ import print_function
 
 # ---- System Libraries ---- #
+from builtins import str
+from builtins import range
 import sys
 import os
-import datetime
-import time
-import glob
-import platform
 import subprocess
 
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
-import subprocess as subproc
-
-import multiprocessing as mp
 
 from collections import defaultdict
 
@@ -20,11 +15,7 @@ from itertools import groupby
 
 # ---- Math Libraries ---- #
 import scipy as sp
-import scipy.signal as spsg
-
 import numpy as np
-import math
-from pyfftw.interfaces import scipy_fftpack as fftw
 
 # ---- Plotting Libraries ---- #
 import matplotlib as mpl;
@@ -250,31 +241,31 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				# -> except the real "fix" needs to be ignoring the peaks 
 				# -> OR outputing CRLBs as part of quantification (where you define which peaks to include)
 				crlb_result = np.nanmean(self.outputs[i].metabolites[metab].crlb) 
-				print metab, np.nanmean(self.outputs[i].metabolites[metab].crlb)
+				print(metab, np.nanmean(self.outputs[i].metabolites[metab].crlb))
 				crlbs.append(crlb_result)
 
 			# Write heading to file if we're at the first line
 			if i == 0:
 				saveFile.write('ID,')
-				print 'ID',
+				print('ID', end=' ')
 				for metab in metabs: 
 					saveFile.write(str(self.outputs[i].metabolites[metab].name)+',')
-					print self.outputs[i].metabolites[metab].name,
+					print(self.outputs[i].metabolites[metab].name, end=' ')
 				for metab in metabs: 
 					saveFile.write(str(self.outputs[i].metabolites[metab].name)+',')
-					print self.outputs[i].metabolites[metab].name,
+					print(self.outputs[i].metabolites[metab].name, end=' ')
 				saveFile.write('\n')
-				print ''
+				print('')
 
 			# Write ID and amplitudes to file
 			saveFile.write(ID+',')
 			saveFile.write(str(amps).replace(' ', '').replace('[', '').replace(']',''))
 			saveFile.write(',')
 			saveFile.write(str(crlbs).replace(' ', '').replace('[', '').replace(']',''))
-			print ID, str(amps).replace(' ', '').replace('[', '').replace(']','')
-			print ID, str(crlbs).replace(' ', '').replace('[', '').replace(']','')
+			print(ID, str(amps).replace(' ', '').replace('[', '').replace(']',''))
+			print(ID, str(crlbs).replace(' ', '').replace('[', '').replace(']',''))
 			saveFile.write('\n')
-			print ''
+			print('')
 
 		saveFile.close()
 
@@ -319,7 +310,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		for (i, image) in enumerate(self.betImageList):
 			command = ['fslreorient2std', str(image), str(image).replace('.nii.gz', '_std.nii.gz')]
 			self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-			print str(command).replace('[','').replace(']','').replace(',','').replace("'", '')
+			print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 			subprocess.call(command)
 		self.consoleOutputText.append('')
 
@@ -335,7 +326,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		self.consoleOutputText.append('Finding isocenter of image ...')
 		self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-		print str(command).replace('[','').replace(']','').replace(',','').replace("'", '')
+		print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 		subprocess.call(command)
 
 		self.consoleOutputText.append('')
@@ -386,7 +377,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			command.append('-c ' + str(brainctr))
 			self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 			# subprocess.call(command)
-			print str(command).replace('[','').replace(']','').replace(',','').replace("'", '')
+			print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 			os.system(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 		self.consoleOutputText.append('')
 
@@ -409,7 +400,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 		self.consoleOutputText.append('')
 		# subprocess.call(command)
-		print str(command).replace('[','').replace(']','').replace(',','').replace("'", '')
+		print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 		os.system(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 
 		self.checkFthreshButton.setEnabled(False)
@@ -435,7 +426,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		for (i, fthresh) in enumerate(self.fthreshList[0:np.size(luts)]):
 			command = ['rm', str(image)+'_std_brain_f'+str(fthresh)+'.nii.gz']
 			self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-			print str(command).replace('[','').replace(']','').replace(',','').replace("'", '')
+			print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 			subprocess.call(command)
 		self.consoleOutputText.append('')
 
@@ -452,18 +443,18 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		command.append('-m')
 		self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 		# subprocess.call(command)
-		print str(command).replace('[','').replace(']','').replace(',','').replace("'", '')
+		print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 		os.system(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 
 		# Rename files
 		command = ['mv', str(image)+'_std_brain_f'+str(self.fthresh_best)+'.nii.gz', str(image)+'_std_brain.nii.gz']
 		self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-		print str(command).replace('[','').replace(']','').replace(',','').replace("'", '')
+		print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 		subprocess.call(command)
 
 		command = ['mv', str(image)+'_std_brain_f'+str(self.fthresh_best)+'_mask.nii.gz', str(image)+'_std_brain_mask.nii.gz']
 		self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-		print str(command).replace('[','').replace(']','').replace(',','').replace("'", '')
+		print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 		subprocess.call(command)
 
 		self.consoleOutputText.append('---- Processed Image ' + str(self.BETIMAGELIST_INDEX+1) + ' of ' + str(np.size(self.betImageList)) + ' ---- ') 
@@ -559,7 +550,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			command.append('-v')
 			command.append('-o ' + str(image) + ' ' + str(image))
 			self.consoleOutputText.append('>> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-			print str(command).replace('[','').replace(']','').replace(',','').replace("'", '')
+			print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 			os.system(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 
 		self.consoleOutputText.append('Done.')
@@ -597,7 +588,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			if not('#' in line):
 				params = line.replace('\n','').split('\t')
 				if params[0] == 'water':
-					print params
+					print(params)
 					self.protonsLineEdit_water.setText(str(params[1]))
 					self.T1GMLineEdit_water.setText(str(params[2]))
 					self.T2GMLineEdit_water.setText(str(params[3]))
@@ -606,7 +597,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					self.T1CSFLineEdit_water.setText(str(params[6]))
 					self.T2CSFLineEdit_water.setText(str(params[7]))
 				elif params[0] == 'exp':
-					print params
+					print(params)
 					self.TRLineEdit.setText(str(params[1]))
 					self.TELineEdit.setText(str(params[2]))
 					self.waterConcLineEdit.setText(str(params[3]))
@@ -619,7 +610,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 						self.tissueConcButton.checked = False
 						self.voxelConcButton.checked = True
 				else:
-					print params
+					print(params)
 					rows.append(params)
 
 		self.metabParamsTableWidget.setRowCount(sp.size(rows,0))
@@ -860,9 +851,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				seg_wm = np.array(seg_data == 3, dtype=int)
 
 				# File sanity check
-				print ''
-				print "anat:\t{}".format(imgloadname)
-				print " seg:\t{}".format(segloadname)
+				print('')
+				print("anat:\t{}".format(imgloadname))
+				print(" seg:\t{}".format(segloadname))
 
 				# Calculate voxel tissue fractions
 				spec_xyz_lin = np.dot(sup_rda.vox_affine, img_xyz_lin - np.transpose(np.tile(sup_rda.vox_center,(len(i2), 1)), (1, 0))) + np.transpose(np.tile(sup_rda.vox_center,(len(i2), 1)), (1, 0))
@@ -881,9 +872,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				vox_frac[1] = (seg_wm * vox).sum() / float(vox.sum())
 				vox_frac[2] = (seg_csf * vox).sum() / float(vox.sum())
 
-				print ''
-				print "voxfrac:\t", vox_frac
-				print ''
+				print('')
+				print("voxfrac:\t", vox_frac)
+				print('')
 				out_file.write(str(vox_frac[0]) + ',' + str(vox_frac[1]) + ',' + str(vox_frac[2]) + ',')
 
 				# Get number of averages
@@ -894,16 +885,16 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				scale_sup = sup_rda.ConvS[0]
 				scale_uns = unsup_rda.ConvS[0]
 
-				print 'n_avg_sup:\t', n_avg_sup
-				print 'n_avg_uns:\t', n_avg_uns
-				print 'scale_sup:\t', scale_sup
-				print 'scale_uns:\t', scale_uns
-				print ''
+				print('n_avg_sup:\t', n_avg_sup)
+				print('n_avg_uns:\t', n_avg_uns)
+				print('scale_sup:\t', scale_sup)
+				print('scale_uns:\t', scale_uns)
+				print('')
 				out_file.write(str(n_avg_sup) + ',' + str(n_avg_uns) + ',' + str(scale_sup) + ',' + str(scale_uns) + ',')
 
 				# Get metabolite parameters
 				metab_params = self.tree()
-				num_params   = self.metabParamsTableWidget.rowCount(); print 'num_params:\t', num_params
+				num_params   = self.metabParamsTableWidget.rowCount(); print('num_params:\t', num_params)
 				for param_index in range(0, num_params):
 					metab_params[param_index][0] = str(self.metabParamsTableWidget.item(param_index,0).text())
 					metab_params[param_index][1] = float(self.metabParamsTableWidget.item(param_index,1).text())

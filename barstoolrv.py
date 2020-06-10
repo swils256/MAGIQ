@@ -1,28 +1,19 @@
+from __future__ import print_function
+
 # ---- System Libraries ---- #
+from builtins import str
+from builtins import range
 import sys
 import os
-import datetime
-import time
-import glob
-import platform
-import subprocess
 
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
-import subprocess as subproc
-
-import multiprocessing as mp
 
 from collections import defaultdict
 
-from itertools import groupby
-
 # ---- Math Libraries ---- #
 import scipy as sp
-import scipy.signal as spsg
 
 import numpy as np
-import math
-from pyfftw.interfaces import scipy_fftpack as fftw
 
 # ---- Plotting Libraries ---- #
 import matplotlib as mpl;
@@ -224,31 +215,31 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			crlbs = []
 			for metab in metabs: 
 				crlb_result = np.nanmean(self.outputs[i].metabolites[metab].crlb)
-				print metab, np.nanmean(self.outputs[i].metabolites[metab].crlb)
+				print(metab, np.nanmean(self.outputs[i].metabolites[metab].crlb))
 				crlbs.append(crlb_result)
 
 			# Write heading to file if we're at the first line
 			if i == 0:
 				saveFile.write('ID,')
-				print 'ID',
+				print('ID', end=' ')
 				for metab in metabs: 
 					saveFile.write(str(self.outputs[i].metabolites[metab].name)+',')
-					print self.outputs[i].metabolites[metab].name,
+					print(self.outputs[i].metabolites[metab].name, end=' ')
 				for metab in metabs: 
 					saveFile.write(str(self.outputs[i].metabolites[metab].name)+',')
-					print self.outputs[i].metabolites[metab].name,
+					print(self.outputs[i].metabolites[metab].name, end=' ')
 				saveFile.write('\n')
-				print ''
+				print('')
 
 			# Write ID and amplitudes to file
 			saveFile.write(ID+',')
 			saveFile.write(str(amps).replace(' ', '').replace('[', '').replace(']',''))
 			saveFile.write(',')
 			saveFile.write(str(crlbs).replace(' ', '').replace('[', '').replace(']',''))
-			print ID, str(amps).replace(' ', '').replace('[', '').replace(']','')
-			print ID, str(crlbs).replace(' ', '').replace('[', '').replace(']','')
+			print(ID, str(amps).replace(' ', '').replace('[', '').replace(']',''))
+			print(ID, str(crlbs).replace(' ', '').replace('[', '').replace(']',''))
 			saveFile.write('\n')
-			print ''
+			print('')
 
 		saveFile.close()
 
@@ -332,16 +323,16 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		for i, mouse in enumerate(self.mouseDirs):
 			fdf_img = self.fdf_imgs[i]
 			try:
-				print 'Loading ', mouse + '/metab.fid ...'
+				print('Loading ', mouse + '/metab.fid ...')
 				voxel = VarianVoxel(mouse + '/metab.fid', fdf_img.size, fdf_img.X_VARIAN, fdf_img.Y_VARIAN, fdf_img.Z_VARIAN, fdf_img.fseimg_ijk, fdf_img.fseimg_xyz_kdt)
 			except Exception as e:
-				print 'Error: ', e
-				print 'Loading ', mouse + '/water.fid ...'
+				print('Error: ', e)
+				print('Loading ', mouse + '/water.fid ...')
 				voxel = VarianVoxel(mouse + '/water.fid', fdf_img.size, fdf_img.X_VARIAN, fdf_img.Y_VARIAN, fdf_img.Z_VARIAN, fdf_img.fseimg_ijk, fdf_img.fseimg_xyz_kdt)
 			nifti_img = nib.Nifti1Image(voxel.voximg, fdf_img.affine)
 			nifti_img.to_filename(mouse + '/mrsvoxel.nii.gz')
 			self.consoleOutputText.append(' >> ' + str(mouse))
-		print ''
+		print('')
 		self.consoleOutputText.append('')
 
 		self.runVoxAlignButton.setEnabled(False)
@@ -351,11 +342,11 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.consoleOutputText.append('==== PCNN 3D ====')
 		
 		# Start Matlab Engine
-		print 'Starting Matlab Engine ...'
+		print('Starting Matlab Engine ...')
 		cwd = os.popen('pwd').read().split('\n')[0]
 		eng = matlab.engine.start_matlab()
 		eng.cd(cwd + '/barstoolrv')
-		matlab_wd = eng.pwd(); print matlab_wd
+		matlab_wd = eng.pwd(); print(matlab_wd)
 
 		failed_mice = []
 		successful_mice = []
@@ -363,7 +354,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		for i, mouse in enumerate(self.mouseDirs):
 			self.consoleOutputText.append(' >> ' + str(mouse))
 
-			print 'Processing ', mouse, '...'
+			print('Processing ', mouse, '...')
 			fse2d_nifti = mouse + '/fse2d.nii.gz'
 			fse2d_mask  = mouse + '/fse2d_mask.nii.gz'
 			fse2d_brain = mouse + '/fse2d_brain.nii.gz'
@@ -378,16 +369,16 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				command = ['fslmaths', fse2d_nifti]
 				command.append('-mas ' + fse2d_mask)
 				command.append(fse2d_brain)
-				print str(command).replace('[','').replace(']','').replace(',','').replace("'", '')
+				print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 				os.system(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 				self.consoleOutputText.append('    ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 
 				successful_mice.append(mouse)
 			except Exception as e:
-				print e
+				print(e)
 				failed_mice.append(mouse)
 
-		print ''
+		print('')
 		self.consoleOutputText.append('')
 		self.consoleOutputText.append('The following files could not be processed successfully:')
 		for mouse in failed_mice:
@@ -395,7 +386,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.consoleOutputText.append('')
 
 		# Stop Matlab Engine
-		print 'Stopping Matlab Engine ...'
+		print('Stopping Matlab Engine ...')
 		eng.quit()
 
 		self.runPCNNButton.setEnabled(False)
@@ -406,7 +397,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.consoleOutputText.append('==== CSF EXTRACT ====')
 		for i, mouse in enumerate(self.mouseDirs):
 			self.consoleOutputText.append(' >> ' + str(mouse))
-			print 'Processing ', mouse, '...'
+			print('Processing ', mouse, '...')
 
 			brain = nib.load(mouse + '/fse2d_brain.nii.gz')
 			mask  = nib.load(mouse + '/fse2d_mask.nii.gz')
@@ -422,7 +413,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			for i, elem in enumerate(sp.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000)):
 				if brain_kde.integrate_box_1d(np.min(brain_img_vec), elem) > float(self.csfThreshLineEdit.text()):
-					print '  | ', i, elem
+					print('  | ', i, elem)
 					csf_thresh = elem
 					break
 
@@ -441,7 +432,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			brain_csf_mask_file = nib.Nifti1Image(brain_csf_mask, brain.get_qform())
 			brain_csf_mask_file.to_filename(mouse + '/fse2d_csf_mask.nii.gz')
 
-		print ''
+		print('')
 		self.runSegButton.setEnabled(False)
 		self.selectFDFImagesButton.setEnabled(True)
 
@@ -477,7 +468,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			if not('#' in line):
 				params = line.replace('\n','').split('\t')
 				if params[0] == 'water':
-					print params
+					print(params)
 					self.protonsLineEdit_water.setText(str(params[1]))
 					self.T1GMLineEdit_water.setText(str(params[2]))
 					self.T2GMLineEdit_water.setText(str(params[3]))
@@ -486,7 +477,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					self.T1CSFLineEdit_water.setText(str(params[6]))
 					self.T2CSFLineEdit_water.setText(str(params[7]))
 				elif params[0] == 'exp':
-					print params
+					print(params)
 					self.TRLineEdit.setText(str(params[1]))
 					self.TELineEdit.setText(str(params[2]))
 					self.waterConcLineEdit.setText(str(params[3]))
@@ -499,7 +490,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 						self.tissueConcButton.checked = False
 						self.voxelConcButton.checked = True
 				else:
-					print params
+					print(params)
 					rows.append(params)
 
 		self.metabParamsTableWidget.setRowCount(sp.size(rows,0))
@@ -639,7 +630,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				out_file.write(str(ID)+',')
 
 				self.consoleOutputText.append(' >> ' + str(mouse))
-				print 'Processing ', mouse, '...'
+				print('Processing ', mouse, '...')
 
 				brain = nib.load(mouse + '/fse2d_brain.nii.gz')
 				csf   = nib.load(mouse + '/fse2d_csf_mask.nii.gz')
@@ -662,15 +653,15 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				tissue_frac = 1-float(csf_n)/float(vox_n)
 				vox_frac = [tissue_frac/2, tissue_frac/2, 1-tissue_frac]
 
-				print "voxfrac:\t", tissue_frac, vox_frac
+				print("voxfrac:\t", tissue_frac, vox_frac)
 				out_file.write(str(tissue_frac) + ',' + str(vox_frac[2]) + ',')
 
 				# Get number of averages
 				procpar_sup = Procpar(mouse + '/metab.fid/procpar')
-				n_avg_sup = int(procpar_sup.acqcycles)/2
+				n_avg_sup = int(procpar_sup.acqcycles)//2
 
 				procpar_uns = Procpar(mouse + '/water.fid/procpar')
-				n_avg_uns = int(procpar_uns.acqcycles)/2
+				n_avg_uns = int(procpar_uns.acqcycles)//2
 
 				# procpar_sup = open(mouse + '/metab.fid/procpar', 'r')
 				# for line in procpar_sup:
@@ -689,20 +680,20 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				gain_sup = procpar_sup.gain
 				gain_uns = procpar_uns.gain
 
-				print 'n_avg_sup:\t', n_avg_sup, '\t',
-				print 'n_avg_uns:\t', n_avg_uns
-				print 'gain_sup:\t', gain_sup, '\t',
-				print 'gain_uns:\t', gain_uns
-				print 'sup_ConvS:\t', sup_dat.ConvS, '\t',
-				print 'uns_ConvS:\t', unsup_dat.ConvS
-				print 'scale_sup:\t', scale_sup, '\t',
-				print 'scale_uns:\t', scale_uns
-				print ''
+				print('n_avg_sup:\t', n_avg_sup, '\t', end=' ')
+				print('n_avg_uns:\t', n_avg_uns)
+				print('gain_sup:\t', gain_sup, '\t', end=' ')
+				print('gain_uns:\t', gain_uns)
+				print('sup_ConvS:\t', sup_dat.ConvS, '\t', end=' ')
+				print('uns_ConvS:\t', unsup_dat.ConvS)
+				print('scale_sup:\t', scale_sup, '\t', end=' ')
+				print('scale_uns:\t', scale_uns)
+				print('')
 				out_file.write(str(n_avg_sup) + ',' + str(n_avg_uns) + ',' + str(scale_sup) + ',' + str(scale_uns) + ',')
 
 				# Get metabolite parameters
 				metab_params = self.tree()
-				num_params   = self.metabParamsTableWidget.rowCount(); print 'num_params:\t', num_params
+				num_params   = self.metabParamsTableWidget.rowCount(); print('num_params:\t', num_params)
 				for param_index in range(0, num_params):
 					metab_params[param_index][0] = str(self.metabParamsTableWidget.item(param_index,0).text())
 					metab_params[param_index][1] = float(self.metabParamsTableWidget.item(param_index,1).text())
@@ -784,11 +775,11 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				palette.set_over('g', 0.6)
 
 				asp = brain.header['pixdim'][1]/brain.header['pixdim'][3]
-				print 'asp', asp
+				print('asp', asp)
 				# raw_input()
 
-				print 'brain_img', brain_img[vox_centroid[0],:,:].squeeze()
-				print 'vox_centroid', vox_centroid
+				print('brain_img', brain_img[vox_centroid[0],:,:].squeeze())
+				print('vox_centroid', vox_centroid)
 				# raw_input()
 
 				anat_zoom1, k1 = autozoom(np.transpose(brain_img[vox_centroid[0],:,:].squeeze(), transpose_indices))
@@ -819,7 +810,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
 					out_file.write("{:6.6f},".format(f_crlb[str(self.metabParamsTableWidget.item(metab_index,0).text())]))
 			except Exception as e:
-				print e
+				print(e)
 				failed_mice.append(mouse)			
 			out_file.write('\n')
 		

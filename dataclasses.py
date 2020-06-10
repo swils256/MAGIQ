@@ -1,6 +1,9 @@
-# DATA OBJECTS USED IN PINTS AND BARSTOOL
+from __future__ import print_function
 
 # ---- System Libraries ---- #
+from builtins import str
+from builtins import range
+from builtins import object
 import sys
 import os
 import datetime as dt
@@ -27,7 +30,7 @@ import math
 from pyfftw.interfaces import scipy_fftpack as fftw
 
 # ---- Data Classes ---- #
-class Experiment:
+class Experiment(object):
 	def __init__(self, pulseseq='slaser', b0=297.2):
 
 		# General Experiment Information
@@ -50,33 +53,51 @@ class Experiment:
 
 		# Experimental Parameters for Simulation
 		if pulseseq == 'slaser':
-			self.A_90s = []									# amplitudes for pulse calibration
+			# amplitudes for pulse calibration
+			self.A_90s = []
 			self.A_180s = []
-			self.RF_OFFSET = 4.7								# default is 4.7 ppm (center frequency of excitation pulse)
+
+			# default is 4.7 ppm (center frequency of excitation pulse)
+			self.RF_OFFSET = 4.7
+
+			# RF pulse files
 			if self.b0 == 123.3:
 				self.inpulse90file  = 'pints/pulses/hsinc_400_8750.pta'
 				self.inpulse180file = 'pints/pulses/HS1_R20.pta'
 			else:
-				self.inpulse90file  = 'pints/pulses/P10.P10NORM.pta'			# RF pulse files
+				self.inpulse90file  = 'pints/pulses/P10.P10NORM.pta'
 				self.inpulse180file = 'pints/pulses/HS4_R25.HS4_R25.pta'
-			self.PULSE_90_LENGTH = 0							# RF pulse lengths
+			
+			# RF pulse lengths
+			self.PULSE_90_LENGTH = 0
 			self.PULSE_180_LENGTH = 0
-			self.A_180 = 1.0								# To store calibrated RF amplitudes
+			
+			# To store calibrated RF amplitudes
+			self.A_180 = 1.0
 			self.A_90 = 1.0
-			self.fudge_factor = 0								# SLR fudge factor
+			self.fudge_factor = 0	# SLR fudge factor
 		elif pulseseq == 'laser':
-			self.A_90s = []									# amplitudes for pulse calibration
+			# amplitudes for pulse calibration
+			self.A_90s = []
 			self.A_180s = []
-			self.RF_OFFSET = 4.7								# default is 4.7 ppm (center frequency of excitation pulse)
-			self.inpulse90file = 'pints/pulses/at60.n29.RF'		# RF pulse files
-			# self.inpulse90file = 'pints/pulses/HS2_R15_512_AHP.RF'
+
+			# default is 4.7 ppm (center frequency of excitation pulse)
+			self.RF_OFFSET = 4.7
+
+			# RF pulse files
+			self.inpulse90file = 'pints/pulses/at60.n29.RF'
 			self.inpulse180file = 'pints/pulses/HS2_R15_512.RF'
-			self.PULSE_90_LENGTH = 0							# RF pulse lengths
+			
+			# RF pulse lengths
+			self.PULSE_90_LENGTH = 0
 			self.PULSE_180_LENGTH = 0
-			self.A_180 = 1.0								# To store calibrated RF amplitudes
+			
+			# To store calibrated RF amplitudes
+			self.A_180 = 1.0
 			self.A_90 = 1.0
 
-		self.tolppm = 0.0015	# binning parameters
+		# binning parameters
+		self.tolppm = 0.0015
 		self.tolpha = 50.0
 		self.ppmlo = 0.0
 		self.ppmhi = 10.0
@@ -119,7 +140,7 @@ class Experiment:
 	def getFs(self):
 		return 1/self.dwell_time
 
-class Pulse:
+class Pulse(object):
 	def __init__(self, inpulsefile, pulse_length, scanner='siemens'):
 
 		if scanner == 'siemens':
@@ -138,7 +159,7 @@ class Pulse:
 					mag = float(line.split('\t')[0]) * 1E-3
 					phase = float(line.split('\t')[1])
 					self.waveform.append(mag * np.exp(1j * phase))
-			self.waveform.pop(-1) # delete last element
+			self.waveform.pop(-1)	# delete last element
 			self.waveform = np.array(self.waveform)
 			siemens_file.close()
 
@@ -165,8 +186,8 @@ class Pulse:
 					elif "INTEGRAL" in line:
 						self.INTEGRAL = float(line.split(' ')[-1])
 				else:
-					phases.append(np.deg2rad(float(filter(None,line.replace('\t', ' ').split(' '))[0])))
-					mags.append(float(filter(None,line.replace('\t', ' ').split(' '))[1]))
+					phases.append(np.deg2rad(float([_f for _f in line.replace('\t', ' ').split(' ') if _f][0])))
+					mags.append(float([_f for _f in line.replace('\t', ' ').split(' ') if _f][1]))
 
 			# create waveform
 			for (i, phase) in enumerate(phases):
@@ -178,7 +199,7 @@ class Pulse:
 			#define parameters
 			self.pulsestep = pulse_length / len(self.waveform)
 
-class RefSignal:
+class RefSignal(object):
 	def __init__(self, signal, n, fs, t, b0):
 		self.n = n
 		self.signal = signal[0:n]
@@ -186,7 +207,7 @@ class RefSignal:
 		self.t = t
 		self.b0 = b0
 
-class Metabolite:
+class Metabolite(object):
 	def __init__(self):
 
 		# General Metabolite Information
@@ -246,7 +267,10 @@ class Metabolite:
 			phi_k = sp.deg2rad(self.phase[i]) + pfactor	# radians
 			t_0 = dfactor if sp.size(self.delay) == 0 else self.delay[i]
 
-			sinusoids[i,] = c_k * sp.exp(1j*(2*sp.pi*w_k*(t+t_0)+phi_k)) * sp.exp(-sp.pi*a_k*np.abs(t+t_0)) * sp.exp(-np.power(sp.pi,2)/(4*np.log(2))*np.power(b_k,2)*np.power(t+t_0,2))
+			sinusoids[i,] = c_k * \
+							sp.exp(1j*(2*sp.pi*w_k*(t+t_0)+phi_k)) * \
+							sp.exp(-sp.pi*a_k*np.abs(t+t_0)) * \
+							sp.exp(-np.power(sp.pi,2)/(4*np.log(2))*np.power(b_k,2)*np.power(t+t_0,2))
 
 
 		# ---- OLD MODEL BASED ON VESPA ---- #
@@ -273,7 +297,7 @@ class Metabolite:
 
 	def getSpec(self, TE, b0, t, sfactor, afactor, pfactor, dfactor, lb, fs):
 		n = sp.size(self.getFID(TE, b0, t, sfactor, afactor, pfactor, dfactor, lb))
-		f = sp.arange(+n/2,-n/2,-1)*(fs/n)*(1/b0)
+		f = sp.arange(+n//2,-n//2,-1)*(fs/n)*(1/b0)
 
 		return (-f, fftw.fftshift(fftw.fft(self.getFID(TE, b0, t, sfactor, afactor, pfactor, dfactor, lb))))
 
@@ -289,7 +313,7 @@ class Metabolite:
 	def calcRatio(self, ref_value):
 		return np.sumAmp()/ref_value
 
-class Macromolecule:
+class Macromolecule(object):
 	def __init__(self, name, shift, line_type, lw, area, phase):
 
 		self.name = name
@@ -330,7 +354,7 @@ class Macromolecule:
 
 	def getSpec(self, TE, b0, t, sfactor, afactor, pfactor, dfactor, lb, fs):
 		n = sp.size(self.getFID(TE, b0, t, sfactor, afactor, pfactor, lb))
-		f = sp.arange(+n/2,-n/2,-1)*(fs/n)*(1/b0)
+		f = sp.arange(+n//2,-n//2,-1)*(fs/n)*(1/b0)
 
 		return (-f, fftw.fftshift(fftw.fft(self.getFID(TE, b0, t, sfactor, afactor, pfactor, dfactor, lb))))
 
@@ -340,7 +364,7 @@ class Macromolecule:
 	def energy_spec(self, TE, b0, t, sfactor, afactor, pfactor, dfactor, lb):
 		return np.sum(np.power(np.absolute(fftw.fftshift(fftw.fft(self.getFID(TE, b0, t, sfactor, afactor, pfactor, dfactor, lb)))), 2))
 
-class CSTGroup:
+class CSTGroup(object):
 	def __init__(self, typeCST, name, members, minCST, maxCST):
 		self.typeCST = typeCST
 		self.name = name
@@ -353,7 +377,7 @@ class CSTGroup:
 		self.ref_value = 0
 		self.ref_T2 = 0
 
-class OutputFile:
+class OutputFile(object):
 	def __init__(self, filename):
 		self.filename = filename
 		self.metabolites = self.tree()
@@ -361,8 +385,8 @@ class OutputFile:
 		self.loadOutputFile()
 
 	def loadOutputFile(self):
-		print '======================================='
-		print 'Reading data from: ' + self.filename + ' ...'
+		print('=======================================')
+		print('Reading data from: ' + self.filename + ' ...')
 
 		in_file = open(self.filename,'r')
 		
@@ -371,21 +395,21 @@ class OutputFile:
 		constraints_file_flag = False
 		for (i, line) in enumerate(in_file):
 			if "NUMBER_PEAKS" in line:
-				self.num_peaks = filter(None, line.replace('\r','').replace('\n','').split('\t'))[1]
-				print self.num_peaks
+				self.num_peaks = [_f for _f in line.replace('\r','').replace('\n','').split('\t') if _f][1]
+				print(self.num_peaks)
 			elif "noise_STDEV_real" in line:
-				self.noise_STDEV_real = float(filter(None, line.split('\t'))[1].replace('\r','').replace('\n',''))
-				print self.noise_STDEV_real
+				self.noise_STDEV_real = float([_f for _f in line.split('\t') if _f][1].replace('\r','').replace('\n',''))
+				print(self.noise_STDEV_real)
 			elif "noise_STDEV_imag" in line:
-				self.noise_STDEV_imag = float(filter(None, line.split('\t'))[1].replace('\r','').replace('\n',''))
-				print self.noise_STDEV_imag
+				self.noise_STDEV_imag = float([_f for _f in line.split('\t') if _f][1].replace('\r','').replace('\n',''))
+				print(self.noise_STDEV_imag)
 			elif i > 14 and i < int(self.num_peaks) + 15:
-				peak = int(filter(None, line.replace('\r','').replace('\n','').split(' '))[0])
-				output[peak] = filter(None, line.replace('\r','').replace('\n','').split(' '))
-				print filter(None, line.replace('\r','').replace('\n','').split(' '))
+				peak = int([_f for _f in line.replace('\r','').replace('\n','').split(' ') if _f][0])
+				output[peak] = [_f for _f in line.replace('\r','').replace('\n','').split(' ') if _f]
+				print([_f for _f in line.replace('\r','').replace('\n','').split(' ') if _f])
 			elif i > 14 and i > int(self.num_peaks) + 17 and i < 2*int(self.num_peaks) + 18:
-				peak = int(filter(None, line.replace('\r','').replace('\n','').replace(';','').split(' '))[0])
-				crlb[peak] = filter(None, line.replace('\r','').replace('\n','').replace(';','').split(' '))
+				peak = int([_f for _f in line.replace('\r','').replace('\n','').replace(';','').split(' ') if _f][0])
+				crlb[peak] = [_f for _f in line.replace('\r','').replace('\n','').replace(';','').split(' ') if _f]
 			elif ";PEAK#" in line or ";PEAK #" in line or ";Peak#" in line or ";Peak #" in line:
 				constraints_file_flag = True
 			elif "Constraints_File_Ends" in line:
@@ -393,7 +417,7 @@ class OutputFile:
 			elif constraints_file_flag == True:
 				if (";" in line) and not("\t" in line):
 					current_metabolite = line.replace(';', '').replace('\r','').replace('\n','')
-					print line.replace(';', '').replace('\r','').replace('\n','')
+					print(line.replace(';', '').replace('\r','').replace('\n',''))
 					self.metabolites_list.append(current_metabolite)
 					self.metabolites[current_metabolite] = Metabolite()
 					self.metabolites[current_metabolite].name = current_metabolite
@@ -401,7 +425,7 @@ class OutputFile:
 					if not(line[0] == ';') and len(line.replace('\r','').replace('\n','')) > 0:
 						self.metabolites[current_metabolite].peak.append(int(line.split('\t')[0]))
 
-		print self.metabolites_list
+		print(self.metabolites_list)
 
 		for metabolite in self.metabolites_list:
 			for peak in self.metabolites[metabolite].peak:
@@ -420,7 +444,7 @@ class OutputFile:
 				# self.metabolites[metabolite].area[-1], self.metabolites[metabolite].phase[-1], self.metabolites[metabolite].delay[-1], \
 				# self.metabolites[metabolite].width_G[-1], self.metabolites[metabolite].crlb[-1]
 
-		print '======================================='
+		print('=======================================')
 
 		# this attribute allows user to reference output data structure directly via peak number 
 		# (instead of indexing by metabolite)
@@ -429,14 +453,14 @@ class OutputFile:
 
 	def tree(self): return defaultdict(self.tree)
 
-class DatFile:
+class DatFile(object):
 	def __init__(self, filename):
 		self.filename = filename
 		self.loadDatFile()
 
 	def loadDatFile(self):
-		print '======================================='
-		print 'Reading dat from ', self.filename, ' ...'		
+		print('=======================================')
+		print('Reading dat from ', self.filename, ' ...')		
 	
 		in_file = open(self.filename,'r')
 
@@ -447,7 +471,7 @@ class DatFile:
 
 		for (i, line) in enumerate(in_file):
 			if i == 0:
-				self.n = int(line.replace(' ', '').replace('\n', ''))/2
+				self.n = int(line.replace(' ', '').replace('\n', ''))//2
 			elif i == 2:
 				self.fs = 1/float(line.replace(' ', '').replace('\n', ''))
 			elif i == 3:
@@ -464,24 +488,24 @@ class DatFile:
 
 		real = sp.array(dat)[0::2]
 		imag = sp.array(dat)[1::2]
-		print 'n', self.n, 'fs', self.fs, 'b0', self.b0
-		print 'ConvS', self.ConvS, 'gain', self.gain
-		print 'Real', real, sp.size(real)
-		print 'Imag', imag, sp.size(imag)
+		print('n', self.n, 'fs', self.fs, 'b0', self.b0)
+		print('ConvS', self.ConvS, 'gain', self.gain)
+		print('Real', real, sp.size(real))
+		print('Imag', imag, sp.size(imag))
 		self.signal = real+1j*imag
 
 		self.t = sp.arange(0, self.n, 1) * (1/self.fs)
-		print '======================================='
+		print('=======================================')
 
 	def energy_FID(self):
 		return np.sum(np.power(np.absolute(self.signal),2))
 
 	def getSpec(self):
 		n = sp.size(self.signal)
-		f = sp.arange(-n/2,+n/2, 1)*(self.fs/n)*(1/self.b0)
+		f = sp.arange(-n//2,+n//2, 1)*(self.fs/n)*(1/self.b0)
 		return (f, fftw.fftshift(fftw.fft(self.signal)))
 
-class RDAFile:
+class RDAFile(object):
 	def __init__(self, filename, **kwargs):
 		self.filename = filename
 		self.kwargs = kwargs
@@ -495,12 +519,12 @@ class RDAFile:
 		try:
 			f = open(filename, "rb")
 		except IOError as e:
-			print "Could not load {} -- exiting".format(filename)
+			print("Could not load {} -- exiting".format(filename))
 			return
 
 		flags = dict()
 		defaults= {'scale_fid': True}
-		for name in defaults.keys():
+		for name in list(defaults.keys()):
 			flags[name] = kwargs.get(name, defaults[name])
 
 		# Read header of RDA file
@@ -522,7 +546,7 @@ class RDAFile:
 		try:
 			fid_data = struct.unpack(format * element_count, fid_data)
 		except struct.error:
-			print "Unexpected input encountered while reading raw data"
+			print("Unexpected input encountered while reading raw data")
 			return
 
 		fid_data = [complex(fid_data[w], fid_data[w+1]) for w in range(0, len(fid_data), 2)] 
@@ -533,14 +557,14 @@ class RDAFile:
 		# Some acquisition parameters from header
 		larmor = float(fid_hdr['MRFrequency'])
 		fid_date = dt.datetime.strptime(fid_hdr['StudyDate'], '%Y%m%d').strftime('%d%b%y')
-		fid_nt = int(fid_hdr["NumberOfAverages"])#.rstrip('.0')) <-- if number of averages end with "0", this will be a problem
+		fid_nt = int(fid_hdr["NumberOfAverages"])	#.rstrip('.0')) <-- if number of averages end with "0", this will be a problem
 		fid_dt = float(fid_hdr["DwellTime"]) / 1e6
 		# fid_time = np.arange(fid_dt, (len(fid_data) + 1) * fid_dt, fid_dt)
 
 		# Reorder data by size of CSI grid (SVS has grid size of 1 x 1)
 		vect_size = int(fid_hdr['VectorSize'])
 		fid_time = np.arange(fid_dt, (vect_size + 1) * fid_dt, fid_dt)
-		fid_data = fid_data.reshape([len(fid_data)/vect_size, vect_size])
+		fid_data = fid_data.reshape([len(fid_data)//vect_size, vect_size])
 		spec_data = np.zeros(fid_data.shape, dtype=complex)
 
 		final_scale = np.ones(fid_data.shape[0])
@@ -612,7 +636,7 @@ class RDAFile:
 		freq = sp.fftpack.fftshift(sp.fftpack.fftfreq(fid_data.size, time[1] - time[0])) 
 		return spec, freq
 
-class Procpar:
+class Procpar(object):
 	def __init__(self, filename):
 		self.filename = filename
 		self.load_procpar()
@@ -622,7 +646,7 @@ class Procpar:
 		f = open(self.filename, 'rb')
 		rawproc = f.read()
 		rawproc1 = rawproc.split("\n")
-		rawproc2 = filter(lambda x : x != '0 ', rawproc1)
+		rawproc2 = [x for x in rawproc1 if x != '0 ']
 		f.close()
 
 		# Remove exccess characters and data
@@ -672,14 +696,14 @@ class Procpar:
 		self.vox2    = float(rawproc3[rawproc3.index("vox2")+1])
 		self.vox3    = float(rawproc3[rawproc3.index("vox3")+1])
 
-class FDF2D:
+class FDF2D(object):
 	def __init__(self, fdfdir, size):
 		self.size    = size
 		self.fdfdir  = fdfdir
-		print 'Loading ... ' + fdfdir
+		print('Loading ... ' + fdfdir)
 		self.load_fdf2D()
 		self.load_imginfo()
-		print ''
+		print('')
 
 	def load_fdf2D(self):
 		self.fseimg = np.empty(self.size)
@@ -691,7 +715,7 @@ class FDF2D:
 
 			while not(line == '') and len(line) > 1 and not('checksum' in line):
 				line = f.readline()
-				var = filter(None, line.replace('\n','').replace('=','').replace(';','').replace(',','').replace('*','').replace('[]','').replace('"','').replace('{', '').replace('}', '').split(' '))
+				var = [_f for _f in line.replace('\n','').replace('=','').replace(';','').replace(',','').replace('*','').replace('[]','').replace('"','').replace('{', '').replace('}', '').split(' ') if _f]
 				varval = []
 				for i, el in enumerate(var):
 					if i == 0:
@@ -707,8 +731,8 @@ class FDF2D:
 							varval.append(int(var[i]))
 				self.header[sl][varname] = np.squeeze(varval)
 
-				if sl == self.size[2]/2:
-					print vartype, varname, varval, f.tell()
+				if sl == self.size[2]//2:
+					print(vartype, varname, varval, f.tell())
 
 			# compute data size
 			dataSize = int(np.prod(self.header[sl]['matrix']) * self.header[sl]['bits'] / 8)
@@ -731,7 +755,7 @@ class FDF2D:
 			f.close()
 
 		# middle slice of volume
-		mid = self.size[2]/2; self.mid = mid
+		mid = self.size[2]//2; self.mid = mid
 
 		# signed resolution
 		res = np.array([10*(self.header[mid]['span'][0]) / (self.header[mid]['matrix'][0]) , 
@@ -740,7 +764,7 @@ class FDF2D:
 		self.res = res
 
 	def load_imginfo(self):
-		print ''
+		print('')
 		
 		mid = self.mid
 		res = self.res
@@ -756,7 +780,7 @@ class FDF2D:
 		a = np.deg2rad(90 - fse2d_procpar.psi)
 		b = np.deg2rad(fse2d_procpar.theta)
 		v = np.deg2rad(fse2d_procpar.phi)
-		print 'a, b, v:', a,b,v
+		print('a, b, v:', a,b,v)
 
 		R_img = np.eye(3)
 		R_img = np.dot(self.R_z(-a), R_img)
@@ -765,7 +789,7 @@ class FDF2D:
 		R_img = np.dot(self.R_y(b),  R_img)
 		R_img = np.dot(self.R_z(a),  R_img)
 		self.R_img = R_img
-		print 'R_img:', R_img
+		print('R_img:', R_img)
 
 		R_img_scaled = np.array([[res[0],0,0],[0,res[1],0],[0,0,res[2]]])
 		R_img_scaled = np.dot(self.R_z(-a), R_img_scaled)
@@ -886,7 +910,7 @@ class FDF2D:
 		m_nifti = np.dot(self.R_y(np.pi/2, 'l'), m_nifti)
 		return m_nifti
 
-class VarianVoxel:
+class VarianVoxel(object):
 	def __init__(self, fiddir, size, X_VARIAN, Y_VARIAN, Z_VARIAN, fseimg_ijk, fseimg_xyz_kdt):
 		spec_procpar = Procpar(fiddir + '/procpar'); self.procpar = spec_procpar
 
@@ -916,8 +940,8 @@ class VarianVoxel:
 		p_vox_varian[2] = np.dot(10*spec_procpar.pos3*z_vox, Z_VARIAN)
 		self.p_vox_varian = p_vox_varian
 
-		print 10*spec_procpar.pos1, 10*spec_procpar.pos2, 10*spec_procpar.pos3
-		print 'p_vox_varian', p_vox_varian
+		print(10*spec_procpar.pos1, 10*spec_procpar.pos2, 10*spec_procpar.pos3)
+		print('p_vox_varian', p_vox_varian)
 
 		voximg = np.zeros(size)
 		vox_res = np.array([0.1, 0.1, 0.1]) # arbitrary
@@ -942,7 +966,7 @@ class VarianVoxel:
 					voximg[vox_i][vox_j][vox_k] = 1
 
 		self.voximg = voximg
-		print ''
+		print('')
 
 	def R_x(self, angle, handedness='r'):
 		if handedness == 'r':
@@ -984,7 +1008,7 @@ class VarianVoxel:
 		m_nifti = np.dot(self.R_y(np.pi/2, 'l'), m_nifti)
 		return m_nifti
 
-class BrukerFID:
+class BrukerFID(object):
 	def __init__(self, file_dir):
 		self.file_dir = file_dir
 
@@ -1106,5 +1130,5 @@ class BrukerFID:
 
 	def getSpec(self):
 		n = sp.size(self.signal)
-		f = sp.arange(-n/2,+n/2, 1)*(self.fs/n)*(1/self.FrqRef)
+		f = sp.arange(-n//2,+n//2, 1)*(self.fs/n)*(1/self.FrqRef)
 		return (-f, fftw.fftshift(fftw.fft(self.signal)))

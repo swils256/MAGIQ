@@ -1,29 +1,17 @@
-# SPICeS for FITMAN version 0.4
+from __future__ import print_function
 
 # ---- System Libraries ---- #
+from builtins import str
+from builtins import range
 import sys
 import os
-import datetime
-import time
-import glob
-import platform
 import copy
 
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
-import subprocess as subproc
-
-import multiprocessing as mp
-
-from collections import defaultdict
-
-from itertools import groupby
 
 # ---- Math Libraries ---- #
 import scipy as sp
-import scipy.signal as spsg
-
 import numpy as np
-import math
 from pyfftw.interfaces import scipy_fftpack as fftw
 
 # ---- Plotting Libraries ---- #
@@ -160,7 +148,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			vis_filename = str(QtWidgets.QFileDialog.getOpenFileName(self, 'Open Visualization Information File', os.getcwd() + '/spices/vis', 'Visualization information files (*.vis)')[0])
 
 			if vis_filename != '':
-				print 'Loading vis groups from: ' + vis_filename
+				print('Loading vis groups from: ' + vis_filename)
 				vis_file = open(vis_filename, 'r')
 
 				self.groupsTextEdit.clear()
@@ -171,20 +159,20 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				vis_file.close()
 
 		except Exception as e:
-			print e
+			print(e)
 
 	def saveVisGroupFile(self):
 		try:
 			vis_filename = str(QtWidgets.QFileDialog.getSaveFileName(self, 'Save Visualization Information File', os.getcwd() + '/spices/vis', 'Visualization information files (*.vis)')[0])
 
 			if vis_filename != '':
-				print 'Writing vis groups to: ' + vis_filename
+				print('Writing vis groups to: ' + vis_filename)
 				vis_file = open(vis_filename, 'w')
 				vis_file.write(self.groupsTextEdit.self.shiftsTextEdit.toPlainText())
 				vis_file.close()
 
 		except Exception as e:
-			print e
+			print(e)
 
 	# ---- Methods to Calculate and Plot Spectra ---- #
 	def addmpl(self, canvas_index, fig, vertical_layout):
@@ -249,7 +237,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				spec = fftw.fftshift(fftw.fft(fid))
 
 				n = sp.size(fid)
-				f = sp.arange(+n/2,-n/2,-1)*(fs/n)*(1/b0)
+				f = sp.arange(+n//2,-n//2,-1)*(fs/n)*(1/b0)
 				fit_f = -f
 
 				# fit_f, spec = self.fit_out.metabolites[metabolite].getSpec(0, b0, t, 0, 1, pfactor, 0, lb, fs)
@@ -279,7 +267,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					spec = fftw.fftshift(fftw.fft(fid))
 
 					n = sp.size(fid)
-					f = sp.arange(+n/2,-n/2,-1)*(fs/n)*(1/b0)
+					f = sp.arange(+n//2,-n//2,-1)*(fs/n)*(1/b0)
 					fit_f = -f
 					# fit_f, spec = self.fit_out.metabolites[member].getSpec(0, b0, t, 0, 1, pfactor, 0, lb, fs)
 					group_spec.append(spec)
@@ -304,7 +292,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				plt.plot(np.array(-fit_f)+sfactor, np.real(fit_spec[-(i+1)])-i*VSHIFT*np.amax(np.real(fit_spec_sum)), color=tableau10[-((i)%np.size(tableau10, axis=0)+1)], lw=1.5, alpha=0.8)
 				ax.text(5, -i*VSHIFT*np.amax(np.real(fit_spec_sum)), fit_spec_names[-(i+1)])
 
-			print np.size(fit_f), np.size(fit_spec_sum), np.size(invivo_spec)
+			print(np.size(fit_f), np.size(fit_spec_sum), np.size(invivo_spec))
 
 			plt.plot(np.array(-fit_f)+sfactor, (np.real(fit_spec_sum)-np.roll(np.real(invivo_spec)[0:np.size(fit_f)], int(HSHIFT)))+np.amax(np.real(invivo_spec))+3.0*VSHIFT*np.amax(np.real(invivo_spec)), color=tableau10[2], lw=1.5, alpha=0.8)
 			plt.plot(np.array(-fit_f)+sfactor, np.roll(np.real(invivo_spec)[0:np.size(fit_f)], int(HSHIFT))+1.5*VSHIFT*np.amax(np.real(invivo_spec)), color=tableau10[0], lw=1.5)

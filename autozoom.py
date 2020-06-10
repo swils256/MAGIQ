@@ -1,8 +1,6 @@
-#!/usr/bin/python
-
+from __future__ import print_function
 import numpy as np
 import pdb
-
 
 def autozoom(img, *karg):
     if len(karg) == 1:
@@ -15,11 +13,8 @@ def autozoom(img, *karg):
         k1 = np.nonzero(s2)[0]
         k2 = np.nonzero(s1)[0]
         k = [k1, k2]
-        # print 's1', s1
-        # print 's2', s2
-        # print 'k', k
     else:
-        print "Error using AUTOZOOM"
+        print("Error using AUTOZOOM")
         return
     zoom = np.squeeze(img[:,k[1]])
     zoom = np.squeeze(zoom[k[0],:])

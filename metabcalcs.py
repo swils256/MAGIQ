@@ -1,29 +1,12 @@
-# METAB QUANTIFICATION CALCULATION IN BARSTOOL
+from __future__ import print_function
 
 # ---- System Libraries ---- #
-import sys
-import os
-import datetime
-import time
-import glob
-import platform
-
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
-import subprocess as subproc
-
-import multiprocessing as mp
-
+from builtins import range
 from collections import defaultdict
-
-from itertools import groupby
 
 # ---- Math Libraries ---- #
 import scipy as sp
-import scipy.signal as spsg
-
 import numpy as np
-import math
-from pyfftw.interfaces import scipy_fftpack as fftw
 
 # ==== NEW CODE ==== #
 # Calculation consistent with:
@@ -60,10 +43,10 @@ def calc(sup_out, unsup_out, \
 	# Loop through all metabolites
 	for i in range(0, num_params):
 
-		for j in range (0, 8): print type(metab_params[i][j]),
-		print ''
-		for j in range (0, 8): print metab_params[i][j],
-		print ''
+		for j in range (0, 8): print(type(metab_params[i][j]), end=' ')
+		print('')
+		for j in range (0, 8): print(metab_params[i][j], end=' ')
+		print('')
 
 		# Get metabolite name
 		name = metab_params[i][0]
@@ -76,14 +59,14 @@ def calc(sup_out, unsup_out, \
 				crlbs.append(np.nan)
 			else:
 				crlbs.append((float(sup_out.crlbs[peak][3])/float(sup_out.output[peak][3])) * 100)
-			print '     | ', peak, sup_out.output[peak][3], crlbs[-1]
+			print('     | ', peak, sup_out.output[peak][3], crlbs[-1])
 			sum_alpha_M = sum_alpha_M + float(sup_out.output[peak][3])
 		final_crlb = np.nanmean(crlbs)
-		print ' | ', sum_alpha_M
+		print(' | ', sum_alpha_M)
 
 		# Get water signal
 		sum_alpha_W = float(unsup_out.output[1][3])
-		print ' | ', sum_alpha_W
+		print(' | ', sum_alpha_W)
 
 		# Calculate relaxation correction for metabolites
 		relax_m = R_M(  vox_frac[0], \
@@ -126,7 +109,7 @@ def calc(sup_out, unsup_out, \
 			# VOXEL CONCENTRATION
 			term5 = 1
 
-		print ' | ', term1, term2, term3a, term3b, term3c, term4, term5
+		print(' | ', term1, term2, term3a, term3b, term3c, term4, term5)
 		final_conc = term1*term2*term3a*term3b*term3c*term4*term5
 
 		# Extra Correction (for Siemens Systems only)
@@ -136,13 +119,13 @@ def calc(sup_out, unsup_out, \
 		if scanner_type == 'siemens':
 			final_conc = final_conc * (float(n_avg_sup) / float(n_avg_uns))
 
-		print ' | ', scanner_type, (float(n_avg_sup) / float(n_avg_uns))
+		print(' | ', scanner_type, (float(n_avg_sup) / float(n_avg_uns)))
 
 		final_conc = final_conc * 1E3
 
-		print name + ':\t', final_conc, 'mM'
-		print name + ':\t', final_crlb, '%'
-		print ''
+		print(name + ':\t', final_conc, 'mM')
+		print(name + ':\t', final_crlb, '%')
+		print('')
 
 		quant_result[name] = final_conc
 		crlb_result[name]  = final_crlb

@@ -14,7 +14,7 @@ def getWaterLW(data_complex_water, t_water):
 # ---- baseline correction ---- #
 def baseline_corr(data_complex):
 	# take the mean of the last eighth of the data
-	dc_offset = np.mean(data_complex[-np.size(data_complex)/8:])
+	dc_offset = np.mean(data_complex[-np.size(data_complex)//8:])
 	data_processed = data_complex - dc_offset
 	return data_processed
 

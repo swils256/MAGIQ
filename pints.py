@@ -1,26 +1,22 @@
-# PINTS for FITMAN version 0.4
+from __future__ import print_function
 
 # ---- System Libraries ---- #
+from builtins import zip
+from builtins import str
+from builtins import range
 import sys
 import os
 import datetime
 import time
-import glob
 import platform
 
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
-import subprocess as subproc
-
-import multiprocessing as mp
 
 from collections import defaultdict
-
-from itertools import groupby
 
 # ---- Math Libraries ---- #
 import scipy as sp
 import scipy.signal as spsg
-
 
 import numpy as np
 import math
@@ -1553,43 +1549,43 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		# Read data from file.
 		metab_info = []
-		print 'Reading data from: ' + filename + ' ...'
+		print('Reading data from: ' + filename + ' ...')
 		for line in in_file:
 			if ";Name:" in line:
 				experiment.name = line.replace('\n', '').replace(': ', ':').split(':')[-1]
-				print '  | Name: ' + experiment.name
+				print('  | Name: ' + experiment.name)
 			elif ";Created:" in line:
 				experiment.date = line.replace('\n', '').split(' ')[-1]
-				print '  | Date: ' + experiment.date
+				print('  | Date: ' + experiment.date)
 			elif ";Comment:" in line:
 				experiment.description = line.replace('\n', '').replace(': ', ':').split(':')[-1]
-				print '  | Description: ' + experiment.description    
+				print('  | Description: ' + experiment.description)    
 			elif ";PI:" in line:
 				experiment.author = line.replace('\n', '').replace(': ', ':').split(':')[-1]
-				print '  | Author: ' + experiment.author
+				print('  | Author: ' + experiment.author)
 			elif ";b0:" in line:
 				experiment.b0 = float(line.replace('\n', '').split(' ')[-1])
-				print '  | b0 = ' + str(experiment.b0)
+				print('  | b0 = ' + str(experiment.b0))
 			elif " Metabolites:" in line:
 				experiment.metabolites_num = int(float(line.replace('\n', '').replace(';', '').split(' ')[0]))
-				print '  | ' + str(experiment.metabolites_num) + ' metabolites simulated in this experiment.'
+				print('  | ' + str(experiment.metabolites_num) + ' metabolites simulated in this experiment.')
 			elif ";PINTS for FITMAN" in line:
 				experiment.type = 'PINTS'
-				print experiment.type
+				print(experiment.type)
 			elif ";Vespa-Simulation Mixed Metabolite Output" in line:
 				experiment.type = 'VESPA'
-				print experiment.type
+				print(experiment.type)
 			elif (";" in line) or ("http:" in line):
 				pass
 			else:
 				metab_info.append(line.replace('\n', '').split('\t'))
-		print '  | Reading complete.\n'
-		print 'Importing data ...'
+		print('  | Reading complete.\n')
+		print('Importing data ...')
 
 		# load information from each data line
 		for currline in metab_info:
 			if experiment.type == 'VESPA':
-				print '  | Importing ' + currline[0] + ' at (' + currline[1] + ', ' + currline[2] + ', ' + currline[3] + ', ' + currline[4] + ')'
+				print('  | Importing ' + currline[0] + ' at (' + currline[1] + ', ' + currline[2] + ', ' + currline[3] + ', ' + currline[4] + ')')
 				name = currline[0].replace('vgov_','').replace('kbehar_','').replace('seeger_','').split('_')[0]
 				loop1 = float(currline[1])
 				# loop2 = float(currline[2])
@@ -1607,7 +1603,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					# if metabolite name is not already recorded, append to list of available metabolties
 					if not(name in experiment.metabolites):
 						experiment.metabolites.append(name)
-						print '    | ' + name + ' added to list of available metabolites.'
+						print('    | ' + name + ' added to list of available metabolites.')
 
 				# append data
 				experiment.data[name].area.append(float(currline[6]))
@@ -1624,7 +1620,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					# if metabolite name is not already recorded, append to list of available metabolties
 					if not(name in experiment.metabolites):
 						experiment.metabolites.append(name)
-						print '    | ' + name + ' added to list of available metabolites.'
+						print('    | ' + name + ' added to list of available metabolites.')
 				else:
 					# index into data structure and check object type
 					if type(experiment.data[name]) is defaultdict:
@@ -1636,17 +1632,17 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 						# if metabolite name is not already recorded, append to list of available metabolties
 						if not(name in experiment.metabolites):
 							experiment.metabolites.append(name)
-							print '    | ' + name + ' added to list of available metabolites.'
+							print('    | ' + name + ' added to list of available metabolites.')
 
 					# append data
 					experiment.data[name].area.append(float(currline[6]))
 					experiment.data[name].ppm.append(float(currline[5]))
 					experiment.data[name].phase.append(float(currline[7]))
 
-		print '  | Total metabolites in file: ' + str(experiment.metabolites_num)
-		print '  | Total metabolites after combination: ' + str(sp.size(experiment.metabolites))
-		print '       | ', experiment.metabolites.sort()
-		print '  | Import complete.\n'
+		print('  | Total metabolites in file: ' + str(experiment.metabolites_num))
+		print('  | Total metabolites after combination: ' + str(sp.size(experiment.metabolites)))
+		print('       | ', experiment.metabolites.sort())
+		print('  | Import complete.\n')
 
 		return experiment
 
@@ -1705,7 +1701,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			metab = self.experiment.data[metabolites[i]]
 			metab.A_m = float(self.metabTableWidget.item(i, 1).text())
 			metab.T2  = float(self.metabTableWidget.item(i, 2).text())
-			print str(metabolites[i]) + ',' + str(metab.A_m) + ',' + str(metab.T2)
+			print(str(metabolites[i]) + ',' + str(metab.A_m) + ',' + str(metab.T2))
 		self.loadMetabInfoLabel.setText("Current metabolite information applied to experiment.")
 
 	def loadMetabInfoFile(self):
@@ -1717,7 +1713,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			for line in in_file:
 				params = line.replace('\n', '').split('\t')
 				if sp.size(params) == 3:
-					print params
+					print(params)
 					A_m_params.append(float(params[1]))
 					T2_params.append(float(params[2]))
 
@@ -1746,12 +1742,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 	def plot(self):
 		try:
 			metabolites = []
-			print '----- Plot a Sum of Metabolites -----'            
-			print 'Metabolites chosen:'
+			print('----- Plot a Sum of Metabolites -----')            
+			print('Metabolites chosen:')
 
 			for item in self.metabListWidget.selectedItems():
 				metabolites.append(str(item.text()))
-			print metabolites
+			print(metabolites)
 
 			w0 =   0
 			phi0 = np.deg2rad(float(self.phaseInput.text()))
@@ -1776,7 +1772,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 						  * sp.exp(-1j * 2 * sp.pi * experiment.b0 * shift * experiment.t)
 		total_signal = sp.sum(signals, axis=0)
 		
-		print ''
+		print('')
 		
 		return total_signal
 
@@ -1797,8 +1793,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	def plotSpectra(self, experiment, total_signal):
 		n = sp.size(total_signal)
-		print n
-		f = sp.arange(+n/2,-n/2,-1)*(self.experiment.fs/n)*(1/self.experiment.b0)
+		print(n)
+		f = sp.arange(+n//2,-n//2,-1)*(self.experiment.fs/n)*(1/self.experiment.b0)
 		spectra = fftw.fftshift(fftw.fft(total_signal))
 		plt.figure(2)
 		plt.clf()
@@ -1828,11 +1824,11 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	def export_dat(self):
 		try:
-			print '----- Export current experiment to .dat file -----'        
+			print('----- Export current experiment to .dat file -----')        
 			metabolites = []
 			for item in self.metabListWidget.selectedItems():
 				metabolites.append(str(item.text()))
-			print metabolites
+			print(metabolites)
 
 			w0 =   0
 			phi0 = np.deg2rad(float(self.phaseInput.text()))
@@ -1847,13 +1843,13 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	def export_rawTime(self):
 		try:
-			print '----- Export current experiment to .raw files -----'
-			print 'MODE: Time domain data'
+			print('----- Export current experiment to .raw files -----')
+			print('MODE: Time domain data')
 
 			metabolites = []
 			for item in self.metabListWidget.selectedItems():
 				metabolites.append(str(item.text()))
-			print metabolites
+			print(metabolites)
 
 			w0 =   0
 			phi0 = np.deg2rad(float(self.phaseInput.text()))
@@ -1861,7 +1857,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			shift = float(self.shiftInput.text())
 
 			directory = str(self.outputFilenameInput_rawTime.text()).rsplit('/', 1)[0]
-			print directory
+			print(directory)
 
 			if not os.path.exists(directory):
 				os.makedirs(directory)
@@ -1902,13 +1898,13 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	def export_rawFreq(self):
 		try:
-			print '----- Export current experiment to .raw files -----'
-			print 'MODE: Frequency domain data'
+			print('----- Export current experiment to .raw files -----')
+			print('MODE: Frequency domain data')
 
 			metabolites = []
 			for item in self.metabListWidget.selectedItems():
 				metabolites.append(str(item.text()))
-			print metabolites
+			print(metabolites)
 
 			w0 =   0
 			phi0 = np.deg2rad(float(self.phaseInput.text()))
@@ -1916,7 +1912,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			shift = float(self.shiftInput.text())
 
 			directory = str(self.outputFilenameInput_rawFreq.text()).rsplit('/', 1)[0]
-			print directory
+			print(directory)
 
 			if not os.path.exists(directory):
 				os.makedirs(directory)
@@ -1945,7 +1941,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				raw_file.write('REAL \t IMAGINARY + \n')
 				total_signal = self.calcSignal([metabolite], self.experiment, w0, phi0, lb, shift)
 				n = sp.size(total_signal)
-				f = sp.arange(+n/2,-n/2,-1)*(self.experiment.fs/n)*(1/self.experiment.b0)
+				f = sp.arange(+n//2,-n//2,-1)*(self.experiment.fs/n)*(1/self.experiment.b0)
 				spectra = fftw.fftshift(fftw.fft(total_signal))
 				for i in range(0, n):
 					element = spectra[i]
@@ -2009,7 +2005,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				cst_filename = prev_filename
 
 			if cst_filename != '':
-				print 'Loading constraints from: ' + cst_filename
+				print('Loading constraints from: ' + cst_filename)
 				cst_file = open(cst_filename, 'r')
 
 				self.shiftsTextEdit.clear()
@@ -2049,42 +2045,42 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			if cst_filename != '':
 				cst_file = open(cst_filename, 'w')
 
-				print 'Reading shift groups ...'
+				print('Reading shift groups ...')
 				self.readGroups('shift')
 				cst_file.write('[Shifts]\n')
 				cst_file.write(self.shiftsTextEdit.toPlainText())
 
-				print 'Reading amp groups ...'
+				print('Reading amp groups ...')
 				self.readGroups('amp')
 				cst_file.write('\n[Amplitudes]\n')
 				cst_file.write(self.ampsTextEdit.toPlainText())
 
-				print 'Reading phase groups ...'
+				print('Reading phase groups ...')
 				self.readGroups('phase')
 				cst_file.write('\n[Phases]\n')
 				cst_file.write(self.phasesTextEdit.toPlainText())
 
 				if self.linkLipidsCheckBox.isChecked():
-					print 'Linking lipid linewidths ...'
+					print('Linking lipid linewidths ...')
 					self.readGroups('lipid_LWs')
 					# self.readGroups('lipid_WLs') # (new macromolecule model has gaussian lineshapes)
 
 				self.experiment.LW_limit = float(self.maxLWInput.text())
-				print 'LW_limit = ' + str(self.experiment.LW_limit)
+				print('LW_limit = ' + str(self.experiment.LW_limit))
 
 				self.experiment.LW_linkall = self.linkAllCheckBox.isChecked()
-				print 'LW_linkall = ' + str(self.experiment.LW_linkall)
+				print('LW_linkall = ' + str(self.experiment.LW_linkall))
 
 				self.experiment.splitNAA = self.splitNAACheckBox.isChecked()
-				print 'splitNAA  = ' + str(self.experiment.splitNAA)
+				print('splitNAA  = ' + str(self.experiment.splitNAA))
 
 				self.cst_filename = cst_filename
 
-				print str(len(self.experiment.cst_groups)) + ' group(s) saved!'
+				print(str(len(self.experiment.cst_groups)) + ' group(s) saved!')
 
 				self.cst_filename = cst_filename
 				self.cstFilenameLineEdit.setText(str(cst_filename))
-				print 'Writing to: ' + str(self.cst_filename)
+				print('Writing to: ' + str(self.cst_filename))
 
 				cst_file.close()
 				self.cstInfoErrorLabel.setText('File saved!')
@@ -2125,7 +2121,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					for member in group.members:
 						if not(member in metabolites):
 							metabolites.append(member)
-			print 'Grabbing metabolites ...', metabolites
+			print('Grabbing metabolites ...', metabolites)
 
 			amp_groups = []
 
@@ -2141,7 +2137,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				for sub_metab in sub_metabs:
 					key = self.experiment.data[sub_metab].T2
 					sub_metabs_grouped.setdefault(key,[]).append(sub_metab)
-				sub_metabs_groups = sub_metabs_grouped.values()
+				sub_metabs_groups = list(sub_metabs_grouped.values())
 
 				# Define sub_metabolite group
 				for (group_num, sub_metab_group) in enumerate(sub_metabs_groups):
@@ -2161,7 +2157,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 							new_defined_group = new_defined_group + str(group_member) + ','
 							# print '        | Adding', group_member, 'to auto-defined group.'
 					
-					print '  | Auto-defined group:', new_defined_group, '...', sp.size(new_defined_group[0:-1].split(','))
+					print('  | Auto-defined group:', new_defined_group, '...', sp.size(new_defined_group[0:-1].split(',')))
 					if not(new_defined_group[0:-1] in amp_groups) and sp.size(new_defined_group[0:-1].split(',')) > 3:
 						amp_groups.append(new_defined_group[0:-1])
 
@@ -2169,10 +2165,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			for group in amp_groups:
 				defined_groups.append(group)		
 
-		print '  | Defined groups:'
+		print('  | Defined groups:')
 		for group in defined_groups:
 			# parse each group's info
-			print '     | ' + str(group)
+			print('     | ' + str(group))
 			group_info = group.split(',')
 			group_name = group_info[0]
 			group_members = group_info[3:]
@@ -2206,7 +2202,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	def genCST(self):
 		try:
-			print '----- Generating .cst file from current experiment -----'
+			print('----- Generating .cst file from current experiment -----')
 			
 			experiment = self.experiment
 
@@ -2257,14 +2253,14 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				for member in group.members:
 					if not(member in metabolites):
 						metabolites.append(member)
-		print metabolites
+		print(metabolites)
 
 		for i in range(0, sp.size(metabolites)):
 			
 			# get metabolite
 			metab = experiment.data[metabolites[i]]
-			print ''
-			print metab.name + ',',
+			print('')
+			print(metab.name + ',', end=' ')
 
 			output.append(";" + str(metab.name) + '\n')
 
@@ -2296,7 +2292,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			# and override defaults with group parameters
 			for group in experiment.cst_groups:
 				if metab.name in group.members:
-					print group.name + ',',
+					print(group.name + ',', end=' ')
 					if group.typeCST == 'shift':
 						group_name_shift = group.name
 						ref_shift = float(group.ref_value)
@@ -2324,9 +2320,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 						max_lw = group.maxCST
 						min_lw = group.minCST
 
-			print str(ref_shift) + ',',
-			print str(ref_amp)+ ',',
-			print str(ref_phase)				
+			print(str(ref_shift) + ',', end=' ')
+			print(str(ref_amp)+ ',', end=' ')
+			print(str(ref_phase))				
 
 			# set flag to group metabolite peaks > minWaterPPMInput with a separate amplitude param
 			minWaterPPMInput_FLAG = False
@@ -2364,7 +2360,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 				# ACCOUNTING FOR MACROMOLECULE BASLINE MODEL
 				if ('LWlmX' in group_name_lw):
-					print group_name_lw, float(metab.lw)
+					print(group_name_lw, float(metab.lw))
 					rel_lw = float(metab.lw)-ref_lw
 					
 					if rel_lw == 1.0:
@@ -2475,7 +2471,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				if ('lip3' in group_name_wl) or ('lip4' in group_name_wl) or ('lip5' in group_name_wl) or ('mm2' in group_name_wl) or ('mm3' in group_name_wl) or ('mm4' in group_name_wl):
 					output.append("{" + str(group_name_wl) + "} >10.000000 <50.000000")
 				elif ('WLlipX' in group_name_wl):
-					print group_name_wl, float(metab.lw)
+					print(group_name_wl, float(metab.lw))
 					rel_lw = float(metab.lw)-ref_lw
 					if rel_lw == 1.0:
 						output.append("{" + 'WLlipX' + "} >" + "{0:.6f}".format(min_lw) + " <" + "{0:.6f}".format(max_lw))
@@ -2496,7 +2492,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		for line in output:
 			if 'number_peaks' in line:
 				cst_file.write(line.replace('<PLACEHOLDER>', str(pk_count)))
-				print str(pk_count)
+				print(str(pk_count))
 			else:
 				cst_file.write(line)
 		cst_file.close()
@@ -2526,13 +2522,13 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			for i, line in enumerate(in_file):
 				if i == 0:
-					n = int(line.replace(' ', '').replace('\n', ''))/2
+					n = int(line.replace(' ', '').replace('\n', ''))//2
 				elif i == 2:
 					fs = 1/float(line.replace(' ', '').replace('\n', ''))
 				elif i == 3:
 					b0 = float(line.replace(' ', '').replace('\n', ''))
 				elif i == 11:
-					print line
+					print(line)
 				elif i > 11:
 					dat.append(float(line.replace(' ', '').replace('\n', '')))
 
@@ -2542,7 +2538,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			t = sp.arange(0, n, 1) * (1/fs)
 			
 			self.ref_signal = RefSignal(real+1j*imag, n, fs, t, b0)
-			print 'n: ' + str(n) + ', fs: ' + str(fs) + ', dt: ' + str(1/fs) + ', b0: ' + str(b0)
+			print('n: ' + str(n) + ', fs: ' + str(fs) + ', dt: ' + str(1/fs) + ', b0: ' + str(b0))
 
 			self.filenameInfoLabel_dat.setText("Acquired data loaded! \n >> " + str(self.filenameInput_dat.text()).rsplit('/', 1)[-1])
 			self.plotGESButton.setEnabled(True)
@@ -2554,10 +2550,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			# REFERENCE
 			n_ref = self.ref_signal.n
 			
-			print 'ref_n: ' + str(n_ref)
-			print 'ref_signal: ' + str(self.ref_signal.signal)
+			print('ref_n: ' + str(n_ref))
+			print('ref_signal: ' + str(self.ref_signal.signal))
 			
-			f_ref = sp.arange(+n_ref/2,-n_ref/2,-1)*(self.ref_signal.fs/n_ref)*(1/self.ref_signal.b0)
+			f_ref = sp.arange(+n_ref//2,-n_ref//2,-1)*(self.ref_signal.fs/n_ref)*(1/self.ref_signal.b0)
 			spectra_ref = fftw.fftshift(fftw.fft(self.ref_signal.signal))
 
 			
@@ -2588,7 +2584,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					for member in group.members:
 						if not(member in metabolites):
 							metabolites.append(member)
-			print metabolites
+			print(metabolites)
 		
 			w0 =   0
 			phi0 = 0
@@ -2602,20 +2598,20 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			n = sp.size(total_signal)
 			
-			print n
-			print total_signal
+			print(n)
+			print(total_signal)
 			
-			f = sp.arange(+n/2,-n/2,-1)*(self.experiment.fs/n)*(1/self.experiment.b0)
+			f = sp.arange(+n//2,-n//2,-1)*(self.experiment.fs/n)*(1/self.experiment.b0)
 			spectra = fftw.fftshift(fftw.fft(total_signal))
 
-			print sp.size(f)
-			print sp.size(sp.real(spectra))
+			print(sp.size(f))
+			print(sp.size(sp.real(spectra)))
 
 			plt.figure(3)
 			plt.clf()
 			
-			print sp.size(f_ref)
-			print sp.size(sp.real(spectra_ref))
+			print(sp.size(f_ref))
+			print(sp.size(sp.real(spectra_ref)))
 
 			plt.plot(f_ref, sp.real(spectra_ref), label='Acquired Data') # 7.5 is a fudge factor to get the amplitudes in line with fitMAN
 			plt.plot(-f, sp.real(spectra), label='Guess') 
@@ -2636,7 +2632,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	def genGES(self):
 		try:
-			print '----- Generating .ges file from current experiment -----'
+			print('----- Generating .ges file from current experiment -----')
 			
 			experiment = self.experiment
 
@@ -2684,14 +2680,14 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				for member in group.members:
 					if not(member in metabolites):
 						metabolites.append(member)
-		print metabolites
+		print(metabolites)
 
 		for i in range(0, sp.size(metabolites)):
 			
 			# get metabolite
 			metab = experiment.data[metabolites[i]]
-			print ''
-			print metab.name + ',',
+			print('')
+			print(metab.name + ',', end=' ')
 
 			output.append(";" + str(metab.name) + '\n')
 
@@ -2718,7 +2714,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			# and override defaults with group parameters
 			for group in experiment.cst_groups:
 				if metab.name in group.members:
-					print group.name + ',',					
+					print(group.name + ',', end=' ')					
 					if group.typeCST == 'shift':
 						group_name_shift = group.name
 						ref_shift = float(group.ref_value)
@@ -2736,9 +2732,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 						max_phase = group.maxCST
 						min_phase = group.minCST
 
-			print str(ref_shift) + ',',
-			print str(ref_amp)+ ',',
-			print str(ref_phase)+ ',',
+			print(str(ref_shift) + ',', end=' ')
+			print(str(ref_amp)+ ',', end=' ')
+			print(str(ref_phase)+ ',', end=' ')
 
 			# set flag to group metabolite peaks > minWaterPPMInput with a separate amplitude param
 			minWaterPPMInput_FLAG = False
@@ -2842,7 +2838,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		for line in output:
 			if 'number_peaks' in line:
 				ges_file.write(line.replace('<PLACEHOLDER>', str(pk_count)))
-				print str(pk_count)
+				print(str(pk_count))
 			else:
 				ges_file.write(line)
 		ges_file.close()

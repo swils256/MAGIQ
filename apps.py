@@ -1,33 +1,18 @@
-# SPICeS for FITMAN version 0.4
+from __future__ import print_function
 
 # ---- System Libraries ---- #
+from builtins import zip
+from builtins import str
+from builtins import range
 import sys
 import errno
 import os
-import datetime
-import time
-import glob
-import platform
 import copy
-
 import traceback
-
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
-import subprocess as subproc
-
-import multiprocessing as mp
-
-from collections import defaultdict
-
-from itertools import groupby
 
 # ---- Math Libraries ---- #
-import scipy as sp
-import scipy.signal as spsg
-
 import numpy as np
-import math
-from pyfftw.interfaces import scipy_fftpack as fftw
 
 # ---- Plotting Libraries ---- #
 import matplotlib as mpl;
@@ -387,7 +372,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		# 2. Subtract fitted macromolecule spectrum from full spectrum.
 		scale = 1.3 * (float(self.fullDat_mmr.ConvS) / float(self.MMDat_mmr.ConvS))
-		print self.fullDat_mmr.ConvS, self.MMDat_mmr.ConvS, (float(self.fullDat_mmr.ConvS) / float(self.MMDat_mmr.ConvS)), scale
+		print(self.fullDat_mmr.ConvS, self.MMDat_mmr.ConvS, (float(self.fullDat_mmr.ConvS) / float(self.MMDat_mmr.ConvS)), scale)
+		
 		self.metabDat_mmr = copy.deepcopy(self.fullDat_mmr)
 		self.metabDat_mmr.n = np.min([np.size(self.fullDat_mmr.signal,0), np.size(self.MMDatHSVD_mmr.signal, 0)])
 		self.metabDat_mmr.signal = self.fullDat_mmr.signal[0:self.metabDat_mmr.n] - scale*self.MMDatHSVD_mmr.signal[0:self.MMDatHSVD_mmr.n]
@@ -711,7 +697,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		for i in range(0,comp):
 			console.append(str(i) + '\t' + str(frequency_coeffs[i]) + '\t' + str(amplitudes[i]) + '\t' + str(damping_coeffs[i]) + '\t' + str(phases[i]))
 		
-		return np.array(range(0, comp)), np.array(damping_coeffs), np.array(frequency_coeffs), np.array(amplitudes), np.array(phases)
+		return np.array(list(range(0, comp))), np.array(damping_coeffs), np.array(frequency_coeffs), np.array(amplitudes), np.array(phases)
 
 # ---- Launch Application ---- #
 if __name__ == "__main__":

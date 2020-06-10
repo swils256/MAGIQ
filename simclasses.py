@@ -1,27 +1,13 @@
 # ---- System Libraries ---- #
-import sys
-import os
-import datetime
-import time
-import glob
-import platform
+from builtins import zip
+from builtins import range
 
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
-import subprocess as subproc
-
-import multiprocessing as mp
-
-from collections import defaultdict
-
-from itertools import groupby
+from PyQt5 import QtCore
 
 # ---- Math Libraries ---- #
 import scipy as sp
-import scipy.signal as spsg
-
 import numpy as np
 import math
-from pyfftw.interfaces import scipy_fftpack as fftw
 
 # ---- Simulation Libraries ---- #
 import pygamma as pg
