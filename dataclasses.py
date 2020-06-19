@@ -529,9 +529,9 @@ class RDAFile(object):
 
 		# Read header of RDA file
 		rawfid = f.read()
-		hstart = rawfid.find(">>> Begin of header <<<") + len(">>> Begin of header <<<\n") + 1
-		hend = rawfid.find(">>> End of header <<<")
-		hstring = rawfid[hstart:hend]
+		hstart = rawfid.find(b">>> Begin of header <<<") + len(b">>> Begin of header <<<\n") + 1
+		hend = rawfid.find(b">>> End of header <<<")
+		hstring = rawfid[hstart:hend]; hstring = hstring.decode()
 		hlist = hstring.split("\r\n")
 		hlist2 = [h.split(": ") for h in hlist]
 		fid_hdr = dict(hlist2[h] for h in range(0, len(hlist2)-1, 1))
@@ -546,7 +546,7 @@ class RDAFile(object):
 		try:
 			fid_data = struct.unpack(format * element_count, fid_data)
 		except struct.error:
-			print("Unexpected input encountered while reading raw data")
+			print("Unexpected input encountered while reading raw data.")
 			return
 
 		fid_data = [complex(fid_data[w], fid_data[w+1]) for w in range(0, len(fid_data), 2)] 
@@ -557,7 +557,7 @@ class RDAFile(object):
 		# Some acquisition parameters from header
 		larmor = float(fid_hdr['MRFrequency'])
 		fid_date = dt.datetime.strptime(fid_hdr['StudyDate'], '%Y%m%d').strftime('%d%b%y')
-		fid_nt = int(fid_hdr["NumberOfAverages"])	#.rstrip('.0')) <-- if number of averages end with "0", this will be a problem
+		fid_nt = int(float(fid_hdr["NumberOfAverages"]))	#.rstrip('.0')) <-- if number of averages end with "0", this will be a problem
 		fid_dt = float(fid_hdr["DwellTime"]) / 1e6
 		# fid_time = np.arange(fid_dt, (len(fid_data) + 1) * fid_dt, fid_dt)
 
