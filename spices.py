@@ -206,7 +206,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			# Gather plotting variables
 			sfactor = float(self.sfactorInput.text())
-			pfactor = sp.deg2rad(float(self.pfactorInput.text()))
+			pfactor = np.deg2rad(float(self.pfactorInput.text()))
 			VSHIFT  = float(self.VSHIFTInput.text())
 			HSHIFT  = float(self.HSHIFTInput.text())
 			FT1     = int(self.ft1Input.text())
@@ -216,7 +216,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			dwell_time = float(self.dwellTimeInput.text())
 			acq_time = int(self.nInput.text())*dwell_time
 			fs = 1/dwell_time
-			t = sp.arange(0, acq_time, dwell_time)
+			t = np.arange(0, acq_time, dwell_time)
 
 			tableau10 = [(31, 119, 180), (255, 127, 14),    
 						 (44, 160, 44), (214, 39, 40),    
@@ -236,8 +236,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					fid  = fid[FT1:]
 				spec = fftw.fftshift(fftw.fft(fid))
 
-				n = sp.size(fid)
-				f = sp.arange(+n//2,-n//2,-1)*(fs/n)*(1/b0)
+				n = np.size(fid)
+				f = np.arange(+n//2,-n//2,-1)*(fs/n)*(1/b0)
 				fit_f = -f
 
 				# fit_f, spec = self.fit_out.metabolites[metabolite].getSpec(0, b0, t, 0, 1, pfactor, 0, lb, fs)
@@ -248,7 +248,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			# Calculate In-Vivo Spectra
 			invivo_dat_temp        = copy.copy(self.invivo_dat);
-			invivo_dat_temp.signal = invivo_dat_temp.signal[0:np.size(t)] * sp.exp(1j*pfactor) * sp.exp(-sp.pi*lb*t)
+			invivo_dat_temp.signal = invivo_dat_temp.signal[0:np.size(t)] * np.exp(1j*pfactor) * np.exp(-sp.pi*lb*t)
 			if not(self.extrap0CheckBox.isChecked()):
 				invivo_dat_temp.signal = invivo_dat_temp.signal[FT1:]
 			else:
@@ -266,8 +266,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 						fid  = fid[FT1:]
 					spec = fftw.fftshift(fftw.fft(fid))
 
-					n = sp.size(fid)
-					f = sp.arange(+n//2,-n//2,-1)*(fs/n)*(1/b0)
+					n = np.size(fid)
+					f = np.arange(+n//2,-n//2,-1)*(fs/n)*(1/b0)
 					fit_f = -f
 					# fit_f, spec = self.fit_out.metabolites[member].getSpec(0, b0, t, 0, 1, pfactor, 0, lb, fs)
 					group_spec.append(spec)
@@ -279,14 +279,13 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			plt.clf()
 			
 			ax = plt.subplot(111)
-			ax.spines["top"].set_visible(False)    
-			ax.spines["bottom"].set_visible(True)    
-			ax.spines["right"].set_visible(False)    
-			ax.spines["left"].set_visible(False)
+			ax.spines['top'].set_visible(False)    
+			ax.spines['bottom'].set_visible(True)    
+			ax.spines['right'].set_visible(False)    
+			ax.spines['left'].set_visible(False)
 			ax.get_xaxis().tick_bottom()
+			ax.get_yaxis().set_visible(False)
 			plt.xlim(5,0)
-			plt.tick_params(axis="both", which="both", bottom="on", top="off",    
-							labelbottom="on", left="off", right="off", labelleft="off")
 
 			for i, spec in enumerate(fit_spec):
 				plt.plot(np.array(-fit_f)+sfactor, np.real(fit_spec[-(i+1)])-i*VSHIFT*np.amax(np.real(fit_spec_sum)), color=tableau10[-((i)%np.size(tableau10, axis=0)+1)], lw=1.5, alpha=0.8)
