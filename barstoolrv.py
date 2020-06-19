@@ -402,8 +402,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			brain = nib.load(mouse + '/fse2d_brain.nii.gz')
 			mask  = nib.load(mouse + '/fse2d_mask.nii.gz')
 
-			brain_img = brain.get_data()
-			mask_img  = mask.get_data()
+			brain_img = np.asanyarray(brain.dataobj).squeeze()
+			mask_img  = np.asanyarray( mask.dataobj).squeeze()
 
 			brain_img_vec = np.reshape(brain_img, np.size(brain_img)).astype(int)
 			mask_img_vec  = np.reshape(mask_img,  np.size(mask_img )).astype(int)
