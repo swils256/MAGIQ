@@ -155,26 +155,24 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		ax = plt.subplot(411)
 		ax.clear()
-		ax.spines["top"].set_visible(False)    
-		ax.spines["bottom"].set_visible(True)    
-		ax.spines["right"].set_visible(False)    
-		ax.spines["left"].set_visible(False)
+		ax.spines['top'].set_visible(False)    
+		ax.spines['bottom'].set_visible(True)    
+		ax.spines['right'].set_visible(False)    
+		ax.spines['left'].set_visible(False)
 		ax.get_xaxis().tick_bottom()
-		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
-			labelbottom="on", left="off", right="off", labelleft="off")
+		ax.get_yaxis().set_visible(False)
 
 		plt.title('Raw Signal')
 		plt.plot(sup_file.t, np.real(sup_file.signal))
 
 		ax = plt.subplot(412)
 		ax.clear()
-		ax.spines["top"].set_visible(False)    
-		ax.spines["bottom"].set_visible(True)    
-		ax.spines["right"].set_visible(False)    
-		ax.spines["left"].set_visible(False)
+		ax.spines['top'].set_visible(False)    
+		ax.spines['bottom'].set_visible(True)    
+		ax.spines['right'].set_visible(False)    
+		ax.spines['left'].set_visible(False)
 		ax.get_xaxis().tick_bottom()
-		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
-			labelbottom="on", left="off", right="off", labelleft="off")
+		ax.get_yaxis().set_visible(False)
 
 		f_sup, spec_sup = sup_file.getSpec()
 		plt.plot(f_sup[0:sup_file.n], np.real(spec_sup[0:sup_file.n]))
@@ -212,30 +210,29 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		ax = plt.subplot(413)
 		ax.clear()
-		ax.spines["top"].set_visible(False)    
-		ax.spines["bottom"].set_visible(True)    
-		ax.spines["right"].set_visible(False)    
-		ax.spines["left"].set_visible(False)
+		ax.spines['top'].set_visible(False)    
+		ax.spines['bottom'].set_visible(True)    
+		ax.spines['right'].set_visible(False)    
+		ax.spines['left'].set_visible(False)
 		ax.get_xaxis().tick_bottom()
-		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
-			labelbottom="on", left="off", right="off", labelleft="off")
+		ax.get_yaxis().set_visible(False)
 
 		plt.title('Corrected Signal')
 		plt.plot(out_file_sup.t, np.real(out_file_sup.signal))
 
 		ax = plt.subplot(414)
 		ax.clear()
-		ax.spines["top"].set_visible(False)    
-		ax.spines["bottom"].set_visible(True)    
-		ax.spines["right"].set_visible(False)    
-		ax.spines["left"].set_visible(False)
+		ax.spines['top'].set_visible(False)    
+		ax.spines['bottom'].set_visible(True)    
+		ax.spines['right'].set_visible(False)    
+		ax.spines['left'].set_visible(False)
 		ax.get_xaxis().tick_bottom()
-		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
-			labelbottom="on", left="off", right="off", labelleft="off")
+		ax.get_yaxis().set_visible(False)
 		
 		f_out, spec_out = out_file_sup.getSpec()
 		plt.plot(f_out[0:out_file_sup.n], np.real(spec_out[0:out_file_sup.n]))
 
+		plt.tight_layout()
 		self.canvas[2].draw()
 
 	# ---- Water Removal ---- #
@@ -260,14 +257,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		ax = plt.subplot(211)
 		ax.clear()
-		ax.spines["top"].set_visible(False)    
-		ax.spines["bottom"].set_visible(True)    
-		ax.spines["right"].set_visible(False)    
-		ax.spines["left"].set_visible(False)
+		ax.spines['top'].set_visible(False)    
+		ax.spines['bottom'].set_visible(True)    
+		ax.spines['right'].set_visible(False)    
+		ax.spines['left'].set_visible(False)
 		ax.get_xaxis().tick_bottom()
-
-		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
-			labelbottom="on", left="off", right="off", labelleft="off")
+		ax.get_yaxis().set_visible(False)
 
 		# plot raw spectrum
 		f_dat, spec_dat = self.dat.getSpec()
@@ -293,19 +288,18 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		ax = plt.subplot(212)
 		ax.clear()
-		ax.spines["top"].set_visible(False)    
-		ax.spines["bottom"].set_visible(True)    
-		ax.spines["right"].set_visible(False)    
-		ax.spines["left"].set_visible(False)
+		ax.spines['top'].set_visible(False)    
+		ax.spines['bottom'].set_visible(True)    
+		ax.spines['right'].set_visible(False)    
+		ax.spines['left'].set_visible(False)
 		ax.get_xaxis().tick_bottom()
-
-		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
-			labelbottom="on", left="off", right="off", labelleft="off")
+		ax.get_yaxis().set_visible(False)
 
 		f_wr, spec_wr = self.dat_wr.getSpec()
 		plt.plot(f_wr, np.real(spec_wr))
 		plt.title('Water Removed Spectrum')
 
+		plt.tight_layout()
 		self.canvas[0].draw()
 
 		self.saveWaterRemovalButton.setEnabled(True)
@@ -345,14 +339,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		ax = plt.subplot(312)
 		ax.clear()
-		ax.spines["top"].set_visible(False)    
-		ax.spines["bottom"].set_visible(True)    
-		ax.spines["right"].set_visible(False)    
-		ax.spines["left"].set_visible(False)
+		ax.spines['top'].set_visible(False)    
+		ax.spines['bottom'].set_visible(True)    
+		ax.spines['right'].set_visible(False)    
+		ax.spines['left'].set_visible(False)
 		ax.get_xaxis().tick_bottom()
-
-		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
-			labelbottom="on", left="off", right="off", labelleft="off")
+		ax.get_yaxis().set_visible(False)
 
 		# plot raw MM signal
 		f_dat, spec_dat = self.MMDat_mmr.getSpec()
@@ -380,19 +372,18 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		ax = plt.subplot(313)
 		ax.clear()
-		ax.spines["top"].set_visible(False)    
-		ax.spines["bottom"].set_visible(True)    
-		ax.spines["right"].set_visible(False)    
-		ax.spines["left"].set_visible(False)
+		ax.spines['top'].set_visible(False)    
+		ax.spines['bottom'].set_visible(True)    
+		ax.spines['right'].set_visible(False)    
+		ax.spines['left'].set_visible(False)
 		ax.get_xaxis().tick_bottom()
-
-		plt.tick_params(axis="both", which="both", bottom="on", top="off",    
-			labelbottom="on", left="off", right="off", labelleft="off")
+		ax.get_yaxis().set_visible(False)
 
 		f_metab, spec_metab = self.metabDat_mmr.getSpec()
 		plt.plot(f_metab, np.real(spec_metab))
 		plt.title('Metabolite Spectrum')
 
+		plt.tight_layout()
 		self.canvas[1].draw()
 
 		self.saveMMRemovalButton.setEnabled(True)
@@ -456,11 +447,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			ax = plt.subplot(211)
 			ax.clear()
-			ax.spines["top"].set_visible(False)    
-			ax.spines["bottom"].set_visible(True)    
-			ax.spines["right"].set_visible(False)    
-			ax.spines["left"].set_visible(False)
+			ax.spines['top'].set_visible(False)    
+			ax.spines['bottom'].set_visible(True)    
+			ax.spines['right'].set_visible(False)    
+			ax.spines['left'].set_visible(False)
 			ax.get_xaxis().tick_bottom()
+			ax.get_yaxis().set_visible(False)
 
 			plt.tick_params(axis="both", which="both", bottom="on", top="off",    
 				labelbottom="on", left="off", right="off", labelleft="off")
@@ -468,6 +460,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			f_dat, spec_dat = self.dat.getSpec()
 			plt.plot(f_dat[0:self.dat.n], np.real(spec_dat[0:self.dat.n]))
 			plt.title('Original Spectrum')
+			
 			plt.tight_layout()
 			self.canvas[0].draw()
 
@@ -506,11 +499,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			ax = plt.subplot(311)
 			ax.clear()
-			ax.spines["top"].set_visible(False)    
-			ax.spines["bottom"].set_visible(True)    
-			ax.spines["right"].set_visible(False)    
-			ax.spines["left"].set_visible(False)
+			ax.spines['top'].set_visible(False)    
+			ax.spines['bottom'].set_visible(True)    
+			ax.spines['right'].set_visible(False)    
+			ax.spines['left'].set_visible(False)
 			ax.get_xaxis().tick_bottom()
+			ax.get_yaxis().set_visible(False)
 
 			plt.tick_params(axis="both", which="both", bottom="on", top="off",    
 				labelbottom="on", left="off", right="off", labelleft="off")
@@ -518,6 +512,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			f_dat, spec_dat = self.fullDat_mmr.getSpec()
 			plt.plot(f_dat[0:self.fullDat_mmr.n], np.real(spec_dat[0:self.fullDat_mmr.n]))
 			plt.title('Full Spectrum')
+			
 			plt.tight_layout()
 			self.canvas[1].draw()
 			
@@ -554,11 +549,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			ax = plt.subplot(312)
 			ax.clear()
-			ax.spines["top"].set_visible(False)    
-			ax.spines["bottom"].set_visible(True)    
-			ax.spines["right"].set_visible(False)    
-			ax.spines["left"].set_visible(False)
+			ax.spines['top'].set_visible(False)    
+			ax.spines['bottom'].set_visible(True)    
+			ax.spines['right'].set_visible(False)    
+			ax.spines['left'].set_visible(False)
 			ax.get_xaxis().tick_bottom()
+			ax.get_yaxis().set_visible(False)
 
 			plt.tick_params(axis="both", which="both", bottom="on", top="off",    
 				labelbottom="on", left="off", right="off", labelleft="off")
@@ -566,6 +562,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			f_dat, spec_dat = self.MMDat_mmr.getSpec()
 			plt.plot(f_dat[0:self.MMDat_mmr.n], np.real(spec_dat[0:self.MMDat_mmr.n]))
 			plt.title('MM Spectrum')
+
+			plt.tight_layout()
 			self.canvas[1].draw()
 
 			# reset buttons
