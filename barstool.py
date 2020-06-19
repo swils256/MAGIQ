@@ -819,8 +819,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				# Load brain image
 				imgloadname = self.quantBrainFiles[ID_index]
 				img = nib.nifti1.load(imgloadname)
-				img_studyIDs = str(img.get_header()['aux_file']).split(', ')  # grabs name and studydate header output from mri_convert_with_id.convert
-				img_data = img.get_data().squeeze()
+				img_studyIDs = str(img.header['aux_file']).split(', ')  # grabs name and studydate header output from mri_convert_with_id.convert
+				img_data = np.asanyarray(img.dataobj).squeeze()
 				
 				img_qform = img.get_qform()
 				img_pvec = img_qform[:3,3]  # this is the isocenter position for the 3D nifti volume
@@ -845,7 +845,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				# Load segmentation image
 				segloadname = self.quantBrainSegFiles[ID_index]
 				seg = nib.nifti1.load(segloadname)
-				seg_data = seg.get_data().squeeze()
+				seg_data = np.asanyarray(seg.dataobj).squeeze()
 				seg_csf = np.array(seg_data == 1, dtype=int)  # check these tissue type assignments
 				seg_gm = np.array(seg_data == 2, dtype=int)
 				seg_wm = np.array(seg_data == 3, dtype=int)
