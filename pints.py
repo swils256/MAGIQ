@@ -326,16 +326,16 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				self.sim_experiment.PULSE_180_LENGTH = float(self.afpPulseLengthInput.text())*10**(-6)
 				self.sim_experiment.RF_OFFSET = float(self.rfOffsetInput.text())
 				
-				self.sim_experiment.A_90s  = sp.linspace(int(self.slrAmpMinInput.text()), int(self.slrAmpMaxInput.text()), (int(self.slrAmpMaxInput.text())-int(self.slrAmpMinInput.text()))*10 + 1)
-				self.sim_experiment.A_180s = sp.linspace(int(self.afpAmpMinInput.text()), int(self.afpAmpMaxInput.text()), (int(self.afpAmpMaxInput.text())-int(self.afpAmpMinInput.text()))*10 + 1)
+				self.sim_experiment.A_90s  = np.linspace(int(self.slrAmpMinInput.text()), int(self.slrAmpMaxInput.text()), (int(self.slrAmpMaxInput.text())-int(self.slrAmpMinInput.text()))*10 + 1)
+				self.sim_experiment.A_180s = np.linspace(int(self.afpAmpMinInput.text()), int(self.afpAmpMaxInput.text()), (int(self.afpAmpMaxInput.text())-int(self.afpAmpMinInput.text()))*10 + 1)
 
 			elif self.LASERradioButton.isChecked():
 				self.sim_experiment.PULSE_90_LENGTH = float(self.ahpPulseLengthInput_laser.text())*10**(-6)
 				self.sim_experiment.PULSE_180_LENGTH = float(self.afpPulseLengthInput_laser.text())*10**(-6)
 				self.sim_experiment.RF_OFFSET = float(self.rfOffsetInput_laser.text())
 
-				self.sim_experiment.A_90s = sp.linspace(int(self.ahpAmpMinInput_laser.text()), int(self.ahpAmpMaxInput_laser.text()), (int(self.ahpAmpMaxInput_laser.text())-int(self.ahpAmpMinInput_laser.text()))*10 + 1)
-				self.sim_experiment.A_180s = sp.linspace(int(self.afpAmpMinInput_laser.text()), int(self.afpAmpMaxInput_laser.text()), (int(self.afpAmpMaxInput_laser.text())-int(self.afpAmpMinInput_laser.text()))*10 + 1)
+				self.sim_experiment.A_90s = np.linspace(int(self.ahpAmpMinInput_laser.text()), int(self.ahpAmpMaxInput_laser.text()), (int(self.ahpAmpMaxInput_laser.text())-int(self.ahpAmpMinInput_laser.text()))*10 + 1)
+				self.sim_experiment.A_180s = np.linspace(int(self.afpAmpMinInput_laser.text()), int(self.afpAmpMaxInput_laser.text()), (int(self.afpAmpMaxInput_laser.text())-int(self.afpAmpMinInput_laser.text()))*10 + 1)
 
 
 			self.sim_experiment.tolppm = float(self.tolppmInput.text())
@@ -370,7 +370,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		self.runSimulationButton.setEnabled(False)
 
-		self.simProgressBar.setMaximum(int(sp.size(self.insysfiles)) + 2)
+		self.simProgressBar.setMaximum(int(np.size(self.insysfiles)) + 2)
 		self.simProgressBar.setValue(0)
 
 		if self.sLASERradioButton.isChecked():
@@ -390,7 +390,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.sim_results.write(';Comment: ' + self.sim_experiment.description + '\n')
 			self.sim_results.write(';PI: ' + self.sim_experiment.author + '\n')
 			self.sim_results.write(';b0: ' + str(self.sim_experiment.b0) + '\n')
-			self.sim_results.write(';' + str(int(sp.size(self.insysfiles)+int(sp.size(self.macromolecules)))) + ' Metabolites: ' + str(self.insysfiles).replace('[','').replace(']','').replace('\'','').replace('.sys',''))
+			self.sim_results.write(';' + str(int(np.size(self.insysfiles)+int(np.size(self.macromolecules)))) + ' Metabolites: ' + str(self.insysfiles).replace('[','').replace(']','').replace('\'','').replace('.sys',''))
 			if self.macroIncludeButton.isChecked(): self.sim_results.write(', ' + str(self.macromolecules).replace('[','').replace(']','').replace('\'',''))
 			self.sim_results.write('\n')
 
@@ -405,6 +405,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				insysfile = 'pints/metabolites/7T_' + insysfile
 			elif self.sim_experiment.b0 == 400.2:
 				insysfile = 'pints/metabolites/9.4T_' + insysfile
+			print('')
+			print(insysfile)
 
 			spin_system = pg.spin_system()
 			spin_system.read(insysfile)
@@ -680,7 +682,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.sim_results.write(';Comment: ' + self.sim_experiment.description + '\n')
 			self.sim_results.write(';PI: ' + self.sim_experiment.author + '\n')
 			self.sim_results.write(';b0: ' + str(self.sim_experiment.b0) + '\n')
-			self.sim_results.write(';' + str(int(sp.size(self.insysfiles)+int(sp.size(self.macromolecules)))) + ' Metabolites: ' + str(self.insysfiles).replace('[','').replace(']','').replace('\'','').replace('.sys',''))
+			self.sim_results.write(';' + str(int(np.size(self.insysfiles)+int(np.size(self.macromolecules)))) + ' Metabolites: ' + str(self.insysfiles).replace('[','').replace(']','').replace('\'','').replace('.sys',''))
 			if self.macroIncludeButton.isChecked(): self.sim_results.write(', ' + str(self.macromolecules).replace('[','').replace(']','').replace('\'',''))
 			self.sim_results.write('\n')
 
@@ -1174,7 +1176,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		metab.name = metab_name
 		metab.var = var
 
-		for i in range(sp.size(outf)):
+		for i in range(np.size(outf)):
 			if outf[i] <= 5:
 				metab.ppm.append(outf[i])
 				metab.area.append(outa[i])
@@ -1300,8 +1302,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		pulse180 = Pulse(inpulse180file, PULSE_180_LENGTH)
 
-		n_old = np.linspace(0, PULSE_180_LENGTH, sp.size(pulse180.waveform))
-		n_new = np.linspace(0, PULSE_180_LENGTH, sp.size(pulse180.waveform)+1)
+		n_old = np.linspace(0, PULSE_180_LENGTH, np.size(pulse180.waveform))
+		n_new = np.linspace(0, PULSE_180_LENGTH, np.size(pulse180.waveform)+1)
 
 		waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse180.waveform)*A_180)(n_new)
 		waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse180.waveform)*A_180)(n_new)
@@ -1381,8 +1383,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 	def slaser_build90(self, inpulse90file, A_90, PULSE_90_LENGTH, gyratio, spin_system, plot_flag):
 		pulse90 = Pulse(inpulse90file, PULSE_90_LENGTH)
 
-		n_old = np.linspace(0, PULSE_90_LENGTH, sp.size(pulse90.waveform))
-		n_new = np.linspace(0, PULSE_90_LENGTH, sp.size(pulse90.waveform)+1)
+		n_old = np.linspace(0, PULSE_90_LENGTH, np.size(pulse90.waveform))
+		n_new = np.linspace(0, PULSE_90_LENGTH, np.size(pulse90.waveform)+1)
 
 		waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse90.waveform)*A_90)(n_new)
 		waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse90.waveform)*A_90)(n_new)
@@ -1421,8 +1423,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 	def laser_buildahp(self, inpulse90file, A_90, PULSE_90_LENGTH, gyratio, spin_system, plot_flag):
 		pulse90 = Pulse(inpulse90file, PULSE_90_LENGTH, 'varian')
 
-		n_old = np.linspace(0, PULSE_90_LENGTH, sp.size(pulse90.waveform))
-		n_new = np.linspace(0, PULSE_90_LENGTH, sp.size(pulse90.waveform)+1)
+		n_old = np.linspace(0, PULSE_90_LENGTH, np.size(pulse90.waveform))
+		n_new = np.linspace(0, PULSE_90_LENGTH, np.size(pulse90.waveform)+1)
 
 		waveform_real = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.real(pulse90.waveform)*A_90)(n_new)
 		waveform_imag = sp.interpolate.InterpolatedUnivariateSpline(n_old, np.imag(pulse90.waveform)*A_90)(n_new)
@@ -1640,7 +1642,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					experiment.data[name].phase.append(float(currline[7]))
 
 		print('  | Total metabolites in file: ' + str(experiment.metabolites_num))
-		print('  | Total metabolites after combination: ' + str(sp.size(experiment.metabolites)))
+		print('  | Total metabolites after combination: ' + str(np.size(experiment.metabolites)))
 		print('       | ', experiment.metabolites.sort())
 		print('  | Import complete.\n')
 
@@ -1650,7 +1652,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		try:
 			self.experiment.dwell_time = float(self.dwellTimeInput.text())
 			self.experiment.acq_length = float(self.acqLengthInput.text())
-			self.experiment.t = sp.arange(0,self.experiment.acq_length,self.experiment.dwell_time)
+			self.experiment.t = np.arange(0,self.experiment.acq_length,self.experiment.dwell_time)
 			self.experiment.fs = 1/self.experiment.dwell_time
 			self.specExpInfoLabel.setText("Experiment fully specified! \n >> Dwell-time = " + str(self.experiment.dwell_time) + " sec \n >> Acq. Length = " + str(self.experiment.acq_length) + " sec")
 
@@ -1686,10 +1688,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 	def populateMetabTable(self):
 		metabolites = self.experiment.metabolites
 		
-		self.metabTableWidget.setRowCount(sp.size(metabolites))
+		self.metabTableWidget.setRowCount(np.size(metabolites))
 		self.metabTableWidget.setColumnCount(3)
 
-		for i in range(0, sp.size(metabolites)):
+		for i in range(0, np.size(metabolites)):
 			metab = self.experiment.data[metabolites[i]]
 			self.metabTableWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(str(metab.name)))
 			self.metabTableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem(str(metab.A_m)))
@@ -1697,7 +1699,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	def saveMetabInfo(self):
 		metabolites = self.experiment.metabolites
-		for i in range(0, sp.size(metabolites)):
+		for i in range(0, np.size(metabolites)):
 			metab = self.experiment.data[metabolites[i]]
 			metab.A_m = float(self.metabTableWidget.item(i, 1).text())
 			metab.T2  = float(self.metabTableWidget.item(i, 2).text())
@@ -1712,19 +1714,19 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			T2_params = []
 			for line in in_file:
 				params = line.replace('\n', '').split('\t')
-				if sp.size(params) == 3:
+				if np.size(params) == 3:
 					print(params)
 					A_m_params.append(float(params[1]))
 					T2_params.append(float(params[2]))
 
 			metabolites = self.experiment.metabolites
-			if sp.size(metabolites) == sp.size(A_m_params) and sp.size(metabolites) == sp.size(T2_params):
-				for i in range(0, sp.size(metabolites)):
+			if np.size(metabolites) == np.size(A_m_params) and np.size(metabolites) == np.size(T2_params):
+				for i in range(0, np.size(metabolites)):
 					self.metabTableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem(str(A_m_params[i])))
 					self.metabTableWidget.setItem(i, 2, QtWidgets.QTableWidgetItem(str(T2_params[i])))
 				self.loadMetabInfoLabel.setText("Parameter file loaded successfully!")
 			else:
-				self.loadMetabInfoLabel.setText("Error in parameter file! >> num of parameters " + str((sp.size(A_m_params), sp.size(T2_params))) + " != num of metabolites " + " " + str(sp.size(metabolites)))
+				self.loadMetabInfoLabel.setText("Error in parameter file! >> num of parameters " + str((np.size(A_m_params), np.size(T2_params))) + " != num of metabolites " + " " + str(np.size(metabolites)))
 		except Exception as e:
 			self.loadMetabInfoLabel.setText("ERROR: " + str(e) + " >> Please try another parameter file.")
 
@@ -1765,12 +1767,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	def calcSignal(self, metabolites, experiment, w0, phi0, lb, shift):
 		
-		signals = sp.empty([sp.size(metabolites), sp.size(experiment.t)], dtype=complex)
-		for i in range(0, sp.size(metabolites)):
-			signals[i,] = sp.exp(-1j * (w0 * experiment.t) + 1j * (phi0)) \
+		signals = np.empty([np.size(metabolites), np.size(experiment.t)], dtype=complex)
+		for i in range(0, np.size(metabolites)):
+			signals[i,] = np.exp(-1j * (w0 * experiment.t) + 1j * (phi0)) \
 						  * experiment.data[metabolites[i]].getFID(experiment.TE, experiment.b0, experiment.t, 0, 1, 0, 0, lb) \
-						  * sp.exp(-1j * 2 * sp.pi * experiment.b0 * shift * experiment.t)
-		total_signal = sp.sum(signals, axis=0)
+						  * np.exp(-1j * 2 * sp.pi * experiment.b0 * shift * experiment.t)
+		total_signal = np.sum(signals, axis=0)
 		
 		print('')
 		
@@ -1780,31 +1782,31 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		plt.figure(1)
 		plt.clf()
 		plt.subplot(2,1,1)
-		plt.plot(experiment.t, sp.real(total_signal))
+		plt.plot(experiment.t, np.real(total_signal))
 		plt.xlim(0,experiment.acq_length)
 		plt.xlabel('t [s]')
 		plt.title('FID (Real)')
 		plt.subplot(2,1,2)
-		plt.plot(experiment.t, sp.imag(total_signal))
+		plt.plot(experiment.t, np.imag(total_signal))
 		plt.xlim(0,experiment.acq_length)
 		plt.xlabel('t [s]')
 		plt.title('FID (Imaginary)')
 		self.canvas[0].draw()
 
 	def plotSpectra(self, experiment, total_signal):
-		n = sp.size(total_signal)
+		n = np.size(total_signal)
 		print(n)
-		f = sp.arange(+n//2,-n//2,-1)*(self.experiment.fs/n)*(1/self.experiment.b0)
+		f = np.arange(+n//2,-n//2,-1)*(self.experiment.fs/n)*(1/self.experiment.b0)
 		spectra = fftw.fftshift(fftw.fft(total_signal))
 		plt.figure(2)
 		plt.clf()
 		plt.subplot(2,1,1)
-		plt.plot(-f, sp.real(spectra))
+		plt.plot(-f, np.real(spectra))
 		plt.title('Spectra (Real)')
 		plt.xlim(5,0)
 		plt.xlabel('ppm')    
 		plt.subplot(2,1,2)
-		plt.plot(-f, sp.imag(spectra))
+		plt.plot(-f, np.imag(spectra))
 		plt.title('Spectra (Imaginary)')    
 		plt.xlim(5,0)
 		plt.xlabel('ppm')
@@ -1886,8 +1888,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				raw_file.write('REAL \t IMAGINARY + \n')
 				signal = self.calcSignal([metabolite], self.experiment, w0, phi0, lb, shift)
 				for element in signal:
-					raw_file.write("{0:.6E}".format(float(sp.real(element))) + '\t')
-					raw_file.write("{0:.6E}".format(float(sp.imag(element))) + '\t')
+					raw_file.write("{0:.6E}".format(float(np.real(element))) + '\t')
+					raw_file.write("{0:.6E}".format(float(np.imag(element))) + '\t')
 					raw_file.write('\n')
 
 				self.outputFilenameInfoLabel_rawTime.append(">> Successfully output " + metabolite + " to " + filename_out)
@@ -1940,16 +1942,16 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				# begin data output
 				raw_file.write('REAL \t IMAGINARY + \n')
 				total_signal = self.calcSignal([metabolite], self.experiment, w0, phi0, lb, shift)
-				n = sp.size(total_signal)
-				f = sp.arange(+n//2,-n//2,-1)*(self.experiment.fs/n)*(1/self.experiment.b0)
+				n = np.size(total_signal)
+				f = np.arange(+n//2,-n//2,-1)*(self.experiment.fs/n)*(1/self.experiment.b0)
 				spectra = fftw.fftshift(fftw.fft(total_signal))
 				for i in range(0, n):
 					element = spectra[i]
 					shift = f[i]
 
 					if f[i] <= 5 and f[i] >= 0:
-						raw_file.write("{0:.6E}".format(float(sp.real(element))) + '\t')
-						raw_file.write("{0:.6E}".format(float(sp.imag(element))) + '\t')
+						raw_file.write("{0:.6E}".format(float(np.real(element))) + '\t')
+						raw_file.write("{0:.6E}".format(float(np.imag(element))) + '\t')
 						raw_file.write('\n')
 
 				self.outputFilenameInfoLabel_rawFreq.append(">> Successfully output " + metabolite + " to " + filename_out)
@@ -1962,7 +1964,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		filename_out = str(self.outputFilenameInput_dat.text())
 		dat_file = open(filename_out, 'w')
 		
-		dat_file.write(str(sp.size(signal)*2) + '\n') # num of data lines
+		dat_file.write(str(np.size(signal)*2) + '\n') # num of data lines
 		dat_file.write(str(1) + '\n') # num of averages
 		dat_file.write(str(experiment.dwell_time) + '\n') # ADC dwell time
 		dat_file.write(str(experiment.b0) + '\n') # main field strength
@@ -1984,8 +1986,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		
 		# begin to write data
 		for element in signal:
-			dat_file.write("{0:.6f}".format(float(sp.real(element))) + '\n')
-			dat_file.write("{0:.6f}".format(float(sp.imag(element))) + '\n')
+			dat_file.write("{0:.6f}".format(float(np.real(element))) + '\n')
+			dat_file.write("{0:.6f}".format(float(np.imag(element))) + '\n')
 		
 		self.outputFilenameInfoLabel_dat.append(">> Successfully output to " + filename_out)
 
@@ -2125,7 +2127,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			amp_groups = []
 
-			for i in range(0, sp.size(metabolites)):
+			for i in range(0, np.size(metabolites)):
 				metab = self.experiment.data[metabolites[i]]
 
 				# Get submetabolites
@@ -2157,8 +2159,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 							new_defined_group = new_defined_group + str(group_member) + ','
 							# print '        | Adding', group_member, 'to auto-defined group.'
 					
-					print('  | Auto-defined group:', new_defined_group, '...', sp.size(new_defined_group[0:-1].split(',')))
-					if not(new_defined_group[0:-1] in amp_groups) and sp.size(new_defined_group[0:-1].split(',')) > 3:
+					print('  | Auto-defined group:', new_defined_group, '...', np.size(new_defined_group[0:-1].split(',')))
+					if not(new_defined_group[0:-1] in amp_groups) and np.size(new_defined_group[0:-1].split(',')) > 3:
 						amp_groups.append(new_defined_group[0:-1])
 
 			# Add the amplitude groups to the list of defined_groups
@@ -2255,7 +2257,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 						metabolites.append(member)
 		print(metabolites)
 
-		for i in range(0, sp.size(metabolites)):
+		for i in range(0, np.size(metabolites)):
 			
 			# get metabolite
 			metab = experiment.data[metabolites[i]]
@@ -2328,7 +2330,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			minWaterPPMInput_FLAG = False
 
 			# output metabolite into constraint file
-			for j in range(0, sp.size(metab.area)):
+			for j in range(0, np.size(metab.area)):
 				pk_count = pk_count + 1
 
 				# don't use any peaks > 5 ppm (or whatever is specified in the input field)
@@ -2342,7 +2344,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				if metab.T2 == 0 or ref_T2 == 0:
 					rel_amp = (float(metab.area[j] * metab.A_m)/ref_amp)
 				else:
-					rel_amp = (float(metab.area[j] * metab.A_m)/ref_amp) * (sp.exp(-experiment.TE/(metab.T2*1000)) / sp.exp(-experiment.TE/(ref_T2*1000)))
+					rel_amp = (float(metab.area[j] * metab.A_m)/ref_amp) * (np.exp(-experiment.TE/(metab.T2*1000)) / np.exp(-experiment.TE/(ref_T2*1000)))
 				rel_phase = float(sp.deg2rad(metab.phase[j]))-ref_phase
 
 				# NOTE: with shifts, FITMAN describes shifts in the positive ppm direction to be negative! So we must reverse the signs!
@@ -2535,7 +2537,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			real = sp.array(dat)[0::2]
 			imag = sp.array(dat)[1::2]
 
-			t = sp.arange(0, n, 1) * (1/fs)
+			t = np.arange(0, n, 1) * (1/fs)
 			
 			self.ref_signal = RefSignal(real+1j*imag, n, fs, t, b0)
 			print('n: ' + str(n) + ', fs: ' + str(fs) + ', dt: ' + str(1/fs) + ', b0: ' + str(b0))
@@ -2553,7 +2555,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			print('ref_n: ' + str(n_ref))
 			print('ref_signal: ' + str(self.ref_signal.signal))
 			
-			f_ref = sp.arange(+n_ref//2,-n_ref//2,-1)*(self.ref_signal.fs/n_ref)*(1/self.ref_signal.b0)
+			f_ref = np.arange(+n_ref//2,-n_ref//2,-1)*(self.ref_signal.fs/n_ref)*(1/self.ref_signal.b0)
 			spectra_ref = fftw.fftshift(fftw.fft(self.ref_signal.signal))
 
 			
@@ -2568,7 +2570,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			w0 = 0
 			phi0 = 0
 
-			signals = sp.empty([sp.size(self.metabListWidget.selectedItems()), sp.size(self.experiment.t)], dtype=complex)
+			signals = np.empty([np.size(self.metabListWidget.selectedItems()), np.size(self.experiment.t)], dtype=complex)
 			i = 0
 
 			# ---- Get from selected items from 'Plot Metabolites' tab ----
@@ -2590,31 +2592,31 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			phi0 = 0
 			lb =   wfactor      
 			
-			signals = sp.empty([sp.size(metabolites), sp.size(self.experiment.t)], dtype=complex)
-			for i in range(0, sp.size(metabolites)):
-				signals[i,] = sp.exp(-1j * (w0 * self.experiment.t) + 1j * (phi0)) \
+			signals = np.empty([np.size(metabolites), np.size(self.experiment.t)], dtype=complex)
+			for i in range(0, np.size(metabolites)):
+				signals[i,] = np.exp(-1j * (w0 * self.experiment.t) + 1j * (phi0)) \
 							  * self.experiment.data[metabolites[i]].getFID(self.experiment.TE, self.experiment.b0, self.experiment.t, sfactor, afactor, pfactor, dfactor, lb)
-			total_signal = sp.sum(signals, axis=0)
+			total_signal = np.sum(signals, axis=0)
 
-			n = sp.size(total_signal)
+			n = np.size(total_signal)
 			
 			print(n)
 			print(total_signal)
 			
-			f = sp.arange(+n//2,-n//2,-1)*(self.experiment.fs/n)*(1/self.experiment.b0)
+			f = np.arange(+n//2,-n//2,-1)*(self.experiment.fs/n)*(1/self.experiment.b0)
 			spectra = fftw.fftshift(fftw.fft(total_signal))
 
-			print(sp.size(f))
-			print(sp.size(sp.real(spectra)))
+			print(np.size(f))
+			print(np.size(np.real(spectra)))
 
 			plt.figure(3)
 			plt.clf()
 			
-			print(sp.size(f_ref))
-			print(sp.size(sp.real(spectra_ref)))
+			print(np.size(f_ref))
+			print(np.size(np.real(spectra_ref)))
 
-			plt.plot(f_ref, sp.real(spectra_ref), label='Acquired Data') # 7.5 is a fudge factor to get the amplitudes in line with fitMAN
-			plt.plot(-f, sp.real(spectra), label='Guess') 
+			plt.plot(f_ref, np.real(spectra_ref), label='Acquired Data') # 7.5 is a fudge factor to get the amplitudes in line with fitMAN
+			plt.plot(-f, np.real(spectra), label='Guess') 
 			plt.title('Spectra (Real)')
 			plt.xlim(5-sfactor,0-sfactor)
 			plt.xlabel('ppm')
@@ -2682,7 +2684,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 						metabolites.append(member)
 		print(metabolites)
 
-		for i in range(0, sp.size(metabolites)):
+		for i in range(0, np.size(metabolites)):
 			
 			# get metabolite
 			metab = experiment.data[metabolites[i]]
@@ -2740,7 +2742,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			minWaterPPMInput_FLAG = False
 
 			# output metabolite into guess file
-			for j in range(0, sp.size(metab.area)):
+			for j in range(0, np.size(metab.area)):
 				pk_count = pk_count + 1
 
 				# don't use any peaks > 5 ppm (or whatever is specified in the input field)
@@ -2754,7 +2756,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				if metab.T2 == 0 or ref_T2 == 0:
 					rel_amp = (float(metab.area[j] * metab.A_m)/ref_amp)
 				else:
-					rel_amp = (float(metab.area[j] * metab.A_m)/ref_amp) * (sp.exp(-experiment.TE/(metab.T2*1000)) / sp.exp(-experiment.TE/(ref_T2*1000)))
+					rel_amp = (float(metab.area[j] * metab.A_m)/ref_amp) * (np.exp(-experiment.TE/(metab.T2*1000)) / np.exp(-experiment.TE/(ref_T2*1000)))
 				rel_phase = float(sp.deg2rad(metab.phase[j]))-ref_phase
 
 				rel_phase = float(sp.deg2rad(metab.phase[j]))-ref_phase
