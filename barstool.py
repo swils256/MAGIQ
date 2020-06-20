@@ -322,7 +322,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.consoleOutputText.append('---- Processing Image ' + str(self.BETIMAGELIST_INDEX+1) + ' of ' + str(np.size(self.betImageList)) + ' ---- ')
 
 		image = self.betImageList[self.BETIMAGELIST_INDEX].replace('.nii.gz', '_std.nii.gz')
-		command = ['fslview', str(image)]
+		command = ['fsleyes', str(image)]
 
 		self.consoleOutputText.append('Finding isocenter of image ...')
 		self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
@@ -391,11 +391,11 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		luts = ["Red-Yellow", "Blue-Lightblue", "Red", "Blue", "Green", "Yellow", "Pink", "Hot", "Cool", "Copper"]
 
 		self.consoleOutputText.append('Select threshold that produced the best brain extraction ...')
-		command = ['fslview', str(image)+'_std']
+		command = ['fsleyes', str(image)+'_std']
 		for (i, fthresh) in enumerate(self.fthreshList[0:np.size(luts)]):
 			command.append(str(image)+'_std_brain_f'+str(fthresh))
-			command.append('-l "' + str(luts[i]) +'"')
-			command.append('-t ' + '0.0')
+			command.append('-cm "' + str(luts[i]) +'"')
+			command.append('-a ' + '0.0')
 		
 		self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 		self.consoleOutputText.append('')
@@ -472,8 +472,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.checkFthreshButton.setEnabled(False)
 			self.selectFthreshButton.setEnabled(False)
 			self.runBetButton.setEnabled(False)
+			# Reset fthresh choices
+			self.selectFthreshComboBox.clear()
 		else:
-			# Reset
+			# Reset buttons
 			self.selectBetImagesButton.setEnabled(True)
 			self.reorientBetImagesButton.setEnabled(False)
 			self.identifyIsoButton.setEnabled(False)
@@ -482,6 +484,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.checkFthreshButton.setEnabled(False)
 			self.selectFthreshButton.setEnabled(False)
 			self.runBetButton.setEnabled(False)
+			# Reset fthresh choices
+			self.selectFthreshComboBox.clear()
 
 	# ---- Methods for Brain Segmentation Tab ---- #
 	def loadFastImages(self):
