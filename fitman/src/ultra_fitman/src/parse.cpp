@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <malloc.h>
 //#include </home/van/fitMan/Include/parse.h>
 //#include </people/r/rbartha/temp/Linux_compile/src/parse.h>
 #include <parse.h>

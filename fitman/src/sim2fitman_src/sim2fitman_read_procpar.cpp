@@ -377,12 +377,21 @@ int read_procpar(Procpar_info *procpar_info, char *procpar_string, FILE *in_file
     procpar_info->gain = 0;
     printf("\n* Please enter GAIN information.\n");
     printf("*       GAIN (0.00): ");
-    gets(input_str);
+    //gets(input_str);
+    //update gets to fgets since gets is deprecated, DW 2020
+    if (fgets(input_str, sizeof input_str, stdin)) {
+    	input_str[strcspn(input_str, "\n")] = '\0';
+    }
     if (strcmp(input_str, "")!=0){   
         temp_float = strtod(input_str, NULL);
 	while (!isNumber(input_str) || isNAN(temp_float)){
             printf("*          Invalid value ... try again: ");
-            gets(input_str);  
+            //gets(input_str);
+            //update gets to fgets since gets is deprecated
+            // - Dickson Wong, Jun 2020  
+	    if (fgets(input_str, sizeof input_str, stdin)) {
+	    	input_str[strcspn(input_str, "\n")] = '\0';
+	    }
             temp_float = strtod(input_str, NULL);
     	}
     	procpar_info->gain = temp_float;

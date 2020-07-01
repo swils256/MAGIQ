@@ -1,6 +1,5 @@
 //#include </home/van/fitMan/Include/variable.h>
 //#include </people/r/rbartha/temp/Linux_compile/src/variable.h>
-#include <malloc.h>
 #include <variable.h>
 
 CVariable::CVariable(){

@@ -124,15 +124,14 @@ int pre_process(int *fid, Preprocess *preprocess, Procpar_info *procpar_info,
 	//printf("ok after running scale function.\n");
 
         // execute baseline correction if requested
-	  //printf("procpar_info->num_points = %d\n",i,procpar_info->num_points);
+
         //printf("before loop preprocess[%d].bc = %d\n",i,preprocess[i].bc);
 
         if (preprocess[i].bc) {
 
 	  //added by jd, August 19, 2010
 	  //printf("in loop preprocess[%d].bc = %d\n",i,preprocess[i].bc);
-	  printf("i = %d\n",i);
-	  printf("procpar_info->num_points = %d\n",procpar_info->num_points);
+	  //printf("procpar_info->num_points = %d\n",i,procpar_info->num_points);
 
             baseline_correct(out_data[i], &procpar_info[i]);
         }
@@ -502,9 +501,6 @@ Preprocess *preprocess){
     double phase_sup=0, phase_unsup=0, div_sup_phase=0, div_unsup_phase=0;
     double phase_scratch=0, mag_scratch=0;
     double result_phase_cor_sup=0, result_phase_cor_unsup=0;
-    
-    //Added by dw for debugging, mar 22 2016
-    printf("pre_quecc_points = %d\n",preprocess->pre_quecc_points);
     
     for(i=0; i<(procpar_info->num_points*2); i+=2){
  

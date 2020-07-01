@@ -15,6 +15,8 @@ Supports:
 #include "include/ge2fitman_prot.h"
 
 #include <iostream>
+#include <ctime>    // for compiling on Windows (ctime is outside of std namespace)
+                    // - Dickson Wong, Jun 2020
 
 /*****************************************************************************
    Exit codes:   0 - No errors.
@@ -676,10 +678,13 @@ int read_procpar(Procpar_info *procpar_info, char *procpar_string, FILE *in_file
                       , sizeof(date_stamp)
                       , ex_datetime_offset, sizeof(int), *swap_bytes)<0){
               return -1;    
-    }          
-    strncpy(procpar_info->ex_datetime, ctime(&date_stamp)
-                                     , strlen(ctime(&date_stamp))-1);
-    procpar_info->ex_datetime[strlen(ctime(&date_stamp))-1] = '\0';
+    }
+    //implicit conversion between time type and long type
+    // - Dickson Wong, Jun 2020
+    std::time_t ds_t = date_stamp;
+    strncpy(procpar_info->ex_datetime, ctime(&ds_t)
+                                     , strlen(ctime(&ds_t))-1);
+    procpar_info->ex_datetime[strlen(ctime(&ds_t))-1] = '\0';
    
 
     //printf("procpar_info->ex_datetime = %s\n", procpar_info->ex_datetime);

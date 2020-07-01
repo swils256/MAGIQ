@@ -23,7 +23,7 @@
 #define NUMBER_PARAMETERS					6   
 #define NUMBER_FIT_PARAMETERS_CONSTRAINTS	27   
 #define NUMBER_FIT_PARAMETERS_GUESS			2   
-#define MAX_NUMBER_LINKS					999   
+#define MAX_NUMBER_LINKS					500   
    
 // Parameters Frequency and Time Domains   
 #define SHIFT			0   

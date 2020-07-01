@@ -1,6 +1,6 @@
 #include <string.h>
 
-#define MAX_NUMBER_VARIABLES	999
+#define MAX_NUMBER_VARIABLES	100
 #define TRUE  1
 #define FALSE 0
 

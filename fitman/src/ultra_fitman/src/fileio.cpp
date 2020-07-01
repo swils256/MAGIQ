@@ -793,7 +793,6 @@ parameter_index++){
 								if(!parameter[parameter_index].get_value(link_label, temp_double)){
 
 									if(!parameter[parameter_index].put_variable(link_label, (double)current_peak)){
-										printf("%s %d %d \n", link_label, current_peak, parameter_index);
 										error.code = 4;
 										return(error);
 									}
