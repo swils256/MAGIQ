@@ -343,7 +343,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		
 		# Start Matlab Engine
 		print('Starting Matlab Engine ...')
-		cwd = os.popen('pwd').read().split('\n')[0]
+		cwd = os.getcwd()
 		eng = matlab.engine.start_matlab()
 		eng.cd(cwd + '/barstoolrv')
 		matlab_wd = eng.pwd(); print(matlab_wd)
