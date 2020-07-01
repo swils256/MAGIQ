@@ -387,13 +387,15 @@ class OutputFile(object):
 	def loadOutputFile(self):
 		print('=======================================')
 		print('Reading data from: ' + self.filename + ' ...')
-
-		in_file = open(self.filename,'r')
 		
+		with open(self.filename, 'r') as f_in:
+		    lines = (line.rstrip() for line in f_in) 
+		    lines = list(line for line in lines if line) # Non-blank lines in a list
+
 		output = self.tree()
 		crlb   = self.tree()
 		constraints_file_flag = False
-		for (i, line) in enumerate(in_file):
+		for (i, line) in enumerate(lines):
 			if "NUMBER_PEAKS" in line:
 				self.num_peaks = [_f for _f in line.replace('\r','').replace('\n','').split('\t') if _f][1]
 				print(self.num_peaks)
@@ -403,13 +405,14 @@ class OutputFile(object):
 			elif "noise_STDEV_imag" in line:
 				self.noise_STDEV_imag = float([_f for _f in line.split('\t') if _f][1].replace('\r','').replace('\n',''))
 				print(self.noise_STDEV_imag)
-			elif i > 14 and i < int(self.num_peaks) + 15:
+			elif i > 10 and i < int(self.num_peaks) + 11:
 				peak = int([_f for _f in line.replace('\r','').replace('\n','').split(' ') if _f][0])
 				output[peak] = [_f for _f in line.replace('\r','').replace('\n','').split(' ') if _f]
-				print([_f for _f in line.replace('\r','').replace('\n','').split(' ') if _f])
-			elif i > 14 and i > int(self.num_peaks) + 17 and i < 2*int(self.num_peaks) + 18:
+				print(str(peak) + ' ' + str(output[peak]))
+			elif i > 10 and i > int(self.num_peaks) + 11 and i < (2*int(self.num_peaks) + 12):
 				peak = int([_f for _f in line.replace('\r','').replace('\n','').replace(';','').split(' ') if _f][0])
 				crlb[peak] = [_f for _f in line.replace('\r','').replace('\n','').replace(';','').split(' ') if _f]
+				print(str(peak) + ' ' + str(crlb[peak]))
 			elif ";PEAK#" in line or ";PEAK #" in line or ";Peak#" in line or ";Peak #" in line:
 				constraints_file_flag = True
 			elif "Constraints_File_Ends" in line:
@@ -417,7 +420,7 @@ class OutputFile(object):
 			elif constraints_file_flag == True:
 				if (";" in line) and not("\t" in line):
 					current_metabolite = line.replace(';', '').replace('\r','').replace('\n','')
-					print(line.replace(';', '').replace('\r','').replace('\n',''))
+					print(current_metabolite)
 					self.metabolites_list.append(current_metabolite)
 					self.metabolites[current_metabolite] = Metabolite()
 					self.metabolites[current_metabolite].name = current_metabolite
@@ -644,7 +647,7 @@ class Procpar(object):
 	def load_procpar(self):
 
 		f = open(self.filename, 'rb')
-		rawproc = f.read()
+		rawproc = f.read().decode()
 		rawproc1 = rawproc.split("\n")
 		rawproc2 = [x for x in rawproc1 if x != '0 ']
 		f.close()
@@ -710,11 +713,11 @@ class FDF2D(object):
 		self.header = self.tree()
 
 		for sl in range(1, self.size[2]):
-			f = open(self.fdfdir + '/slice%03dimage001echo001.fdf' % sl, 'r')
-			line = f.readline()
+			f = open(self.fdfdir + '/slice%03dimage001echo001.fdf' % sl, 'rb')
+			line = f.readline().decode()
 
 			while not(line == '') and len(line) > 1 and not('checksum' in line):
-				line = f.readline()
+				line = f.readline().decode()
 				var = [_f for _f in line.replace('\n','').replace('=','').replace(';','').replace(',','').replace('*','').replace('[]','').replace('"','').replace('{', '').replace('}', '').split(' ') if _f]
 				varval = []
 				for i, el in enumerate(var):
@@ -1027,7 +1030,7 @@ class BrukerFID(object):
 		with open(file_dir + '/method', 'r') as f:
 			lines = f.readlines()
 			for i in range(0, len(lines)):
-				line = lines[i]
+				line = lines[i].decode()
 				# print i, line,
 				if '##$PVM_EchoTime=' in line:
 					self.EchoTime = float(line.replace('\n','').split('=')[-1])
