@@ -54,6 +54,14 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.setBindings('Set Parameters')
 		self.setBindings('Quantify Metabolites')
 
+		#If running on Windows, set the WSL environment up so FSL can be used
+		if os.name == 'nt':
+			print('Running on Windows ... setting up WSL environment.')
+			os.environ["DISPLAY"] = ":0"
+			os.environ["FSLDIR"] = "/usr/local/fsl"
+			os.environ["FSLOUTPUTTYPE"] = "NIFTI_GZ"
+			os.environ["WSLENV"] = "FSLDIR/u:FSLOUTPUTTYPE/u:DISPLAY/u"
+
 	def tree(self): return defaultdict(self.tree)
 
 	def setBindings(self, tab):
@@ -308,7 +316,11 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		self.consoleOutputText.append('Reorienting ...')
 		for (i, image) in enumerate(self.betImageList):
-			command = ['fslreorient2std', str(image), str(image).replace('.nii.gz', '_std.nii.gz')]
+			if os.name == 'nt':
+				image_win = os.popen('wsl wslpath "' + str(image) + '"').read().replace('\n','')
+				command = ['wsl', '$FSLDIR/bin/fslreorient2std', str(image_win), str(image_win).replace('.nii.gz', '_std.nii.gz')]	
+			else:
+				command = ['fslreorient2std', str(image), str(image).replace('.nii.gz', '_std.nii.gz')]
 			self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 			print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 			subprocess.call(command)
@@ -322,7 +334,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.consoleOutputText.append('---- Processing Image ' + str(self.BETIMAGELIST_INDEX+1) + ' of ' + str(np.size(self.betImageList)) + ' ---- ')
 
 		image = self.betImageList[self.BETIMAGELIST_INDEX].replace('.nii.gz', '_std.nii.gz')
-		command = ['fsleyes', str(image)]
+		
+		if os.name == 'nt':
+			image_win = os.popen('wsl wslpath "' + str(image) + '"').read().replace('\n','')
+			command = ['wsl', '$FSLDIR/bin/fsleyes', str(image_win)]
+		else:
+			command = ['fsleyes', str(image)]
 
 		self.consoleOutputText.append('Finding isocenter of image ...')
 		self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
@@ -330,7 +347,6 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		subprocess.call(command)
 
 		self.consoleOutputText.append('')
-
 		self.confirmIsoButton.setEnabled(True)
 
 	def confirmIso(self):
@@ -370,8 +386,13 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		self.consoleOutputText.append('Running BET with at most ' + str(np.size(luts)) + ' test thresholds on the image ...')
 		for fthresh in self.fthreshList[0:np.size(luts)]:
-			command = ['bet', str(image)+'_std']
-			command.append(str(image)+'_std_brain_f'+str(fthresh))
+			if os.name == 'nt':
+				image_win = os.popen('wsl wslpath "' + str(image) + '"').read().replace('\n','')
+				command = ['wsl', '$FSLDIR/bin/bet', str(image_win)+'_std']
+				command.append(str(image_win)+'_std_brain_f'+str(fthresh))
+			else:
+				command = ['bet', str(image)+'_std']
+				command.append(str(image)+'_std_brain_f'+str(fthresh))
 			command.append('-f ' + str(fthresh))
 			command.append('-g 0')
 			command.append('-c ' + str(brainctr))
@@ -391,11 +412,19 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		luts = ["Red-Yellow", "Blue-Lightblue", "Red", "Blue", "Green", "Yellow", "Pink", "Hot", "Cool", "Copper"]
 
 		self.consoleOutputText.append('Select threshold that produced the best brain extraction ...')
-		command = ['fsleyes', str(image)+'_std']
-		for (i, fthresh) in enumerate(self.fthreshList[0:np.size(luts)]):
-			command.append(str(image)+'_std_brain_f'+str(fthresh))
-			command.append('-cm "' + str(luts[i]) +'"')
-			command.append('-a ' + '0.0')
+		if os.name == 'nt':
+			image_win = os.popen('wsl wslpath "' + str(image) + '"').read().replace('\n','')
+			command = ['wsl', '$FSLDIR/bin/fsleyes', str(image_win)+'_std']
+			for (i, fthresh) in enumerate(self.fthreshList[0:np.size(luts)]):
+					command.append(str(image_win)+'_std_brain_f'+str(fthresh))
+					command.append('-cm "' + str(luts[i]) +'"')
+					command.append('-a ' + '0.0')
+		else:
+			command = ['fsleyes', str(image)+'_std']
+			for (i, fthresh) in enumerate(self.fthreshList[0:np.size(luts)]):
+				command.append(str(image)+'_std_brain_f'+str(fthresh))
+				command.append('-cm "' + str(luts[i]) +'"')
+				command.append('-a ' + '0.0')
 		
 		self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 		self.consoleOutputText.append('')
@@ -424,10 +453,20 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		# Remove test BET files
 		self.consoleOutputText.append('Removing test BET files ...')
 		for (i, fthresh) in enumerate(self.fthreshList[0:np.size(luts)]):
-			command = ['rm', str(image)+'_std_brain_f'+str(fthresh)+'.nii.gz']
-			self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-			print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-			subprocess.call(command)
+			try:
+				print('os.remove('+str(image)+'_std_brain_f'+str(fthresh)+'.nii.gz'+')')
+				os.remove(str(image)+'_std_brain_f'+str(fthresh)+'.nii.gz')
+			except Exception as e:
+				print(e)
+				print('Continuing ...')
+			
+			# if os.name == 'nt':
+			# 	command = ['del', str(image)+'_std_brain_f'+str(fthresh)+'.nii.gz']
+			# else:
+			# 	command = ['rm', str(image)+'_std_brain_f'+str(fthresh)+'.nii.gz']
+			# self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
+			# print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
+			# subprocess.call(command)
 		self.consoleOutputText.append('')
 
 		self.consoleOutputText.append('Running BET with selected threshold (' + str(self.fthresh_best) + ')')
@@ -435,8 +474,13 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		image = self.betImageList[self.BETIMAGELIST_INDEX].replace('.nii.gz', '')
 
 		# Run BET
-		command = ['bet', str(image)+'_std']
-		command.append(str(image)+'_std_brain_f'+str(self.fthresh_best))
+		if os.name == 'nt':
+			image_win = os.popen('wsl wslpath "' + str(image) + '"').read().replace('\n','')
+			command = ['wsl', '$FSLDIR/bin/bet', str(image_win)+'_std']
+			command.append(str(image_win)+'_std_brain_f'+str(self.fthresh_best))
+		else:
+			command = ['bet', str(image)+'_std']
+			command.append(str(image)+'_std_brain_f'+str(self.fthresh_best))
 		command.append('-f ' + str(self.fthresh_best))
 		command.append('-g 0')
 		command.append('-c ' + str(brainctr))
@@ -447,15 +491,28 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		os.system(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 
 		# Rename files
-		command = ['mv', str(image)+'_std_brain_f'+str(self.fthresh_best)+'.nii.gz', str(image)+'_std_brain.nii.gz']
-		self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-		print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-		subprocess.call(command)
+		try:
+			print('os.rename('+str(image)+'_std_brain_f'+str(self.fthresh_best)+'.nii.gz' +','+ str(image)+'_std_brain.nii.gz' +')')
+			os.rename(str(image)+'_std_brain_f'+str(self.fthresh_best)+'.nii.gz', str(image)+'_std_brain.nii.gz')
+		except Exception as e:
+			print(e)
+			print('Continuing ...')
+		
+		# command = ['mv', str(image)+'_std_brain_f'+str(self.fthresh_best)+'.nii.gz', str(image)+'_std_brain.nii.gz']
+		# self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
+		# print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
+		# subprocess.call(command)
 
-		command = ['mv', str(image)+'_std_brain_f'+str(self.fthresh_best)+'_mask.nii.gz', str(image)+'_std_brain_mask.nii.gz']
-		self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-		print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-		subprocess.call(command)
+		try:
+			print('os.rename('+str(image)+'_std_brain_f'+str(self.fthresh_best)+'_mask.nii.gz' +','+ str(image)+'_std_brain_mask.nii.gz'+')')
+			os.rename(str(image)+'_std_brain_f'+str(self.fthresh_best)+'_mask.nii.gz', str(image)+'_std_brain_mask.nii.gz')
+		except Exception as e:
+			print(e)
+			print('Continuing ...')
+		# command = ['mv', str(image)+'_std_brain_f'+str(self.fthresh_best)+'_mask.nii.gz', str(image)+'_std_brain_mask.nii.gz']
+		# self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
+		# print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
+		# subprocess.call(command)
 
 		self.consoleOutputText.append('---- Processed Image ' + str(self.BETIMAGELIST_INDEX+1) + ' of ' + str(np.size(self.betImageList)) + ' ---- ') 
 		self.consoleOutputText.append('')
@@ -544,15 +601,22 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		for image in self.fastImageList:
 			image = image.replace('.nii.gz', '')
-
-			command = ['fast']
+			image_win = os.popen('wsl wslpath "' + str(image) + '"').read().replace('\n','')
+			
+			if os.name == 'nt':
+				command = ['wsl $FSLDIR/bin/fast']
+			else:
+				command = ['fast']
 			command.append('-t ' + str(int(self.FAST_T)))
 			command.append('-n ' + str(int(self.FAST_N)))
 			command.append('-H ' + str(self.FAST_H))
 			command.append('-I ' + str(int(self.FAST_I)))
 			command.append('-l ' + str(self.FAST_L))
 			command.append('-v')
-			command.append('-o ' + str(image) + ' ' + str(image))
+			if os.name == 'nt':
+				command.append('-o ' + str(image_win) + ' ' + str(image_win))
+			else:
+				command.append('-o ' + str(image) + ' ' + str(image))
 			self.consoleOutputText.append('>> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 			print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 			os.system(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
