@@ -1030,7 +1030,7 @@ class BrukerFID(object):
 		with open(file_dir + '/method', 'r') as f:
 			lines = f.readlines()
 			for i in range(0, len(lines)):
-				line = lines[i].decode()
+				line = lines[i]
 				# print i, line,
 				if '##$PVM_EchoTime=' in line:
 					self.EchoTime = float(line.replace('\n','').split('=')[-1])
