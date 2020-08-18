@@ -1126,7 +1126,7 @@ class BrukerFID(object):
 		if len(shape) > 0:
 			try:
 				val = np.reshape(np.array(val.split(' ')), shape)
-            	val = val.squeeze()
+				val = val.squeeze()
 			except ValueError:
 				pass
 		param_dict[key] = {'value': val, 'shape': shape}
