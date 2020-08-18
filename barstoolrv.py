@@ -5,6 +5,7 @@ from builtins import str
 from builtins import range
 import sys
 import os
+import subprocess
 
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 
@@ -54,6 +55,14 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.setBindings('Set Parameters')
 		self.setBindings('Quantify Metabolites')
 
+		#If running on Windows, set the WSL environment up so FSL can be used
+		if os.name == 'nt':
+			print('Running on Windows ... setting up WSL environment.')
+			os.environ["DISPLAY"] = ":0"
+			os.environ["FSLDIR"] = "/usr/local/fsl"
+			os.environ["FSLOUTPUTTYPE"] = "NIFTI_GZ"
+			os.environ["WSLENV"] = "FSLDIR/u:FSLOUTPUTTYPE/u:DISPLAY/u"
+
 	def tree(self): return defaultdict(self.tree)
 
 	def setBindings(self, tab):
@@ -76,6 +85,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		elif tab == 'Brain Extraction and Segmentation':
 
+			# --- For legacy VARIAN datasets --- #
 			self.FDFIMAGELIST_INDEX = 0
 
 			self.selectFDFImagesButton.clicked.connect(self.loadMouseDirs)
@@ -93,6 +103,18 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.runSegButton.clicked.connect(self.runSeg)
 			self.runSegButton.setEnabled(False)
 
+			# --- For new BRUKER datasets --- #
+			self.selectBrukerDatasetsButton.clicked.connect(self.loadBrukerDatasets)
+			self.selectBrukerDatasetsButton.setEnabled(False)
+
+			self.runBrainExtButton.clicked.connect(self.runBrainExtBruker)
+			self.runBrainExtButton.setEnabled(False)
+
+			self.runVoxAlignButton_bruker.clicked.connect(self.runVoxAlignBruker)
+			self.runVoxAlignButton_bruker.setEnabled(False)
+
+
+
 		elif tab == 'Set Parameters':
 
 			self.loadMetabParamsButton.clicked.connect(self.loadMetabParams)
@@ -104,6 +126,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		elif tab == 'Quantify Metabolites':
 
+			# --- For legacy VARIAN datasets --- #
 			self.loadOutputsButton_quant.clicked.connect(self.loadMouseDirs)
 			self.loadOutputsButton_quant.setEnabled(False)
 
@@ -119,6 +142,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.plotQuant_mplvl.addWidget(self.canvas)
 			self.canvas.draw()
 
+			# --- For new BRUKER datasets --- #
+			fig_bruker = plt.figure(2)
+			self.canvas_bruker = FigureCanvas(fig)
+			self.plotQuant_mplvl_bruker.addWidget(self.canvas_bruker)
+			self.canvas_bruker.draw()
+
 	# ---- Methods for 'Sum Amplitudes' Tab ---- #
 	def setWorkingDirectory(self):
 
@@ -132,8 +161,14 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 		self.setWorkingDirectoryButton.setEnabled(False)
 		self.loadOutputsButton.setEnabled(True)
+
+		# --- For legacy VARIAN datasets --- #
 		self.selectFDFImagesButton.setEnabled(True)
 		self.loadOutputsButton_quant.setEnabled(True)
+
+		# --- For new BRUKER datasets --- #
+		self.selectBrukerDatasetsButton.setEnabled(True)
+		self.loadOutputsButton_quant_bruker.setEnabled(True)
 
 	def loadOutputs(self):
 
@@ -253,7 +288,172 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.studyIDsTextEdit.clear()
 		self.saveFileLineEdit.clear()
 
-	# ---- Methods for 'Brain Extraction' Tab ---- #
+	# ---- Methods for 'Brain Extraction' Tab (BRUKER) ---- #
+	def loadBrukerDatasets(self):
+
+		if self.mainTabWidget.currentIndex() == 1:
+			self.consoleOutputText.append('==== BRAIN EXTRACTION (BRUKER) ====')
+		elif self.mainTabWidget.currentIndex() == 3:
+			self.consoleOutputText.append('==== QUANTIFICATION (BRUKER) ====')
+
+		file_dialog = QtWidgets.QFileDialog(directory=self.workingDirectory)
+		file_dialog.setFileMode(QtWidgets.QFileDialog.DirectoryOnly)
+		file_dialog.setOption(QtWidgets.QFileDialog.DontUseNativeDialog, True)
+		file_view = file_dialog.findChild(QtWidgets.QListView, 'listView')
+
+		# to make it possible to select multiple directories:
+		if file_view:
+			file_view.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+		f_tree_view = file_dialog.findChild(QtWidgets.QTreeView)
+
+		if file_dialog.exec():
+			paths = file_dialog.selectedFiles()
+			self.mouseDirsBruker = paths
+			
+			self.consoleOutputText.append('The following files were loaded:')
+			for (i, mouse) in enumerate(self.mouseDirsBruker):
+				self.mouseDirsBruker[i] = str(mouse)
+				self.consoleOutputText.append(' >> ' + str(mouse))
+			self.mouseIDsBruker = [mouse.split('/')[-1] for mouse in self.mouseDirsBruker]
+			self.consoleOutputText.append('')
+
+			if self.mainTabWidget.currentIndex() == 1:
+				self.selectBrukerDatasetsButton.setEnabled(False)
+				self.runBrainExtButton.setEnabled(True)
+			elif self.mainTabWidget.currentIndex() == 3:
+				self.loadOutputsButton_quant_bruker.setEnabled(True)
+				self.saveFileLineEdit_quant_bruker.setText(self.workingDirectory + '/' + '_____.csv')
+				self.confirmSaveFileButton_quant_bruker.setEnabled(True)
+		else:
+			if self.mainTabWidget.currentIndex() == 1:
+				self.consoleOutputText.append('No image files selected ... try again.')
+				self.consoleOutputText.append('')
+				self.selectBrukerDatasetsButton.setEnabled(True)
+			elif self.mainTabWidget.currentIndex() == 3:
+				self.consoleOutputText.append('No output files selected ... try again.')
+				self.consoleOutputText.append('')
+				self.loadOutputsButton_quant_bruker.setEnabled(False)
+
+	def runBrainExtBruker(self):
+		for d, directory in enumerate(self.mouseDirsBruker):
+			img_file = directory + '/' + self.mouseIDsBruker[d] + '.nii.gz'
+			mas_file = directory + '/' + self.mouseIDsBruker[d] + '_mask.nii.gz'
+			bra_file = directory + '/' + self.mouseIDsBruker[d] + '_brain.nii.gz'
+
+			self.consoleOutputText.append('==== RATS_MM ====')
+			self.consoleOutputText.append('Loading ' + str(img_file))
+				
+			img = nib.nifti1.load(img_file)
+			img_data = np.asanyarray(img.dataobj)
+	
+			k = int(self.ratsMM_k.text())
+			t = int(np.mean(img_data)); self.ratsMM_t.setText(str(int(np.mean(img_data))))
+			v = int(self.ratsMM_v.text())
+
+			if os.name == 'nt':
+				img_file_path = subprocess.check_output('wsl wslpath -u ' + img_file).decode().rstrip()
+				mas_file_path = subprocess.check_output('wsl wslpath -u ' + mas_file).decode().rstrip()
+				self.consoleOutputText.append(' | ' + str(img_file_path))
+				cmd = 'wsl ./barstoolrv/RATS_MM -k ' + str(k) + ' -t ' + str(t) + ' -v ' + str(v) + ' ' + img_file_path + ' ' + mas_file_path
+			else:
+				cmd = './barstoolrv/RATS_MM -k ' + str(k) + ' -t ' + str(t) + ' -v ' + str(v) + ' ' + img_file + ' ' + mas_file
+			self.consoleOutputText.append(' >> ' + cmd)
+			self.consoleOutputText.append(subprocess.check_output(cmd).decode() + '\n')
+
+			mas = nib.nifti1.load(mas_file)
+			mas_data = np.asanyarray(mas.dataobj)
+			bra_data = img_data * mas_data
+			bra = nib.Nifti1Image(bra_data, img.affine, img.header)
+			bra.to_filename(bra_file)
+
+		self.runBrainExtButton.setEnabled(False)
+		self.runVoxAlignButton_bruker.setEnabled(True)
+
+	def runVoxAlignBruker(self):
+		self.consoleOutputText.append('===== alignvoxel_bruker =====')
+		for d, directory in enumerate(self.mouseDirsBruker):
+			file_dir = directory + '/sup'
+			print('Loading ', file_dir)
+			
+			data = BrukerFID(file_dir)
+
+			VoxArrSize = np.array([float(v) for v in data.header['PVM_VoxArrSize']['value']])
+			VoxArrPosition = np.array([float(v) for v in data.header['PVM_VoxArrPosition']['value']])
+			VoxArrPositionRPS = np.array([float(v) for v in data.header['PVM_VoxArrPositionRPS']['value']])
+			VoxArrCSDisplacement = np.array([float(v) for v in data.header['PVM_VoxArrCSDisplacement']['value']])
+			VoxArrGradOrient = np.array([list(map(float, sublist)) for sublist in data.header['PVM_VoxArrGradOrient']['value']])
+
+			img_file = directory + '/' + self.mouseIDsBruker[d] + '.nii.gz'
+			bra_file = directory + '/' + self.mouseIDsBruker[d] + '_brain.nii.gz'
+			vox_file = directory + '/' + self.mouseIDsBruker[d] + '_voxel_overlay.nii.gz'
+			
+			print(' | Getting ', img_file, bra_file)
+			img = nib.nifti1.load(img_file)
+			bra = nib.nifti1.load(bra_file)
+
+			bra_ijk = []
+			bra_xyz = []
+			bra_size = np.array(bra.header.get_data_shape())
+			bra_affine_inv = np.linalg.inv(bra.affine)
+
+			M = bra.affine[:3,:3]; abc = bra.affine[:3,3]
+			M_inv = bra_affine_inv[:3,:3]; abc_inv = bra_affine_inv[:3,3]
+
+			print('   | M', M)
+			print('   | M_inv', M_inv)
+			print('   | abc', abc)
+			print('   | abc_inv', abc)
+
+			R_vox = VoxArrGradOrient
+			p_vox_water = R_vox.dot(VoxArrPosition)
+			# p_vox_fat   = R_vox.dot(VoxArrPosition + VoxArrCSDisplacement)
+
+			print('   | p_vox_water', p_vox_water)
+			# print('   | p_vox_fat', p_vox_fat)
+			print('   | VoxArrSize', VoxArrSize)
+
+			vox_size = VoxArrSize
+			vox_img_water  = np.zeros(np.array(img.header.get_data_shape())) 
+			# vox_img_fat    = np.zeros(np.array(img.header.get_data_shape()))
+			vox_res = np.array(img.header.get_zooms())
+
+			vlminw = p_vox_water - VoxArrSize/2; # vlminf = p_vox_fat - VoxArrSize/2
+			vlmaxw = p_vox_water + VoxArrSize/2; # vlmaxf = p_vox_fat + VoxArrSize/2
+
+			print('   | vlminw', vlminw)
+			print('   | vlmaxw', vlmaxw)
+			# print('   | vlminf', vlminf)
+			# print('   | vlmaxf', vlmaxf)
+
+			# Build Water Voxel
+			vlminw_ijk = np.round(M_inv.dot(vlminw) + abc_inv).astype(int)
+			vlmaxw_ijk = np.round(M_inv.dot(vlmaxw) + abc_inv).astype(int)
+
+			print('   | vlminw_ijk', vlminw_ijk)
+			print('   | vlmaxw_ijk', vlmaxw_ijk)
+
+			i1 = np.min([vlminw_ijk[0], vlmaxw_ijk[0]]); i2 = np.max([vlminw_ijk[0], vlmaxw_ijk[0]])
+			j1 = np.min([vlminw_ijk[1], vlmaxw_ijk[1]]); j2 = np.max([vlminw_ijk[1], vlmaxw_ijk[1]])
+			k1 = np.min([vlminw_ijk[2], vlmaxw_ijk[2]]); k2 = np.max([vlminw_ijk[2], vlmaxw_ijk[2]])
+
+			print(i1, j1, k1)
+			print(i2, j2, k2)
+
+			vox_img_water[i1:i2+1, j1:j2+1, k1:k2+1] = 1
+
+			print(' | Saving ', vox_file)
+			nifti_vox_water = nib.Nifti1Image(vox_img_water, bra.affine, bra.header)
+			nifti_vox_water.to_filename(vox_file)
+
+			self.consoleOutputText.append(' >> ' + str(directory))
+		print('')
+		self.consoleOutputText.append('')
+
+		self.runVoxAlignButton_bruker.setEnabled(False)
+		self.runSegButton_bruker.setEnabled(True)
+
+
+	# ---- Methods for 'Brain Extraction' Tab (VARIAN) ---- #
 	def loadMouseDirs(self):
 		
 		if self.mainTabWidget.currentIndex() == 1:
@@ -301,7 +501,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			elif self.mainTabWidget.currentIndex() == 3:
 				self.consoleOutputText.append('No output files selected ... try again.')
 				self.consoleOutputText.append('')
-				self.loadOutputsButton_quant.setEnabled(True)
+				self.loadOutputsButton_quant.setEnabled(False)
 
 	def fdf2nifti(self):
 
