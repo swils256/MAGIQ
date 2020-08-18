@@ -199,6 +199,37 @@ class Pulse(object):
 			#define parameters
 			self.pulsestep = pulse_length / len(self.waveform)
 
+		elif scanner == 'bruker':
+			self.header, data_mag, data_pha = self.__parseBrukerPulseFile__(inpulsefile)
+			self.waveform = np.array(data_mag)*np.exp(1j*np.deg2rad(data_pha))
+			self.header_params = list(self.header.keys())
+
+	def __parseBrukerPulseFile__(self, pulse_file):
+		f = open(pulse_file, 'r')
+		lines = []
+		for line in f:
+			lines.append(line.rstrip('\n'))
+		f.close()
+
+		header = {}
+		data_mag = []
+		data_pha = []
+		for line in lines:
+			if '##' in line and not('##END=' in line):
+				key = line.replace('##','').replace('$','').replace(' ','').split('=')[0]
+				val = line.replace('##','').replace('$','').replace(' ','').split('=')[1]
+				header[key] = val
+			elif '##END=' in line:
+				
+				return header, data_mag, data_pha
+			else:
+				mag = float(line.replace(' ', '').split(',')[0])
+				pha = float(line.replace(' ', '').split(',')[1])
+				data_mag.append(mag)
+				data_pha.append(pha)
+		
+		return header, data_mag, data_pha
+
 class RefSignal(object):
 	def __init__(self, signal, n, fs, t, b0):
 		self.n = n
@@ -389,8 +420,8 @@ class OutputFile(object):
 		print('Reading data from: ' + self.filename + ' ...')
 		
 		with open(self.filename, 'r') as f_in:
-		    lines = (line.rstrip() for line in f_in) 
-		    lines = list(line for line in lines if line) # Non-blank lines in a list
+			lines = (line.rstrip() for line in f_in) 
+			lines = list(line for line in lines if line) # Non-blank lines in a list
 
 		output = self.tree()
 		crlb   = self.tree()
@@ -1015,52 +1046,19 @@ class BrukerFID(object):
 	def __init__(self, file_dir):
 		self.file_dir = file_dir
 
-		# READ DATA
-		f = open(file_dir + '/fid', 'r')
-		data = np.fromfile(f, np.int32)
-		data_real = []
-		data_imag = []
-		for (i, num) in enumerate(data):
-			if i % 2 == 0:
-				data_real.append(num)
-			else:
-				data_imag.append(num)
+		# READ RAW DATA
+		data_real, data_imag = self.__parseFID__(file_dir)
 
 		# READ ACQUISITION PARAMS
-		with open(file_dir + '/method', 'r') as f:
-			lines = f.readlines()
-			for i in range(0, len(lines)):
-				line = lines[i]
-				# print i, line,
-				if '##$PVM_EchoTime=' in line:
-					self.EchoTime = float(line.replace('\n','').split('=')[-1])
-				elif '##$PVM_RepetitionTime=' in line:
-					self.RepetitionTime = float(line.replace('\n','').split('=')[-1])
-				elif '##$PVM_NAverages=' in line:
-					self.NAverages = int(line.replace('\n','').split('=')[-1])
-				elif '##$PVM_FrqRef=' in line:
-					self.FrqRef = float(lines[i+1].replace('\n','').split(' ')[0])
-				elif '##$PVM_DigDw=' in line:
-					self.DigDw = float(line.replace('\n','').split('=')[-1])
-				elif '##$PVM_DigShift=' in line:
-					self.DigShift = int(line.replace('\n','').split('=')[-1])
-				elif '##$PVM_VoxArrSize=' in line:
-					self.VoxArrSize = []
-					for el in lines[i+1].replace('\n','').split(' '): self.VoxArrSize.append(float(el))
-				elif '##$PVM_VoxArrPosition=' in line:
-					self.VoxArrPosition = []
-					for el in lines[i+1].replace('\n','').split(' '): self.VoxArrPosition.append(float(el))
-				elif '##$PVM_VoxArrPositionRPS=' in line:
-					self.VoxArrPositionRPS = []
-					for el in lines[i+1].replace('\n','').split(' '): self.VoxArrPositionRPS.append(float(el))
-				elif '##$PVM_EncChanScaling=' in line:
-					self.EncChanScaling = []
-					for el in lines[i+1].replace('\n','').split(' '): self.EncChanScaling.append(float(el))
+		self.header = self.__parseMethodFile(file_dir)
+		self.header_params = list(self.header.keys())
 
+		DigShift = int(self.header['PVM_DigShift']['value'])
+		DigDw    = float(self.header['PVM_DigDw']['value'])
 
 		# CHOP OFF ADC DELAY
 		self.signal = np.array(data_real) + 1j*np.array(data_imag)
-		self.signal = self.signal[self.DigShift:]
+		self.signal = self.signal[DigShift:]
 		self.n = np.size(self.signal, 0)
 
 		# SCALE SIGNAL SUCH THAT MAGNITUDE OF FID IS BETWEEN 1 AND 10
@@ -1079,25 +1077,60 @@ class BrukerFID(object):
 		# | Apply scaling factor to signal
 		self.signal = np.real(self.signal) * self.ConvS + 1j*np.imag(self.signal) * self.ConvS
 
-		self.fs = 1/(self.DigDw/1000)
+		self.fs = 1/(DigDw/1000)
 		self.t = sp.arange(0, self.n, 1) * (1/self.fs)
 
-	def print_params(self, console):
-		console.append(' | file_dir ' + str(self.file_dir))
-		console.append(' | EchoTime ' + str(self.EchoTime))
-		console.append(' | RepetitionTime ' + str(self.RepetitionTime))
-		console.append(' | NAverages ' + str(self.NAverages))
-		console.append(' | FrqRef ' + str(self.FrqRef))
-		console.append(' | DigDw ' + str(self.DigDw))
-		console.append(' | DigShift ' + str(self.DigShift))
-		console.append(' | VoxArrSize ' + str(self.VoxArrSize))
-		console.append(' | VoxArrPosition ' + str(self.VoxArrPosition))
-		console.append(' | VoxArrPositionRPS ' + str(self.VoxArrPositionRPS))
-		console.append(' | EncChanScaling ' + str(self.EncChanScaling))
-		console.append(' | n ' + str(self.n))
-		console.append(' | ConvS ' + str(self.ConvS))
-		console.append(' | fs ' + str(self.fs))
-		console.append(' | t' + str(self.t))
+	def __parseFID__(self, file_dir):
+		f = open(file_dir + '/fid', 'r')
+		data = np.fromfile(f, np.int32)
+		data_real = []
+		data_imag = []
+		for (i, num) in enumerate(data):
+			if i % 2 == 0:
+				data_real.append(num)
+			else:
+				data_imag.append(num)
+		f.close()
+		return data_real, data_imag
+
+	def __parseMethodFile(self, file_dir):
+		f = open(file_dir + '/method', 'r')
+		
+		lines = []
+		for line in f:
+			if not('$$ ' in line):
+				lines.append(line.rstrip('\n'))
+		
+		info = ''
+		for line in lines:
+			info += line
+		param_list = np.array(info.split('##'))
+
+		param_dict = {}
+		for param in param_list:
+			if param == '':
+				continue
+
+			key = param.split('=')[0].replace('$','')
+			val = param.split('=')[1]
+			
+			shape = re.findall(r'\( \d{0,4}\,{0,1}\ {0,1}\d{0,4}\,{0,1}\ {0,1}\d{0,4} \)', val)
+			if len(shape) == 0:
+				shape = ''
+			else:
+				shape = shape[0]
+			val = val.replace(shape, '')
+			
+			shape = [int(s) for s in shape.replace('(', '').replace(')', '').replace('$','').replace(' ','').split(',') if len(s) > 0]
+
+		if len(shape) > 0:
+			try:
+				val = np.reshape(np.array(val.split(' ')), shape)
+            	val = val.squeeze()
+			except ValueError:
+				pass
+		param_dict[key] = {'value': val, 'shape': shape}
+		return param_dict
 
 	def writeDAT(self, out_name, suffix=''):
 		if not(suffix is ''):
@@ -1110,19 +1143,30 @@ class BrukerFID(object):
 		data_real = np.real(self.signal)
 		data_imag = -np.imag(self.signal)
 
+		DigDw = float(self.header['PVM_DigDw']['value'])
+		FrqRef = float(self.header['PVM_FrqRef']['value'][0])
+
+		# ... assumes single-voxel spectroscopy here ...
+		VoxArrSize = [float(v) for v in self.header['PVM_VoxArrSize']['value']]
+		VoxArrPosition = [float(v) for v in self.header['PVM_VoxArrPosition']['value']]
+		
+		EncChanScaling = float(self.header['PVM_EncChanScaling']['value'])
+		EchoTime = float(self.header['PVM_EchoTime']['value'])
+		RepetitionTime = float(self.header['PVM_RepetitionTime']['value'])
+
 		o = open(out_name, 'w')
 		o.write(str(np.size(data_real) + np.size(data_imag)) + '\n')
 		o.write('1\n')
-		o.write(str(self.DigDw/1000.) + '\n')
-		o.write(str(self.FrqRef) + '\n')
+		o.write(str(DigDw/1000.) + '\n')
+		o.write(str(FrqRef) + '\n')
 		o.write('1\n')
 		o.write(self.file_dir + '/fid\n')
 		o.write(now.strftime("%Y %m %d") + '\n')
 		o.write('MachS=0 ConvS=' + str(self.ConvS) + ' ')
-		o.write('V1=' + str(self.VoxArrSize[0]) + ' ' + 'V2=' + str(self.VoxArrSize[1]) + ' ' + 'V3=' + str(self.VoxArrSize[2]) + '\n')
-		o.write('TE=' + str(self.EchoTime / 1000.) + ' s ')
-		o.write('TR=' + str(self.RepetitionTime / 1000.) + ' s ')
-		o.write('P1=' + str(self.VoxArrPosition[0]) + ' P2=' + str(self.VoxArrPosition[1]) + ' P3=' + str(self.VoxArrPosition[2]) + ' Gain=' + str(self.EncChanScaling[0]) + '\n')
+		o.write('V1=' + str(VoxArrSize[0]) + ' ' + 'V2=' + str(VoxArrSize[1]) + ' ' + 'V3=' + str(VoxArrSize[2]) + '\n')
+		o.write('TE=' + str(EchoTime / 1000.) + ' s ')
+		o.write('TR=' + str(RepetitionTime / 1000.) + ' s ')
+		o.write('P1=' + str(VoxArrPosition[0]) + ' P2=' + str(VoxArrPosition[1]) + ' P3=' + str(VoxArrPosition[2]) + ' Gain=' + str(EncChanScaling[0]) + '\n')
 		o.write('SIMULTANEOUS\n0.0\n')
 		o.write('EMPTY\n')
 
@@ -1133,5 +1177,38 @@ class BrukerFID(object):
 
 	def getSpec(self):
 		n = sp.size(self.signal)
-		f = sp.arange(-n//2,+n//2, 1)*(self.fs/n)*(1/self.FrqRef)
+		f = sp.arange(-n//2,+n//2, 1)*(self.fs/n)*(1/float(self.header['PVM_FrqRef']['value'][0]))
 		return (-f, fftw.fftshift(fftw.fft(self.signal)))
+
+	def print_params(self, console):
+		# PRINT SOME USEFUL PARAMS TO CONSOLE
+
+		EchoTime = self.header['PVM_EchoTime']['value']
+		RepetitionTime = self.header['PVM_RepetitionTime']['value']
+		NAverages = self.header['PVM_NAverages']['value']
+		FrqRef = self.header['PVM_FrqRef']['value'][0]
+		DigDw = self.header['PVM_DigDw']['value']
+		DigShift = self.header['PVM_DigShift']['value']
+
+		# ... assumes single-voxel spectroscopy here ...
+		VoxArrSize = [float(v) for v in self.header['PVM_VoxArrSize']['value']]
+		VoxArrPosition = [float(v) for v in self.header['PVM_VoxArrPosition']['value']]
+		VoxArrPositionRPS = [float(v) for v in self.header['PVM_VoxArrPositionRPS']['value']]
+
+		EncChanScaling = self.header['PVM_EncChanScaling']['value']
+
+		console.append(' | file_dir ' + str(self.file_dir))
+		console.append(' | EchoTime ' + str(EchoTime))
+		console.append(' | RepetitionTime ' + str(RepetitionTime))
+		console.append(' | NAverages ' + str(NAverages))
+		console.append(' | FrqRef ' + str(FrqRef))
+		console.append(' | DigDw ' + str(DigDw))
+		console.append(' | DigShift ' + str(DigShift))
+		console.append(' | VoxArrSize ' + str(VoxArrSize))
+		console.append(' | VoxArrPosition ' + str(VoxArrPosition))
+		console.append(' | VoxArrPositionRPS ' + str(VoxArrPositionRPS))
+		console.append(' | EncChanScaling ' + str(EncChanScaling))
+		console.append(' | n ' + str(self.n))
+		console.append(' | ConvS ' + str(self.ConvS))
+		console.append(' | fs ' + str(self.fs))
+		console.append(' | t' + str(self.t))
