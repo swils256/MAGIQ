@@ -1051,7 +1051,7 @@ class BrukerFID(object):
 		data_real, data_imag = self.__parseFID__(file_dir)
 
 		# READ ACQUISITION PARAMS
-		self.header = self.__parseMethodFile(file_dir)
+		self.header = self.__parseMethodFile__(file_dir)
 		self.header_params = list(self.header.keys())
 
 		DigShift = int(self.header['PVM_DigShift']['value'])
@@ -1094,14 +1094,15 @@ class BrukerFID(object):
 		f.close()
 		return data_real, data_imag
 
-	def __parseMethodFile(self, file_dir):
+	def __parseMethodFile__(self, file_dir):
 		f = open(file_dir + '/method', 'r')
 		
 		lines = []
 		for line in f:
 			if not('$$ ' in line):
 				lines.append(line.rstrip('\n'))
-		
+		f.close()
+
 		info = ''
 		for line in lines:
 			info += line
@@ -1124,13 +1125,14 @@ class BrukerFID(object):
 			
 			shape = [int(s) for s in shape.replace('(', '').replace(')', '').replace('$','').replace(' ','').split(',') if len(s) > 0]
 
-		if len(shape) > 0:
-			try:
-				val = np.reshape(np.array(val.split(' ')), shape)
-				val = val.squeeze()
-			except ValueError:
-				pass
-		param_dict[key] = {'value': val, 'shape': shape}
+			if len(shape) > 0:
+				try:
+					val = np.reshape(np.array(val.split(' ')), shape)
+					val = val.squeeze()
+				except ValueError:
+					pass
+			param_dict[key] = {'value': val, 'shape': shape}
+
 		return param_dict
 
 	def writeDAT(self, out_name, suffix=''):
@@ -1151,7 +1153,7 @@ class BrukerFID(object):
 		VoxArrSize = [float(v) for v in self.header['PVM_VoxArrSize']['value']]
 		VoxArrPosition = [float(v) for v in self.header['PVM_VoxArrPosition']['value']]
 		
-		EncChanScaling = float(self.header['PVM_EncChanScaling']['value'])
+		EncChanScaling = [float(v) for v in self.header['PVM_EncChanScaling']['value']]
 		EchoTime = float(self.header['PVM_EchoTime']['value'])
 		RepetitionTime = float(self.header['PVM_RepetitionTime']['value'])
 
@@ -1196,7 +1198,7 @@ class BrukerFID(object):
 		VoxArrPosition = [float(v) for v in self.header['PVM_VoxArrPosition']['value']]
 		VoxArrPositionRPS = [float(v) for v in self.header['PVM_VoxArrPositionRPS']['value']]
 
-		EncChanScaling = self.header['PVM_EncChanScaling']['value']
+		EncChanScaling = [float(v) for v in self.header['PVM_EncChanScaling']['value']]
 
 		console.append(' | file_dir ' + str(self.file_dir))
 		console.append(' | EchoTime ' + str(EchoTime))
