@@ -113,7 +113,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.runVoxAlignButton_bruker.clicked.connect(self.runVoxAlignBruker)
 			self.runVoxAlignButton_bruker.setEnabled(False)
 
-
+			self.runSegButton_bruker.clicked.connect(self.runSeg_bruker)
+			self.runSegButton_bruker.setEnabled(False)
 
 		elif tab == 'Set Parameters':
 
@@ -452,6 +453,53 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.runVoxAlignButton_bruker.setEnabled(False)
 		self.runSegButton_bruker.setEnabled(True)
 
+	def runSeg_bruker(self):
+		self.consoleOutputText('==== csf_thresh (BRUKER) ====')
+		for d, directory in enumerate(self.mouseDirsBruker):
+
+			bra_file = directory + '/' + self.mouseIDsBruker[d] + '_brain.nii.gz'
+			mas_file = directory + '/' + self.mouseIDsBruker[d] + '_mask.nii.gz'
+			csf_file = directory + '/' + self.mouseIDsBruker[d] + '_csf_mask.nii.gz'
+
+			self.consoleOutputText.append(' >> ' + str(directory))
+			print('Processing ', directory, '...')
+
+			brain = nib.load(bra_file)
+			mask  = nib.load(mas_file)
+
+			brain_img = np.asanyarray(brain.dataobj).squeeze()
+			mask_img  = np.asanyarray( mask.dataobj).squeeze()
+
+			brain_img_vec = np.reshape(brain_img, np.size(brain_img)).astype(int)
+			mask_img_vec  = np.reshape(mask_img,  np.size(mask_img )).astype(int)
+
+			brain_img_vec_masked = brain_img_vec[mask_img_vec.astype(bool)]
+			brain_kde = sp.stats.gaussian_kde(brain_img_vec_masked)
+
+			for i, elem in enumerate(np.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000)):
+				if brain_kde.integrate_box_1d(np.min(brain_img_vec), elem) > float(self.csfThreshLineEdit_bruker.text()):
+					print(i, elem)
+					csf_thresh = elem
+					break
+
+			plt.figure()
+			plt.plot(sp.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000), brain_kde(sp.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000)))
+			plt.plot(csf_thresh, brain_kde(csf_thresh), '.')
+			plt.title('Gaussian Kernel Density Estimate of PDF')
+			plt.xlim(0, np.max(brain_img_vec))
+			plt.xlabel('Image Intensity')
+			plt.ylabel('Probability')
+			plt.legend(['PDF', 'Threshold: '+str(int(csf_thresh))])
+			plt.savefig(directory + '/' + self.mouseIDsBruker[d] + '_brain_gkde.pdf')
+
+			brain_csf_mask = brain_img >= int(csf_thresh)
+			brain_csf_mask = brain_csf_mask.astype(int)
+			brain_csf_mask_file = nib.Nifti1Image(brain_csf_mask, brain.affine, brain.header)
+			brain_csf_mask_file.to_filename(csf_file)
+
+		print('')
+		self.runSegButton_bruker.setEnabled(False)
+		self.selectBrukerDatasetsButton.setEnabled(True)
 
 	# ---- Methods for 'Brain Extraction' Tab (VARIAN) ---- #
 	def loadMouseDirs(self):
