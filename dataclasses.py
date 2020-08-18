@@ -11,6 +11,7 @@ import time
 import glob
 import platform
 import struct
+import re
 
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import subprocess as subproc
