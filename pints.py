@@ -68,7 +68,13 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.confirmSimParamsButton.clicked.connect(self.confirmSimParams)
 			
 			self.calibrationMetaboliteComboBox.setCurrentIndex(35)
+			self.calibrationMetaboliteComboBox_bruker.setCurrentIndex(35)
 			self.calibrationMetaboliteComboBox_laser.setCurrentIndex(35)
+
+			self.loadBrukerDataBrowseButton.clicked.connect(self.loadBrukerData)
+			self.workingDirectory_bruker = os.path.expanduser('~')
+			self.loadBrukerDataLoadButton.clicked.connect(self.loadBrukerParams)
+			self.loadBrukerDataLoadButton.setEnabled(False)
 
 			self.runSimulationButton.setEnabled(False)
 			self.runSimulationButton.clicked.connect(self.runSimulation)
@@ -165,6 +171,101 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.addmpl(2, fig, self.plotGES_mplvl)
 
 	# ---- Methods for Simulate Tab ---- #
+	def loadBrukerData(self):
+		prev = str(self.loadBrukerDataLineEdit.text())
+		self.loadBrukerDataLineEdit.setText(str(QtWidgets.QFileDialog.getExistingDirectory(self, 'Open Bruker Data Directory', self.workingDirectory_bruker)))
+		if str(self.loadBrukerDataLineEdit.text()) == '':
+			if str(prev) == '':
+				self.loadBrukerDataLineEdit.setText(str(prev))
+				self.loadBrukerDataLoadButton.setEnabled(False)
+				
+				self.T3Button.setEnabled(True)
+				self.T7Button.setEnabled(True)
+				self.T9Button.setEnabled(True)
+
+				self.dwellTimeInput_sim.setEnabled(True)
+				self.acqLengthInput_sim.setEnabled(True)
+				self.echoTimeInput_sim.setEnabled(True)
+
+				self.sLASERradioButton.setEnabled(True)
+				self.sLASERradioButton_bruker.setEnabled(True)
+				self.LASERradioButton.setEnabled(False)
+		else:
+			self.loadBrukerDataLoadButton.setEnabled(True)
+
+			self.T3Button.setEnabled(False)
+			self.T7Button.setEnabled(False)
+			self.T9Button.setEnabled(False)
+
+			self.dwellTimeInput_sim.setEnabled(False)
+			self.acqLengthInput_sim.setEnabled(False)
+			self.echoTimeInput_sim.setEnabled(False)
+
+			self.sLASERradioButton.setEnabled(False)
+			self.sLASERradioButton_bruker.setEnabled(False)
+			self.LASERradioButton.setEnabled(False)
+
+			self.workingDirectory_bruker = os.path.abspath(os.path.join(os.path.expanduser(str(prev)), os.pardir))
+
+	def loadBrukerParams(self):
+		file_dir = str(self.loadBrukerDataLineEdit.text())
+		data = BrukerFID(file_dir)
+
+		self.sLASERradioButton.setChecked(False)
+		self.sLASERradioButton_bruker.setChecked(True)
+		self.LASERradioButton.setChecked(False)
+
+		# Experiment Info
+		b0   = float(data.header['PVM_FrqRef']['value'][0])
+		# This if-statement is just a sanity check.
+		if b0 > 350:
+			self.T3Button.setChecked(False)
+			self.T7Button.setChecked(False)
+			self.T9Button.setChecked(True)
+		elif b0 > 200:
+			self.T3Button.setChecked(False)
+			self.T7Button.setChecked(True)
+			self.T9Button.setChecked(False)
+		else:
+			self.T3Button.setChecked(True)
+			self.T7Button.setChecked(False)
+			self.T9Button.setChecked(False)
+
+		dt   = float(data.header['PVM_DigDw']['value'])
+		self.dwellTimeInput_sim.setText(str(dt))
+
+		acqt = dt * int(data.header['PVM_DigNp']['value']) * 1E-3
+		self.acqLengthInput_sim.setText(str(acqt))
+
+		te   = float(data.header['PVM_EchoTime']['value'])
+		self.echoTimeInput_sim.setText(str(te))
+
+
+		# sLASER Pulse Info
+		# Pulse Structure (pulse length, pulse bandwith, flip angle, excitation, ~, ~, ~, ~, ~, amplitude, shape)
+		# Excitation
+		exc_pulse = data.header['VoxPul1']['value'].replace('(','').replace(' ','').replace(')','').split(',')
+		
+		plen = float(exc_pulse[0]) * 1000
+		self.excPulseLength_bruker.setText(str(plen))
+
+		pamp = float(exc_pulse[-2])
+		self.excAmpMin_bruker.setText(str(0))
+		self.excAmpMax_bruker.setText(str(pamp))
+
+		# Refocussing
+		rfc_pulse = data.header['VoxPul2']['value'].replace('(','').replace(' ','').replace(')','').split(',')
+		
+		plen = float(rfc_pulse[0]) * 1000
+		self.afpPulseLengthInput_bruker.setText(str(plen))
+
+		pamp = float(rfc_pulse[-2])
+		self.afpAmpMin_bruker.setText(str(0))
+		self.afpAmpMax_bruker.setText(str(pamp))
+
+		# Editing Pulse Info
+		# --- TBD ---
+
 	def sine_func(self, x, a, b, s):
 		return a * np.sin(b * (x-s))
 
