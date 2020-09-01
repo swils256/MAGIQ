@@ -53,7 +53,30 @@ class Experiment(object):
 		self.TE = 0					# echo time
 
 		# Experimental Parameters for Simulation
-		if pulseseq == 'slaser':
+		if pulseseq == 'slaser_bruker':
+			self.TE1 = 0
+			self.TE2 = 0
+
+			# amplitudes for pulse calibration
+			self.A_90s = []
+			self.A_180s = []
+
+			# default is 4.7 ppm (center frequency of excitation pulse)
+			self.RF_OFFSET = 4.7
+
+			# RF pulse files
+			self.inpulse90file  = ''
+			self.inpulse180file = ''
+
+			# RF pulse lengths
+			self.PULSE_90_LENGTH  = 0
+			self.PULSE_180_LENGTH = 0
+
+			# To store calibrated RF amplitudes
+			self.A_180 = 1.0
+			self.A_90 = 1.0
+
+		elif pulseseq == 'slaser':
 			# amplitudes for pulse calibration
 			self.A_90s = []
 			self.A_180s = []
@@ -77,6 +100,7 @@ class Experiment(object):
 			self.A_180 = 1.0
 			self.A_90 = 1.0
 			self.fudge_factor = 0	# SLR fudge factor
+		
 		elif pulseseq == 'laser':
 			# amplitudes for pulse calibration
 			self.A_90s = []
@@ -202,8 +226,10 @@ class Pulse(object):
 
 		elif scanner == 'bruker':
 			self.header, data_mag, data_pha = self.__parseBrukerPulseFile__(inpulsefile)
+			data_mag = [d for d in data_mag]
 			self.waveform = np.array(data_mag)*np.exp(1j*np.deg2rad(data_pha))
 			self.header_params = list(self.header.keys())
+			self.pulsestep = pulse_length / len(self.waveform)
 
 	def __parseBrukerPulseFile__(self, pulse_file):
 		f = open(pulse_file, 'r')
