@@ -158,18 +158,6 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.genGESButton.clicked.connect(self.genGES)
 			self.genGESButton.setEnabled(False)
 
-	def setPlot(self, tab):
-		if tab == 'Plot':
-			fig = plt.figure(1)
-			self.addmpl(0, fig, self.plotTime_mplvl)
-
-			fig = plt.figure(2)
-			self.addmpl(1, fig, self.plotFreq_mplvl)
-
-		elif tab == 'Guess':
-			fig = plt.figure(3)
-			self.addmpl(2, fig, self.plotGES_mplvl)
-
 	# ---- Methods for Simulate Tab ---- #
 	def loadBrukerData(self):
 		prev = str(self.loadBrukerDataLineEdit.text())
@@ -294,9 +282,6 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	def sinfunc(self, t, A, w, p, c):
 		return A * np.sin(w*t + p) + c
-
-	def sine_func(self, x, a, b, s):
-		return a * np.sin(b * (x-s))
 
 	def logs_func(self, x, A, B, K, s):
 		return A + (K - A)/(1 + np.exp(-B*(x-s)))
@@ -444,26 +429,6 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.macromolecules_data['lm12'] = Macromolecule('lm12', -0.628240, 'L', 1789.202, 21.518780, -3.65296700)
 			self.macromolecules_data['lm13'] = Macromolecule('lm13', 3.2957810, 'L', 109.4958, 1.6655390, 0.163575600)
 			self.macromolecules_data['lm14'] = Macromolecule('lm14', 3.7057810, 'L', 169.6304, 4.8735330, -1.35431900)
-		
-
-		# --- OLD MACROMOLECULE MODEL --- #
-		# self.macromolecules = [ 'lipmm1',
-		#						  'lip2',
-		#						  'lip3',
-		#						  'lip4',
-		#						  'lip5',
-		#						  'mm2',
-		#						  'mm3',
-		#						  'mm4' ]
-		# self.macromolecules_data['lipmm1'] = Macromolecule('lipmm1', 0.89, 'L', 19.9, 0.100)
-		# self.macromolecules_data['lip2']   = Macromolecule('lip2',   1.30, 'L', 12.4, 0.234)
-		# self.macromolecules_data['lip3']   = Macromolecule('lip3',   2.05, 'G', 13.1, 0.015)
-		# self.macromolecules_data['lip4']   = Macromolecule('lip4',   2.24, 'G', 16.5, 0.016)
-		# self.macromolecules_data['lip5']   = Macromolecule('lip5',   2.81, 'G', 16.1, 0.010)
-		# self.macromolecules_data['mm2']    = Macromolecule('mm2',    1.51, 'G', 39.5, 0.092)
-		# self.macromolecules_data['mm3']    = Macromolecule('mm3',    2.10, 'G', 27.5, 0.076)
-		# self.macromolecules_data['mm4']    = Macromolecule('mm4',    3.00, 'G', 14.0, 0.011)
-		# ------------------------------- #
 
 		self.sim_experiment.obs_iso = '1H'
 
@@ -1740,6 +1705,18 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		return A_90, pulse90, pulse_dur_90, Ureal90
 
 	# ---- Methods for Plotting in the GUI ---- #
+	def setPlot(self, tab):
+		if tab == 'Plot':
+			fig = plt.figure(1)
+			self.addmpl(0, fig, self.plotTime_mplvl)
+
+			fig = plt.figure(2)
+			self.addmpl(1, fig, self.plotFreq_mplvl)
+
+		elif tab == 'Guess':
+			fig = plt.figure(3)
+			self.addmpl(2, fig, self.plotGES_mplvl)
+
 	def addmpl(self, canvas_index, fig, vertical_layout):
 		self.canvas[canvas_index] = FigureCanvas(fig)
 		vertical_layout.addWidget(self.canvas[canvas_index])
