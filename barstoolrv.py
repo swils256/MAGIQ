@@ -440,7 +440,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			print(i1, j1, k1)
 			print(i2, j2, k2)
 
-			vox_img_water[i1:i2+1, j1:j2+1, k1:k2+1] = 1
+			vox_img_water[i1:i2+1, j1:j2+1, k1:k2+1] = int(1)
 
 			print(' | Saving ', vox_file)
 			nifti_vox_water = nib.Nifti1Image(vox_img_water, bra.affine, bra.header)
@@ -454,11 +454,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.runSegButton_bruker.setEnabled(True)
 
 	def runSeg_bruker(self):
-		self.consoleOutputText('==== csf_thresh (BRUKER) ====')
+		self.consoleOutputText.append('==== csf_thresh (BRUKER) ====')
 		for d, directory in enumerate(self.mouseDirsBruker):
 
 			bra_file = directory + '/' + self.mouseIDsBruker[d] + '_brain.nii.gz'
 			mas_file = directory + '/' + self.mouseIDsBruker[d] + '_mask.nii.gz'
+			vox_file = directory + '/' + self.mouseIDsBruker[d] + '_voxel_overlay.nii.gz'
 			csf_file = directory + '/' + self.mouseIDsBruker[d] + '_csf_mask.nii.gz'
 
 			self.consoleOutputText.append(' >> ' + str(directory))
@@ -466,31 +467,48 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 			brain = nib.load(bra_file)
 			mask  = nib.load(mas_file)
+			vox   = nib.load(vox_file)
 
 			brain_img = np.asanyarray(brain.dataobj).squeeze()
 			mask_img  = np.asanyarray( mask.dataobj).squeeze()
+			vox_img   = np.asanyarray(  vox.dataobj).squeeze()
 
 			brain_img_vec = np.reshape(brain_img, np.size(brain_img)).astype(int)
-			mask_img_vec  = np.reshape(mask_img,  np.size(mask_img )).astype(int)
+			mask_img_vec  = np.reshape( mask_img, np.size(mask_img )).astype(int)
+			vox_img_vec   = np.reshape(  vox_img, np.size(vox_img  ))
+			vox_img_vec   = np.array([np.round(v) for v in vox_img_vec]).astype(int)
 
 			brain_img_vec_masked = brain_img_vec[mask_img_vec.astype(bool)]
 			brain_kde = sp.stats.gaussian_kde(brain_img_vec_masked)
 
-			for i, elem in enumerate(np.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000)):
-				if brain_kde.integrate_box_1d(np.min(brain_img_vec), elem) > float(self.csfThreshLineEdit_bruker.text()):
-					print(i, elem)
-					csf_thresh = elem
-					break
+			brain_img_vec_vox_masked = brain_img_vec[vox_img_vec.astype(bool)]
+			vox_kde = sp.stats.gaussian_kde(brain_img_vec_vox_masked)
+
+			if self.csfThreshMode1_bruker.isChecked():
+				for i, elem in enumerate(np.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000)):
+					if brain_kde.integrate_box_1d(np.min(brain_img_vec), elem) > float(self.csfThreshLineEdit_bruker.text()):
+						csf_thresh = elem
+						break
+			elif self.csfThreshMode2_bruker.isChecked():
+				for i, elem in enumerate(np.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000)):
+					if vox_kde.integrate_box_1d(np.min(brain_img_vec), elem) > float(self.csfThreshLineEdit_bruker.text()):
+						csf_thresh = elem
+						break
+
 
 			plt.figure()
-			plt.plot(sp.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000), brain_kde(sp.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000)))
+			plt.plot(np.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000), brain_kde(np.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000)))
 			plt.plot(csf_thresh, brain_kde(csf_thresh), '.')
 			plt.title('Gaussian Kernel Density Estimate of PDF')
 			plt.xlim(0, np.max(brain_img_vec))
 			plt.xlabel('Image Intensity')
 			plt.ylabel('Probability')
 			plt.legend(['PDF', 'Threshold: '+str(int(csf_thresh))])
-			plt.savefig(directory + '/' + self.mouseIDsBruker[d] + '_brain_gkde.pdf')
+
+			if self.csfThreshMode1_bruker.isChecked():
+				plt.savefig(directory + '/' + self.mouseIDsBruker[d] + '_brain_gkde.pdf')
+			elif self.csfThreshMode2_bruker.isChecked():
+				plt.savefig(directory + '/' + self.mouseIDsBruker[d] + '_vox_gkde.pdf')
 
 			brain_csf_mask = brain_img >= int(csf_thresh)
 			brain_csf_mask = brain_csf_mask.astype(int)
@@ -659,14 +677,14 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			brain_img_vec_masked = brain_img_vec[mask_img_vec.astype(bool)]
 			brain_kde = sp.stats.gaussian_kde(brain_img_vec_masked)
 
-			for i, elem in enumerate(sp.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000)):
+			for i, elem in enumerate(np.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000)):
 				if brain_kde.integrate_box_1d(np.min(brain_img_vec), elem) > float(self.csfThreshLineEdit.text()):
 					print('  | ', i, elem)
 					csf_thresh = elem
 					break
 
 			plt.figure()
-			plt.plot(sp.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000), brain_kde(sp.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000)))
+			plt.plot(np.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000), brain_kde(np.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000)))
 			plt.plot(csf_thresh, brain_kde(csf_thresh), '.')
 			plt.title('Gaussian Kernel Density Estimate of PDF')
 			plt.xlim(0, np.max(brain_img_vec))
