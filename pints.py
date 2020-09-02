@@ -225,6 +225,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		acqt = dt * int(data.header['PVM_DigNp']['value'])
 		self.acqLengthInput_sim.setText(str(acqt))
 
+		digshift = int(data.header['PVM_DigShift']['value'])
+		self.digShiftInput_bruker.setText(str(digshift))
+
 		te   = float(data.header['PVM_EchoTime']['value'])
 		self.echoTimeInput_sim.setText(str(te))
 
@@ -451,6 +454,8 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				amin = int(np.floor(float(self.afpAmpMin_bruker.text()))); amax = int(np.ceil(float(self.afpAmpMax_bruker.text())))
 				self.sim_experiment.A_180s = np.linspace(amin, amax, (amax-amin)*10 + 1)
 
+				self.sim_experiment.DigShift = int(self.digShiftInput_bruker.text())*self.sim_experiment.dwell_time
+
 				# Editing Pulse Info
 				# --- TBD ---
 
@@ -562,6 +567,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				TE1 = self.sim_experiment.TE1 * 1E-3
 				TE2 = self.sim_experiment.TE2 * 1E-3
 
+				# build 90 degree pulse
+				pulse_dur_90 = 0
+
 				# build 180 degree pulse
 				A_180, pulse180, pulse_dur_180, Ureal180 = self.slaser_build180(self.sim_experiment.inpulse180file, A_180, self.sim_experiment.PULSE_180_LENGTH, self.sim_experiment.getGyratio(), spin_system, False, 'bruker')
 
@@ -570,12 +578,18 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				ac = pg.acquire1D(pg.gen_op(D), H, self.sim_experiment.dwell_time)
 				ACQ = ac
 
-				TE_fill = TE - 2.*TE1 - 2.*TE2
-				delay1 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
-				delay2 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
-				delay3 = TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
-				delay4 = TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
-				delay5 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
+				delay1 = TE1/2.0 - pulse_dur_90/2.0 - pulse_dur_180/2.0
+				delay2 = TE1/2.0 + TE2/2.0 - pulse_dur_180
+				delay3 = TE2 - pulse_dur_180
+				delay4 = delay2
+				delay5 = TE1/2.0 - pulse_dur_180 + self.sim_experiment.DigShift
+
+				# TE_fill = TE - 2.*TE1 - 2.*TE2
+				# delay1 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
+				# delay2 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
+				# delay3 = TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
+				# delay4 = TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
+				# delay5 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + self.sim_experiment.DigShift
 
 				Udelay1 = pg.prop(H, delay1)
 				Udelay2 = pg.prop(H, delay2)
@@ -667,12 +681,18 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				ac = pg.acquire1D(pg.gen_op(D), H, self.sim_experiment.dwell_time)
 				ACQ = ac
 
-				TE_fill = TE - 2.*TE1 - 2.*TE2
-				delay1 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
-				delay2 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
-				delay3 = TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
-				delay4 = TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
-				delay5 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
+				delay1 = TE1/2.0 - pulse_dur_90/2.0 - pulse_dur_180/2.0
+				delay2 = TE1/2.0 + TE2/2.0 - pulse_dur_180
+				delay3 = TE2 - pulse_dur_180
+				delay4 = delay2
+				delay5 = TE1/2.0 - pulse_dur_180 + self.sim_experiment.DigShift
+
+				# TE_fill = TE - 2.*TE1 - 2.*TE2
+				# delay1 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 - pulse_dur_90/2.0
+				# delay2 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
+				# delay3 = TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
+				# delay4 = TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
+				# delay5 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + self.sim_experiment.DigShift
 
 				Udelay1 = pg.prop(H, delay1)
 				Udelay2 = pg.prop(H, delay2)

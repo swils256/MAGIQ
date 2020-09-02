@@ -901,20 +901,6 @@ QGroupBox::title {
                 <string>Pulse Sequence Parameters</string>
                </property>
                <layout class="QGridLayout" name="gridLayout_15">
-                <item row="2" column="0">
-                 <widget class="QLabel" name="rfOffsetLabel_bruker">
-                  <property name="text">
-                   <string>RF Offset:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="4">
-                 <widget class="QLabel" name="label_10">
-                  <property name="text">
-                   <string>[usec]</string>
-                  </property>
-                 </widget>
-                </item>
                 <item row="1" column="1">
                  <widget class="QLineEdit" name="excPulseLength_bruker">
                   <property name="enabled">
@@ -925,23 +911,10 @@ QGroupBox::title {
                   </property>
                  </widget>
                 </item>
-                <item row="2" column="1" colspan="3">
-                 <widget class="QLineEdit" name="rfOffsetInput_bruker">
-                  <property name="enabled">
-                   <bool>true</bool>
-                  </property>
+                <item row="1" column="4">
+                 <widget class="QLabel" name="label_10">
                   <property name="text">
-                   <string>4.7</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="2">
-                 <widget class="QLabel" name="afpPulseLengthLabel_bruker">
-                  <property name="text">
-                   <string>Refocussing Pulse Length:</string>
-                  </property>
-                  <property name="wordWrap">
-                   <bool>true</bool>
+                   <string>[usec]</string>
                   </property>
                  </widget>
                 </item>
@@ -955,27 +928,20 @@ QGroupBox::title {
                   </property>
                  </widget>
                 </item>
-                <item row="1" column="3">
-                 <widget class="QLineEdit" name="afpPulseLengthInput_bruker">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
+                <item row="1" column="2">
+                 <widget class="QLabel" name="afpPulseLengthLabel_bruker">
                   <property name="text">
-                   <string/>
+                   <string>Refocussing Pulse Length:</string>
                   </property>
-                 </widget>
-                </item>
-                <item row="2" column="4">
-                 <widget class="QLabel" name="label_32">
-                  <property name="text">
-                   <string>[ppm]</string>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
-                <item row="0" column="0">
-                 <widget class="QLabel" name="TE1_label_bruker">
+                <item row="0" column="4">
+                 <widget class="QLabel" name="label_14">
                   <property name="text">
-                   <string>TE1:</string>
+                   <string>[msec]</string>
                   </property>
                  </widget>
                 </item>
@@ -1000,10 +966,51 @@ QGroupBox::title {
                   </property>
                  </widget>
                 </item>
-                <item row="0" column="4">
-                 <widget class="QLabel" name="label_14">
+                <item row="1" column="3">
+                 <widget class="QLineEdit" name="afpPulseLengthInput_bruker">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
                   <property name="text">
-                   <string>[msec]</string>
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="rfOffsetLabel_bruker">
+                  <property name="text">
+                   <string>RF Offset:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="TE1_label_bruker">
+                  <property name="text">
+                   <string>TE1:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLineEdit" name="rfOffsetInput_bruker">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="text">
+                   <string>4.7</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="2">
+                 <widget class="QLabel" name="digShiftLabel_bruker">
+                  <property name="text">
+                   <string>DigShift:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="3" colspan="2">
+                 <widget class="QLineEdit" name="digShiftInput_bruker">
+                  <property name="enabled">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -3454,7 +3461,7 @@ p, li { white-space: pre-wrap; }
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="pulseSequence_ButtonGroup"/>
   <buttongroup name="fieldStrength_sim_ButtonGroup"/>
+  <buttongroup name="pulseSequence_ButtonGroup"/>
  </buttongroups>
 </ui>
