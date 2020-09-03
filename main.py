@@ -19,6 +19,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.fitmanButton.clicked.connect(self.launchFITMAN)
 		self.spicesButton.clicked.connect(self.launchSPICeS)
 		self.barstoolButton.clicked.connect(self.launchBARSTOOL)
+		self.barstoolrvButton.clicked.connect(self.launchBASRTOOLRV)
 		self.appsButton.clicked.connect(self.launchAPPS)
 
 	def launchPINTS(self):
@@ -46,6 +47,13 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 	def launchBARSTOOL(self):
 		print('Launching BARSTOOL')
 		command = 'python barstool.py'
+		print(command)
+		t = Thread(target = lambda: os.system(command))
+		t.start()
+
+	def launchBASRTOOLRV(self):
+		print('Launching BARSTOOL (Rodent Version)')
+		command = 'python barstoolrv.py'
 		print(command)
 		t = Thread(target = lambda: os.system(command))
 		t.start()
