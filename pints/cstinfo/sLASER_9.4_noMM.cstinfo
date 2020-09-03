@@ -1,0 +1,22 @@
+[Shifts]
+SNAAx, -inf, +inf, naa_acetyl, naa_aspartate, naag_acetyl, naag_aspartyl, naag_glutamate, aspartate;
+
+SLac, -inf, +inf, lactate, alanine;
+
+SGluX, -inf, +inf, glutamate, glutamine, glutathione_cysteine, glutathione_glutamate, glutathione_glycine, gaba;
+
+SCr, -inf, +inf, creatine_N(CH3), creatine_X;
+
+STau, -inf, +inf, taurine, choline_N(CH3)3_a, choline_N(CH3)3_b, choline_1-CH2_2-CH2, gpc_7-CH2_8-CH2, gpc_N(CH3)3_a, gpc_N(CH3)3_b, gpc_glycerol, pcho_N(CH3)3_a, pcho_N(CH3)3_b, pcho_X, scyllo-inositol, myoinositol, d-glucose-alpha, glycine, eth;
+
+[Amplitudes]
+ANaag, -inf, +inf, naag_acetyl, naag_aspartyl, naag_glutamate;
+
+[Phases]
+PHNaa, -inf, +inf, naa_acetyl, naa_aspartate, naag_acetyl, naag_aspartyl, naag_glutamate, aspartate, d-glucose-alpha, glycine, eth, lactate, alanine, scyllo-inositol, myoinositol;
+
+PHGlu, -inf, +inf, glutamate, glutamine, glutathione_cysteine, glutathione_glutamate, glutathione_glycine, gaba;
+
+PHCr, -inf, +inf, creatine_N(CH3), creatine_X;
+
+PHTau, -inf, +inf, choline_N(CH3)3_a, choline_N(CH3)3_b, choline_1-CH2_2-CH2, gpc_7-CH2_8-CH2, gpc_N(CH3)3_a, gpc_N(CH3)3_b, gpc_glycerol, pcho_N(CH3)3_a, pcho_N(CH3)3_b, pcho_X, taurine;
