@@ -125,13 +125,6 @@ class MetaboliteSimulation(QtCore.QObject):
 			delay4 = delay2
 			delay5 = TE1/2.0 - pulse_dur_180 + self.sim_experiment.DigShift
 
-			# TE_fill = TE - 2.*TE1 - 2.*TE2
-			# delay1 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 - pulse_dur_90/2.0
-			# delay2 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
-			# delay3 = TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
-			# delay4 = TE2/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0
-			# delay5 = TE1/2.0 - pulse_dur_180/2.0 + TE_fill/8.0 + self.sim_experiment.DigShift
-
 			Udelay1 = pg.prop(H, delay1)
 			Udelay2 = pg.prop(H, delay2)
 			Udelay3 = pg.prop(H, delay3)
