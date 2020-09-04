@@ -2381,10 +2381,6 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				source = 'LWlipMM, -inf, +inf, MM09, MM12, MM14, MM16, MM20, MM21, MM23, MM26, MM30, MM31, MM37, MM38, MM40;'
 			else:
 				source = 'LWlmX, -inf, +inf, lm1, lm2, lm3, lm4, lm5, lm6, lm7, lm8, lm9, lm10, lm11, lm12, lm13, lm14;'
-			# (using new macromolecule model)
-			# source = 'LWlipX, 10, 200, lip2, lipmm1;'
-		# elif group_type == 'lipid_WLs':
-			# source = 'WLlipX, 10, 200, lip3, lip4, lip5, mm2, mm3, mm4;'
 
 		# parse groups in a column
 		defined_groups = str(source).replace('\n', '').replace(' ', '').split(';')
@@ -2657,34 +2653,6 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					else:
 						output.append("{" + "LW" + "} >0.000000 <" + "{0:.6f}".format(float(experiment.LW_limit)) if experiment.LW_linkall else "{" + str(group_name_lw) + "} >0.000000 <" + "{0:.6f}".format(float(experiment.LW_limit)))
 				output.append('\t')
-
-
-				# ---- Code for Old Macromolecule Model --- #
-				# ACCOUNTING FOR MM/LIPIDS WITH LORENTZIAN LINE SHAPES (ADD THIS IN AS AN IMPORT TAB LATER)
-				# if ('lipmm1' in group_name_lw) or ('lip2' in group_name_lw):
-				# 	output.append("{" + str(group_name_lw) + "} >10.000000 <50.000000")
-				# elif ('LWlipX' in group_name_lw):
-				# 	print group_name_wl, float(metab.lw)
-				# 	rel_lw = float(metab.lw)-ref_lw
-				# 	if rel_lw == 1.0:
-				# 		output.append("{" + 'LWlipX' + "} >" + "{0:.6f}".format(min_lw) + " <" + "{0:.6f}".format(max_lw))
-				# 	else:
-				# 		output.append("{" + 'LWlipX' + "}+" + "{0:.6f}".format(rel_lw) + " >" + "{0:.6f}".format(min_lw) + " <" + "{0:.6f}".format(max_lw))
-				# elif ('lip3' in group_name_lw) or ('lip4' in group_name_lw) or ('lip5' in group_name_lw) or ('mm2' in group_name_lw) or ('mm3' in group_name_lw) or ('mm4' in group_name_lw):
-				# 	output.append("@{" + str(group_name_lw) + "}")
-				# else:
-				# 	if float(experiment.LW_limit) == 0:
-				# 		output.append("{" + "LW" + "} >0.000000" if experiment.LW_linkall else "{" + str(group_name_lw) + "} >0.000000")
-				# 	else:
-				# 		output.append("{" + "LW" + "} >0.000000 <" + "{0:.6f}".format(float(experiment.LW_limit)) if experiment.LW_linkall else "{" + str(group_name_lw) + "} >0.000000 <" + "{0:.6f}".format(float(experiment.LW_limit)))
-				# output.append('\t')
-
-				# if float(experiment.LW_limit) == 0:
-				# 	output.append("{" + "LW" + "} >0.000000" if experiment.LW_linkall else "{" + str(group_name_lw) + "} >0.000000")
-				# else:
-				# 	output.append("{" + "LW" + "} >0.000000 <" + "{0:.6f}".format(float(experiment.LW_limit)) if experiment.LW_linkall else "{" + str(group_name_lw) + "} >0.000000 <" + "{0:.6f}".format(float(experiment.LW_limit)))
-				# output.append('\t')
-				# -----------------------------------------#
 
 				if rel_amp == 1:
 					output.append("{" + str(group_name_amp) + "}" + " >" + "{0:.6f}".format(float(0)))
