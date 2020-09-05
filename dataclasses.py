@@ -1174,6 +1174,7 @@ class BrukerFID(object):
 
 		DigDw = float(self.header['PVM_DigDw']['value'])
 		FrqRef = float(self.header['PVM_FrqRef']['value'][0])
+		NAvgs = float(self.header['PVM_NAverages']['value'][0])
 
 		# ... assumes single-voxel spectroscopy here ...
 		VoxArrSize = [float(v) for v in self.header['PVM_VoxArrSize']['value']]
@@ -1188,7 +1189,7 @@ class BrukerFID(object):
 		o.write('1\n')
 		o.write(str(DigDw/1000.) + '\n')
 		o.write(str(FrqRef) + '\n')
-		o.write('1\n')
+		o.write(str(NAvgs) + '\n')
 		o.write(self.file_dir + '/fid\n')
 		o.write(now.strftime("%Y %m %d") + '\n')
 		o.write('MachS=0 ConvS=' + str(self.ConvS) + ' ')
