@@ -2284,7 +2284,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				cst_filename = prev_filename
 
 			if cst_filename != '':
-				self.cstFilenameInfoLabel('Loading constraints from: ' + cst_filename)
+				self.cstFilenameInfoLabel.append('Loading constraints from: ' + cst_filename)
 				cst_file = open(cst_filename, 'r')
 
 				self.shiftsTextEdit.clear()
@@ -2324,42 +2324,42 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			if cst_filename != '':
 				cst_file = open(cst_filename, 'w')
 
-				self.cstFilenameInfoLabel('Reading shift groups ...')
+				self.cstFilenameInfoLabel.append('Reading shift groups ...')
 				self.readGroups('shift')
 				cst_file.write('[Shifts]\n')
 				cst_file.write(self.shiftsTextEdit.toPlainText())
 
-				self.cstFilenameInfoLabel('Reading amp groups ...')
+				self.cstFilenameInfoLabel.append('Reading amp groups ...')
 				self.readGroups('amp')
 				cst_file.write('\n[Amplitudes]\n')
 				cst_file.write(self.ampsTextEdit.toPlainText())
 
-				self.cstFilenameInfoLabel('Reading phase groups ...')
+				self.cstFilenameInfoLabel.append('Reading phase groups ...')
 				self.readGroups('phase')
 				cst_file.write('\n[Phases]\n')
 				cst_file.write(self.phasesTextEdit.toPlainText())
 
 				if self.linkLipidsCheckBox.isChecked():
-					self.cstFilenameInfoLabel('Linking lipid linewidths ...')
+					self.cstFilenameInfoLabel.append('Linking lipid linewidths ...')
 					self.readGroups('lipid_LWs')
 					# self.readGroups('lipid_WLs') # (new macromolecule model has gaussian lineshapes)
 
 				self.experiment.LW_limit = float(self.maxLWInput.text())
-				self.cstFilenameInfoLabel('LW_limit = ' + str(self.experiment.LW_limit))
+				self.cstFilenameInfoLabel.append('LW_limit = ' + str(self.experiment.LW_limit))
 
 				self.experiment.LW_linkall = self.linkAllCheckBox.isChecked()
-				self.cstFilenameInfoLabel('LW_linkall = ' + str(self.experiment.LW_linkall))
+				self.cstFilenameInfoLabel.append('LW_linkall = ' + str(self.experiment.LW_linkall))
 
 				self.experiment.splitNAA = self.splitNAACheckBox.isChecked()
-				self.cstFilenameInfoLabel('splitNAA  = ' + str(self.experiment.splitNAA))
+				self.cstFilenameInfoLabel.append('splitNAA  = ' + str(self.experiment.splitNAA))
 
 				self.cst_filename = cst_filename
 
-				self.cstFilenameInfoLabel(str(len(self.experiment.cst_groups)) + ' group(s) saved!')
+				self.cstFilenameInfoLabel.append(str(len(self.experiment.cst_groups)) + ' group(s) saved!')
 
 				self.cst_filename = cst_filename
 				self.cstFilenameLineEdit.setText(str(cst_filename))
-				self.cstFilenameInfoLabel('Writing to: ' + str(self.cst_filename))
+				self.cstFilenameInfoLabel.append('Writing to: ' + str(self.cst_filename))
 
 				cst_file.close()
 				self.cstInfoErrorLabel.setText('File saved!')
@@ -2396,7 +2396,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					for member in group.members:
 						if not(member in metabolites):
 							metabolites.append(member)
-			self.cstFilenameInfoLabel('Grabbing metabolites ...' + str(metabolites))
+			self.cstFilenameInfoLabel.append('Grabbing metabolites ...' + str(metabolites))
 
 			amp_groups = []
 
@@ -2432,7 +2432,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 							new_defined_group = new_defined_group + str(group_member) + ','
 							# print '        | Adding', group_member, 'to auto-defined group.'
 					
-					self.cstFilenameInfoLabel('  | Auto-defined group: ' + str(new_defined_group) + ' ... ' + str(np.size(new_defined_group[0:-1].split(','))))
+					self.cstFilenameInfoLabel.append('  | Auto-defined group: ' + str(new_defined_group) + ' ... ' + str(np.size(new_defined_group[0:-1].split(','))))
 					if not(new_defined_group[0:-1] in amp_groups) and np.size(new_defined_group[0:-1].split(',')) > 3:
 						amp_groups.append(new_defined_group[0:-1])
 
@@ -2440,10 +2440,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			for group in amp_groups:
 				defined_groups.append(group)		
 
-		self.cstFilenameInfoLabel('  | Defined groups:')
+		self.cstFilenameInfoLabel.append('  | Defined groups:')
 		for group in defined_groups:
 			# parse each group's info
-			self.cstFilenameInfoLabel('     | ' + str(group))
+			self.cstFilenameInfoLabel.append('     | ' + str(group))
 			group_info = group.split(',')
 			group_name = group_info[0]
 			group_members = group_info[3:]
