@@ -2284,7 +2284,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				cst_filename = prev_filename
 
 			if cst_filename != '':
-				print('Loading constraints from: ' + cst_filename)
+				self.cstFilenameInfoLabel('Loading constraints from: ' + cst_filename)
 				cst_file = open(cst_filename, 'r')
 
 				self.shiftsTextEdit.clear()
@@ -2324,42 +2324,42 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			if cst_filename != '':
 				cst_file = open(cst_filename, 'w')
 
-				print('Reading shift groups ...')
+				self.cstFilenameInfoLabel('Reading shift groups ...')
 				self.readGroups('shift')
 				cst_file.write('[Shifts]\n')
 				cst_file.write(self.shiftsTextEdit.toPlainText())
 
-				print('Reading amp groups ...')
+				self.cstFilenameInfoLabel('Reading amp groups ...')
 				self.readGroups('amp')
 				cst_file.write('\n[Amplitudes]\n')
 				cst_file.write(self.ampsTextEdit.toPlainText())
 
-				print('Reading phase groups ...')
+				self.cstFilenameInfoLabel('Reading phase groups ...')
 				self.readGroups('phase')
 				cst_file.write('\n[Phases]\n')
 				cst_file.write(self.phasesTextEdit.toPlainText())
 
 				if self.linkLipidsCheckBox.isChecked():
-					print('Linking lipid linewidths ...')
+					self.cstFilenameInfoLabel('Linking lipid linewidths ...')
 					self.readGroups('lipid_LWs')
 					# self.readGroups('lipid_WLs') # (new macromolecule model has gaussian lineshapes)
 
 				self.experiment.LW_limit = float(self.maxLWInput.text())
-				print('LW_limit = ' + str(self.experiment.LW_limit))
+				self.cstFilenameInfoLabel('LW_limit = ' + str(self.experiment.LW_limit))
 
 				self.experiment.LW_linkall = self.linkAllCheckBox.isChecked()
-				print('LW_linkall = ' + str(self.experiment.LW_linkall))
+				self.cstFilenameInfoLabel('LW_linkall = ' + str(self.experiment.LW_linkall))
 
 				self.experiment.splitNAA = self.splitNAACheckBox.isChecked()
-				print('splitNAA  = ' + str(self.experiment.splitNAA))
+				self.cstFilenameInfoLabel('splitNAA  = ' + str(self.experiment.splitNAA))
 
 				self.cst_filename = cst_filename
 
-				print(str(len(self.experiment.cst_groups)) + ' group(s) saved!')
+				self.cstFilenameInfoLabel(str(len(self.experiment.cst_groups)) + ' group(s) saved!')
 
 				self.cst_filename = cst_filename
 				self.cstFilenameLineEdit.setText(str(cst_filename))
-				print('Writing to: ' + str(self.cst_filename))
+				self.cstFilenameInfoLabel('Writing to: ' + str(self.cst_filename))
 
 				cst_file.close()
 				self.cstInfoErrorLabel.setText('File saved!')
@@ -2396,7 +2396,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					for member in group.members:
 						if not(member in metabolites):
 							metabolites.append(member)
-			print('Grabbing metabolites ...', metabolites)
+			self.cstFilenameInfoLabel('Grabbing metabolites ...' + str(metabolites))
 
 			amp_groups = []
 
@@ -2432,7 +2432,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 							new_defined_group = new_defined_group + str(group_member) + ','
 							# print '        | Adding', group_member, 'to auto-defined group.'
 					
-					print('  | Auto-defined group:', new_defined_group, '...', np.size(new_defined_group[0:-1].split(',')))
+					self.cstFilenameInfoLabel('  | Auto-defined group: ' + str(new_defined_group) + ' ... ' + str(np.size(new_defined_group[0:-1].split(','))))
 					if not(new_defined_group[0:-1] in amp_groups) and np.size(new_defined_group[0:-1].split(',')) > 3:
 						amp_groups.append(new_defined_group[0:-1])
 
@@ -2440,10 +2440,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			for group in amp_groups:
 				defined_groups.append(group)		
 
-		print('  | Defined groups:')
+		self.cstFilenameInfoLabel('  | Defined groups:')
 		for group in defined_groups:
 			# parse each group's info
-			print('     | ' + str(group))
+			self.cstFilenameInfoLabel('     | ' + str(group))
 			group_info = group.split(',')
 			group_name = group_info[0]
 			group_members = group_info[3:]
