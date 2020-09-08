@@ -2780,7 +2780,7 @@ QGroupBox::title {
 }</string>
            </property>
            <property name="title">
-            <string>Linewidths</string>
+            <string>Miscellaneous Options</string>
            </property>
            <layout class="QGridLayout" name="gridLayout_6">
             <item row="4" column="1" colspan="2">
@@ -2850,7 +2850,7 @@ for all metabolites here. Type '0' if you don't want a limit.</string>
             <item row="0" column="0" alignment="Qt::AlignRight">
              <widget class="QLabel" name="maxPPMLabel">
               <property name="text">
-               <string>Max Metabolite PPM:</string>
+               <string>Max Water PPM:</string>
               </property>
              </widget>
             </item>
@@ -3461,7 +3461,7 @@ p, li { white-space: pre-wrap; }
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="fieldStrength_sim_ButtonGroup"/>
   <buttongroup name="pulseSequence_ButtonGroup"/>
+  <buttongroup name="fieldStrength_sim_ButtonGroup"/>
  </buttongroups>
 </ui>
