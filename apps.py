@@ -36,6 +36,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	# ---- Methods to Set Up UI ---- #
 	def __init__(self):
+		'''
+			Method initializes the application 
+			and binds methods to UI buttons.
+		'''
 		QtWidgets.QWidget.__init__(self)
 		Ui_MainWindow.__init__(self)
 		self.setupUi(self)
@@ -54,7 +58,11 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.setBindings('Bruker File Conversion')
 
 	def setBindings(self, tab):
+		'''
+			Method binds methods to UI buttons in each UI tab.
+		'''
 		if tab == 'Water Removal':
+
 			self.filenameBrowseButton_dat.clicked.connect(self.chooseDatFile_wr)
 			self.filenameConfirmButton_dat.clicked.connect(self.loadDatFile_wr)
 			self.filenameConfirmButton_dat.setEnabled(False)
@@ -66,6 +74,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.saveWaterRemovalButton.setEnabled(False)
 
 		elif tab == 'Macromolecule Removal':
+
 			self.filenameBrowseButton_fulldat_mmr.clicked.connect(self.chooseFullDatFile_mmr)
 			self.filenameConfirmButton_fulldat_mmr.clicked.connect(self.loadFullDatFile_mmr)
 			self.filenameConfirmButton_fulldat_mmr.setEnabled(False)
@@ -81,6 +90,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.saveMMRemovalButton.setEnabled(False)
 
 		elif tab == 'Bruker File Conversion':
+
 			self.inputFilenameButton_bruker.clicked.connect(self.chooseInputFile_bruker)
 			self.referenceFilenameButton_bruker.clicked.connect(self.chooseRefFile_bruker)
 
@@ -91,8 +101,14 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 	
 	# ---- Bruker File Conversion ---- #
 	def chooseInputFile_bruker(self):
+		'''
+			Method allows you to choose a Bruker dataset and 
+			creates a 'converted' folder within the dataset directory.
+		'''
 		prev = str(self.inputFilenameInput_bruker.text())
+		
 		self.inputFilenameInput_bruker.setText(str(QtWidgets.QFileDialog.getExistingDirectory(self, 'Open Bruker Data Directory', self.workingDirectory_bruker)))
+		
 		if str(self.inputFilenameInput_bruker.text()) == '':
 			if str(prev) == '':
 				self.inputFilenameInput_bruker.setText(str(prev))
@@ -103,15 +119,35 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			else:
 				self.runConversionButton_bruker.setEnabled(True)
 			self.outputFilenameInput_bruker.setText(self.inputFilenameInput_bruker.text() + '/converted/')
+
 			try:
 				os.mkdir(str(self.outputFilenameInput_bruker.text()))
 			except OSError as exc:
-				if exc.errno != errno.EEXIST:
-					raise
-				pass
+				msg = QtWidgets.QMessageBox()
+				if exc.errno == errno.EEXIST:
+					msg.setIcon(QtWidgets.QMessageBox.Warning)
+					msg.setText('Warning')
+					msg.setInformativeText('"' + self.inputFilenameInput_bruker.text() + '/converted/" already exists.')
+					msg.setWindowTitle('Warning')
+				elif exc.errno == errno.EROFS:
+					msg.setIcon(QtWidgets.QMessageBox.Critical)
+					msg.setText('Error')
+					msg.setInformativeText('Read-only filesystem error occurred while making "' + self.inputFilenameInput_bruker.text() + '/converted/"')
+					msg.setWindowTitle('Error')
+				else:
+					msg.setIcon(QtWidgets.QMessageBox.Critical)
+					msg.setText('Error ' + str(exc) + 'has occurred!')
+					msg.setInformativeText(traceback.format_exc())
+					msg.setWindowTitle('Error')
+					msg.exec_()
+					raise exc
+				msg.exec_()
 			self.workingDirectory_bruker = os.path.abspath(os.path.join(os.path.expanduser(str(prev)), os.pardir))
 
 	def chooseRefFile_bruker(self):
+		'''
+			Method allows you to choose a Bruker dataset directory.
+		'''
 		prev = str(self.referenceFilenameInput_bruker.text())
 		self.referenceFilenameInput_bruker.setText(str(QtWidgets.QFileDialog.getExistingDirectory(self, 'Open Bruker Data Directory', self.workingDirectory_bruker)))
 		if str(self.referenceFilenameInput_bruker.text()) == '':
@@ -125,7 +161,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				self.runConversionButton_bruker.setEnabled(True)
 			
 	def runConversion_bruker(self):
-
+		'''
+			This method runs the conversion process.
+		'''
 		self.conversionConsole_bruker.clear()
 
 		out_name = str(self.outputFilenameInput_bruker.text())
@@ -237,6 +275,11 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	# ---- Water Removal ---- #
 	def runWaterRemoval(self):
+		'''
+			This method performs removal of the residual water signal 
+			using Hankel Singular Value decomposition.
+		'''
+		
 		#1. Fit specturm with HSVD.
 		peak, width_L, ppm, area, phase = self.hsvd(self.dat,int(self.hsvdPointsLineEdit_wr.text()),float(self.hsvdRatioLineEdit_wr.text()),int(self.hsvdComponentsLineEdit_wr.text()),'water')
 		hsvd_fit = Metabolite()
@@ -305,6 +348,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.saveWaterRemovalButton.setEnabled(True)
 
 	def saveWaterRemoval(self):
+		'''
+			This method saves the water removed signal as a *.dat file.
+		'''
+
 		self.dat_wr.filename = self.dat.filename.replace('.dat', '_wr.dat')
 
 		out_file = open(self.dat_wr.filename, 'w')
@@ -324,6 +371,11 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	# ---- Macromolecule Removal ---- #
 	def runMMRemoval(self):
+		'''
+			This method performs macromolecule removing using Hankel
+			singular value decomposition.
+		'''
+
 		# 1. Fit macromolecule spectrum with HSVD.
 		peak, width_L, ppm, area, phase = self.hsvd(self.MMDat_mmr,int(self.hsvdPointsLineEdit_mmr.text()),float(self.hsvdRatioLineEdit_mmr.text()),int(self.hsvdComponentsLineEdit_mmr.text()),'mm')
 		hsvd_fit = Metabolite()
@@ -389,6 +441,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.saveMMRemovalButton.setEnabled(True)
 
 	def saveMMRemoval(self):
+		'''
+			This method saves the macromolecule removed result
+			as a *.dat file. Additionally, it also saves the HSVD fit as a
+			*.dat file.
+		'''
+
 		# 1. Save metabolite spectrum.
 		self.metabDat_mmr.filename = self.fullDat_mmr.filename.replace(self.fullDat_mmr.filename.split('/')[-1], 'sup.dat')
 
@@ -426,6 +484,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	# ---- Methods to Load Files ---- #
 	def chooseDatFile_wr(self):
+		'''
+			This method launches a dialog window allowing you to
+			choose a *.dat file.
+		'''
 		self.filenameConfirmButton_dat.setEnabled(False)
 		prev = str(self.filenameInput_dat.text())
 		self.filenameInput_dat.setText(str(QtWidgets.QFileDialog.getOpenFileName(self, 'Open Dat File', self.workingDirectory_wr, 'Dat files (*.dat)')[0]))
@@ -436,6 +498,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				self.filenameConfirmButton_dat.setEnabled(False)
 
 	def loadDatFile_wr(self):
+		'''
+			This method loads in the specified *.dat file
+			and plots the signal.
+		'''
 		try:
 			# load dat file
 			datFile  = str(self.filenameInput_dat.text())
@@ -473,6 +539,13 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		except Exception as e:
 			traceback.print_exc()
 			self.filenameInfoLabel_dat.setText("ERROR: " + str(e) + " >> Please try again.")
+			
+			msg = QtWidgets.QMessageBox()
+			msg.setIcon(QtWidgets.QMessageBox.Critical)
+			msg.setText('Error ' + str(e) + 'has occurred!')
+			msg.setInformativeText(traceback.format_exc())
+			msg.setWindowTitle('Error')
+			msg.exec_()
 
 	def chooseFullDatFile_mmr(self):
 		self.filenameConfirmButton_fulldat_mmr.setEnabled(False)
@@ -488,6 +561,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.workingDirectory_mmr = fullDatFile_mmr.replace(fullDatFile_mmr.split('/')[-1], '')
 
 	def loadFullDatFile_mmr(self):
+		'''
+			This method loads in the specified *.dat file
+			and plots the signal.
+		'''
 		try:
 			# load dat file
 			fullDatFile_mmr     = str(self.filenameInput_fulldat_mmr.text())
@@ -524,7 +601,18 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			traceback.print_exc()
 			self.filenameInfoLabel_fulldat_mmr.setText("ERROR: " + str(e) + " >> Please try again.")
 
+			msg = QtWidgets.QMessageBox()
+			msg.setIcon(QtWidgets.QMessageBox.Critical)
+			msg.setText('Error ' + str(e) + 'has occurred!')
+			msg.setInformativeText(traceback.format_exc())
+			msg.setWindowTitle('Error')
+			msg.exec_()
+
 	def chooseMMDatFile_mmr(self):
+		'''
+			This method launches a dialog window allowing you to
+			choose a *.dat file.
+		'''
 		self.filenameConfirmButton_mmdat_mmr.setEnabled(False)
 		prev = str(self.filenameInput_mmdat_mmr.text())
 		self.filenameInput_mmdat_mmr.setText(str(QtWidgets.QFileDialog.getOpenFileName(self, 'Open Dat File', self.workingDirectory_mmr, 'Dat files (*.dat)')[0]))
@@ -538,6 +626,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.workingDirectory_mmr = MMDatFile_mmr.replace(MMDatFile_mmr.split('/')[-1], '')
 
 	def loadMMDatFile_mmr(self):
+		'''
+			This method loads in the specified *.dat file
+			and plots the signal.
+		'''
 		try:
 			# load dat file
 			MMDatFile_mmr     = str(self.filenameInput_mmdat_mmr.text())
@@ -576,8 +668,18 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			traceback.print_exc()
 			self.filenameInfoLabel_mmdat_mmr.setText("ERROR: " + str(e) + " >> Please try again.")
 
+			msg = QtWidgets.QMessageBox()
+			msg.setIcon(QtWidgets.QMessageBox.Critical)
+			msg.setText('Error ' + str(e) + 'has occurred!')
+			msg.setInformativeText(traceback.format_exc())
+			msg.setWindowTitle('Error')
+			msg.exec_()
+
 	# ---- Methods for Plotting ---- #
 	def setPlot(self, tab):
+		'''
+			This method sets references to the matplotlib figures.
+		'''
 		if tab == 'Water Removal':
 			fig = plt.figure(1)
 			self.addmpl(0, fig, self.plotResult_mplvl_wr)
@@ -589,6 +691,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.addmpl(2, fig, self.plotResult_mplvl_bruker)
 
 	def addmpl(self, canvas_index, fig, vertical_layout):
+		'''
+			This method adds to matplotlib Figure Canvas and Toolbar
+			to the UI.
+		'''
 		self.canvas[canvas_index] = FigureCanvas(fig)
 		vertical_layout.addWidget(self.canvas[canvas_index])
 		self.canvas[canvas_index].draw()
@@ -598,17 +704,41 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	# ---- Methods for HSVD Fitting ---- #
 	def lorentzian(self, time_axis, frequency, phase, fwhm):
+		'''
+			This method returns a time-domain lorentzian function.
+				Inputs:	
+					time_axis	discrete time array
+					frequency	frequency of the Lorentzian function
+					phase		phase of the Lorentzian function
+					fwhm		Lorentzian linewidth
+				
+				Outputs:
+					time-domian lorentzian function
+		'''
 		oscillatory_term = np.exp(1j * (2 * np.pi * frequency * time_axis + phase))
 		damping = np.exp(-time_axis * np.pi * fwhm)
 		fid = oscillatory_term * damping
 		return fid / len(time_axis)
 
 	def hsvd(self, dat, n, ratio, comp, mode):
-		# dat    is the dat file
-		# n      is the number of points
-		# ratio  is the hankel matrix row/col ratio
-		# comp   is the nubmer of single related singular values
-		# code based on: https://github.com/openmrslab/suspect/blob/master/suspect/processing/water_suppression.py
+		'''
+			This method's code is based (heavily) on: https://github.com/openmrslab/suspect/blob/master/suspect/processing/water_suppression.py
+			It performs an HSVD decomposition and returns a list of all parameters for each Lorentzian component.
+			
+				Inputs:
+					dat		DatFile object containing the signal on which to perform the decomposition 
+					n		number of points
+					ratio	Hankel matrix row/col ratio
+					comp	number of signal related singular values
+
+				Outputs:
+					An array containing the following elements:
+					[0] array of component numbers
+					[1] array of the damping coefficient of each component
+					[2] array of the frequency coeffienct of each component
+					[3] array of the amplitude of each component
+					[4] array of the phase of each component
+		'''
 		
 		if mode == 'mm':
 			console = self.hsvdFitConsole_mmr
