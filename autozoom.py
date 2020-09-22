@@ -1,6 +1,5 @@
 from __future__ import print_function
 import numpy as np
-import pdb
 
 def autozoom(img, *karg):
     if len(karg) == 1:
