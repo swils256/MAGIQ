@@ -7,3 +7,4 @@
 *.sqlite
 .vs/VSWorkspaceState.json
 *.cfg
+fitman/Fitman.cfg
