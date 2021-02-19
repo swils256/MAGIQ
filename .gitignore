@@ -6,5 +6,3 @@
 .vs/ProjectSettings.json
 *.sqlite
 .vs/VSWorkspaceState.json
-*.cfg
-fitman/Fitman.cfg
