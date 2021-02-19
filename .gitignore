@@ -1,3 +1,8 @@
 *.pyc
 *.cfg
 *.bak
+.vs/MAGIQ/v16/.suo
+*.db
+.vs/ProjectSettings.json
+*.sqlite
+.vs/VSWorkspaceState.json
