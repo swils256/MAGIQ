@@ -684,8 +684,8 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>BARSTOOL auto-selects the spectroscopy, image, and partial volume segmentation files. Ensure all files are &amp;located
-in the same folder and follow the expected naming convention.</string>
+             <string>BARSTOOL auto-selects the spectroscopy, image, and partial volume segmentation files. Ensure all files are present and located
+in the same folder. The files should also follow the expected naming convention.</string>
             </property>
            </widget>
           </item>
@@ -745,6 +745,9 @@ in the same folder and follow the expected naming convention.</string>
              </item>
              <item>
               <widget class="QRadioButton" name="varianScanner">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string>&amp;Varian</string>
                </property>

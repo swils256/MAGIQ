@@ -59,10 +59,25 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		# If running on Windows, set the WSL environment up so FSL can be used
 		if os.name == 'nt':
 			print('Running on Windows ... setting up WSL environment.')
-			os.environ["DISPLAY"] = ":0"
+			proc = subprocess.Popen(["wsl", "bash", "-c", "grep -oE 'gcc version ([0-9]+)' /proc/version"], stdout=subprocess.PIPE, shell=True)
+			(out, err) = proc.communicate()
+						
+			if int(out.decode().split(' ')[-1]) > 5:
+				print('WSL2 detected.')
+				proc = subprocess.Popen(["wsl", "echo", "$(cat /etc/resolv.conf | grep nameserver)"], stdout=subprocess.PIPE, shell=True)
+				(out, err) = proc.communicate()
+				os.environ["DISPLAY"] = out.decode().split(' ')[-1].rstrip() + ":0"
+			else:
+				print('WSL1 detected.')
+				os.environ["DISPLAY"] = ":0"
 			os.environ["FSLDIR"] = "/usr/local/fsl"
 			os.environ["FSLOUTPUTTYPE"] = "NIFTI_GZ"
 			os.environ["WSLENV"] = "FSLDIR/u:FSLOUTPUTTYPE/u:DISPLAY/u"
+
+			print("DISPLAY", os.environ["DISPLAY"])
+			print("FSLDIR", os.environ["FSLDIR"])
+			print("FSLOUTPUTTYPE", os.environ["FSLOUTPUTTYPE"])
+			print("WSLENV", os.environ["WSLENV"])
 
 	def tree(self): return defaultdict(self.tree)
 
@@ -215,7 +230,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	def confirmIDs(self):
 		'''
-			This method chekcs the number of IDs inputted by the user
+			This method checks the number of IDs inputted by the user
 			against the number of *.out files loaded into the application.
 		'''
 
@@ -407,51 +422,69 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			This method adds the thresholds specified from the user into the combo box.
 		'''
 		# Get threshold list from user
-		fthreshList = self.fthreshListLineEdit.text().replace(' ', '').split(',')
-		self.fthreshList = []
-		for fthresh in fthreshList:
-			self.fthreshList.append(float(fthresh)) # add to global list
-			self.selectFthreshComboBox.addItem(str(fthresh)) # add to combo box
+		try:
+			fthreshList = self.fthreshListLineEdit.text().replace(' ', '').split(',')
+			self.fthreshList = []
+			for fthresh in fthreshList:
+				self.fthreshList.append(float(fthresh)) # add to global list
+				self.selectFthreshComboBox.addItem(str(fthresh)) # add to combo box
 
-		self.consoleOutputText.append('The following thresholds for brain extraction will be tested ...')
-		self.consoleOutputText.append(' >> ' + str(self.fthreshList))
-		self.consoleOutputText.append('')
+			self.consoleOutputText.append('The following thresholds for brain extraction will be tested ...')
+			self.consoleOutputText.append(' >> ' + str(self.fthreshList))
+			self.consoleOutputText.append('')
 
-		self.runBetTestButton.setEnabled(True)
-		self.confirmFthreshListButton.setEnabled(False)
+			self.runBetTestButton.setEnabled(True)
+			self.confirmFthreshListButton.setEnabled(False)
+		except Exception as e:
+			msg = QtWidgets.QMessageBox()
+			msg.setIcon(QtWidgets.QMessageBox.Critical)
+			msg.setText('Error ' + str(e) + 'has occurred!')
+			msg.setInformativeText(traceback.format_exc() + '\n\n' + 'Check your intensity thresholds.')
+			msg.setWindowTitle('Error')
+			msg.exec_()
 
 	def runBetTest(self):
 		'''
 			This method runs BET using the thresholds specified by the user.
 			BET requires that filenames have no spaces in them.
 		'''
-		image = self.betImageList[self.BETIMAGELIST_INDEX].replace('.nii.gz', '')
-		brainctr = str(self.isoX) + ' ' + str(self.isoY) + ' ' + str(self.isoZ)
-		luts = ["Red-Yellow", "Blue-Lightblue", "Red", "Blue", "Green", "Yellow", "Pink", "Hot", "Cool", "Copper"]
+		try:
+			image = self.betImageList[self.BETIMAGELIST_INDEX].replace('.nii.gz', '')
+			brainctr = str(self.isoX) + ' ' + str(self.isoY) + ' ' + str(self.isoZ)
+			luts = ["Red-Yellow", "Blue-Lightblue", "Red", "Blue", "Green", "Yellow", "Pink", "Hot", "Cool", "Copper"]
 
-		self.consoleOutputText.append('Running BET with at most ' + str(np.size(luts)) + ' test thresholds on the image ...')
-		for fthresh in self.fthreshList[0:np.size(luts)]:
-			if os.name == 'nt':
-				image_win = os.popen('wsl wslpath "' + str(image) + '"').read().replace('\n','')
-				command = ['wsl', '$FSLDIR/bin/bet', '"'+str(image_win)+'_std"']
-				command.append('"'+str(image_win)+'_std_brain_f'+str(fthresh)+'"')
-			else:
-				command = ['bet', '"'+str(image)+'_std"']
-				command.append('"'+str(image)+'_std_brain_f'+str(fthresh)+'"')
-			command.append('-f'); command.append(str(fthresh))
-			command.append('-g'); command.append('0')
-			command.append('-c'); command.append(str(brainctr))
-			self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-			print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
+			self.consoleOutputText.append('Running BET with at most ' + str(np.size(luts)) + ' test thresholds on the image ...')
+			for fthresh in self.fthreshList[0:np.size(luts)]:
+				if os.name == 'nt':
+					image_win = os.popen('wsl wslpath "' + str(image) + '"').read().replace('\n','')
+					command = ['wsl', '$FSLDIR/bin/bet', '"'+str(image_win)+'_std"']
+					command.append('"'+str(image_win)+'_std_brain_f'+str(fthresh)+'"')
+				else:
+					command = ['bet', '"'+str(image)+'_std"']
+					command.append('"'+str(image)+'_std_brain_f'+str(fthresh)+'"')
+				command.append('-f'); command.append(str(fthresh))
+				command.append('-g'); command.append('0')
+				command.append('-c'); command.append(str(brainctr))
+				self.consoleOutputText.append(' >> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
+				print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 
-			if os.name == 'nt':
-				print(subprocess.check_output(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''), stderr=subprocess.STDOUT).decode())
-			else:
-				print(subprocess.check_output(command, stderr=subprocess.STDOUT).decode())
-		self.consoleOutputText.append('')
+				if os.name == 'nt':
+					print(subprocess.check_output(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''), stderr=subprocess.STDOUT).decode())
+				else:
+					print(subprocess.check_output(command, stderr=subprocess.STDOUT).decode())
+			self.consoleOutputText.append('')
 
-		self.runBetTestButton.setEnabled(False)
-		self.checkFthreshButton.setEnabled(True)
+			self.runBetTestButton.setEnabled(False)
+			self.checkFthreshButton.setEnabled(True)
+		except Exception as e:
+			traceback.print_exc()
+				
+			msg = QtWidgets.QMessageBox()
+			msg.setIcon(QtWidgets.QMessageBox.Critical)
+			msg.setText('Error ' + str(e) + 'has occurred!')
+			msg.setInformativeText(traceback.format_exc())
+			msg.setWindowTitle('Error')
+			msg.exec_()
 
 	def checkFthresh(self):
 		'''
@@ -686,41 +719,51 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			This method runs FSL FAST on the user specified images using the 
 			user specified FAST parameters.
 		'''
-		self.consoleOutputText.append('Running FAST on images ...')
+		try:
+			self.consoleOutputText.append('Running FAST on images ...')
 
-		for image in self.fastImageList:
-			image = image.replace('.nii.gz', '')
-			image_win = os.popen('wsl wslpath "' + str(image) + '"').read().replace('\n','')
+			for image in self.fastImageList:
+				image = image.replace('.nii.gz', '')
+				image_win = os.popen('wsl wslpath "' + str(image) + '"').read().replace('\n','')
 			
-			if os.name == 'nt':
-				command = ['wsl $FSLDIR/bin/fast']
-			else:
-				command = ['fast']
+				if os.name == 'nt':
+					command = ['wsl $FSLDIR/bin/fast']
+				else:
+					command = ['fast']
 			
-			command.append('-t'); command.append(str(int(self.FAST_T)))
-			command.append('-n'); command.append(str(int(self.FAST_N)))
-			command.append('-H'); command.append(str(self.FAST_H))
-			command.append('-I'); command.append(str(int(self.FAST_I)))
-			command.append('-l'); command.append(str(self.FAST_L))
-			command.append('-v')
+				command.append('-t'); command.append(str(int(self.FAST_T)))
+				command.append('-n'); command.append(str(int(self.FAST_N)))
+				command.append('-H'); command.append(str(self.FAST_H))
+				command.append('-I'); command.append(str(int(self.FAST_I)))
+				command.append('-l'); command.append(str(self.FAST_L))
+				command.append('-v')
 			
-			if os.name == 'nt':
-				command.append('-o "' + str(image_win) + '" "' + str(image_win) + '"')
-			else:
-				command.append('-o "' + str(image) + '" "' + str(image) + '"')
+				if os.name == 'nt':
+					command.append('-o "' + str(image_win) + '" "' + str(image_win) + '"')
+				else:
+					command.append('-o "' + str(image) + '" "' + str(image) + '"')
 			
-			self.consoleOutputText.append('>> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
-			print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
+				self.consoleOutputText.append('>> ' + str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
+				print(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''))
 
-			if os.name == 'nt':
-				print(subprocess.check_output(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''), stderr=subprocess.STDOUT).decode())
-			else:
-				print(subprocess.check_output(command, stderr=subprocess.STDOUT).decode())
+				if os.name == 'nt':
+					print(subprocess.check_output(str(command).replace('[','').replace(']','').replace(',','').replace("'", ''), stderr=subprocess.STDOUT).decode())
+				else:
+					print(subprocess.check_output(command, stderr=subprocess.STDOUT).decode())
 
-		self.consoleOutputText.append('Done.')
+			self.consoleOutputText.append('Done.')
 
-		self.runFastButton.setEnabled(False)
-		self.selectFastImagesButton.setEnabled(True)
+			self.runFastButton.setEnabled(False)
+			self.selectFastImagesButton.setEnabled(True)
+		except Exception as e:
+			traceback.print_exc()
+				
+			msg = QtWidgets.QMessageBox()
+			msg.setIcon(QtWidgets.QMessageBox.Critical)
+			msg.setText('Error ' + str(e) + 'has occurred!')
+			msg.setInformativeText(traceback.format_exc() + '\n\n\n' + 'Check your FAST settings and try running it again.')
+			msg.setWindowTitle('Error')
+			msg.exec_()
 
 	# ---- Methods for Setting Quantification Parameters ---- #
 	def loadMetabParams(self):
@@ -808,7 +851,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			msg = QtWidgets.QMessageBox()
 			msg.setIcon(QtWidgets.QMessageBox.Critical)
 			msg.setText('Error ' + str(e) + 'has occurred!')
-			msg.setInformativeText(traceback.format_exc())
+			msg.setInformativeText(traceback.format_exc() + '\n\n\n Consider checking your *.qinfo file for errors.')
 			msg.setWindowTitle('Error')
 			msg.exec_()
 
