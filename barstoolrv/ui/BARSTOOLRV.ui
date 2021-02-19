@@ -191,6 +191,9 @@
              <layout class="QGridLayout" name="gridLayout_3">
               <item row="7" column="3">
                <widget class="QRadioButton" name="tfisp3dButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
                  <string>TFISP&amp;3D</string>
                 </property>

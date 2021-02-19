@@ -45,6 +45,9 @@ Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
 class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 	def __init__(self):
+		'''
+			This method initializes the UI and binds methods to UI buttons.
+		'''
 		QtWidgets.QWidget.__init__(self)
 		Ui_MainWindow.__init__(self)
 		self.setupUi(self)
@@ -58,14 +61,32 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		#If running on Windows, set the WSL environment up so FSL can be used
 		if os.name == 'nt':
 			print('Running on Windows ... setting up WSL environment.')
-			os.environ["DISPLAY"] = ":0"
+			proc = subprocess.Popen(["wsl", "bash", "-c", "grep -oE 'gcc version ([0-9]+)' /proc/version"], stdout=subprocess.PIPE, shell=True)
+			(out, err) = proc.communicate()
+						
+			if int(out.decode().split(' ')[-1]) > 5:
+				print('WSL2 detected.')
+				proc = subprocess.Popen(["wsl", "echo", "$(cat /etc/resolv.conf | grep nameserver)"], stdout=subprocess.PIPE, shell=True)
+				(out, err) = proc.communicate()
+				os.environ["DISPLAY"] = out.decode().split(' ')[-1].rstrip() + ":0"
+			else:
+				print('WSL1 detected.')
+				os.environ["DISPLAY"] = ":0"
 			os.environ["FSLDIR"] = "/usr/local/fsl"
 			os.environ["FSLOUTPUTTYPE"] = "NIFTI_GZ"
 			os.environ["WSLENV"] = "FSLDIR/u:FSLOUTPUTTYPE/u:DISPLAY/u"
 
+			print("DISPLAY", os.environ["DISPLAY"])
+			print("FSLDIR", os.environ["FSLDIR"])
+			print("FSLOUTPUTTYPE", os.environ["FSLOUTPUTTYPE"])
+			print("WSLENV", os.environ["WSLENV"])
+
 	def tree(self): return defaultdict(self.tree)
 
 	def setBindings(self, tab):
+		'''
+			This method binds methods to the UI buttons.
+		'''
 		if tab == 'Sum Amplitudes':
 			
 			self.setWorkingDirectoryButton.clicked.connect(self.setWorkingDirectory)
@@ -151,7 +172,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	# ---- Methods for 'Sum Amplitudes' Tab ---- #
 	def setWorkingDirectory(self):
-
+		'''
+			This method sets the default working directory for this instance of the application.
+		'''
 		self.workingDirectory = str(QtWidgets.QFileDialog.getExistingDirectory(self, 'Set Working Directory', os.path.expanduser('~')))
 		if self.workingDirectory == '':
 			self.workingDirectory = os.path.expanduser('~')
@@ -172,7 +195,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.loadOutputsButton_quant_bruker.setEnabled(True)
 
 	def loadOutputs(self):
-
+		'''
+			This method presents a dialog allowing the user to select which *.out files to analyze.
+		'''
 		self.consoleOutputText.append('===== CALCULATE AMPLITUDES AND CRLBS =====')
 
 		self.outputs = []
@@ -210,6 +235,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.loadOutputsButton.setEnabled(True)
 
 	def confirmIDs(self):
+		'''
+			This method checks the number of IDs inputted by the user
+			against the number of *.out files loaded into the application.
+		'''
 
 		self.IDsList = self.studyIDsTextEdit.toPlainText().split('\n')
 		for (i, ID) in enumerate(self.IDsList):
@@ -227,12 +256,19 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.saveFileLineEdit.setText(self.workingDirectory + '/' + '_____.csv')
 
 	def confirmSaveFileName(self):
+		'''
+			This method sets the *.csv filename to which the amplitudes/crlb information will be saved.
+		'''
 		self.saveFileName = self.saveFileLineEdit.text()
 		self.calculateButton.setEnabled(True)
 		self.consoleOutputText.append('Calculations will be saved to: ' + str(self.saveFileName))
 		self.consoleOutputText.append('')
 
 	def calculate(self):
+		'''
+			This method calculates the amplitudes and CRLBs from the the specified *.out files and outputs
+			them to the specified *.csv file.
+		'''
 		saveFile = open(self.saveFileName, 'w')
 		for (i, file) in enumerate(self.fileList):
 
@@ -352,12 +388,12 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			v = int(self.ratsMM_v.text())
 
 			if os.name == 'nt':
-				img_file_path = subprocess.check_output('wsl wslpath -u ' + img_file).decode().rstrip()
-				mas_file_path = subprocess.check_output('wsl wslpath -u ' + mas_file).decode().rstrip()
+				img_file_path = subprocess.check_output('wsl wslpath -u "' + img_file + '"').decode().rstrip()
+				mas_file_path = subprocess.check_output('wsl wslpath -u "' + mas_file + '"').decode().rstrip()
 				self.consoleOutputText.append(' | ' + str(img_file_path))
-				cmd = 'wsl ./barstoolrv/RATS_MM -k ' + str(k) + ' -t ' + str(t) + ' -v ' + str(v) + ' ' + img_file_path + ' ' + mas_file_path
+				cmd = 'wsl ./barstoolrv/RATS_MM -k ' + str(k) + ' -t ' + str(t) + ' -v ' + str(v) + ' "' + img_file_path + '" "' + mas_file_path + '"'
 			else:
-				cmd = './barstoolrv/RATS_MM -k ' + str(k) + ' -t ' + str(t) + ' -v ' + str(v) + ' ' + img_file + ' ' + mas_file
+				cmd = './barstoolrv/RATS_MM -k ' + str(k) + ' -t ' + str(t) + ' -v ' + str(v) + ' "' + img_file + '" "' + mas_file + '"'
 			self.consoleOutputText.append(' >> ' + cmd)
 			self.consoleOutputText.append(subprocess.check_output(cmd).decode() + '\n')
 
