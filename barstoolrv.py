@@ -165,6 +165,16 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.canvas.draw()
 
 			# --- For new BRUKER datasets --- #
+			self.loadOutputsButton_quant_bruker.clicked.connect(self.loadBrukerDatasets)
+			self.loadOutputsButton_quant_bruker.setEnabled(False)
+
+			self.confirmSaveFileButton_quant_bruker.clicked.connect(self.setQuantSaveFile_bruker)
+			self.confirmSaveFileButton_quant_bruker.setEnabled(False)
+
+			self.runQuantButton_bruker.clicked.connect(self.runQuant_bruker)
+			self.runQuantButton_bruker.setEnabled(False)
+
+			# Set Up Plotting Region
 			fig_bruker = plt.figure(2)
 			self.canvas_bruker = FigureCanvas(fig)
 			self.plotQuant_mplvl_bruker.addWidget(self.canvas_bruker)
@@ -903,7 +913,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		self.consoleOutputText.append('     voxel conc flag: ' + str(int(self.voxelConcButton.isChecked())))
 		self.consoleOutputText.append('')
 
-	# ---- Methods for Actual Quantification ---- #
+	# ---- Methods for Actual Quantification (VARIAN) ---- #
 	def setQuantSaveFile(self):
 		self.quantSaveFileName = self.saveFileLineEdit_quant.text()
 		self.runQuantButton.setEnabled(True)
@@ -1043,6 +1053,220 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 				# Get scanner type
 				scanner_type = 'varian'
+				out_file.write(str(scanner_type) + ',')
+
+				# Calculate absolute metabolite levels (in mM)
+				f_conc, f_crlb = mc.calc(sup_out, unsup_out, \
+							 vox_frac, n_avg_sup, n_avg_uns, scale_sup, scale_uns, \
+							 gain_sup, gain_uns, \
+							 metab_params, num_params, water_params, exp_params, \
+							 scanner_type)
+
+				# Figure out centroid of voxel to slice image appropriately
+				vox_indices = np.where(vox_img == 1)
+				vox_centroid = np.round([np.mean(vox_indices[0]), np.mean(vox_indices[1]), np.mean(vox_indices[2])]).astype(int)
+
+				# Create masked array version of vox_img to overal on top of brain_img
+				vox_mas = np.ma.masked_where(vox_img == 0, vox_img * brain_img.max() + 2)
+
+				# Display images of MRS voxel overlay
+				transpose_indices = [0, 1]
+				panes = [0, 1, 2]
+				n_rot90 = [0, 0, 0]
+
+				fig = plt.figure(1)
+				fig.patch.set_facecolor('black')
+
+				ax1 = plt.subplot(1,3,1)
+				ax2 = plt.subplot(1,3,2)
+				ax3 = plt.subplot(1,3,3)
+				fig.axes[panes.index(1)].set_title(ID + "\n", size=12, color='w', family='monospace')
+				fig.axes[panes.index(1)].set_xlabel("\nTISSUE: {:.3f}, CSF: {:.3f}".format(tissue_frac, vox_frac[2]), size=11, color='w', family='monospace')
+
+				palette = cm.Greys_r
+				palette.set_over('g', 0.6)
+
+				asp = brain.header['pixdim'][1]/brain.header['pixdim'][3]
+				print('asp', asp)
+				# raw_input()
+
+				print('brain_img', brain_img[vox_centroid[0],:,:].squeeze())
+				print('vox_centroid', vox_centroid)
+				# raw_input()
+
+				anat_zoom1, k1 = autozoom(np.transpose(brain_img[vox_centroid[0],:,:].squeeze(), transpose_indices))
+				# raw_input()
+
+				anat_zoom2, k2 = autozoom(np.transpose(brain_img[:,vox_centroid[1],:].squeeze(), transpose_indices))
+				# raw_input()
+
+				anat_zoom3, k3 = autozoom(np.transpose(brain_img[:,:,vox_centroid[2]].squeeze(), transpose_indices))
+				# raw_input()
+				
+				ax1.imshow(np.rot90(anat_zoom1, n_rot90[0]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
+				ax2.imshow(np.rot90(anat_zoom2, n_rot90[1]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
+				ax3.imshow(np.rot90(anat_zoom3, n_rot90[2]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect='equal')
+
+				ax1.imshow(np.rot90(np.transpose(vox_mas[vox_centroid[0],min(k1[0]):max(k1[0])+1,min(k1[1]):max(k1[1])+1].squeeze(),transpose_indices), n_rot90[0]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
+				ax2.imshow(np.rot90(np.transpose(vox_mas[min(k2[0]):max(k2[0])+1,vox_centroid[1],min(k2[1]):max(k2[1])+1].squeeze(),transpose_indices), n_rot90[1]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect=asp)
+				ax3.imshow(np.rot90(np.transpose(vox_mas[min(k3[0]):max(k3[0])+1,min(k3[1]):max(k3[1])+1,vox_centroid[2]].squeeze(),transpose_indices), n_rot90[2]), cmap = palette, norm = colors.Normalize(vmin = brain_img.min() - 1, vmax = brain_img.max() + 1, clip = False), aspect='equal')
+
+				plt.setp([a.set_xticks([]) for a in fig.axes])
+				plt.setp([a.set_yticks([]) for a in fig.axes])
+				plt.savefig(mouse + "/barstool_output.png", dpi=300, facecolor='k', bbox_inches='tight', pad_inches = 0.2)
+
+				# raw_input()
+
+				for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
+					out_file.write("{:6.6f},".format(f_conc[str(self.metabParamsTableWidget.item(metab_index,0).text())]))
+				for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
+					out_file.write("{:6.6f},".format(f_crlb[str(self.metabParamsTableWidget.item(metab_index,0).text())]))
+			except Exception as e:
+				print(e)
+				failed_mice.append(mouse)			
+			out_file.write('\n')
+		
+		out_file.close()
+
+		self.consoleOutputText.append('')
+		self.consoleOutputText.append('The following files could not be processed successfully:')
+		for mouse in failed_mice:
+			self.consoleOutputText.append(' >> ' + str(mouse))
+
+		self.loadOutputsButton_quant.setEnabled(True)
+		self.confirmSaveFileButton_quant.setEnabled(False)
+		self.runQuantButton.setEnabled(False)
+
+	# ---- Methods for Actual Quantification (BRUKER) ---- #
+	def setQuantSaveFile_bruker(self):
+		self.quantSaveFileName_bruker = self.saveFileLineEdit_quant.text()
+		self.runQuantButton.setEnabled(True)
+		self.consoleOutputText.append('Quantification results will be saved to: ' + str(self.quantSaveFileName_bruker))
+		self.consoleOutputText.append('')
+
+	def runQuant_bruker(self):
+		self.confirmSaveFileButton_quant_bruker.setEnabled(False)
+
+		out_file = open(self.quantSaveFileName_bruker, 'w')
+
+		# Write header
+		out_file.write('ID,TISSUE,CSF,N_AVG_SUP,N_AVG_UNS,SCALE_SUP,SCALE_UNS,SCANNER,')
+		for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
+			out_file.write(str(self.metabParamsTableWidget.item(metab_index,0).text())+',')
+		for metab_index in range(0,self.metabParamsTableWidget.rowCount()):
+			out_file.write(str(self.metabParamsTableWidget.item(metab_index,0).text())+'_CRLB,')
+		out_file.write('\n')
+
+		self.consoleOutputText.append('==== METAB QUANT (Bruker) ====')
+		failed_mice = []
+		for i, mouse in enumerate(self.mouseDirsBruker):
+
+			try:
+				ID = mouse.split('/')[-1]
+				out_file.write(str(ID)+',')
+
+				self.consoleOutputText.append(' >> ' + str(mouse))
+				print('Processing ', mouse, '...')
+
+				brain = nib.load(mouse + '/' + mouse + '_brain.nii.gz')
+				csf   = nib.load(mouse + '/' + mouse + '_csf_mask.nii.gz')
+				vox   = nib.load(mouse + '/' + mouse + '_voxel_overlay.nii.gz')
+				sup_out     = OutputFile(mouse + '/' + mouse + '_sup.out')
+				unsup_out   = OutputFile(mouse + '/' + mouse + '_uns.out')
+				sup_dat   = DatFile(mouse + '/' + mouse + '_sup.dat')
+				unsup_dat = DatFile(mouse + '/' + mouse + '_uns.dat')
+
+				brain_img = brain.get_data()
+				csf_img   = csf.get_data()
+				vox_img   = vox.get_data()
+
+				vox_img_vec = np.reshape(vox_img, np.size(vox_img)).astype(int)
+				csf_img_vec = np.reshape(csf_img, np.size(csf_img)).astype(int)
+
+				vox_n = np.sum(vox_img_vec)
+				csf_n = np.sum(vox_img_vec[csf_img_vec.astype(bool)])
+
+				tissue_frac = 1-float(csf_n)/float(vox_n)
+				vox_frac = [tissue_frac/2, tissue_frac/2, 1-tissue_frac]
+
+				print("voxfrac:\t", tissue_frac, vox_frac)
+				out_file.write(str(tissue_frac) + ',' + str(vox_frac[2]) + ',')
+
+				# Get number of averages
+				fid_sup = BrukerFID(mouse + '/sup')
+				n_avg_sup = int(fid_sup.header['PVM_NAverages']['value'])//2
+
+				fid_uns = BrukerFID(mouse + '/uns')
+				n_avg_uns = int(fid_uns.header['PVM_NAverages']['value'])//2
+
+				# Get scaling factors -- CHECK WITH BARTHA!
+				scale_sup = fid_sup.ConvS
+				scale_uns = fid_uns.ConvS
+
+				gain_sup = fid_sup.Gain[0]
+				gain_uns = fid_uns.Gain[0]
+
+				print('n_avg_sup:\t', n_avg_sup, '\t', end=' ')
+				print('n_avg_uns:\t', n_avg_uns)
+				print('gain_sup:\t', gain_sup, '\t', end=' ')
+				print('gain_uns:\t', gain_uns)
+				print('sup_ConvS:\t', sup_dat.ConvS, '\t', end=' ')
+				print('uns_ConvS:\t', unsup_dat.ConvS)
+				print('scale_sup:\t', scale_sup, '\t', end=' ')
+				print('scale_uns:\t', scale_uns)
+				print('')
+				out_file.write(str(n_avg_sup) + ',' + str(n_avg_uns) + ',' + str(scale_sup) + ',' + str(scale_uns) + ',')
+
+				# Get metabolite parameters
+				metab_params = self.tree()
+				num_params   = self.metabParamsTableWidget.rowCount(); print('num_params:\t', num_params)
+				for param_index in range(0, num_params):
+					metab_params[param_index][0] = str(self.metabParamsTableWidget.item(param_index,0).text())
+					metab_params[param_index][1] = float(self.metabParamsTableWidget.item(param_index,1).text())
+					metab_params[param_index][2] = float(self.metabParamsTableWidget.item(param_index,2).text())
+					metab_params[param_index][3] = float(self.metabParamsTableWidget.item(param_index,3).text())
+					metab_params[param_index][4] = float(self.metabParamsTableWidget.item(param_index,4).text())
+					metab_params[param_index][5] = float(self.metabParamsTableWidget.item(param_index,5).text())
+					metab_params[param_index][6] = int(self.metabParamsTableWidget.item(param_index,6).text())
+					metab_params[param_index][7] = int(self.metabParamsTableWidget.item(param_index,7).text())
+
+				# Get water parameters
+				water_params = ('water\t' \
+					+ self.protonsLineEdit_water.text() + '\t' \
+					+ self.T1GMLineEdit_water.text() + '\t' \
+					+ self.T2GMLineEdit_water.text() + '\t' \
+					+ self.T1WMLineEdit_water.text() + '\t' \
+					+ self.T2WMLineEdit_water.text() + '\t' \
+					+ self.T1CSFLineEdit_water.text() + '\t' \
+					+ self.T2CSFLineEdit_water.text()).split('\t')
+				water_params[0] = str(water_params[0])
+				water_params[1] = float(water_params[1])
+				water_params[2] = float(water_params[2])
+				water_params[3] = float(water_params[3])
+				water_params[4] = float(water_params[4])
+				water_params[5] = float(water_params[5])
+				water_params[6] = float(water_params[6])
+				water_params[7] = float(water_params[7])
+
+				# Get experimental parameters
+				exp_params = ('exp\t' \
+					+ self.TRLineEdit.text() + '\t' \
+					+ self.TELineEdit.text() + '\t' \
+					+ self.waterConcLineEdit.text() + '\t' \
+					+ self.waterConcGMLineEdit.text() + '\t' \
+					+ self.waterConcWMLineEdit.text() + '\t' \
+					+ str(int(self.voxelConcButton.isChecked()))).split('\t')
+				exp_params[0] = str(exp_params[0])
+				exp_params[1] = float(exp_params[1])
+				exp_params[2] = float(exp_params[2])
+				exp_params[3] = float(exp_params[3])
+				exp_params[4] = float(exp_params[4])
+				exp_params[5] = float(exp_params[5])
+				exp_params[6] = int(exp_params[6])
+				exp_params.append(float(self.waterConcCSFLineEdit.text()))
+
+				# Get scanner type
+				scanner_type = 'bruker'
 				out_file.write(str(scanner_type) + ',')
 
 				# Calculate absolute metabolite levels (in mM)

@@ -938,7 +938,7 @@
        <item>
         <widget class="QTabWidget" name="metabQuantTabWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="metabQuantVarianTab">
           <attribute name="title">
@@ -966,7 +966,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>BARSTOOL auto-selects the spectroscopy, image, and partial volume segmentation files. Ensure all files are &amp;located
+                 <string>BARSTOOL auto-selects the spectroscopy, image, and partial volume segmentation files. Ensure all files are located
 in the same folder and follow the expected naming convention.</string>
                 </property>
                </widget>
@@ -1059,7 +1059,7 @@ in the same folder and follow the expected naming convention.</string>
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>BARSTOOL auto-selects the spectroscopy, image, and partial volume segmentation files. Ensure all files are &amp;located
+                 <string>BARSTOOL auto-selects the spectroscopy, image, and partial volume segmentation files. Ensure all files are located
 in the same folder and follow the expected naming convention.</string>
                 </property>
                </widget>
