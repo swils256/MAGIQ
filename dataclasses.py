@@ -1179,8 +1179,13 @@ class BrukerFID(object):
 		# ... assumes single-voxel spectroscopy here ...
 		VoxArrSize = [float(v) for v in self.header['PVM_VoxArrSize']['value']]
 		VoxArrPosition = [float(v) for v in self.header['PVM_VoxArrPosition']['value']]
-		
-		EncChanScaling = [float(v) for v in self.header['PVM_EncChanScaling']['value']]
+
+		if np.size(self.header['PVM_EncChanScaling']['value']) > 1:
+			EncChanScaling = [float(v) for v in self.header['PVM_EncChanScaling']['value']]
+		else:
+			EncChanScaling = [float(self.header['PVM_EncChanScaling']['value'])]
+		self.Gain = EncChanScaling
+
 		EchoTime = float(self.header['PVM_EchoTime']['value'])
 		RepetitionTime = float(self.header['PVM_RepetitionTime']['value'])
 
@@ -1225,7 +1230,11 @@ class BrukerFID(object):
 		VoxArrPosition = [float(v) for v in self.header['PVM_VoxArrPosition']['value']]
 		VoxArrPositionRPS = [float(v) for v in self.header['PVM_VoxArrPositionRPS']['value']]
 
-		EncChanScaling = [float(v) for v in self.header['PVM_EncChanScaling']['value']]
+		if np.size(self.header['PVM_EncChanScaling']['value']) > 1:
+			EncChanScaling = [float(v) for v in self.header['PVM_EncChanScaling']['value']]
+		else:
+			EncChanScaling = [float(self.header['PVM_EncChanScaling']['value'])]
+		self.Gain = EncChanScaling
 
 		console.append(' | file_dir ' + str(self.file_dir))
 		console.append(' | EchoTime ' + str(EchoTime))
