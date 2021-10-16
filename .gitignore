@@ -6,3 +6,5 @@
 .vs/ProjectSettings.json
 *.sqlite
 .vs/VSWorkspaceState.json
+.DS_Store
+.python-version
