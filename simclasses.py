@@ -2,7 +2,13 @@
 from builtins import zip
 from builtins import range
 
-from PyQt5 import QtCore
+# Check for PyQt6 (for native mac M1 compatibility), otherwise continue using PyQt5
+import importlib
+PyQt6_spec = importlib.util.find_spec("PyQt6")
+if PyQt6_spec != None:
+	from PyQt6 import QtCore
+else:
+	from PyQt5 import QtCore
 
 # ---- Math Libraries ---- #
 import scipy as sp

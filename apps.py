@@ -9,7 +9,14 @@ import errno
 import os
 import copy
 import traceback
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
+
+# Check for PyQt6 (for native mac M1 compatibility), otherwise continue using PyQt5
+import importlib
+PyQt6_spec = importlib.util.find_spec("PyQt6")
+if PyQt6_spec != None:
+	from PyQt6 import QtCore, QtGui, QtWidgets, uic
+else:
+	from PyQt5 import QtCore, QtGui, QtWidgets, uic
 
 # ---- Math Libraries ---- #
 import numpy as np
@@ -23,7 +30,7 @@ from matplotlib.backends.backend_qt5agg import (
 import matplotlib.pyplot as plt
 
 # ---- Data Classes ---- #
-from dataclasses import *
+from magiqdataclasses import *
 
 # ---- Pre-Processing Functions ---- #
 from preproc import *
@@ -832,4 +839,4 @@ if __name__ == "__main__":
 	app = QtWidgets.QApplication(sys.argv)
 	window = MyApp()
 	window.show()
-	sys.exit(app.exec_())
+	sys.exit(app.exec())

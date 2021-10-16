@@ -7,7 +7,13 @@ import sys
 import os
 import copy
 
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
+# Check for PyQt6 (for native mac M1 compatibility), otherwise continue using PyQt5
+import importlib
+PyQt6_spec = importlib.util.find_spec("PyQt6")
+if PyQt6_spec != None:
+	from PyQt6 import QtCore, QtGui, QtWidgets, uic
+else:
+	from PyQt5 import QtCore, QtGui, QtWidgets, uic
 
 # ---- Math Libraries ---- #
 import scipy as sp
@@ -309,4 +315,4 @@ if __name__ == "__main__":
 	app = QtWidgets.QApplication(sys.argv)
 	window = MyApp()
 	window.show()
-	sys.exit(app.exec_())
+	sys.exit(app.exec())
