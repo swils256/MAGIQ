@@ -13,7 +13,6 @@ import platform
 import struct
 import re
 
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
 import subprocess as subproc
 
 import multiprocessing as mp
@@ -24,8 +23,6 @@ from itertools import groupby
 
 # ---- Math Libraries ---- #
 import scipy as sp
-import scipy.signal as spsg
-
 import numpy as np
 import math
 from pyfftw.interfaces import scipy_fftpack as fftw
