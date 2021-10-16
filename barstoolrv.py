@@ -38,7 +38,7 @@ import nibabel as nib
 from autozoom import *
 
 # ---- Data Classes ---- #
-from dataclasses import *
+from magiqdataclasses import *
 
 # ---- Spectroscopy Calculations ---- #
 import metabcalcs as mc

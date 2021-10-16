@@ -19,7 +19,7 @@ import math
 import pygamma as pg
 
 # ---- Data Classes ---- #
-from dataclasses import *
+from magiqdataclasses import *
 
 # ---- Simulation Class ---- #
 class MetaboliteSimulation(QtCore.QObject):

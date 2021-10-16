@@ -29,7 +29,7 @@ from matplotlib.backends.backend_qt5agg import (
 import matplotlib.pyplot as plt
 
 # ---- Data Classes ---- #
-from dataclasses import *
+from magiqdataclasses import *
 
 qtCreatorFile = "spices/ui/SPICeS.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)

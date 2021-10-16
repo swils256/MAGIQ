@@ -37,7 +37,7 @@ from matplotlib.backends.backend_qt5agg import (
 import matplotlib.pyplot as plt; plt.style.use('ggplot')
 
 # ---- Data Classes ---- #
-from dataclasses import *
+from magiqdataclasses import *
 
 # ---- Simulation Libraries ---- #
 import pygamma as pg
