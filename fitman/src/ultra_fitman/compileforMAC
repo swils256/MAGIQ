@@ -1,1 +1,1 @@
-g++ src/*.cpp -L/usr/lib -I/usr/include/malloc -I./src -lm -o ultra_fitman
+g++ src/*.cpp -L/usr/lib -I./src -lm -o ultra_fitman
