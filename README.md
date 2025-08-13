@@ -6,10 +6,6 @@ MAGIQ stands for MRS Analysis, Generation, and In-Vivo Quantification. This soft
 ## 3T MRS Manual:
 * [3T MRS Manual - SW](https://github.com/swils256/MAGIQ/blob/master/3T%20Magnetic%20Resonance%20Spectroscopy%20Manual%20-%20Final.docx)
 
-
-Outdated Installation Instructions:
-* [Installation Instructions](https://github.com/dwong263/MAGIQ/wiki/Installation-Overview)
-
 # Usage
 Navigate to the folder containing the MAGIQ files and launch the program with the following commands:
 ```
@@ -101,5 +97,6 @@ _**Note that the "Bruker" aspects of this program has yet to be finalized. Use a
 # License
 
 This software was developed for internal use by the Bartha Lab and Bartha Lab collaborators. It is not intended for commercial use.
+
 
 
