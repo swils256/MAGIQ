@@ -1,0 +1,82 @@
+#
+# Columns:
+#     1.  Metabolite
+#     2.  Number of protons for quantifiable singlet or whole signal sum
+#     3.  T1 values in GM (in sec)
+#     4.  T2 values in GM (in msec)
+#     5.  T1 values in WM (in sec)
+#     6.  T2 values in WM (in msec)
+#     7.  First Peak
+#     8.  Last Peak
+#
+naa	3	1.47	270.625	1.537	299.67	6	6
+cho	9	1.275	255.333	1.19	211.143	11	11
+cre	3	1.395	157	1.43	160.5	18	18
+gln	5	1.2	141.5	1.095	149.5	22	31
+glu	5	1.235	176.2	1.12	126	32	46
+myo	6	1.175	217	0.9833	195.3	47	59
+glc	6	1.175	133	0.9833	138	60	78
+#
+# Water:
+#	protons	T1_GM	T2_GM	T1_WM	T2_WM	T1_CSF	T2_CSF
+water	2	1.47	74.25	1.11	56	4.391	2200
+#
+# Experiment:
+#	TR	TE	Conc	ConcGM	ConcWM	ConcVox
+exp	2000	135.0	55.12	0.81	0.71	0
+#
+#
+#References (Averages from various regions in the following papers)
+#
+# Baker, E. H., Basso, G., Barker, P. B., Smith, M. A., Bonekamp, D., & Horská, A. (2008).
+#	Regional apparent metabolite concentrations in young adult brain measured by 1H MR
+#	spectroscopy at 3 Tesla. Journal of Magnetic Resonance Imaging, 27(3), 489–499.
+#	https://doi.org/10.1002/JMRI.21285
+# Bojorquez, J. Z., Bricq, S., Acquitter, C., Brunotte, F., Walker, P. M., & Lalande, A.
+#	(2017). What are normal relaxation times of tissues at 3 T? Magnetic Resonance
+#	Imaging, 35, 69–80. https://doi.org/10.1016/J.MRI.2016.08.021
+# Deelchand, D. K., Auerbach, E. J., Kobayashi, N., & Marjańska, M. (2018a). Transverse
+#	relaxation time constants of the five major metabolites in human brain measured in
+#	vivo using LASER and PRESS at 3 T. Magnetic Resonance in Medicine, 79(3),
+#	1260–1265. https://doi.org/10.1002/MRM.26826
+# Ethofer, T., Mader, I., Seeger, U., Ludolph, A., Grodd, W., & Klose, U. (1989).
+#	Comparison of Metabolite T1 Relaxation Times in Different Brain Regions at 1.5 and
+#	3 Tesla. Magn Reson Imag, 11(2), 104–112.
+# Ganji, S. K., Banerjee, A., Patel, A. M., Zhao, Y. D., Dimitrov, I. E., Browning, J. D.,
+#	Sherwood Brown, E., Maher, E. A., & Choi, C. (2012). T2 measurement of J-coupled
+#	metabolites in the human brain at 3T. NMR in Biomedicine, 25(4), 523–529.
+#	https://doi.org/10.1002/NBM.1767
+# Gelman, N., Gorell, J. M., Barker, P. B., Savage, R. M., Spickler, E. M., Windham, J. P.,
+#	& Knight, R. A. (1999). MR Imaging of Human Brain at 3.0 T: Preliminary Report on
+#	Transverse Relaxation Rates and Relation to Estimated Iron Content.
+#	Https://Doi.Org/10.1148/Radiology.210.3.R99fe41759, 210(3), 759–767.
+#	https://doi.org/10.1148/RADIOLOGY.210.3.R99FE41759
+# Mlynárik, V., Gruber, S., & Moser, E. (2001). Proton T 1 and T 2 relaxation times of
+#	human brain metabolites at 3 Tesla. Proc. Intl. Soc. Mag. Reson. Med, 9.
+# Shin, W., Gu, H., & Yang, Y. (2009). Fast high-resolution T1 mapping using inversion
+#	recovery look-locker echo-planar imaging at steady state: Optimization for accuracy
+#	and reliability. Magnetic Resonance in Medicine, 61(4), 899–906.
+#	https://doi.org/10.1002/MRM.21836
+# Trä, F., Block, W., Lamerichs, R., Rgen Gieseke, J., & Schild, H. H. (2004). Original
+#	Research 1 H Metabolite Relaxation Times at 3.0 Tesla: Measurements of T1 and T2
+#	Values in Normal Brain and Determination of Regional Differences in Transverse
+#	Relaxation. JOURNAL OF MAGNETIC RESONANCE IMAGING, 19, 537–545.
+#	https://doi.org/10.1002/jmri.20053
+# Träber, F., Block, W., Lamerichs, R., Gieseke, J., & Schild, H. H. (2004). 1H metabolite
+#	relaxation times at 3.0 tesla: Measurements of T1 and T2 values in normal brain and
+#	determination of regional differences in transverse relaxation. Journal of Magnetic
+#	Resonance Imaging : JMRI, 19(5), 537–545. https://doi.org/10.1002/JMRI.20053
+# Tsai, S. Y., Posse, S., Lin, Y. R., Ko, C. W., Otazo, R., Chung, H. W., & Lin, F. H.
+#	(2007). Fast mapping of the T2 relaxation time of cerebral metabolites using proton
+#	echo-planar spectroscopic imaging (PEPSI). Magnetic Resonance in Medicine, 57(5),
+#	859–865. https://doi.org/10.1002/MRM.21225
+# Wyss, P. O., Hock, A., Scheidegger, M., Zoelch, N., Rudin, M., Kollias, S., & Henning, A.
+#	(n.d.). About differences of the transverse relaxation time (T 2 ) of 18 brain
+#	metabolites in gray and white matter at 3T.
+# Zaaraoui, W., Fleysher, L., Fleysher, R., Liu, S., Soher, B. J., & Gonen, O. (2007).
+#	Human brain-structure resolved T2 relaxation times of proton metabolites at 3
+#	tesla. Magnetic Resonance in Medicine, 57(6), 983–989.
+#	https://doi.org/10.1002/MRM.21250
+# Zhang, Y., & Shen, J. (2016). Simultaneous quantification of glutamate and
+#	glutamine by J-modulated spectroscopy at 3 Tesla. Magnetic Resonance in Medicine,
+#	76(3), 725–732. https://doi.org/10.1002/MRM.25922
