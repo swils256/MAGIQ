@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 # ---- System Libraries ---- #
 from builtins import str
 from builtins import range
@@ -70,7 +68,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			proc = subprocess.Popen(["wsl", "bash", "-c", "grep -oE 'gcc version ([0-9]+)' /proc/version"], stdout=subprocess.PIPE, shell=True)
 			(out, err) = proc.communicate()
 						
-			if out.decode().split(' ')[-1] > '5':
+			if int(out.decode().split(' ')[-1]) > 5:
 				print('WSL2 detected.')
 				proc = subprocess.Popen(["wsl", "echo", "$(cat /etc/resolv.conf | grep nameserver)"], stdout=subprocess.PIPE, shell=True)
 				(out, err) = proc.communicate()
@@ -178,7 +176,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			self.confirmSaveFileButton_quant_bruker.setEnabled(False)
 
 			self.runQuantButton_bruker.clicked.connect(self.runQuant_bruker)
-			self.runQuantButton_bruker.setEnabled(True)
+			self.runQuantButton_bruker.setEnabled(False)
 
 			# Set Up Plotting Region
 			fig_bruker = plt.figure(2)
@@ -309,13 +307,13 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			# Write heading to file if we're at the first line
 			if i == 0:
 				saveFile.write('ID,')
-				print('ID', end=' ')
+				print('ID', end)
 				for metab in metabs: 
 					saveFile.write(str(self.outputs[i].metabolites[metab].name)+',')
-					print(self.outputs[i].metabolites[metab].name, end=' ')
+					print(self.outputs[i].metabolites[metab].name, end)
 				for metab in metabs: 
 					saveFile.write(str(self.outputs[i].metabolites[metab].name)+',')
-					print(self.outputs[i].metabolites[metab].name, end=' ')
+					print(self.outputs[i].metabolites[metab].name, end)
 				saveFile.write('\n')
 				print('')
 
@@ -352,31 +350,22 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 		file_dialog = QtWidgets.QFileDialog(directory=self.workingDirectory)
 		file_dialog.setFileMode(QtWidgets.QFileDialog.DirectoryOnly)
 		file_dialog.setOption(QtWidgets.QFileDialog.DontUseNativeDialog, True)
-
-		# Set the selection mode to allow multiple selections
-		file_dialog = QtWidgets.QFileDialog(directory=self.workingDirectory)
-		file_dialog.setFileMode(QtWidgets.QFileDialog.DirectoryOnly)
-		file_dialog.setOption(QtWidgets.QFileDialog.DontUseNativeDialog, True)
-		file_dialog.setViewMode(QtWidgets.QFileDialog.List)
-		file_dialog.setOption(QtWidgets.QFileDialog.ShowDirsOnly, True)
-		file_dialog.setOption(QtWidgets.QFileDialog.ReadOnly, False)
 		file_view = file_dialog.findChild(QtWidgets.QListView, 'listView')
 
+		# to make it possible to select multiple directories:
 		if file_view:
 			file_view.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
 		f_tree_view = file_dialog.findChild(QtWidgets.QTreeView)
-		
-		if f_tree_view:
-			f_tree_view.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
 
-		if file_dialog.exec():
+		if file_dialog():
 			paths = file_dialog.selectedFiles()
 			self.mouseDirsBruker = paths
-    
-			self.consoleOutputText.append('The following directories were selected:')
-			for directory in self.mouseDirsBruker:
-				self.consoleOutputText.append(' >> ' + directory)
-			self.mouseIDsBruker = [os.path.basename(directory) for directory in self.mouseDirsBruker]
+			
+			self.consoleOutputText.append('The following files were loaded:')
+			for (i, mouse) in enumerate(self.mouseDirsBruker):
+				self.mouseDirsBruker[i] = str(mouse)
+				self.consoleOutputText.append(' >> ' + str(mouse))
+			self.mouseIDsBruker = [mouse.split('/')[-1] for mouse in self.mouseDirsBruker]
 			self.consoleOutputText.append('')
 
 			if self.mainTabWidget.currentIndex() == 1:
@@ -556,14 +545,15 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 						csf_thresh = elem
 						break
 
+
 			plt.figure()
 			plt.plot(np.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000), brain_kde(np.linspace(np.min(brain_img_vec), np.max(brain_img_vec), 1000)))
+			plt.plot(csf_thresh, brain_kde(csf_thresh), '.')
 			plt.title('Gaussian Kernel Density Estimate of PDF')
 			plt.xlim(0, np.max(brain_img_vec))
 			plt.xlabel('Image Intensity')
 			plt.ylabel('Probability')
 			plt.legend(['PDF', 'Threshold: '+str(int(csf_thresh))])
-			plt.plot(csf_thresh, brain_kde(csf_thresh), '.')
 
 			if self.csfThreshMode1_bruker.isChecked():
 				plt.savefig(directory + '/' + self.mouseIDsBruker[d] + '_brain_gkde.pdf')
@@ -819,10 +809,10 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 					print(params)
 					rows.append(params)
 
-		self.metabParamsTableWidget.setRowCount(np.size(rows,0))
+		self.metabParamsTableWidget.setRowCount(sp.size(rows,0))
 		self.metabParamsTableWidget.setColumnCount(8)
 
-		for i in range(0, np.size(rows, 0)):
+		for i in range(0, sp.size(rows, 0)):
 			self.metabParamsTableWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(rows[i][0])) # metabolite
 			self.metabParamsTableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem(rows[i][1])) # protons
 			self.metabParamsTableWidget.setItem(i, 2, QtWidgets.QTableWidgetItem(rows[i][2])) # T1 GM
@@ -966,9 +956,9 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				sup_dat   = DatFile(mouse + '/sup.dat')
 				unsup_dat = DatFile(mouse + '/metab_uns.dat')
 
-				brain_img = brain.get_fdata()
-				csf_img   = csf.get_fdata()
-				vox_img   = vox.get_fdata()
+				brain_img = brain.get_data()
+				csf_img   = csf.get_data()
+				vox_img   = vox.get_data()
 
 				vox_img_vec = np.reshape(vox_img, np.size(vox_img)).astype(int)
 				csf_img_vec = np.reshape(csf_img, np.size(csf_img)).astype(int)
@@ -985,8 +975,6 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				# Get number of averages
 				procpar_sup = Procpar(mouse + '/metab.fid/procpar')
 				n_avg_sup = int(procpar_sup.acqcycles)//2
-
-				print('n_avg_sup:', n_avg_sup)
 
 				procpar_uns = Procpar(mouse + '/water.fid/procpar')
 				n_avg_uns = int(procpar_uns.acqcycles)//2
@@ -1008,13 +996,13 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 				gain_sup = procpar_sup.gain
 				gain_uns = procpar_uns.gain
 
-				print('n_avg_sup:\t', n_avg_sup, '\t', end=' ')
+				print('n_avg_sup:\t', n_avg_sup, '\t', end)
 				print('n_avg_uns:\t', n_avg_uns)
-				print('gain_sup:\t', gain_sup, '\t', end=' ')
+				print('gain_sup:\t', gain_sup, '\t', end)
 				print('gain_uns:\t', gain_uns)
-				print('sup_ConvS:\t', sup_dat.ConvS, '\t', end=' ')
+				print('sup_ConvS:\t', sup_dat.ConvS, '\t', end)
 				print('uns_ConvS:\t', unsup_dat.ConvS)
-				print('scale_sup:\t', scale_sup, '\t', end=' ')
+				print('scale_sup:\t', scale_sup, '\t', end)
 				print('scale_uns:\t', scale_uns)
 				print('')
 				out_file.write(str(n_avg_sup) + ',' + str(n_avg_uns) + ',' + str(scale_sup) + ',' + str(scale_uns) + ',')
@@ -1155,7 +1143,7 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 	# ---- Methods for Actual Quantification (BRUKER) ---- #
 	def setQuantSaveFile_bruker(self):
-		self.quantSaveFileName_bruker = self.saveFileLineEdit_quant_bruker.text()
+		self.quantSaveFileName_bruker = self.saveFileLineEdit_quant.text()
 		self.runQuantButton.setEnabled(True)
 		self.consoleOutputText.append('Quantification results will be saved to: ' + str(self.quantSaveFileName_bruker))
 		self.consoleOutputText.append('')
@@ -1180,33 +1168,27 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 			try:
 				ID = mouse.split('/')[-1]
 				out_file.write(str(ID)+',')
- 
+
 				self.consoleOutputText.append(' >> ' + str(mouse))
 				print('Processing ', mouse, '...')
-				get_filename = lambda dataset_ext: os.path.join(mouse, self.mouseIDsBruker[i] + dataset_ext)
 
-				brain = nib.load(get_filename('_brain.nii.gz'))
-				csf = nib.load(get_filename('_csf_mask.nii.gz'))
-				vox = nib.load(get_filename('_voxel_overlay.nii.gz'))
-				sup_out = OutputFile(get_filename('_sup.out'))
-				unsup_out = OutputFile(get_filename('_uns.out'))
-				sup_dat = DatFile(get_filename('_sup.dat'))
-				unsup_dat = DatFile(get_filename('_uns.dat'))
+				brain = nib.load(mouse + '/' + mouse + '_brain.nii.gz')
+				csf   = nib.load(mouse + '/' + mouse + '_csf_mask.nii.gz')
+				vox   = nib.load(mouse + '/' + mouse + '_voxel_overlay.nii.gz')
+				sup_out     = OutputFile(mouse + '/' + mouse + '_sup.out')
+				unsup_out   = OutputFile(mouse + '/' + mouse + '_uns.out')
+				sup_dat   = DatFile(mouse + '/' + mouse + '_sup.dat')
+				unsup_dat = DatFile(mouse + '/' + mouse + '_uns.dat')
 
-
-				brain_img = np.around(brain.get_fdata())
-				csf_img   = np.around(csf.get_fdata())
-				vox_img   = np.around(vox.get_fdata())
-
-				print(brain_img)
+				brain_img = brain.get_data()
+				csf_img   = csf.get_data()
+				vox_img   = vox.get_data()
 
 				vox_img_vec = np.reshape(vox_img, np.size(vox_img)).astype(int)
 				csf_img_vec = np.reshape(csf_img, np.size(csf_img)).astype(int)
 
 				vox_n = np.sum(vox_img_vec)
 				csf_n = np.sum(vox_img_vec[csf_img_vec.astype(bool)])
-
-				print(vox_n)
 
 				tissue_frac = 1-float(csf_n)/float(vox_n)
 				vox_frac = [tissue_frac/2, tissue_frac/2, 1-tissue_frac]
@@ -1216,29 +1198,25 @@ class MyApp(QtWidgets.QWidget, Ui_MainWindow):
 
 				# Get number of averages
 				fid_sup = BrukerFID(mouse + '/sup')
-				n_avg_sup = int(fid_sup.header['PVM_NAverages']['value'])
+				n_avg_sup = int(fid_sup.header['PVM_NAverages']['value'])//2
 
 				fid_uns = BrukerFID(mouse + '/uns')
-				n_avg_uns = int(fid_uns.header['PVM_NAverages']['value'])
+				n_avg_uns = int(fid_uns.header['PVM_NAverages']['value'])//2
 
 				# Get scaling factors -- CHECK WITH BARTHA!
 				scale_sup = fid_sup.ConvS
 				scale_uns = fid_uns.ConvS
 
-				# gain_sup = fid_sup.gain()[0]
-				# gain_uns = fid_uns.gain()[0]
-	
-				# SCOTT UPDATE FOR BRUKER
-				gain_sup = int(fid_sup.header['PVM_RefScanRG']['value'])
-				gain_uns = int(fid_uns.header['PVM_RefScanRG']['value'])
+				gain_sup = fid_sup.Gain[0]
+				gain_uns = fid_uns.Gain[0]
 
-				print('n_avg_sup:\t', n_avg_sup, '\t', end=' ')
+				print('n_avg_sup:\t', n_avg_sup, '\t', end)
 				print('n_avg_uns:\t', n_avg_uns)
-				print('gain_sup:\t', gain_sup, '\t', end=' ')
+				print('gain_sup:\t', gain_sup, '\t', end)
 				print('gain_uns:\t', gain_uns)
-				print('sup_ConvS:\t', sup_dat.ConvS, '\t', end=' ')
+				print('sup_ConvS:\t', sup_dat.ConvS, '\t', end)
 				print('uns_ConvS:\t', unsup_dat.ConvS)
-				print('scale_sup:\t', scale_sup, '\t', end=' ')
+				print('scale_sup:\t', scale_sup, '\t', end)
 				print('scale_uns:\t', scale_uns)
 				print('')
 				out_file.write(str(n_avg_sup) + ',' + str(n_avg_uns) + ',' + str(scale_sup) + ',' + str(scale_uns) + ',')
@@ -1382,4 +1360,4 @@ if __name__ == "__main__":
 	app = QtWidgets.QApplication(sys.argv)
 	window = MyApp()
 	window.show()
-	sys.exit(app.exec())
+	sys.exit(app())

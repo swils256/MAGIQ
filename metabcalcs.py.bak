@@ -1,4 +1,4 @@
-
+from __future__ import print_function
 
 # ---- System Libraries ---- #
 from builtins import range
@@ -54,22 +54,19 @@ def calc(sup_out, unsup_out, \
 		# Get metabolite signal
 		sum_alpha_M = 0
 		crlbs       = []
-		
 		for peak in range(metab_params[i][6], metab_params[i][7]+1):
-			print('Here it is:', float(sup_out.output[peak][3]))
 			if float(sup_out.output[peak][3]) == 0:
 				crlbs.append(np.nan)
 			else:
 				crlbs.append((float(sup_out.crlbs[peak][3])/float(sup_out.output[peak][3])) * 100)
 			print('     | ', peak, sup_out.output[peak][3], crlbs[-1])
 			sum_alpha_M = sum_alpha_M + float(sup_out.output[peak][3])
-		print('sup_out.output[peak]', sup_out.output[peak])
 		final_crlb = np.nanmean(crlbs)
-		print(' sum_alpha_M | ', sum_alpha_M)
+		print(' | ', sum_alpha_M)
 
 		# Get water signal
 		sum_alpha_W = float(unsup_out.output[1][3])
-		print(' sum _alpha_W | ', sum_alpha_W)
+		print(' | ', sum_alpha_W)
 
 		# Calculate relaxation correction for metabolites
 		relax_m = R_M(  vox_frac[0], \
@@ -97,24 +94,12 @@ def calc(sup_out, unsup_out, \
 						exp_params[5], \
 						exp_params[7])
 
-		term1 = float(sum_alpha_M) / float(sum_alpha_W)													# RATIO OF MEASURED SIGNALS
-		term2 = float(relax_w) / float(relax_m)															# RELAXATION CORRECTION
-		term3a = float(n_avg_uns) / float(n_avg_sup)													# CORRECTION FOR NUMBER OF AVERAGES
+		term1 = float(sum_alpha_M) / float(sum_alpha_W)		# RATIO OF MEASURED SIGNALS
+		term2 = float(relax_w) / float(relax_m)				# RELAXATION CORRECTION
+		term3a = float(n_avg_uns) / float(n_avg_sup)		# CORRECTION FOR NUMBER OF AVERAGES
 		term3b = float(water_params[1]) / float(metab_params[i][1])										# CORRECTION FOR NUMBER OF NUCLEI (protons)
-		term3c = float((scale_uns * 10**(gain_uns/20))) / float((scale_sup * 10**(gain_sup/20)))		# CORRECTION FOR GAIN
-		term4 = exp_params[3]																			# CONCENTRATION OF PURE WATER
-
-	
-
-
-		print('gain_sup=', gain_sup)
-		print('gain_uns=', gain_uns)
-		print('scale_sup=', scale_sup)
-		print('scale_uns=', scale_uns)
-
-		print('relax_w=', relax_w)
-		print('relax_m=', relax_m)
-
+		term3c = float((scale_uns * 10**(gain_uns/20.0))) / float((scale_sup * 10**(gain_sup/20.0)))	# CORRECTION FOR GAIN
+		term4 = exp_params[3]								# CONCENTRATION OF PURE WATER
 
 		if exp_params[6] == 0:
 			# DILUTION CORRECTION FOR TISSUE CONCENTRATION
@@ -124,7 +109,7 @@ def calc(sup_out, unsup_out, \
 			# VOXEL CONCENTRATION
 			term5 = 1
 
-		print(' Terms: | ', term1, term2, term3a, term3b, term3c, term4, term5)
+		print(' | ', term1, term2, term3a, term3b, term3c, term4, term5)
 		final_conc = term1*term2*term3a*term3b*term3c*term4*term5
 
 		# Extra Correction (for Siemens Systems only)
@@ -155,13 +140,8 @@ def R_M(f_GM, f_WM, T1_GM, T2_GM, T1_WM, T2_WM, TR, TE):
 	# T1_WM = T1 of white matter (sec)
 	# T2_WM = T2 of white matter (msec)
 	# TR (msec); TE (msec)
-	
-	print('f_GM R_M=', f_GM)
-	print('f_WM R_M=', f_WM)
-	
-	return (f_GM / (f_GM + f_WM)) * (1 - np.exp(-(TR*1E-3)/T1_GM)) * np.exp(-(TE*1E-3)/(T2_GM*1E-3)) + \
-		   (f_WM / (f_GM + f_WM)) * (1 - np.exp(-(TR*1E-3)/T1_WM)) * np.exp(-(TE*1E-3)/(T2_WM*1E-3))
-
+	return (f_GM / (f_GM + f_WM)) * (1 - sp.exp(-(TR*1E-3)/T1_GM)) * sp.exp(-(TE*1E-3)/(T2_GM*1E-3)) + \
+		   (f_WM / (f_GM + f_WM)) * (1 - sp.exp(-(TR*1E-3)/T1_WM)) * sp.exp(-(TE*1E-3)/(T2_WM*1E-3))
 
 def R_W(f_GM, f_WM, f_CSF, T1_GM, T2_GM, T1_WM, T2_WM, T1_CSF, T2_CSF, TR, TE, alpha_GM, alpha_WM, alpha_CSF):
 	# f_GM = fraction of gray matter
@@ -173,14 +153,9 @@ def R_W(f_GM, f_WM, f_CSF, T1_GM, T2_GM, T1_WM, T2_WM, T1_CSF, T2_CSF, TR, TE, a
 	# T2_WM = T2 of white matter (msec)
 	# T1_CSF = T1 of CSF (sec)
 	# T2_CSF = T2 of CSF (msec)
-	
-	print('f_GM R_W=', f_GM)
-	print('f_WM R_W=', f_WM)
-	print('f_CSF R_W=', f_CSF)
-	
-	return f_GM  * alpha_GM * (1 - np.exp(-(TR*1E-3)/T1_GM))  * np.exp(-(TE*1E-3)/(T2_GM *1E-3)) + \
-		   f_WM  * alpha_WM * (1 - np.exp(-(TR*1E-3)/T1_WM))  * np.exp(-(TE*1E-3)/(T2_WM *1E-3)) + \
-		   f_CSF * alpha_CSF * (1 - np.exp(-(TR*1E-3)/T1_CSF)) * np.exp(-(TE*1E-3)/(T2_CSF*1E-3))
+	return f_GM  * alpha_GM * (1 - sp.exp(-(TR*1E-3)/T1_GM))  * sp.exp(-(TE*1E-3)/(T2_GM *1E-3)) + \
+		   f_WM  * alpha_WM * (1 - sp.exp(-(TR*1E-3)/T1_WM))  * sp.exp(-(TE*1E-3)/(T2_WM *1E-3)) + \
+		   f_CSF * alpha_CSF * (1 - sp.exp(-(TR*1E-3)/T1_CSF)) * sp.exp(-(TE*1E-3)/(T2_CSF*1E-3))
 
 def tree(): return defaultdict(tree)
 

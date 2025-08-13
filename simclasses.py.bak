@@ -38,7 +38,7 @@ class MetaboliteSimulation(QtCore.QObject):
 
 	def simulate(self):
 		self.postToConsole.emit('   | Simulating ... ' + self.insysfile)
-		print(('    | Simulating ...' + self.insysfile))
+		print('    | Simulating ...' + self.insysfile)
 
 		metab_name = self.insysfile.replace('.sys','')
 

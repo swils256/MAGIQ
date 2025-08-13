@@ -1,4 +1,4 @@
-
+from __future__ import print_function
 
 # ---- System Libraries ---- #
 from builtins import str
@@ -615,7 +615,7 @@ class RDAFile(object):
                 # Some acquisition parameters from header
                 larmor = float(fid_hdr['MRFrequency'])
                 fid_date = dt.datetime.strptime(fid_hdr['StudyDate'], '%Y%m%d').strftime('%d%b%y')
-                fid_nt = float(fid_hdr["NumberOfAverages"])        #.rstrip('.0')) <-- if number of averages end with "0", this will be a problem
+                fid_nt = int(float(fid_hdr["NumberOfAverages"]))        #.rstrip('.0')) <-- if number of averages end with "0", this will be a problem
                 fid_dt = float(fid_hdr["DwellTime"]) / 1e6
                 # fid_time = np.arange(fid_dt, (len(fid_data) + 1) * fid_dt, fid_dt)
 
@@ -1069,6 +1069,7 @@ class VarianVoxel(object):
 class BrukerFID(object):
         def __init__(self, file_dir):
                 self.file_dir = file_dir
+                self.Gain = [1,1,1]
 
                 # READ RAW DATA
                 data_real, data_imag = self.__parseFID__(file_dir)
@@ -1077,10 +1078,8 @@ class BrukerFID(object):
                 self.header = self.__parseMethodFile__(file_dir)
                 self.header_params = list(self.header.keys())
 
-                print(self.header)
-
-                DigShift = int(68)
-                DigDw    = float(0.1248)
+                DigShift = float(self.header['PVM_DigShift']['value'])
+                DigDw    = float(self.header['PVM_DigDw']['value'])
 
                 # CHOP OFF ADC DELAY
                 self.signal = np.array(data_real) + 1j*np.array(data_imag)
@@ -1160,23 +1159,12 @@ class BrukerFID(object):
 
                 return param_dict
 
-
-        def gain(self):
-                if np.size(self.header['PVM_EncChanScaling']['value']) > 1:
-                        EncChanScaling = [float(v) for v in self.header['PVM_EncChanScaling']['value']]
-                else:
-                        EncChanScaling = [float(self.header['PVM_EncChanScaling']['value'])]
-                return EncChanScaling
-
-
         def writeDAT(self, out_name, suffix=''):
                 if not(suffix is ''):
                         out_name = out_name + '_' + suffix + '.dat'
                 else:
                         out_name = out_name + '.dat'
 
-
-                self.Gain = [float(self.header['PVM_RefScanRG']['value'])]
                 if self.Gain is None or len(self.Gain) == 0:
                         self.Gain = [1.0]
 
@@ -1185,7 +1173,7 @@ class BrukerFID(object):
                 data_real = np.real(self.signal)
                 data_imag = -np.imag(self.signal)
 
-                DigDw = float(0.1248)
+                DigDw = float(self.header['PVM_DigDw']['value'])
                 FrqRef = float(self.header['PVM_FrqRef']['value'][0])
                 NAvgs = float(self.header['PVM_NAverages']['value'][0])
 
@@ -1235,22 +1223,19 @@ class BrukerFID(object):
                 RepetitionTime = self.header['PVM_RepetitionTime']['value']
                 NAverages = self.header['PVM_NAverages']['value']
                 FrqRef = self.header['PVM_FrqRef']['value'][0]
-                DigDw = 0.1248
-                DigShift = 68
+                DigDw = self.header['PVM_DigDw']['value']
+                DigShift = self.header['PVM_DigShift']['value']
 
                 # ... assumes single-voxel spectroscopy here ...
                 VoxArrSize = [float(v) for v in self.header['PVM_VoxArrSize']['value']]
                 VoxArrPosition = [float(v) for v in self.header['PVM_VoxArrPosition']['value']]
                 VoxArrPositionRPS = [float(v) for v in self.header['PVM_VoxArrPositionRPS']['value']]
 
-              #  if np.size(self.header['PVM_EncChanScaling']['value']) > 1:
-              #          EncChanScaling = [float(v) for v in self.header['PVM_EncChanScaling']['value']]
-              #  else:
-              #          EncChanScaling = [float(self.header['PVM_EncChanScaling']['value'])]
-              #  self.Gain = EncChanScaling
-
-                # SCOTT UPDATE FOR BRUKER
-                self.Gain = [float(self.header['PVM_RefScanRG']['value'])]
+                if np.size(self.header['PVM_EncChanScaling']['value']) > 1:
+                        EncChanScaling = [float(v) for v in self.header['PVM_EncChanScaling']['value']]
+                else:
+                        EncChanScaling = [float(self.header['PVM_EncChanScaling']['value'])]
+                self.Gain = EncChanScaling
 
                 console.append(' | file_dir ' + str(self.file_dir))
                 console.append(' | EchoTime ' + str(EchoTime))
