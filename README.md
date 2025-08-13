@@ -1,12 +1,14 @@
 # About MAGIQ
 MAGIQ stands for MRS Analysis, Generation, and In-Vivo Quantification. This software suite is used by the Bartha Lab to generate simulated prior-knowledge templates, post-process spectra, to fit spectra, and to quantify metabolite concentrations.
 
-PLEASE SEE THE NEW PDF FILE WITH THE UPDATED INSTALLATION INSTRUCTIONS.
+## Please see updated installation instructions here:
+
+## See manual for 3T MRS here:
+
+
 
 Outdated Installation Instructions:
 * [Installation Instructions](https://github.com/dwong263/MAGIQ/wiki/Installation-Overview)
-
-SEE PDF MANUAL FOR 3T MRS INSTRUCTIONS
 
 # Usage
 Navigate to the folder containing the MAGIQ files and launch the program with the following commands:
@@ -99,3 +101,4 @@ _**Note that the "Bruker" aspects of this program has yet to be finalized. Use a
 # License
 
 This software was developed for internal use by the Bartha Lab and Bartha Lab collaborators. It is not intended for commercial use.
+
